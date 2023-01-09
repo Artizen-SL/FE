@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Expo = () => {
+const ConcertList = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const Expo = () => {
   )
 }
 
-export default Expo
+export default ConcertList
