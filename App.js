@@ -21,7 +21,7 @@ export default function App() {
         <Tab.Screen name="MainRoutes" component={MainRoutes} />
         <Tab.Screen name="Test" component={Test} />
         <Tab.Screen name="Test1" component={Test1} />
-           <Stack.Screen name="Login" component={Login} />
+        <Tab.Screen name="Login" component={Login} />
       </Tab.Navigator>
 
       <StatusBar style="auto" />
