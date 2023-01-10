@@ -1,11 +1,8 @@
-import React from 'react'
+import React from "react";
+import { Text } from "react-native";
 
 const ShowList = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  return <Text>ShowList</Text>;
+};
 
-export default ShowList
+export default ShowList;

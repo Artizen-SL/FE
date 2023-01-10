@@ -1,4 +1,3 @@
-import * as React from "react";
 import {
   StyleSheet,
   View,
@@ -9,7 +8,11 @@ import {
 } from "react-native";
 import styled, { css } from "styled-components/native";
 import Theme from "../../Theme/Theme";
-import gallery from "../../assets/Icon/gallery.svg";
+import BottomTabBar from "../components/BottomTabs/BottomTabBar";
+import ConcertList from "../ContentLIst/ConcertList";
+import ExpoList from "../ContentLIst/ExpoList";
+import FineArtList from "../ContentLIst/FineArtList";
+import ShowList from "../ContentLIst/ShowList";
 
 const Main = ({ navigation }) => {
   return (
@@ -20,10 +23,51 @@ const Main = ({ navigation }) => {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.center}
-        onPress={() => navigation.navigate("FineArtList")}
+        onPress={() =>
+          navigation.navigate("MainRoutes", {
+            screen: "CategoryDetail",
+            params: { category: "FineArtList" },
+          })
+        }
       >
         <Image source={require("../../assets/Icon/gallery.png")} />
         <Text>미술관</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.center}
+        onPress={() =>
+          navigation.navigate("MainRoutes", {
+            screen: "CategoryDetail",
+            params: { category: "ConcertList" },
+          })
+        }
+      >
+        <Image source={require("../../assets/Icon/gallery.png")} />
+        <Text>ConcertList</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.center}
+        onPress={() =>
+          navigation.navigate("MainRoutes", {
+            screen: "CategoryDetail",
+            params: { category: "ExpoList" },
+          })
+        }
+      >
+        <Image source={require("../../assets/Icon/gallery.png")} />
+        <Text>ExpoList</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.center}
+        onPress={() =>
+          navigation.navigate("MainRoutes", {
+            screen: "CategoryDetail",
+            params: { category: "ShowList" },
+          })
+        }
+      >
+        <Image source={require("../../assets/Icon/gallery.png")} />
+        <Text>ShowList</Text>
       </TouchableOpacity>
     </StView>
   );
