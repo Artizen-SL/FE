@@ -2,6 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import Login from "./Screen/Login/Login";
 
 import Theme from "./Theme/Theme";
 import {
@@ -20,7 +21,9 @@ export default function App() {
         <Tab.Screen name="MainRoutes" component={MainRoutes} />
         <Tab.Screen name="Test" component={Test} />
         <Tab.Screen name="Test1" component={Test1} />
+           <Stack.Screen name="Login" component={Login} />
       </Tab.Navigator>
+
       <StatusBar style="auto" />
     </NavigationContainer>
   );

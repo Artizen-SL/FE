@@ -18,6 +18,9 @@ const Main = ({ navigation }) => {
   return (
     <StView style={styles.container}>
       <Text>메인화면</Text>
+      <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+        <Text>로그인</Text>
+      </TouchableOpacity>
       <TouchableOpacity
         style={styles.center}
         onPress={() =>
