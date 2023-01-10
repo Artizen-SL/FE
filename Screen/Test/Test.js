@@ -1,12 +1,12 @@
 import React from "react";
 import { Text, View } from "react-native";
 
-const ConcertList = () => {
+function Test() {
   return (
     <View>
-      <Text>콘서트</Text>
+      <Text>test</Text>
     </View>
   );
-};
+}
 
-export default ConcertList;
+export default Test;

@@ -1,11 +1,8 @@
-import React from 'react'
+import React from "react";
+import { Text } from "react-native";
 
 const ExpoList = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  return <Text>ExpoList</Text>;
+};
 
-export default ExpoList
+export default ExpoList;
