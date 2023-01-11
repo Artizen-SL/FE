@@ -5,6 +5,7 @@ import {
   Button,
   Image,
   TouchableOpacity,
+  ImageBackground
 } from "react-native";
 import styled, { css } from "styled-components/native";
 import Theme from "../../Theme/Theme";
@@ -15,7 +16,11 @@ import ShowList from "../ContentLIst/ShowList";
 
 const Main = ({ navigation }) => {
   return (
-    <StView style={styles.container}>
+    <StView style={[styles.container, styles.header]}>
+      <ImageBackground
+        source={require("../../assets/background/main.png")}
+        style={styles.bgImage}
+      ></ImageBackground>
       <Text>메인화면</Text>
       <TouchableOpacity onPress={() => navigation.navigate("Login")}>
         <Text>로그인</Text>
@@ -90,6 +95,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  header: {
+    flex: 1,
+  },
+  bgImage: { width: "100%", height: "100%" },
 });
 
 const StView = styled.View`
@@ -100,4 +109,10 @@ const SmallRound = styled.View`
   width: 50px;
   height: 50px;
   border: 1px solid ${Theme.colors.LightGray};
+`;
+
+const LogoView = styled.View`
+  flex: 6;
+  align-items: center;
+  justify-content: center;
 `;
