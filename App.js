@@ -18,7 +18,11 @@ export default function App() {
   return (
     <NavigationContainer theme={Theme}>
       <Tab.Navigator>
-        <Tab.Screen name="MainRoutes" component={MainRoutes} />
+        <Tab.Screen
+          name="MainRoutes"
+          component={MainRoutes}
+          options={{ headerShown: false }}
+        />
         <Tab.Screen name="Test" component={Test} />
         <Tab.Screen name="Test1" component={Test1} />
         <Tab.Screen name="Login" component={Login} />

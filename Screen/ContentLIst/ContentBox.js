@@ -1,22 +1,23 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import styled from "styled-components/native";
 import Theme from "../../Theme/Theme";
 
 function ContentBox({
   data: { category, id, name, posterUrl, startDate, finishDate, place },
-  navigation,
 }) {
+  const navigation = useNavigation();
+  console.log(category);
   return (
     <TouchableOpacity
       style={styles.StContentWrapper}
       activeOpacity={0.9}
-      // onPress={() =>
-      //   navigation.navigate("MainRoutes", {
-      //     screen: "ContentDetail",
-      //     params: { category: "" },
-      //   })
-      // }
+      onPress={() =>
+        navigation.navigate("ContentDetail", {
+          screen: "ContentDetail",
+          params: { id: id, category: category },
+        })
+      }
     >
       <View>
         <View style={styles.StImgWrapper}>
