@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import styled, { css } from "styled-components/native";
 import Theme from "../../Theme/Theme";
-import BottomTabBar from "../components/BottomTabs/BottomTabBar";
 import ConcertList from "../ContentLIst/ConcertList";
 import ExpoList from "../ContentLIst/ExpoList";
 import FineArtList from "../ContentLIst/FineArtList";

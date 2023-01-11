@@ -1,5 +1,60 @@
 import React, { useEffect } from "react";
-import { Text, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
+import Layout from "../Components/Layout/Layout";
+import ContentBox from "./ContentBox";
+
+const datas = [
+  {
+    category: "expo",
+    id: 1,
+    name: "별을 켜다",
+    posterUrl:
+      "https://www.enet.or.kr/files/attach/images/64330/613/078/cdeb716b65bbb2c6112a10719994e81b.jpg",
+    startDate: "2022/01/02",
+    finishDate: "2023/12/23",
+    place: "광진구 yes24 Hall",
+  },
+  {
+    category: "expo",
+    id: 2,
+    name: "별을 켜다",
+    posterUrl:
+      "https://www.enet.or.kr/files/attach/images/64330/613/078/cdeb716b65bbb2c6112a10719994e81b.jpg",
+    startDate: "2022/01/02",
+    finishDate: "2023/12/23",
+    place: "광진구 yes24 Hall",
+  },
+  {
+    category: "expo",
+    id: 3,
+    name: "별을 켜다",
+    posterUrl:
+      "https://www.enet.or.kr/files/attach/images/64330/613/078/cdeb716b65bbb2c6112a10719994e81b.jpg",
+    startDate: "2022/01/02",
+    finishDate: "2023/12/23",
+    place: "광진구 yes24 Hall",
+  },
+  {
+    category: "expo",
+    id: 4,
+    name: "별을 켜다",
+    posterUrl:
+      "https://www.enet.or.kr/files/attach/images/64330/613/078/cdeb716b65bbb2c6112a10719994e81b.jpg",
+    startDate: "2022/01/02",
+    finishDate: "2023/12/23",
+    place: "광진구 yes24 Hall",
+  },
+  {
+    category: "expo",
+    id: 5,
+    name: "별을 켜다",
+    posterUrl:
+      "https://www.enet.or.kr/files/attach/images/64330/613/078/cdeb716b65bbb2c6112a10719994e81b.jpg",
+    startDate: "2022/01/02",
+    finishDate: "2023/12/23",
+    place: "광진구 yes24 Hall",
+  },
+];
 
 function CategoryDetail({ route, navigation }) {
   const { category } = route.params;
@@ -7,10 +62,13 @@ function CategoryDetail({ route, navigation }) {
   // 받은 카테고리에 따라서 데이터 송수신하기
 
   return (
-    <View>
-      <Text>CategoryDetail</Text>
-      <Text>{category}</Text>
-    </View>
+    <ScrollView>
+      <Layout>
+        {datas.map((data) => {
+          return <ContentBox key={data.id} data={data} />;
+        })}
+      </Layout>
+    </ScrollView>
   );
 }
 
