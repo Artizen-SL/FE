@@ -11,7 +11,12 @@ function ContentBox({
     <TouchableOpacity
       style={styles.StContentWrapper}
       activeOpacity={0.9}
-      onPress={() => navigation.navigate()}
+      // onPress={() =>
+      //   navigation.navigate("MainRoutes", {
+      //     screen: "ContentDetail",
+      //     params: { category: "" },
+      //   })
+      // }
     >
       <View>
         <View style={styles.StImgWrapper}>
