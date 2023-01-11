@@ -2,7 +2,7 @@ import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 function ScrollViewLayout(props) {
-  return <View style={styles.LayoutView}>{props.children}</View>;
+  return <ScrollView style={styles.LayoutView}>{props.children}</ScrollView>;
 }
 
 export default ScrollViewLayout;

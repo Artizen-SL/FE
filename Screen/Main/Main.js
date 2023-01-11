@@ -5,14 +5,10 @@ import {
   Button,
   Image,
   TouchableOpacity,
-  ImageBackground
+  ImageBackground,
 } from "react-native";
 import styled, { css } from "styled-components/native";
 import Theme from "../../Theme/Theme";
-import ConcertList from "../ContentLIst/ConcertList";
-import ExpoList from "../ContentLIst/ExpoList";
-import FineArtList from "../ContentLIst/FineArtList";
-import ShowList from "../ContentLIst/ShowList";
 
 const Main = ({ navigation }) => {
   return (
