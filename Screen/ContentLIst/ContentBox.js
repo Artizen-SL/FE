@@ -5,11 +5,18 @@ import Theme from "../../Theme/Theme";
 
 function ContentBox({
   data: { category, id, name, posterUrl, startDate, finishDate, place },
+  navigation,
 }) {
   return (
-    <TouchableOpacity style={styles.StContentWrapper} activeOpacity={0.8}>
+    <TouchableOpacity
+      style={styles.StContentWrapper}
+      activeOpacity={0.9}
+      onPress={() => navigation.navigate()}
+    >
       <View>
-        <Image source={{ uri: posterUrl }} style={styles.StImgBox} />
+        <View style={styles.StImgWrapper}>
+          <Image source={{ uri: posterUrl }} style={styles.StImg} />
+        </View>
         <View style={styles.StTextWrapper}>
           <Text style={styles.StNameText}>{name}</Text>
           <Text style={styles.StText}>
@@ -40,10 +47,23 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
-  StImgBox: {
+  StImgWrapper: {
+    borderRadius: 20,
+    height: "70%",
+    width: "100%",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.85,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  StImg: {
     borderRadius: 20,
     width: "100%",
-    height: "70%",
+    height: "100%",
   },
   StTextWrapper: {
     width: "100%",
