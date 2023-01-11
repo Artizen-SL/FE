@@ -19,12 +19,12 @@ function MainRoutes() {
       <MainStack.Screen
         name="CategoryDetail"
         component={CategoryDetail}
-        options={{ headerShown: false }}
+        // options={{ headerShown: false }}
       />
       <MainStack.Screen
         name="ContentDetail"
         component={ContentDetail}
-        options={{ headerShown: false }}
+        // options={{ headerShown: false }}
       />
     </MainStack.Navigator>
   );
