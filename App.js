@@ -11,7 +11,7 @@ import {
 } from "@react-navigation/bottom-tabs";
 import Test from "./Screen/Test/Test";
 import Test1 from "./Screen/Test/Test1";
-import MainRoutes from "./Router/MainRoutes";
+import MainRoutes from "./Navigation/MainRoutes";
 
 const Tab = createBottomTabNavigator();
 export default function App() {
