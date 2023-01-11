@@ -6,70 +6,98 @@ import {
   Image,
   TouchableOpacity,
   ImageBackground,
+  Dimensions,
 } from "react-native";
 import styled, { css } from "styled-components/native";
 import Theme from "../../Theme/Theme";
+import ScrollViewLayout from "../Components/Layout/ScrollViewLayout";
+import MainCarousel from "./MainCarousel";
 
 const Main = ({ navigation }) => {
   return (
-    <StView style={[styles.container, styles.header]}>
-      <ImageBackground
-        source={require("../../assets/background/main.png")}
-        style={styles.bgImage}
-      ></ImageBackground>
-      <Text>메인화면</Text>
-      <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-        <Text>로그인</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.center}
-        onPress={() =>
-          navigation.navigate("MainRoutes", {
-            screen: "CategoryDetail",
-            params: { category: "FineArtList" },
-          })
-        }
-      >
-        <Image source={"../../assets/Icon/gallery.png"} />
-        <Text>미술관</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.center}
-        onPress={() =>
-          navigation.navigate("MainRoutes", {
-            screen: "CategoryDetail",
-            params: { category: "ConcertList" },
-          })
-        }
-      >
-        <Image source={require("../../assets/Icon/gallery.png")} />
-        <Text>ConcertList</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.center}
-        onPress={() =>
-          navigation.navigate("MainRoutes", {
-            screen: "CategoryDetail",
-            params: { category: "ExpoList" },
-          })
-        }
-      >
-        <Image source={require("../../assets/Icon/gallery.png")} />
-        <Text>ExpoList</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.center}
-        onPress={() =>
-          navigation.navigate("MainRoutes", {
-            screen: "CategoryDetail",
-            params: { category: "ShowList" },
-          })
-        }
-      >
-        <Image source={require("../../assets/Icon/gallery.png")} />
-        <Text>ShowList</Text>
-      </TouchableOpacity>
-    </StView>
+    <ScrollViewLayout>
+      <View style={[styles.container, styles.header]}>
+        <ImageBackground
+          source={require("../../assets/background/main.png")}
+          style={styles.bgImage}
+        >
+          <View
+            style={{
+              flex: 1,
+              flexDirection: "row",
+              justifyContent: "space-between",
+              margin: 5,
+            }}
+          >
+            <Image
+              source={require("../../assets/login/logo_v1_3.png")}
+              style={styles.logo}
+            />
+            <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+              <Text>로그인</Text>
+            </TouchableOpacity>
+          </View>
+          <MainCarousel />
+          <View
+            style={{
+              flex: 1,
+              flexDirection: "row",
+              justifyContent: "space-evenly",
+              margin: 5,
+            }}
+          >
+            <TouchableOpacity
+              style={styles.center}
+              onPress={() =>
+                navigation.navigate("MainRoutes", {
+                  screen: "CategoryDetail",
+                  params: { category: "FineArtList" },
+                })
+              }
+            >
+              <Image source={require("../../assets/Icon/gallery.png")} />
+              <Text>미술관</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.center}
+              onPress={() =>
+                navigation.navigate("MainRoutes", {
+                  screen: "CategoryDetail",
+                  params: { category: "ConcertList" },
+                })
+              }
+            >
+              <Image source={require("../../assets/Icon/gallery.png")} />
+              <Text>ConcertList</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.center}
+              onPress={() =>
+                navigation.navigate("MainRoutes", {
+                  screen: "CategoryDetail",
+                  params: { category: "ExpoList" },
+                })
+              }
+            >
+              <Image source={require("../../assets/Icon/gallery.png")} />
+              <Text>ExpoList</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.center}
+              onPress={() =>
+                navigation.navigate("MainRoutes", {
+                  screen: "CategoryDetail",
+                  params: { category: "ShowList" },
+                })
+              }
+            >
+              <Image source={require("../../assets/Icon/gallery.png")} />
+              <Text>ShowList</Text>
+            </TouchableOpacity>
+          </View>
+        </ImageBackground>
+      </View>
+    </ScrollViewLayout>
   );
 };
 
@@ -95,10 +123,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   bgImage: { width: "100%", height: "100%" },
+  logo: { width: 117, height: 32 },
 });
 
 const StView = styled.View`
-  background-color: pink;
+  /* background-color: pink; */
 `;
 
 const SmallRound = styled.View`
