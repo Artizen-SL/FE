@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { ScrollView, Text, View } from "react-native";
-import Layout from "../Components/Layout/Layout";
+import ScrollViewLayout from "../Components/Layout/ScrollViewLayout";
 import ContentBox from "./ContentBox";
 
 const datas = [
@@ -62,13 +62,11 @@ function CategoryDetail({ route, navigation }) {
   // 받은 카테고리에 따라서 데이터 송수신하기
 
   return (
-    <ScrollView>
-      <Layout>
-        {datas.map((data) => {
-          return <ContentBox key={data.id} data={data} />;
-        })}
-      </Layout>
-    </ScrollView>
+    <ScrollViewLayout>
+      {datas.map((data) => {
+        return <ContentBox key={data.id} data={data} />;
+      })}
+    </ScrollViewLayout>
   );
 }
 
