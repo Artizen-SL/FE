@@ -56,7 +56,7 @@ const datas = [
   },
 ];
 
-function CategoryDetail({ route, navigation }) {
+function CategoryDetail({ route }) {
   const { category } = route.params;
 
   // 받은 카테고리에 따라서 데이터 송수신하기

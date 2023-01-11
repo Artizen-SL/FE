@@ -30,7 +30,7 @@ const Main = ({ navigation }) => {
           })
         }
       >
-        <Image source={require("../../assets/Icon/gallery.png")} />
+        <Image source={"../../assets/Icon/gallery.png"} />
         <Text>미술관</Text>
       </TouchableOpacity>
       <TouchableOpacity
