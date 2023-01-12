@@ -6,6 +6,7 @@ import Page from "./Page";
 const Carousel = ({ pages, pageWidth, gap, offset }) => {
   const [page, setPage] = useState(0);
 
+  // props 정보를 reder 하는 함수
   function renderItem({ item }) {
     return (
       <Page
@@ -27,7 +28,7 @@ const Carousel = ({ pages, pageWidth, gap, offset }) => {
       <FlatList
         automaticallyAdjustContentInsets={false}
         contentContainerStyle={{
-          //   paddingHorizontal: offset + gap / 32,
+          //   paddingHorizontal: offset + gap / 2,
           paddingHorizontal: 0,
         }}
         data={pages}

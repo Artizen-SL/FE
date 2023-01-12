@@ -96,14 +96,13 @@ const Main = ({ navigation }) => {
               <Text>ShowList</Text>
             </TouchableOpacity>
           </View>
+
           <View style={styles.longBox}>
             <Image source={require("../../assets/Icon/gps.png")} />
             <Text style={[styles.smallText]}>
-              현재 위치는 <MainGps/> 입니다.
+              현재 위치는 <MainGps /> 입니다.
             </Text>
-            <Text style={styles.skyblueText}>
-              (위치 재설정)
-            </Text>
+            <Text style={styles.skyblueText}>(위치 재설정)</Text>
           </View>
         </ImageBackground>
       </View>
@@ -135,25 +134,25 @@ const styles = StyleSheet.create({
   bgImage: { width: "100%", height: "100%" },
   logo: { width: 117, height: 32 },
   longBox: {
-    flex:1,
+    flex: 1,
     flexDirection: "row",
     alignItems: "center",
     width: 312,
     height: 34,
     backgroundColor: "#fff",
     borderRadius: 5,
-    marginTop:22,
+    marginTop: 22,
   },
   smallText: {
-      fontSize:12,
-      marginLeft:5 
-   },
+    fontSize: 12,
+    marginLeft: 5,
+  },
   skyblueText: {
-   color: Theme.colors.SkyBlue,
-   fontSize:12,
-   borderBottomColor: Theme.colors.SkyBlue,
-   borderBottomWidth: StyleSheet.hairlineWidth,
-   marginLeft:5
+    color: Theme.colors.SkyBlue,
+    fontSize: 12,
+    borderBottomColor: Theme.colors.SkyBlue,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    marginLeft: 5,
   },
 });
 
