@@ -12,6 +12,7 @@ import styled, { css } from "styled-components/native";
 import Theme from "../../Theme/Theme";
 import ScrollViewLayout from "../Components/Layout/ScrollViewLayout";
 import MainCarousel from "./MainCarousel";
+import MainGps from "./MainGps";
 
 const Main = ({ navigation }) => {
   return (
@@ -37,7 +38,7 @@ const Main = ({ navigation }) => {
               <Text>로그인</Text>
             </TouchableOpacity>
           </View>
-          <MainCarousel/>
+          <MainCarousel />
           <View
             style={{
               flex: 1,
@@ -95,6 +96,15 @@ const Main = ({ navigation }) => {
               <Text>ShowList</Text>
             </TouchableOpacity>
           </View>
+          <View style={styles.longBox}>
+            <Image source={require("../../assets/Icon/gps.png")} />
+            <Text style={[styles.smallText]}>
+              현재 위치는 <MainGps/> 입니다.
+            </Text>
+            <Text style={styles.skyblueText}>
+              (위치 재설정)
+            </Text>
+          </View>
         </ImageBackground>
       </View>
     </ScrollViewLayout>
@@ -124,6 +134,27 @@ const styles = StyleSheet.create({
   },
   bgImage: { width: "100%", height: "100%" },
   logo: { width: 117, height: 32 },
+  longBox: {
+    flex:1,
+    flexDirection: "row",
+    alignItems: "center",
+    width: 312,
+    height: 34,
+    backgroundColor: "#fff",
+    borderRadius: 5,
+    marginTop:22,
+  },
+  smallText: {
+      fontSize:12,
+      marginLeft:5 
+   },
+  skyblueText: {
+   color: Theme.colors.SkyBlue,
+   fontSize:12,
+   borderBottomColor: Theme.colors.SkyBlue,
+   borderBottomWidth: StyleSheet.hairlineWidth,
+   marginLeft:5
+  },
 });
 
 const StView = styled.View`
@@ -140,4 +171,12 @@ const LogoView = styled.View`
   flex: 6;
   align-items: center;
   justify-content: center;
+`;
+
+const LongBox = styled.View`
+  flex: row;
+  width: 312px;
+  height: 34px;
+  background-color: white;
+  border-radius: 5px;
 `;
