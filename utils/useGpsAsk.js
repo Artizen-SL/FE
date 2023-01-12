@@ -5,7 +5,7 @@ export default function useGpsAsk() {
   const ask = async () => {
     try {
       const { granted } = await Location?.requestForegroundPermissionsAsync();   
-      return granted   
+      return granted;   
     } catch (error) {
      console.log(error);
     };   
