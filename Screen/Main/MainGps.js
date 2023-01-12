@@ -3,8 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet, ScrollView, Dimensions } from "react-native";
 import styled, { css } from "styled-components/native";
 import Theme from "../../Theme/Theme";
-
-const { width: SCREEN_WIDTH } = Dimensions.get("window");
+import useGpsAsk from "../../utils/useGpsAsk";
 
 export default function MainGps() {
   const [region, setRegion] = useState("Loading...");
@@ -12,21 +11,22 @@ export default function MainGps() {
   const [location, setLocation] = useState();
   const [ok, setOk] = useState(true);
   const ask = async () => {
-    try {
-      const { granted } = await Location?.requestForegroundPermissionsAsync();
-    } catch (error) {
-      setOk(false);
-    }
-    const {
-      coords: { latitude, longitude },
-    } = await Location?.getCurrentPositionAsync({ accuracy: 5 });
-    const location = await Location?.reverseGeocodeAsync(
-      { latitude, longitude },
-      { useGoogleMaps: false }
-    );
-    setRegion(location[0]?.region);
-    setDistrict(location[0]?.district);
-    console.log(location);
+      const granted = useGpsAsk();
+      if(granted){
+        const {
+            coords: { latitude, longitude },
+          } = await Location?.getCurrentPositionAsync({ accuracy: 5 });
+          const location = await Location?.reverseGeocodeAsync(
+            { latitude, longitude },
+            { useGoogleMaps: false }
+          );
+          setRegion(location[0]?.region);
+          setDistrict(location[0]?.district);
+          console.log(location);
+      } else {
+        setOk(false);
+      } 
+    
   };
 
   useEffect(() => {
@@ -40,7 +40,6 @@ export default function MainGps() {
   );
 }
 const UserGps = styled.Text`
-  color: ${Theme.colors.SkyBlue};
- 
+  color: ${Theme.colors.SkyBlue}; 
   font-weight: 700;
 `;

@@ -13,6 +13,8 @@ import Theme from "../../Theme/Theme";
 import ScrollViewLayout from "../Components/Layout/ScrollViewLayout";
 import MainCarousel from "./MainCarousel";
 import MainGps from "./MainGps";
+import UserRecommendBox from "./UserRecommendBox";
+import UserRecommendData from "./UserRecommendData";
 
 const Main = ({ navigation }) => {
   return (
@@ -97,12 +99,36 @@ const Main = ({ navigation }) => {
             </TouchableOpacity>
           </View>
 
-          <View style={styles.longBox}>
-            <Image source={require("../../assets/Icon/gps.png")} />
-            <Text style={[styles.smallText]}>
-              현재 위치는 <MainGps /> 입니다.
-            </Text>
-            <Text style={styles.skyblueText}>(위치 재설정)</Text>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <View style={styles.longBox}>
+              <Image
+                source={require("../../assets/Icon/gps.png")}
+                style={{
+                  margin: 15,
+                }}
+              />
+              <Text style={[styles.smallText]}>
+                현재 위치는 <MainGps /> 입니다.
+              </Text>
+              <Text style={styles.skyblueText}>(위치 재설정)</Text>
+            </View>
+          </View>
+          <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          >
+            <UserRecommendData />
+            <UserRecommendBox />
+
           </View>
         </ImageBackground>
       </View>
