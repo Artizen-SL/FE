@@ -98,6 +98,7 @@ const Main = ({ navigation }) => {
               <Text>ShowList</Text>
             </TouchableOpacity>
           </View>
+
           <View
             style={{
               flex: 1,
@@ -127,6 +128,7 @@ const Main = ({ navigation }) => {
           >
             <UserRecommendData />
             <UserRecommendBox />
+
           </View>
         </ImageBackground>
       </View>

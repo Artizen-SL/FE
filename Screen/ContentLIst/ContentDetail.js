@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, Image, Dimensions } from "react-native";
 import Theme from "../../Theme/Theme";
 import Carousel from "../Common/Carousel/Carousel";
 import Page from "../Common/Carousel/Page";
+import ToolTip from "../Common/ToolTipBox/ToolTip";
+import ToolTipBtn from "../Common/ToolTipBox/ToolTipBtn";
 import TagView from "../Components/Elem/TagView";
 import ScrollViewLayout from "../Components/Layout/ScrollViewLayout";
 import ContentDetailInfoLine from "./ContentDetailInfoLine";
@@ -33,13 +35,14 @@ function ContentDetail({ route }) {
     },
   ];
 
+  //  pageWidth={screenWidth - (gap + padding * 2)}
   return (
     <ScrollViewLayout>
       <Carousel
-        gap={32}
+        gap={20}
         offset={0}
         pages={PAGES}
-        pageWidth={screenWidth - 64}
+        pageWidth={screenWidth - (20 + 20 * 2)}
       ></Carousel>
       {/* <View style={detailStyles.StImgWrapper}>
         <Image
@@ -170,9 +173,9 @@ const detailStyles = StyleSheet.create({
     textAlign: "center",
     marginTop: 15,
     marginBottom: 15,
-    borderWidth: 1,
-    borderStyle: "solid",
-    borderColor: "black",
+    // borderWidth: 1,
+    // borderStyle: "solid",
+    // borderColor: "black",
   },
   detailImage: {
     resizeMode: "contain",

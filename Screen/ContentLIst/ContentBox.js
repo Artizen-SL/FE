@@ -14,7 +14,6 @@ function ContentBox({
   data: { category, id, name, posterUrl, startDate, finishDate, place },
 }) {
   const navigation = useNavigation();
-  console.log(category);
   return (
     <TouchableOpacity
       style={styles.StContentWrapper}
