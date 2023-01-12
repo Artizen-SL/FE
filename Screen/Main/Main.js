@@ -37,7 +37,7 @@ const Main = ({ navigation }) => {
               <Text>로그인</Text>
             </TouchableOpacity>
           </View>
-          <MainCarousel />
+          <MainCarousel/>
           <View
             style={{
               flex: 1,
