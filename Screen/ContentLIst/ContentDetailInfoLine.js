@@ -5,8 +5,8 @@ import TagView from "../Components/Elem/TagView";
 const ContentDetailInfoLine = ({ tagView, infoText }) => {
   return (
     <View style={InfoLineStyles.contentInfoText}>
-      <TagView variant={"detailContent"}>{tagView}</TagView>
-      <Text>{infoText}</Text>
+      <TagView>{tagView}</TagView>
+      <Text style={InfoLineStyles.infoLineText}>{infoText}</Text>
     </View>
   );
 };
@@ -16,6 +16,13 @@ export default ContentDetailInfoLine;
 const InfoLineStyles = StyleSheet.create({
   contentInfoText: {
     flexDirection: "row",
-    alignItems: "center",
+    // alignItems: "center",
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+  infoLineText: {
+    marginLeft: 10,
+    textAlignVertical: "center",
+    fontSize: 15,
   },
 });
