@@ -1,6 +1,13 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Dimensions,
+} from "react-native";
 import Theme from "../../Theme/Theme";
 
 function ContentBox({
@@ -41,7 +48,7 @@ const styles = StyleSheet.create({
   StContentWrapper: {
     borderRadius: 20,
     backgroundColor: "#fff",
-    height: 300,
+    height: Dimensions.get("window").height / 2,
     marginBottom: 20,
     padding: 10,
     shadowColor: "#000",

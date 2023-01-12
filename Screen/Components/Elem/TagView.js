@@ -2,10 +2,10 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Theme from "../../../Theme/Theme";
 
-const TagView = (props) => {
+const TagView = ({ children }) => {
   return (
     <View style={TagStyles.StTagWrapper}>
-      <Text style={TagStyles.StTagText}>{props.children}</Text>
+      <Text style={TagStyles.StTagText}>{children}</Text>
     </View>
   );
 };
@@ -19,9 +19,11 @@ const TagStyles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: Theme.colors.SkyBlue,
-    borderRadius: 20,
+    borderRadius: 13,
+    // marginRight: tagViewMarginRight,
   },
   StTagText: {
     color: Theme.colors.White,
+    fontSize: 15,
   },
 });
