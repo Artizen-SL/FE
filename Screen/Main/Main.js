@@ -15,8 +15,14 @@ import MainCarousel from "./MainCarousel";
 import MainGps from "./MainGps";
 import UserRecommendBox from "./UserRecommendBox";
 import UserRecommendData from "./UserRecommendData";
+import useGpsAsk from "../../utils/useGpsAsk";
+import useReGpsRes from "../../utils/useReGpsRes";
 
 const Main = ({ navigation }) => {
+  const resetGpsAsk = () => {
+    useReGpsRes();
+    console.log(useReGpsRes)
+  };
   return (
     <ScrollViewLayout>
       <View style={[styles.container, styles.header]}>
@@ -110,25 +116,24 @@ const Main = ({ navigation }) => {
               <Image
                 source={require("../../assets/Icon/gps.png")}
                 style={{
-                  margin: 15,
+                  margin: 1,
                 }}
               />
               <Text style={[styles.smallText]}>
                 현재 위치는 <MainGps /> 입니다.
               </Text>
-              <Text style={styles.skyblueText}>(위치 재설정)</Text>
+              <Text style={styles.skyblueText} onPress={resetGpsAsk}>(위치 재설정)</Text>
             </View>
           </View>
           <View
-          style={{
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-          }}
+            style={{
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
           >
             <UserRecommendData />
             <UserRecommendBox />
-
           </View>
         </ImageBackground>
       </View>

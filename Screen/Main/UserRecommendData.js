@@ -94,7 +94,6 @@ function UserRecommendData({ route }) {
   ];
 
   const navigation = useNavigation();
-  console.log("datas[0]==>", datas[0]);
 
   return <UserRecommendBox datas={datas} />;
 }
