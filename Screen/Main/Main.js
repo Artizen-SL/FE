@@ -21,7 +21,6 @@ import useReGpsRes from "../../utils/useReGpsRes";
 const Main = ({ navigation }) => {
   const resetGpsAsk = () => {
     useReGpsRes();
-    console.log(useReGpsRes)
   };
   return (
     <ScrollViewLayout>
