@@ -9,6 +9,7 @@ export default ScrollViewLayout;
 
 const styles = StyleSheet.create({
   LayoutView: {
+    // backgroundColor: "pink",
     padding: 20,
   },
 });
