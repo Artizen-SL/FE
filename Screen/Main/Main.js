@@ -30,23 +30,13 @@ const Main = ({ navigation }) => {
   };
 
   useEffect(() => {
-    // const gps = await useGpsRes();
-
-    const useGps = async () => {
-      const [region, district, disagree] = await useGpsRes();
-      setGpsRes({ ...gpsRes, region: region, district: district });
-    };
-
-    const locaiton = useGps();
+    const locaiton = resetGpsAsk();
     console.log(locaiton);
 
     if (typeof locaiton === "object") {
       setGpsRes({ ...gpsRes, region: "", district: "" });
       resetGpsAsk();
     }
-
-    // else if (typeof locaiton === "boolean") {
-    // }
 
     // setDisAgree(disagree);
   }, []);
