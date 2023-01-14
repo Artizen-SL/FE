@@ -3,25 +3,31 @@ import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet, ScrollView, Dimensions } from "react-native";
 import styled, { css } from "styled-components/native";
 import Theme from "../../Theme/Theme";
-import useGpsAsk from "../../utils/useGpsAsk";
 import useGpsRes from "../../utils/useGpsRes";
 
 export default function MainGps() {
-  const [gpsRes,setGpsRes]=useState({region:"Loading...",district:""})
-  const gps = useGpsRes();
-  console.log('gps===>',gps);
-    useEffect(async() => {
-    const {region,district} = await gps;
-    console.log("region,district===>",region,district)    
-    setGpsRes({...gpsRes,region:region, district:district});
-    // useGpsRes();
-  }, []);
-  console.log("gpsRes===>",gpsRes)
-  return (
-    <UserGps>
-      {gpsRes?.region} {gpsRes?.district}
-    </UserGps>
-  );
+  const [gpsRes, setGpsRes] = useState({ region: "Loading...", district: "" });
+  const [disAgree, setDisAgree] = useState();
+
+  useEffect(async () => {
+    const [region, district, disagree] = await useGpsRes();
+    setGpsRes({ ...gpsRes, region: region, district: district });
+    setDisAgree(disagree);   
+  }, [useGpsRes()]);
+
+  return gpsRes,disAgree;
+  // return (
+  //   <UserGps>
+  //     {disAgree === undefined ? (
+  //       <Text>위치없음</Text>
+  //     ) : (
+  //       <>
+  //         {gpsRes?.region} {gpsRes?.district}
+  //       </>
+  //     )}
+  //     {/* {gpsRes?.region} {gpsRes?.district} */}
+  //   </UserGps>
+  // );
 }
 const UserGps = styled.Text`
   color: ${Theme.colors.SkyBlue};
@@ -34,8 +40,8 @@ const UserGps = styled.Text`
 //   const [location, setLocation] = useState();
 //   const [ok, setOk] = useState(true);
 //   const place = async () => {
-//       const granted = useGpsAsk(); 
-//       console.log("granted==>",granted);     
+//       const granted = useGpsAsk();
+//       console.log("granted==>",granted);
 //       if(granted){
 //         const {
 //             coords: { latitude, longitude },
