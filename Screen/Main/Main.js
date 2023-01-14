@@ -8,21 +8,33 @@ import {
   ImageBackground,
   Dimensions,
 } from "react-native";
+import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components/native";
 import Theme from "../../Theme/Theme";
 import ScrollViewLayout from "../Components/Layout/ScrollViewLayout";
 import MainCarousel from "./MainCarousel";
-import MainGps from "./MainGps";
 import UserRecommendBox from "./UserRecommendBox";
 import UserRecommendData from "./UserRecommendData";
-import useGpsAsk from "../../utils/useGpsAsk";
-import useReGpsRes from "../../utils/useReGpsRes";
+import useGpsRes from "../../utils/useGpsRes";
 
 const Main = ({ navigation }) => {
-  const resetGpsAsk = () => {
-    useReGpsRes();
-    console.log(useReGpsRes)
+  const [gpsRes, setGpsRes] = useState({ region: "Loading...", district: "" });
+  // const [disAgree, setDisAgree] = useState();
+  // const gps = useGpsRes();
+  useEffect(async () => {
+    // const gps = await useGpsRes();
+    const [region, district, disagree] =  await useGpsRes();
+    setGpsRes({ ...gpsRes, region: region, district: district });
+    // setDisAgree(disagree);
+  }, []);
+
+  const resetGpsAsk = async () => {
+    const { region, district, disagree } = await useGpsRes();
+    setGpsRes({ ...gpsRes, region: region, district: district });
+    // setDisAgree(disagree);
+    console.log("disagree,gpsRes", disagree, gpsRes);
   };
+
   return (
     <ScrollViewLayout>
       <View style={[styles.container, styles.header]}>
@@ -120,9 +132,23 @@ const Main = ({ navigation }) => {
                 }}
               />
               <Text style={[styles.smallText]}>
-                현재 위치는 <MainGps /> 입니다.
+                현재 위치는
+                <UserGps>
+                  {gpsRes?.district.length > 0 && gpsRes?.district ? (
+                    <>
+                      {gpsRes?.region} {gpsRes?.district}
+                    </>
+                  ) : gpsRes?.region === "Loading..." ? (
+                    <Text>Loading...</Text>
+                  ) : (
+                    <Text>위치없음</Text>
+                  )}
+                </UserGps>
+                입니다.
               </Text>
-              <Text style={styles.skyblueText} onPress={resetGpsAsk}>(위치 재설정)</Text>
+              <Text style={styles.skyblueText} onPress={resetGpsAsk}>
+                (위치 재설정)
+              </Text>
             </View>
           </View>
           <View
@@ -209,4 +235,8 @@ const LongBox = styled.View`
   height: 34px;
   background-color: white;
   border-radius: 5px;
+`;
+const UserGps = styled.Text`
+  color: ${Theme.colors.SkyBlue};
+  font-weight: 700;
 `;
