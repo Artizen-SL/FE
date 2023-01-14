@@ -21,12 +21,6 @@ const Main = ({ navigation }) => {
   const [gpsRes, setGpsRes] = useState({ region: "Loading...", district: "" });
   // const [disAgree, setDisAgree] = useState();
   // const gps = useGpsRes();
-  useEffect(async () => {
-    // const gps = await useGpsRes();
-    const [region, district, disagree] =  await useGpsRes();
-    setGpsRes({ ...gpsRes, region: region, district: district });
-    // setDisAgree(disagree);
-  }, []);
 
   const resetGpsAsk = async () => {
     const { region, district, disagree } = await useGpsRes();
@@ -34,6 +28,28 @@ const Main = ({ navigation }) => {
     // setDisAgree(disagree);
     console.log("disagree,gpsRes", disagree, gpsRes);
   };
+
+  useEffect(() => {
+    // const gps = await useGpsRes();
+
+    const useGps = async () => {
+      const [region, district, disagree] = await useGpsRes();
+      setGpsRes({ ...gpsRes, region: region, district: district });
+    };
+
+    const locaiton = useGps();
+    console.log(locaiton);
+
+    if (typeof locaiton === "object") {
+      setGpsRes({ ...gpsRes, region: "", district: "" });
+      resetGpsAsk();
+    }
+
+    // else if (typeof locaiton === "boolean") {
+    // }
+
+    // setDisAgree(disagree);
+  }, []);
 
   return (
     <ScrollViewLayout>
