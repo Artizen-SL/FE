@@ -12,21 +12,43 @@ import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components/native";
 import Theme from "../../Theme/Theme";
 import ScrollViewLayout from "../Components/Layout/ScrollViewLayout";
-import MainCarousel from "./MainCarousel";
+import MainCarousel from "../Common/Carousel/MainCarousel";
 import UserRecommendBox from "./UserRecommendBox";
 import UserRecommendData from "./UserRecommendData";
 import useGpsRes from "../../utils/useGpsRes";
+import RecentlyPost from "./RecentlyPost";
+import RecentlyData from "./RecentlyData";
 
 const Main = ({ navigation }) => {
+  const screenWidth = Math.round(Dimensions.get("window").width);
+  const pages = [
+    {
+      num: 1,
+      mainImageUrl: require("../../assets/main/caroucel/maincarousel1.png"),
+    },
+    {
+      num: 2,
+      mainImageUrl: require("../../assets/main/caroucel/maincarousel2.png"),
+    },
+    {
+      num: 3,
+      mainImageUrl: require("../../assets/main/caroucel/maincarousel3.png"),
+    },
+    {
+      num: 4,
+      mainImageUrl: require("../../assets/main/caroucel/maincarousel4.png"),
+    },
+    {
+      num: 5,
+      mainImageUrl: require("../../assets/main/caroucel/maincarousel5.png"),
+    },
+  ];
+
   const [gpsRes, setGpsRes] = useState({ region: "Loading...", district: "" });
-  // const [disAgree, setDisAgree] = useState();
-  // const gps = useGpsRes();
 
   const resetGpsAsk = async () => {
     const { region, district, disagree } = await useGpsRes();
     setGpsRes({ ...gpsRes, region: region, district: district });
-    // setDisAgree(disagree);
-    console.log("disagree,gpsRes", disagree, gpsRes);
   };
 
   useEffect(() => {
@@ -37,8 +59,6 @@ const Main = ({ navigation }) => {
       setGpsRes({ ...gpsRes, region: "", district: "" });
       resetGpsAsk();
     }
-
-    // setDisAgree(disagree);
   }, []);
 
   return (
@@ -48,14 +68,7 @@ const Main = ({ navigation }) => {
           source={require("../../assets/background/main.png")}
           style={styles.bgImage}
         >
-          <View
-            style={{
-              flex: 1,
-              flexDirection: "row",
-              justifyContent: "space-between",
-              margin: 5,
-            }}
-          >
+          <View style={styles.headerarea}>
             <Image
               source={require("../../assets/login/logo_v1_3.png")}
               style={styles.logo}
@@ -64,65 +77,81 @@ const Main = ({ navigation }) => {
               <Text>로그인</Text>
             </TouchableOpacity>
           </View>
-          <MainCarousel />
-          <View
-            style={{
-              flex: 1,
-              flexDirection: "row",
-              justifyContent: "space-evenly",
-              margin: 5,
-            }}
+          <ImageBackground
+            source={require("../../assets/background/white.png")}
+            style={styles.whiteBackground}
           >
-            <TouchableOpacity
-              style={styles.center}
-              onPress={() =>
-                navigation.navigate("MainRoutes", {
-                  screen: "CategoryDetail",
-                  params: { category: "FineArtList" },
-                })
-              }
+            <View
+              style={{
+                marginTop: 40,
+                borderWidth: 1, borderStyle: "solid"
+              }}
             >
-              <Image source={require("../../assets/Icon/gallery.png")} />
-              <Text>미술관</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.center}
-              onPress={() =>
-                navigation.navigate("MainRoutes", {
-                  screen: "CategoryDetail",
-                  params: { category: "ConcertList" },
-                })
-              }
+              <MainCarousel
+                gap={20}
+                offset={0}
+                pages={pages}
+                pageWidth={screenWidth - (20 + 20 * 2)}
+              />
+            </View>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                justifyContent: "space-evenly",
+                margin: 5,
+              }}
             >
-              <Image source={require("../../assets/Icon/gallery.png")} />
-              <Text>ConcertList</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.center}
-              onPress={() =>
-                navigation.navigate("MainRoutes", {
-                  screen: "CategoryDetail",
-                  params: { category: "ExpoList" },
-                })
-              }
-            >
-              <Image source={require("../../assets/Icon/gallery.png")} />
-              <Text>ExpoList</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.center}
-              onPress={() =>
-                navigation.navigate("MainRoutes", {
-                  screen: "CategoryDetail",
-                  params: { category: "ShowList" },
-                })
-              }
-            >
-              <Image source={require("../../assets/Icon/gallery.png")} />
-              <Text>ShowList</Text>
-            </TouchableOpacity>
-          </View>
-
+              <TouchableOpacity
+                style={styles.center}
+                onPress={() =>
+                  navigation.navigate("MainRoutes", {
+                    screen: "CategoryDetail",
+                    params: { category: "FineArtList" },
+                  })
+                }
+              >
+                <Image source={require("../../assets/Icon/gallery.png")} />
+                <Text>미술관</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.center}
+                onPress={() =>
+                  navigation.navigate("MainRoutes", {
+                    screen: "CategoryDetail",
+                    params: { category: "ShowList" },
+                  })
+                }
+              >
+                <Image source={require("../../assets/Icon/show.png")} />
+                <Text>공연</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.center}
+                onPress={() =>
+                  navigation.navigate("MainRoutes", {
+                    screen: "CategoryDetail",
+                    params: { category: "ConcertList" },
+                  })
+                }
+              >
+                <Image source={require("../../assets/Icon/concert.png")} />
+                <Text>콘서트</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.center}
+                onPress={() =>
+                  navigation.navigate("MainRoutes", {
+                    screen: "CategoryDetail",
+                    params: { category: "ExpoList" },
+                  })
+                }
+              >
+                <Image source={require("../../assets/Icon/expo.png")} />
+                <Text>박람회</Text>
+              </TouchableOpacity>
+            </View>
+          </ImageBackground>
           <View
             style={{
               flex: 1,
@@ -140,7 +169,7 @@ const Main = ({ navigation }) => {
               <Text style={[styles.smallText]}>
                 현재 위치는
                 <UserGps>
-                  {gpsRes?.district.length > 0 && gpsRes?.district ? (
+                  {gpsRes?.district?.length > 0 && gpsRes?.district ? (
                     <>
                       {gpsRes?.region} {gpsRes?.district}
                     </>
@@ -157,15 +186,13 @@ const Main = ({ navigation }) => {
               </Text>
             </View>
           </View>
-          <View
-            style={{
-              flex: 1,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <UserRecommendData />
-            <UserRecommendBox />
+
+          <UserRecommendData />
+          {/* <UserRecommendBox /> */}
+
+          <View>
+            <RecentlyData />
+            {/* <RecentlyPost /> */}
           </View>
         </ImageBackground>
       </View>
@@ -216,6 +243,25 @@ const styles = StyleSheet.create({
     borderBottomColor: Theme.colors.SkyBlue,
     borderBottomWidth: StyleSheet.hairlineWidth,
     marginLeft: 5,
+  },
+  skyblueText: {
+    color: Theme.colors.SkyBlue,
+    fontSize: 12,
+    borderBottomColor: Theme.colors.SkyBlue,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    marginLeft: 5,
+  },
+  whiteBackground: {
+    width: "100%",
+    height: 363,
+  },
+  headerarea: {
+    flex: 1,
+    height: 60,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    margin: 7,
   },
 });
 
