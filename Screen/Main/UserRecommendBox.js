@@ -1,6 +1,13 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { Image, StyleSheet, Text, View, TouchableOpacity, ImageBackground } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  ImageBackground,
+} from "react-native";
 import Theme from "../../Theme/Theme";
 import ScrollViewLayout from "../Components/Layout/ScrollViewLayout";
 import styled, { css } from "styled-components/native";
@@ -16,22 +23,42 @@ const UserRecommendBox = ({ datas }) => {
           ? (categoryName = "공연")
           : data.category === "exhibition"
           ? (categoryName = "전시회")
-          : data.category ==="concert" 
+          : data.category === "concert"
           ? (categoryName = "콘서트")
           : data.category === "expo"
-          ? (categoryName= "박람회")
+          ? (categoryName = "박람회")
           : (categoryName = "");
         return (
-          <ScrollViewLayout>
-            <View style={{ flexDirection: "row", alignItems:"center",marginBottom:6}}>
-              <Image source={require("../../assets/Icon/recommend.png")} />
-              <Text style={{ marginLeft:5 }}>'아티즌'님 이런 {categoryName}는 어떠세요?</Text>
+          <View >
+            <View
+            key={data.id}
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                // marginTop:6,
+              }}
+            >              
+              <Text style={styles.smailTitle}>
+              <Image source={require("../../assets/Icon/recommend.png")} />'아티즌' 님 이런 {categoryName}는 어떠세요?
+              </Text>
             </View>
-            <Image
+            <ImageBackground
               source={{ uri: data?.posterUrl }}
               style={styles.recommendImage}
-            />
-          </ScrollViewLayout>
+            >
+              <Image
+                source={require("../../assets/Icon/ribbon.png")}
+                style={{ marginLeft: 16 }}
+              />
+              <View style={{ marginLeft: 18, marginTop: 25 }}>
+                <WhiteText>{data?.name}</WhiteText>
+                <WhiteText>
+                  {data?.startDate} ~ {data?.finishDate}
+                </WhiteText>
+                <WhiteText>{data?.place}</WhiteText>
+              </View>
+            </ImageBackground>
+          </View>
         );
       })}
     </View>
@@ -84,6 +111,12 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
     marginLeft: 5,
   },
+  smailTitle: {
+    marginLeft:6,
+    marginBottom: 6,
+    borderBottomColor: Theme.colors.Black,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
 });
 
 const StView = styled.View`
@@ -108,4 +141,10 @@ const LongBox = styled.View`
   height: 34px;
   background-color: white;
   border-radius: 5px;
+`;
+
+const WhiteText = styled.Text`
+  color: ${Theme.colors.White};
+  font-size: 14;
+  font-weight: 700;
 `;

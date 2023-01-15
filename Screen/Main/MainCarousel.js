@@ -18,8 +18,7 @@ const cardSize = { width: 312, height: 159 };
 const offset = cardSize.width + margin;
 
 const MainCarousel = () => {
-  const pages = useMemo(
-    () => [
+  const pages = [
       {
         mainImageUrl: "../../assets/main/caroucel/maincarousel1.png",
       },
@@ -35,9 +34,7 @@ const MainCarousel = () => {
       {
         mainImageUrl: "../../assets/main/caroucel/maincarousel5.png",
       },
-    ],
-    []
-  );
+    ];
 
   const snapToOffsets = useMemo(
     () => Array.from(Array(pages.length)).map((_, index) => index * offset),
