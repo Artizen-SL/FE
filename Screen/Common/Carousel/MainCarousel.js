@@ -8,7 +8,7 @@ const MainCarousel = ({ pages, pageWidth, gap, offset }) => {
 
   // props 정보를 reder 하는 함수
   function renderItem({ item }) {
-    console.log(item);
+
     return (
       <MainPage
         item={item}
