@@ -64,17 +64,12 @@ function ContentDetail({ route }) {
 
   return (
     <View style={{ flex: 1 }}>
-      <View>
-        <Image></Image>
-        <Text></Text>
-      </View>
-
       <ScrollViewLayout>
         <Carousel
-          gap={20}
+          gap={10}
           offset={0}
           pages={PAGES}
-          pageWidth={screenWidth - (20 + 20 * 2)}
+          pageWidth={screenWidth - (10 + 10 * 2)}
         />
 
         <View style={detailStyles.divideLine} />
