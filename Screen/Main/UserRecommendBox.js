@@ -16,7 +16,7 @@ const UserRecommendBox = ({ datas }) => {
   // const {category, id, name, posterUrl, startDate, finishDate, place} = data;
   const navigation = useNavigation();
   return (
-    <View>
+    <View style={{ marginTop: 10 }}>
       {datas?.map((data) => {
         let categoryName = "";
         data.category === "show"
@@ -29,17 +29,20 @@ const UserRecommendBox = ({ datas }) => {
           ? (categoryName = "박람회")
           : (categoryName = "");
         return (
-          <View >
+          <View>
             <View
-            key={data.id}
+              key={data.id}
               style={{
                 flexDirection: "row",
                 alignItems: "center",
-                // marginTop:6,
+                marginTop: 20,
               }}
-            >              
+            >
               <Text style={styles.smailTitle}>
-              <Image source={require("../../assets/Icon/recommend.png")} />'아티즌' 님 이런 {categoryName}는 어떠세요?
+                <Image source={require("../../assets/Icon/recommend.png")} />'
+                <Text style={{ fontWeight: "bold" }}>아티즌</Text>' 님 이런{" "}
+                <Text style={{ fontWeight: "bold" }}>{categoryName}</Text>는
+                어떠세요?
               </Text>
             </View>
             <ImageBackground
@@ -74,11 +77,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  smallRound: {
-    width: 50,
-    height: 50,
-    borderRadius: 50,
-  },
   center: {
     alignItems: "center",
     justifyContent: "center",
@@ -87,6 +85,7 @@ const styles = StyleSheet.create({
     width: 312,
     height: 156,
     borderRadius: 5,
+    marginTop:6,
   },
   bgImage: { width: "100%", height: "100%" },
   logo: { width: 117, height: 32 },
@@ -112,7 +111,7 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
   smailTitle: {
-    marginLeft:6,
+    marginLeft: 6,
     marginBottom: 6,
     borderBottomColor: Theme.colors.Black,
     borderBottomWidth: StyleSheet.hairlineWidth,

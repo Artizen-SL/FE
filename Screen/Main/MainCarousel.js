@@ -1,70 +1,73 @@
-import { useMemo } from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  Button,
-  Image,
-  TouchableOpacity,
-  ImageBackground,
-  Dimensions,
-  useWindowDimensions,
-  FlatList,
-} from "react-native";
+import React, { useState } from "react";
+import { FlatList, Image, ImageBackground } from "react-native";
+import styled from "styled-components/native";
+import MainPage from "./MainPage";
 
-const windowWidth = Dimensions.get("window");
-const margin = 12;
-const cardSize = { width: 312, height: 159 };
-const offset = cardSize.width + margin;
+const MainCarousel = ({ pages, pageWidth, gap, offset }) => {
+  const [page, setPage] = useState(0);
 
-const MainCarousel = () => {
-  const pages = [
-      {
-        mainImageUrl: "../../assets/main/caroucel/maincarousel1.png",
-      },
-      {
-        mainImageUrl: "../../assets/main/caroucel/maincarousel2.png",
-      },
-      {
-        mainImageUrl: "../../assets/main/caroucel/maincarousel3.png",
-      },
-      {
-        mainImageUrl: "../../assets/main/caroucel/maincarousel4.png",
-      },
-      {
-        mainImageUrl: "../../assets/main/caroucel/maincarousel5.png",
-      },
-    ];
-
-  const snapToOffsets = useMemo(
-    () => Array.from(Array(pages.length)).map((_, index) => index * offset),
-    [pages]
-  );
+  // props 정보를 reder 하는 함수
+  function renderItem({ item }) {
+    return (
+      <MainPage
+        item={item}
+        style={{ width: pageWidth, marginHorizontal: gap / 2 }}
+      />
+    );
+  }
+  const onScroll = (e) => {
+    const newPage = Math.round(
+      e.nativeEvent.contentOffset.x / (pageWidth + gap)
+    );
+    setPage(newPage);
+  };
   return (
-    <FlatList
-      data={pages}
-      snapToOffsets={snapToOffsets}
-      horizontal
-      contentContainerStyle={{ paddingHorizontal: 24 }}
-      renderItem={({item}) => (
-        <TouchableOpacity style={{marginRight: margin}}>
-          <ImageBackground
-            style={cardSize}
-            source={{uri: item.mainImageUrl}}
-          />
-        </TouchableOpacity>
-      )}
-      keyExtractor={(_, index) => String(index)}
-    />
+    <Container>
+      <FlatList
+        automaticallyAdjustContentInsets={false}
+        contentContainerStyle={{
+          //   paddingHorizontal: offset + gap / 2,
+          paddingHorizontal: 0,
+        }}
+        data={pages}
+        decelerationRate="fast"
+        horizontal
+        keyExtractor={(item) => `page__${item.color}`}
+        onScroll={onScroll}
+        pagingEnabled
+        renderItem={renderItem}
+        snapToInterval={pageWidth + gap}
+        snapToAlignment="start"
+        showsHorizontalScrollIndicator={false}
+      />
+      <IndicatorWrapper>
+        {Array.from({ length: pages.length }, (_, i) => i).map((i) => (
+          <Indicator key={`indicator_${i}`} focused={i === page} />
+        ))}
+      </IndicatorWrapper>
+    </Container>
   );
 };
 
 export default MainCarousel;
 
-const styles = StyleSheet.create({
-  container: {
-    width: windowWidth,
-    backgroundColor: "#fff",
-    paddingTop: 100,
-  },
-});
+const Container = styled.View`
+  height: 200;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+`;
+
+const Indicator = styled.View`
+  margin: 0px 4px;
+  background-color: ${(props) => (props.focused ? "#262626" : "#dfdfdf")};
+  width: 6px;
+  height: 6px;
+  border-radius: 3px;
+`;
+
+const IndicatorWrapper = styled.View`
+  flex-direction: row;
+  align-items: center;
+  margin-top: 16px;
+`;
