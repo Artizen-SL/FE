@@ -53,6 +53,7 @@ export default MainCarousel;
 
 const Container = styled.View`
   height: 200;
+  border-radius: 5;
   justify-content: center;
   align-items: center;
   margin-bottom: 30px;

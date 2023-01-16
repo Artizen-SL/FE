@@ -6,7 +6,7 @@ export default function MainPage({ item, style }) {
   return (
     <PageItem style={[style]}>
       {/* <PageNum>{item.num}</PageNum> */}
-      <Image
+      <MainImage 
         source={item.mainImageUrl}
         style={{
           resizeMode: "contain",
@@ -22,7 +22,10 @@ const PageItem = styled.View`
   background-color: ${(props) => props.color};
   justify-content: center;
   align-items: center;
-  border-radius: 20px;
+  border-radius: 5px;
+`;
+const MainImage = styled.Image`
+  border-radius: 5px;
 `;
 
 const PageNum = styled.Text``;
