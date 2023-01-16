@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React, { useRef, useState } from "react";
 import {
   FlatList,
@@ -11,16 +12,9 @@ import {
 } from "react-native";
 import Theme from "../../../Theme/Theme";
 
-const data = [
-  { label: "One", value: "1" },
-  { label: "Two", value: "2" },
-  { label: "Three", value: "3" },
-  { label: "Four", value: "4" },
-  { label: "Five", value: "5" },
-];
-
 function Dropdown({ label, data, onSelect }) {
   const DropdownButton = useRef();
+  const navigation = useNavigation();
   const [visible, setVisible] = useState(false);
   const [selected, setSelected] = useState(undefined);
   const [dropdownTop, setDropdownTop] = useState(0);
@@ -40,6 +34,10 @@ function Dropdown({ label, data, onSelect }) {
     setSelected(item);
     onSelect(item);
     setVisible(false);
+    navigation.navigate(item.Routes, {
+      screen: item.screen,
+      params: item.params,
+    });
   };
 
   const renderItem = ({ item }) => (

@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { StyleSheet, Text, View, Image, Dimensions } from "react-native";
 import Theme from "../../Theme/Theme";
 import Dropdown from "../Common/Dropdown/Dropdown";
-import TagView from "../Components/Elem/TagView";
 import ScrollViewLayout from "../Components/Layout/ScrollViewLayout";
 import ContentDetailInfoLine from "./ContentDetailInfoLine";
 import Carousel from "../Common/Carousel/Carousel";
@@ -29,12 +28,31 @@ const PAGES = [
     color: "#CCABD8",
   },
 ];
-const data = [
-  { label: "One", value: "1" },
-  { label: "Two", value: "2" },
-  { label: "Three", value: "3" },
-  { label: "Four", value: "4" },
-  { label: "Five", value: "5" },
+const dropDownData = [
+  {
+    label: "미술관",
+    Routes: "MainRoutes",
+    screen: "CategoryDetail",
+    params: { category: "FineArtList" },
+  },
+  {
+    label: "전시회",
+    Routes: "MainRoutes",
+    screen: "CategoryDetail",
+    params: { category: "ShowList" },
+  },
+  {
+    label: "콘서트",
+    Routes: "MainRoutes",
+    screen: "CategoryDetail",
+    params: { category: "ConcertList" },
+  },
+  {
+    label: "박물관",
+    Routes: "MainRoutes",
+    screen: "CategoryDetail",
+    params: { category: "ExpoList" },
+  },
 ];
 
 function ContentDetail({ route }) {
@@ -42,10 +60,15 @@ function ContentDetail({ route }) {
   const [selected, setSelected] = useState(undefined);
 
   const screenWidth = Math.round(Dimensions.get("window").width);
-
   //  pageWidth={screenWidth - (gap + padding * 2)}
+
   return (
     <View style={{ flex: 1 }}>
+      <View>
+        <Image></Image>
+        <Text></Text>
+      </View>
+
       <ScrollViewLayout>
         <Carousel
           gap={20}
@@ -133,7 +156,11 @@ function ContentDetail({ route }) {
 
         <View style={detailStyles.divideLine} />
       </ScrollViewLayout>
-      <Dropdown label="Select Item" data={data} onSelect={setSelected} />
+      <Dropdown
+        label="Select Item"
+        data={dropDownData}
+        onSelect={setSelected}
+      />
     </View>
   );
 }
