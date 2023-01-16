@@ -1,28 +1,24 @@
 import { useNavigation } from "@react-navigation/native";
 import {
-  Image,
   StyleSheet,
   Text,
   View,
+  Image,
   TouchableOpacity,
   ImageBackground,
+  RCTImageView,
 } from "react-native";
 import Theme from "../../Theme/Theme";
-import ScrollViewLayout from "../Components/Layout/ScrollViewLayout";
 import styled, { css } from "styled-components/native";
 
 const RecentlyPost = ({ datas }) => {
-  console.log("datas==>", datas);
   return (
-    <View>
+    <View style={styles.row}>
       {datas?.map((data) => {
         return (
-          <Round>
-            <Image
-              style={styles.round}
-              source={{ uri: data?.posterUrl }}
-              key={data?.id}
-            />
+          <Round style={{margin:3,marginTop:6, alignItems:"center"}}  key={data?.id}>
+            <RoundImage source={{ uri: data?.posterUrl }} />
+            <Text>{data?.name}</Text>
           </Round>
         );
       })}
@@ -40,7 +36,7 @@ const styles = StyleSheet.create({
   round: {
     width: 100,
     height: 100,
-    // borderRadius: "50%",
+    borderRadius: 50,
   },
   center: {
     alignItems: "center",
@@ -50,29 +46,22 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginLeft: 5,
   },
-  skyblueText: {
-    color: Theme.colors.SkyBlue,
-    fontSize: 12,
-    borderBottomColor: Theme.colors.SkyBlue,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    marginLeft: 5,
-  },
-  smailTitle: {
-    marginLeft: 6,
-    marginBottom: 6,
-    borderBottomColor: Theme.colors.Black,
-    borderBottomWidth: StyleSheet.hairlineWidth,
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    margin: 6,
+    
   },
 });
 
-const SmallRound = styled.View`
-  width: 50px;
-  height: 50px;
-  border: 1px solid ${Theme.colors.LightGray};
+const RoundImage = styled.Image`
+  width: 100px;
+  height: 100px;
+  border-radius: 50;
 `;
 
 const Round = styled.View`
   width: 100px;
-  height: 100px;
-  border-radius: 50%;
+  height:150px;
 `;
