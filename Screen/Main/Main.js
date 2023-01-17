@@ -18,8 +18,10 @@ import useGpsRes from "../../utils/useGpsRes";
 import RecentlyData from "./RecentlyData";
 import BestData from "./BestData";
 
-const Main = ({ navigation }) => {
-  const screenWidth = Math.round(Dimensions.get("window").width);
+const Main = ({ navigation}) => {
+  // console.log("pages==>",pages)
+  const screenWidth = Math.round(Dimensions.get("window").width); 
+
   const pages = [
     {
       num: 1,
@@ -187,6 +189,15 @@ const Main = ({ navigation }) => {
           </Text>
         </View>
       </View>
+      <View style={{ marginTop: 20}}>
+        <Text style={styles.BlBoldText}>
+          <Image
+            source={require("../../assets/Icon/notice.png")}
+            style={{ marginRight: 5 }}
+          />
+          Notice
+        </Text>
+      </View>
       <View style={styles.center}>
         <UserRecommendData />
       </View>
@@ -274,7 +285,7 @@ whiteBackground: {
 },
 headerarea: {
   flex: 1,
-  height: 60,
+  height: 45,
   width: 340,
   flexDirection: "row",
   justifyContent: "space-between",

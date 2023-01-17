@@ -13,8 +13,7 @@ import ScrollViewLayout from "../Components/Layout/ScrollViewLayout";
 import styled, { css } from "styled-components/native";
 
 const UserRecommendBox = ({ datas }) => {
-  // const {category, id, name, posterUrl, startDate, finishDate, place} = data;
-  const navigation = useNavigation();
+   const navigation = useNavigation();
   return (
     <View style={{ marginTop: 10 }}>
       {datas?.map((data) => {
