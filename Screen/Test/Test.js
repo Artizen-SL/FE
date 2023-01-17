@@ -10,6 +10,7 @@ function Test() {
       <Text>test3</Text>
       <Text>test4</Text>
       <Text>test4</Text>
+      <Text>test5</Text>
     </View>
   );
 }
