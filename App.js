@@ -12,6 +12,7 @@ import {
 import Test from "./Screen/Test/Test";
 import Test1 from "./Screen/Test/Test1";
 import MainRoutes from "./Navigation/MainRoutes";
+import KakaoLogin from "./Screen/Login/KakaoLogin";
 
 const Tab = createBottomTabNavigator();
 export default function App() {
@@ -26,6 +27,7 @@ export default function App() {
         <Tab.Screen name="Test" component={Test} />
         <Tab.Screen name="Test1" component={Test1} />
         <Tab.Screen name="Login" component={Login} />
+        <Tab.Screen name="KakaoLogin" component={KakaoLogin} />
       </Tab.Navigator>
     </NavigationContainer>
   );
