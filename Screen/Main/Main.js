@@ -13,10 +13,8 @@ import styled, { css } from "styled-components/native";
 import Theme from "../../Theme/Theme";
 import ScrollViewLayout from "../Components/Layout/ScrollViewLayout";
 import MainCarousel from "./MainCarousel";
-import UserRecommendBox from "./UserRecommendBox";
 import UserRecommendData from "./UserRecommendData";
 import useGpsRes from "../../utils/useGpsRes";
-import RecentlyPost from "./RecentlyPost";
 import RecentlyData from "./RecentlyData";
 import BestData from "./BestData";
 
@@ -93,7 +91,7 @@ const Main = ({ navigation }) => {
                 gap={20}
                 offset={0}
                 pages={pages}
-                pageWidth={screenWidth - (20 + 10 * 2)}
+                pageWidth={screenWidth - (20 + 20 * 2)}
               />
             </View>
             <View

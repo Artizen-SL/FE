@@ -1,10 +1,36 @@
-import React, { useState } from "react";
-import { FlatList, Image, ImageBackground } from "react-native";
+import React, { useState,useRef,useEffect,useMemo } from "react";
+import { FlatList, Image, ImageBackground,Dimensions } from "react-native";
 import styled from "styled-components/native";
 import MainPage from "./MainPage";
+import useInterval from "../../utils/useInterval";
 
-const MainCarousel = ({ pages, pageWidth, gap, offset }) => {
+const windowWidth = Dimensions.get('window').width;
+const margin = 8;
+
+const cardSize = {width: windowWidth - 24 * 2, height: 400};
+const offset = cardSize.width + margin;
+
+const MainCarousel = ({ pages, pageWidth, gap }) => {
   const [page, setPage] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const flatListRef = useRef(null);
+  const snapToOffsets = useMemo(() => Array.from(Array(pages.length)).map((_, index) => index * offset),
+  [pages],
+  );
+  
+  useEffect(() => {
+    if (currentIndex !== snapToOffsets.length) {
+      flatListRef.current?.scrollToOffset({
+        animated: true,
+        offset: snapToOffsets[currentIndex],
+      });
+    }
+  }, [currentIndex, snapToOffsets]);
+
+  useInterval(() => {
+    setCurrentIndex(prev => (prev === snapToOffsets.length - 1 ? 0 : prev + 1));
+  }, 3600);
+
 
   // props 정보를 reder 하는 함수
   function renderItem({ item }) {
@@ -36,6 +62,7 @@ const MainCarousel = ({ pages, pageWidth, gap, offset }) => {
         onScroll={onScroll}
         pagingEnabled
         renderItem={renderItem}
+        ref={flatListRef}
         snapToInterval={pageWidth + gap}
         snapToAlignment="start"
         showsHorizontalScrollIndicator={false}
@@ -61,10 +88,10 @@ const Container = styled.View`
 
 const Indicator = styled.View`
   margin: 0px 4px;
-  background-color: ${(props) => (props.focused ? "#262626" : "#dfdfdf")};
-  width: 6px;
-  height: 6px;
-  border-radius: 3px;
+  background-color: ${(props) => (props.focused ? "#48B7E2" : "#dfdfdf")};
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
 `;
 
 const IndicatorWrapper = styled.View`
