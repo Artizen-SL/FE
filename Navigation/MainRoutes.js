@@ -4,6 +4,7 @@ import React from "react";
 import CategoryDetail from "../Screen/ContentLIst/CategoryDetail";
 import ContentDetail from "../Screen/ContentLIst/ContentDetail";
 import Main from "../Screen/Main/Main";
+import NoticeList from "../Screen/Notice/NoticeList";
 import Theme from "../Theme/Theme";
 
 const MainStack = createNativeStackNavigator();
@@ -13,9 +14,11 @@ function MainRoutes() {
     <MainStack.Navigator initialRouteName="Main">
       <MainStack.Screen
         name="Main"
-        component={Main}
+        // component={Main}
         options={{ headerShown: false }}
-      />
+      >
+        {(props) => <Main {...props} />}
+      </MainStack.Screen>
       <MainStack.Screen
         name="CategoryDetail"
         component={CategoryDetail}
@@ -24,6 +27,11 @@ function MainRoutes() {
       <MainStack.Screen
         name="ContentDetail"
         component={ContentDetail}
+        // options={{ headerShown: false }}
+      />
+      <MainStack.Screen
+        name="NoticeList"
+        component={NoticeList}
         // options={{ headerShown: false }}
       />
     </MainStack.Navigator>
