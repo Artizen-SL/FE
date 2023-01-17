@@ -10,6 +10,7 @@ export default Layout;
 const styles = StyleSheet.create({
   LayoutView: {
     // backgroundColor: "pink",
-    padding: 20,
+    marginLeft: 20,
+    marginRight: 20,
   },
 });
