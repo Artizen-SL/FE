@@ -27,7 +27,6 @@ export default function App() {
         <Tab.Screen name="Test1" component={Test1} />
         <Tab.Screen name="Login" component={Login} />
       </Tab.Navigator>
-      <StatusBar style="auto" />
     </NavigationContainer>
   );
 }

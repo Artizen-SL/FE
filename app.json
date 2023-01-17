@@ -2,6 +2,7 @@
   "expo": {
     "name": "Artizen-FE",
     "slug": "Artizen-FE",
+    "owner": "artizen-fe",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -12,7 +13,8 @@
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/04c9b210-b371-4c52-a7dd-d5d45d5ed9f9"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -24,10 +26,19 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.jiwoonseo.ArtizenFE"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "04c9b210-b371-4c52-a7dd-d5d45d5ed9f9"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
     }
   }
 }
