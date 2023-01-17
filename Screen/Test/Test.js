@@ -6,6 +6,7 @@ function Test() {
     <View>
       <Text>test</Text>
       <Text>test1</Text>
+      <Text>test2</Text>
     </View>
   );
 }
