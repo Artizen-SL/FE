@@ -1,5 +1,7 @@
-import React, { useEffect } from "react";
-import { ScrollView, Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Image, ScrollView, Text, View } from "react-native";
+import styled from "styled-components/native";
+import Dropdown from "../Common/Dropdown/Dropdown";
 import ScrollViewLayout from "../Components/Layout/ScrollViewLayout";
 import ContentBox from "./ContentBox";
 
@@ -56,18 +58,84 @@ const datas = [
   },
 ];
 
+const dropDownData = [
+  {
+    label: "미술관",
+    Routes: "MainRoutes",
+    screen: "CategoryDetail",
+    params: { category: "FineArtList" },
+  },
+  {
+    label: "전시회",
+    Routes: "MainRoutes",
+    screen: "CategoryDetail",
+    params: { category: "ShowList" },
+  },
+  {
+    label: "콘서트",
+    Routes: "MainRoutes",
+    screen: "CategoryDetail",
+    params: { category: "ConcertList" },
+  },
+  {
+    label: "박물관",
+    Routes: "MainRoutes",
+    screen: "CategoryDetail",
+    params: { category: "ExpoList" },
+  },
+];
+
 function CategoryDetail({ route }) {
   const { category } = route.params;
+  const [selected, setSelected] = useState(undefined);
 
   // 받은 카테고리에 따라서 데이터 송수신하기
 
   return (
-    <ScrollViewLayout>
-      {datas.map((data) => {
-        return <ContentBox key={data.id} data={data} />;
-      })}
-    </ScrollViewLayout>
+    <View style={{ flex: 1 }}>
+      <ScrollViewLayout>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            marginBottom: 10,
+            marginTop: 10,
+            alignItems: "center",
+          }}
+        >
+          <Image
+            source={require("../../assets/Icon/gallery.png")}
+            style={{}}
+          ></Image>
+          <StyledText
+            style={{
+              fontSize: 20,
+              fontWeight: "bold",
+              paddingLeft: 10,
+              textShadow: "1px 1px 11px rgba(0, 0, 0, 0.75)",
+            }}
+          >
+            {category}
+          </StyledText>
+        </View>
+        {datas.map((data) => {
+          return <ContentBox key={data.id} data={data} />;
+        })}
+      </ScrollViewLayout>
+      <Dropdown
+        label="Select Item"
+        data={dropDownData}
+        onSelect={setSelected}
+      />
+    </View>
   );
 }
 
 export default CategoryDetail;
+
+const StyledText = styled.Text`
+  /* text-shadow-color: rgba(0, 0, 0, 0.25);
+  text-shadow-offset: 0px 4px;
+  text-shadow-radius: 3px;*/
+  text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
+`;

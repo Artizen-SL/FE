@@ -9,6 +9,9 @@ export default ScrollViewLayout;
 
 const styles = StyleSheet.create({
   LayoutView: {
-    padding: 20,
+    // paddingRight: 20,
+    // paddingLeft: 20,
+    marginLeft: 10,
+    marginRight: 10,
   },
 });
