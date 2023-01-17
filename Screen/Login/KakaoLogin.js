@@ -20,7 +20,7 @@ const KakaoLogin = ({ navigation }) => {
   };
 
   const requestToken = async (code) => {
-    const requestTokenUrl = "https://kauth.kakao.com/oauth/token";
+    // const requestTokenUrl = "https://kauth.kakao.com/oauth/token";
 
     const options = qs.stringify({
       grant_type: "authorization_code",
@@ -36,13 +36,15 @@ const KakaoLogin = ({ navigation }) => {
       const body = {
         ACCESS_TOKEN,
       };
+
       const response = await axios.post(REDIRECT_URI, body);
       const value = response.data;
+      console.log(value);
+      await navigation.navigate("Main");
       const result = await storeUser(value);
       if (result === "stored") {
         const user = await getData("user");
         dispatch(read_S(user));
-        await navigation.navigate("Main");
       }
     } catch (e) {
       console.log(e);
