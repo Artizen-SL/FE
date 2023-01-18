@@ -20,7 +20,7 @@ const KakaoLogin = ({ navigation }) => {
   };
 
   const requestToken = async (code) => {
-    // const requestTokenUrl = "https://kauth.kakao.com/oauth/token";
+    const requestTokenUrl = "https://kauth.kakao.com/oauth/token";
 
     const options = qs.stringify({
       grant_type: "authorization_code",

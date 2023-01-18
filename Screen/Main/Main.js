@@ -17,33 +17,12 @@ import UserRecommendData from "./UserRecommendData";
 import useGpsRes from "../../utils/useGpsRes";
 import RecentlyData from "./RecentlyData";
 import BestData from "./BestData";
+import MainCarouselData from "./MainCarouselData";
 
-const Main = ({ navigation}) => {
-  // console.log("pages==>",pages)
-  const screenWidth = Math.round(Dimensions.get("window").width); 
+const Main = ({ navigation }) => {
+  const screenWidth = Math.round(Dimensions.get("window").width);
 
-  const pages = [
-    {
-      num: 1,
-      mainImageUrl: require("../../assets/main/caroucel/maincarousel1.png"),
-    },
-    {
-      num: 2,
-      mainImageUrl: require("../../assets/main/caroucel/maincarousel2.png"),
-    },
-    {
-      num: 3,
-      mainImageUrl: require("../../assets/main/caroucel/maincarousel3.png"),
-    },
-    {
-      num: 4,
-      mainImageUrl: require("../../assets/main/caroucel/maincarousel4.png"),
-    },
-    {
-      num: 5,
-      mainImageUrl: require("../../assets/main/caroucel/maincarousel5.png"),
-    },
-  ];
+  const pages = MainCarouselData();
 
   const [gpsRes, setGpsRes] = useState({ region: "Loading...", district: "" });
 
@@ -53,10 +32,10 @@ const Main = ({ navigation}) => {
   };
 
   useEffect(() => {
-    const locaiton = resetGpsAsk();
-    console.log(locaiton);
+    const location = resetGpsAsk();
+    console.log(location);
 
-    if (typeof locaiton === "object") {
+    if (typeof location === "object") {
       setGpsRes({ ...gpsRes, region: "", district: "" });
       resetGpsAsk();
     }
@@ -161,41 +140,46 @@ const Main = ({ navigation}) => {
               alignItems: "center",
               marginTop: 15,
             }}
-
-          />
-          <Text style={[styles.smallText]}>
-            현재 위치는
-            <UserGps>
-              {gpsRes?.district?.length > 0 && gpsRes?.district ? (
-                <>
-                  {gpsRes?.region} {gpsRes?.district}
-                </>
-              ) : gpsRes?.region === "Loading..." ? (
-                <Text>Loading...</Text>
-              ) : (
-                <Text>위치없음</Text>
-              )}
-            </UserGps>
-            입니다.
-          </Text>
-          <Text style={styles.skyblueText} onPress={resetGpsAsk}>
-            (위치 재설정)
-          </Text>
-        </View>
-      </View>
-      <View style={{ marginTop: 20}}>
-        <Text style={styles.BlBoldText}>
-          <Image
-            source={require("../../assets/Icon/notice.png")}
-            style={{ marginRight: 5 }}
-          />
-          Notice
-        </Text>
-      </View>
-      <View style={styles.center}>
-        <UserRecommendData />
-      </View>
-
+          >
+            <View style={styles.longBox}>
+              <Image
+                source={require("../../assets/Icon/gps.png")}
+                style={{
+                  margin: 1,
+                }}
+              />
+              <Text style={[styles.smallText]}>
+                현재 위치는
+                <UserGps>
+                  {gpsRes?.district?.length > 0 && gpsRes?.district ? (
+                    <>
+                      {gpsRes?.region} {gpsRes?.district}
+                    </>
+                  ) : gpsRes?.region === "Loading..." ? (
+                    <Text>Loading...</Text>
+                  ) : (
+                    <Text>위치없음</Text>
+                  )}
+                </UserGps>
+                입니다.
+              </Text>
+              <Text style={styles.skyblueText} onPress={resetGpsAsk}>
+                (위치 재설정)
+              </Text>
+            </View>
+          </View>
+          <View style={{ marginTop: 20 }}>
+            <Text style={styles.BlBoldText}>
+              <Image
+                source={require("../../assets/Icon/notice.png")}
+                style={{ marginRight: 5 }}
+              />
+              Notice
+            </Text>
+          </View>
+          <View style={styles.center}>
+            <UserRecommendData />
+          </View>
 
           <View style={{ marginTop: 20 }}>
             <Text style={styles.BlBoldText}>
@@ -226,69 +210,67 @@ const Main = ({ navigation}) => {
 export default Main;
 
 const styles = StyleSheet.create({
-
-container: {
-  flex: 1,
-  alignItems: "center",
-  justifyContent: "center",
-},
-smallRound: {
-  width: 50,
-  height: 50,
-},
-center: {
-  alignItems: "center",
-  justifyContent: "center",
-},
-header: {
-  flex: 1,
-},
-bgImage: { width: "100%", height: "100%" },
-logo: { width: 117, height: 32 },
-longBox: {
-  flex: 1,
-  flexDirection: "row",
-  alignItems: "center",
-  width: 312,
-  height: 34,
-  backgroundColor: "#fff",
-  borderRadius: 5,
-  marginTop: 22,
-},
-smallText: {
-  fontSize: 12,
-  marginLeft: 5,
-},
-skyblueText: {
-  color: Theme.colors.SkyBlue,
-  fontSize: 12,
-  borderBottomColor: Theme.colors.SkyBlue,
-  borderBottomWidth: StyleSheet.hairlineWidth,
-  marginLeft: 5,
-},
-BlBoldText: {
-  color: Theme.colors.Black,
-  fontSize: 14,
-  fontWeight: "bold",
-  width: 114,
-  borderBottomColor: Theme.colors.Black,
-  borderBottomWidth: StyleSheet.hairlineWidth,
-  marginLeft: 10,
-},
-whiteBackground: {
-  width: "100%",
-  height: 363,
-},
-headerarea: {
-  flex: 1,
-  height: 45,
-  width: 340,
-  flexDirection: "row",
-  justifyContent: "space-between",
-  alignItems: "center",
-  margin: 7,
-},
-
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  smallRound: {
+    width: 50,
+    height: 50,
+  },
+  center: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  header: {
+    flex: 1,
+  },
+  bgImage: { width: "100%", height: "100%" },
+  logo: { width: 117, height: 32 },
+  longBox: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    width: 312,
+    height: 34,
+    backgroundColor: "#fff",
+    borderRadius: 5,
+    marginTop: 22,
+  },
+  smallText: {
+    fontSize: 12,
+    marginLeft: 5,
+  },
+  skyblueText: {
+    color: Theme.colors.SkyBlue,
+    fontSize: 12,
+    borderBottomColor: Theme.colors.SkyBlue,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    marginLeft: 5,
+  },
+  BlBoldText: {
+    color: Theme.colors.Black,
+    fontSize: 14,
+    fontWeight: "bold",
+    width: 114,
+    borderBottomColor: Theme.colors.Black,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    marginLeft: 10,
+  },
+  whiteBackground: {
+    width: "100%",
+    height: 363,
+  },
+  headerarea: {
+    flex: 1,
+    height: 45,
+    width: 340,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    margin: 7,
+  },
 });
 
 const StView = styled.View`

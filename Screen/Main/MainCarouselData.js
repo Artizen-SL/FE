@@ -23,7 +23,7 @@ const MainCarouselData = () => {
           mainImageUrl: require("../../assets/main/caroucel/maincarousel5.png"),
         },
       ];
-//   return <Main pages={pages}/>;
+  return pages;
 }
 
 export default MainCarouselData;
