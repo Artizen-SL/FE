@@ -14,7 +14,7 @@ const MainCarousel = ({ pages, pageWidth, gap }) => {
   const [page, setPage] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const flatListRef = useRef(null);
-  const snapToOffsets = useMemo(() => Array.from(Array(pages.length)).map((_, index) => index * offset),
+  const snapToOffsets = useMemo(() => Array.from(Array(pages?.length))?.map((_, index) => index * offset),
   [pages],
   );
   
@@ -27,9 +27,9 @@ const MainCarousel = ({ pages, pageWidth, gap }) => {
     }
   }, [currentIndex, snapToOffsets]);
 
-  useInterval(() => {
-    setCurrentIndex(prev => (prev === snapToOffsets.length - 1 ? 0 : prev + 1));
-  }, 3600);
+  // useInterval(() => {
+  //   setCurrentIndex(prev => (prev === snapToOffsets.length - 1 ? 0 : prev + 1));
+  // }, 3600);
 
 
   // props 정보를 reder 하는 함수
@@ -68,7 +68,7 @@ const MainCarousel = ({ pages, pageWidth, gap }) => {
         showsHorizontalScrollIndicator={false}
       />
       <IndicatorWrapper>
-        {Array.from({ length: pages.length }, (_, i) => i).map((i) => (
+        {Array.from({ length: pages?.length }, (_, i) => i).map((i) => (
           <Indicator key={`indicator_${i}`} focused={i === page} />
         ))}
       </IndicatorWrapper>

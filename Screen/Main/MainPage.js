@@ -7,7 +7,7 @@ export default function MainPage({ item, style }) {
     <PageItem style={[style]}>
       {/* <PageNum>{item.num}</PageNum> */}
       <MainImage 
-        source={item.mainImageUrl}
+        source={item?.mainImageUrl}
         style={{
           resizeMode: "contain",
           height: Dimensions.get("window").height / 2,

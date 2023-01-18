@@ -17,10 +17,11 @@ const useGpsRes = async () => {
     );
     region = location[0]?.region;
     district = location[0]?.district;
-    return { region, district };
+    return { region, district};
   } else {
-    disagree = "Lodin";
+    disagree = "Loding";
   }
+  
   return region, district, disagree;
 };
 
