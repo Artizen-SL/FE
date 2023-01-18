@@ -3,6 +3,7 @@ import { View } from "react-native";
 import { WebView } from "react-native-webview";
 import axios from "axios";
 import { REST_API_KEY, REDIRECT_URI } from "@env";
+
 // other import settings...
 
 const runFirst = `window.ReactNativeWebView.postMessage("this is message from web");`;
@@ -35,14 +36,16 @@ const KakaoLogin = ({ navigation }) => {
 
     axios({
       method: "post",
-
       url: request_token_url,
-
       params: {
         grant_type: "authorization_code",
-        client_id: REST_API_KEY,
-        redirect_uri: REDIRECT_URI,
-        code,
+        // client_id: "ic",
+        client_id: process.env.REST_API_KEY,
+        // client_id: REST_API_KEY,
+        // redirect_uri: "url",
+        redirect_uri: process.env.REDIRECT_URI,
+        // redirect_uri: REDIRECT_URI,
+        code: request_code,
       },
     })
       .then(function (response) {
