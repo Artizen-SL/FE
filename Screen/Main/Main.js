@@ -17,31 +17,12 @@ import UserRecommendData from "./UserRecommendData";
 import useGpsRes from "../../utils/useGpsRes";
 import RecentlyData from "./RecentlyData";
 import BestData from "./BestData";
+import MainCarouselData from "./MainCarouselData";
 
 const Main = ({ navigation }) => {
   const screenWidth = Math.round(Dimensions.get("window").width);
-  const pages = [
-    {
-      num: 1,
-      mainImageUrl: require("../../assets/main/caroucel/maincarousel1.png"),
-    },
-    {
-      num: 2,
-      mainImageUrl: require("../../assets/main/caroucel/maincarousel2.png"),
-    },
-    {
-      num: 3,
-      mainImageUrl: require("../../assets/main/caroucel/maincarousel3.png"),
-    },
-    {
-      num: 4,
-      mainImageUrl: require("../../assets/main/caroucel/maincarousel4.png"),
-    },
-    {
-      num: 5,
-      mainImageUrl: require("../../assets/main/caroucel/maincarousel5.png"),
-    },
-  ];
+
+  const pages = MainCarouselData();
 
   const [gpsRes, setGpsRes] = useState({ region: "Loading...", district: "" });
 
@@ -51,10 +32,10 @@ const Main = ({ navigation }) => {
   };
 
   useEffect(() => {
-    const locaiton = resetGpsAsk();
-    console.log(locaiton);
+    const location = resetGpsAsk();
+    console.log(location);
 
-    if (typeof locaiton === "object") {
+    if (typeof location === "object") {
       setGpsRes({ ...gpsRes, region: "", district: "" });
       resetGpsAsk();
     }
@@ -187,6 +168,15 @@ const Main = ({ navigation }) => {
               </Text>
             </View>
           </View>
+          <View style={{ marginTop: 20 }}>
+            <Text style={styles.BlBoldText}>
+              <Image
+                source={require("../../assets/Icon/notice.png")}
+                style={{ marginRight: 5 }}
+              />
+              Notice
+            </Text>
+          </View>
           <View style={styles.center}>
             <UserRecommendData />
           </View>
@@ -274,7 +264,7 @@ const styles = StyleSheet.create({
   },
   headerarea: {
     flex: 1,
-    height: 60,
+    height: 45,
     width: 340,
     flexDirection: "row",
     justifyContent: "space-between",

@@ -23,7 +23,7 @@ const Login = ({ navigation }) => {
           <LogoText>전시부터 공연까지! 우리들만의 문화 놀이터!</LogoText>
         </LogoView>
         <LoginView>
-          <TouchableOpacity onPress={() => navigation.navigate("Main")}>
+          <TouchableOpacity onPress={() => navigation.navigate("KakaoLogin")}>
             <Image source={require("../../assets/login/kakao.png")} />
           </TouchableOpacity>
         </LoginView>
