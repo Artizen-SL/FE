@@ -50,6 +50,7 @@ const KakaoLogin = ({ navigation }) => {
     })
       .then(function (response) {
         returnValue = response.data.access_token;
+        navigation.navigate("Main");
       })
       .catch(function (error) {
         console.log("error", error);
