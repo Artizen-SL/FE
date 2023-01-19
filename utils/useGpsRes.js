@@ -17,7 +17,13 @@ const useGpsRes = async () => {
     );
     region = location[0]?.region;
     district = location[0]?.district;
+<<<<<<< HEAD
     return { region, district };
+=======
+    console.log("location===>",location)
+    console.log("latitude, longitude===>",latitude, longitude)
+    return { region, district};
+>>>>>>> 099c1d64fbc2e95ddde5ffc9892644fe5c403724
   } else {
     disagree = "Loding";
   }
