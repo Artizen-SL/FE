@@ -13,7 +13,7 @@ import Theme from "../../Theme/Theme";
 
 const Login = ({ navigation }) => {
   return (
-    <StView style={[styles.row, styles.header]}>
+    <StView style={[styles.row]}>
       <ImageBackground
         source={require("../../assets/login/Login_BG.png")}
         style={styles.bgImage}
@@ -25,6 +25,9 @@ const Login = ({ navigation }) => {
         <LoginView>
           <TouchableOpacity onPress={() => navigation.navigate("KakaoLogin")}>
             <Image source={require("../../assets/login/kakao.png")} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("KakaoLogout")}>
+            <Text>로그아웃</Text>
           </TouchableOpacity>
         </LoginView>
       </ImageBackground>
