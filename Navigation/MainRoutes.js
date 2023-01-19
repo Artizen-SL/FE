@@ -1,8 +1,8 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import CategoryDetail from "../Screen/ContentLIst/CategoryDetail";
-import ContentDetail from "../Screen/ContentLIst/ContentDetail";
+import CategoryDetail from "../Screen/ContentList/CategoryDetail";
+import ContentDetail from "../Screen/ContentList/ContentDetail";
 import Main from "../Screen/Main/Main";
 import NoticeList from "../Screen/Notice/NoticeList";
 import Theme from "../Theme/Theme";
@@ -14,10 +14,10 @@ function MainRoutes() {
     <MainStack.Navigator initialRouteName="Main">
       <MainStack.Screen
         name="Main"
-        // component={Main}
+        component={Main}
         options={{ headerShown: false }}
       >
-        {(props) => <Main {...props} />}
+        {/* {(props) => <Main {...props} />} */}
       </MainStack.Screen>
       <MainStack.Screen
         name="CategoryDetail"
