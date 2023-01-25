@@ -25,7 +25,11 @@ export default function App() {
           component={MainRoutes}
           options={{ headerShown: false }}
         />
-        <Tab.Screen name="CommunityRoutes" component={CommunityRoutes} />
+        <Tab.Screen
+          name="CommunityRoutes"
+          component={CommunityRoutes}
+          options={{ headerShown: false }}
+        />
         <Tab.Screen name="Test1" component={Test1} />
         <Tab.Screen name="Login" component={Login} />
         <Tab.Screen name="KakaoLogin" component={KakaoLogin} />
