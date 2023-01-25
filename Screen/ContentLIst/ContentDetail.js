@@ -6,6 +6,7 @@ import Dropdown from "../../Common/Dropdown/Dropdown";
 import ScrollViewLayout from "../../Components/Layout/ScrollViewLayout";
 import ContentDetailInfoLine from "./ContentDetailInfoLine";
 import Carousel from "../../Common/Carousel/Carousel";
+import { useQuery } from "@tanstack/react-query";
 
 const PAGES = [
   {
@@ -62,6 +63,31 @@ function ContentDetail({ route }) {
 
   const screenWidth = Math.round(Dimensions.get("window").width);
   //  pageWidth={screenWidth - (gap + padding * 2)}
+
+  // 받은 카테고리에 따라서 데이터 송수신하기
+
+  const baseURL = process.env.REACT_APP_BASE_URL;
+
+  const {
+    data: contentDetail,
+    isLoading,
+    error: contentDetailsError,
+  } = useQuery(
+    ["getContentDetail"],
+    async () => {
+      try {
+        const { data } = await axios.get(`${baseURL}/artizens`);
+        return data;
+      } catch (error) {}
+    },
+    {
+      onSuccess: () => {},
+      onError: (error) => {
+        throw error;
+      },
+    }
+  );
+  // console.log(contentDetail);
 
   return (
     <View style={{ flex: 1 }}>

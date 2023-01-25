@@ -1,3 +1,5 @@
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import React, { useState } from "react";
 import { Image, View } from "react-native";
 import styled from "styled-components/native";
@@ -90,6 +92,29 @@ function CategoryDetail({ route }) {
   const [selected, setSelected] = useState(undefined);
 
   // 받은 카테고리에 따라서 데이터 송수신하기
+
+  const baseURL = process.env.REACT_APP_BASE_URL;
+
+  const {
+    data: categoryDetails,
+    isLoading,
+    error: categoryDetailsError,
+  } = useQuery(
+    ["getCategoryDetails"],
+    async () => {
+      try {
+        const { data } = await axios.get(`${baseURL}/artizens`);
+        return data;
+      } catch (error) {}
+    },
+    {
+      onSuccess: () => {},
+      onError: (error) => {
+        throw error;
+      },
+    }
+  );
+  console.log(categoryDetails);
 
   return (
     <View style={{ flex: 1 }}>
