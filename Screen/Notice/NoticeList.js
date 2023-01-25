@@ -11,8 +11,10 @@ import {
 } from "react-native";
 import Theme from "../../Theme/Theme";
 import styled, { css } from "styled-components/native";
+import NoticeData from "./NoticeData";
 
-const NoticeList = ({ datas }) => {
+const NoticeList = () => {
+  const datas = NoticeData();
   return (
     <ScrollViewLayout>
       <View style={styles.headerarea}>
