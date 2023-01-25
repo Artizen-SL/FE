@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import Theme from "../../../Theme/Theme";
+import Theme from "../../Theme/Theme";
 
 function Dropdown({ label, data, onSelect }) {
   const DropdownButton = useRef();
@@ -72,7 +72,7 @@ function Dropdown({ label, data, onSelect }) {
       onPress={toggleDropdown}
       style={styles.button}
     >
-      <Image source={require("../../../assets/Icon/gallery.png")} />
+      <Image source={require("../../assets/Icon/gallery.png")} />
       <Image />
       {renderDropdown()}
     </TouchableOpacity>

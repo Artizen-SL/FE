@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import TagView from "../Components/Elem/TagView";
+import TagView from "../../Components/Elem/TagView";
 
 const ContentDetailInfoLine = ({ tagView, infoText }) => {
   return (

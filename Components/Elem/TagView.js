@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import Theme from "../../../Theme/Theme";
+import Theme from "../../Theme/Theme";
 
 const TagView = ({ children }) => {
   return (

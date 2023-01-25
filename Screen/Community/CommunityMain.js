@@ -1,6 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { StatusBar } from "expo-status-bar";
 
 import {
   ImageBackground,
@@ -9,7 +8,6 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import ScrollViewLayout from "../Components/Layout/ScrollViewLayout";
 import styled from "styled-components/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 

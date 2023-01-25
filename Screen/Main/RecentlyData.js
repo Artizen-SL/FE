@@ -1,6 +1,5 @@
 import { View } from "react-native";
 import RecentlyPost from "./RecentlyPost";
-import ScrollViewLayout from "../Components/Layout/ScrollViewLayout";
 
 const RecentlyData = ({ route }) => {
   const datas = [
