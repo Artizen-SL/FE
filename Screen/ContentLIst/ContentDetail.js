@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View, Image, Dimensions } from "react-native";
 import Theme from "../../Theme/Theme";
-import Dropdown from "../Common/Dropdown/Dropdown";
-import ScrollViewLayout from "../Components/Layout/ScrollViewLayout";
+import Dropdown from "../../Common/Dropdown/Dropdown";
+
+import ScrollViewLayout from "../../Components/Layout/ScrollViewLayout";
 import ContentDetailInfoLine from "./ContentDetailInfoLine";
-import Carousel from "../Common/Carousel/Carousel";
+import Carousel from "../../Common/Carousel/Carousel";
 
 const PAGES = [
   {

@@ -1,14 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  ImageBackground,
-  RCTImageView,
-} from "react-native";
-import Theme from "../../Theme/Theme";
+import { StyleSheet, Text, View } from "react-native";
 import styled, { css } from "styled-components/native";
 
 const RecentlyPost = ({ datas }) => {
@@ -16,7 +6,10 @@ const RecentlyPost = ({ datas }) => {
     <View style={styles.row}>
       {datas?.map((data) => {
         return (
-          <Round style={{margin:3,marginTop:6, alignItems:"center"}}  key={data?.id}>
+          <Round
+            style={{ margin: 3, marginTop: 6, alignItems: "center" }}
+            key={data?.id}
+          >
             <RoundImage source={{ uri: data?.posterUrl }} />
             <Text>{data?.name}</Text>
           </Round>
@@ -51,7 +44,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     margin: 6,
-    
   },
 });
 
@@ -63,5 +55,5 @@ const RoundImage = styled.Image`
 
 const Round = styled.View`
   width: 100px;
-  height:150px;
+  height: 150px;
 `;

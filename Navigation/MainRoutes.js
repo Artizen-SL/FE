@@ -12,12 +12,8 @@ const MainStack = createNativeStackNavigator();
 function MainRoutes() {
   return (
     <MainStack.Navigator initialRouteName="Main">
-      <MainStack.Screen
-        name="Main"
-        component={Main}
-        options={{ headerShown: false }}
-      >
-        {/* {(props) => <Main {...props} />} */}
+      <MainStack.Screen name="Main" options={{ headerShown: false }}>
+        {(props) => <Main {...props} />}
       </MainStack.Screen>
       <MainStack.Screen
         name="CategoryDetail"

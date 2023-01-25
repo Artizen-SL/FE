@@ -9,7 +9,6 @@ import {
   ImageBackground,
 } from "react-native";
 import styled, { css } from "styled-components/native";
-import Theme from "../../Theme/Theme";
 
 const Login = ({ navigation }) => {
   return (

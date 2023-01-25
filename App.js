@@ -1,20 +1,11 @@
-import { StatusBar } from "expo-status-bar";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import Login from "./Screen/Login/Login";
-
-import Theme from "./Theme/Theme";
-import {
-  BottomTabBar,
-  createBottomTabNavigator,
-} from "@react-navigation/bottom-tabs";
-import Test from "./Screen/Test/Test";
-import Test1 from "./Screen/Test/Test1";
-import MainRoutes from "./Navigation/MainRoutes";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import KakaoLogin from "./Screen/Login/KakaoLogin";
 import CommunityRoutes from "./Navigation/CommunityRoutes";
-
+import Theme from "./Theme/Theme";
+import MainRoutes from "./Navigation/MainRoutes";
+import Login from "./Screen/Login/Login";
 const Tab = createBottomTabNavigator();
 export default function App() {
   return (
@@ -30,7 +21,6 @@ export default function App() {
           component={CommunityRoutes}
           options={{ headerShown: false }}
         />
-        <Tab.Screen name="Test1" component={Test1} />
         <Tab.Screen name="Login" component={Login} />
         <Tab.Screen name="KakaoLogin" component={KakaoLogin} />
       </Tab.Navigator>

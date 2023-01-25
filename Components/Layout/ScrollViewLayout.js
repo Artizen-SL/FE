@@ -1,8 +1,13 @@
 import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 function ScrollViewLayout(props) {
-  return <ScrollView style={styles.LayoutView}>{props.children}</ScrollView>;
+  return (
+    <SafeAreaView>
+      <ScrollView style={styles.LayoutView}>{props.children}</ScrollView>
+    </SafeAreaView>
+  );
 }
 
 export default ScrollViewLayout;

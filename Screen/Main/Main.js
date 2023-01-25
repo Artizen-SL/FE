@@ -11,7 +11,7 @@ import {
 import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components/native";
 import Theme from "../../Theme/Theme";
-import ScrollViewLayout from "../Components/Layout/ScrollViewLayout";
+import ScrollViewLayout from "../../Components/Layout/ScrollViewLayout";
 import MainCarousel from "./MainCarousel";
 import UserRecommendData from "./UserRecommendData";
 import useGpsRes from "../../utils/useGpsRes";
