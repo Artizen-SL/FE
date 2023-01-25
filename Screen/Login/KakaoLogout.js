@@ -53,44 +53,43 @@ const KakaoLogout = () => {
   //   return returnValue;
   // }
   const navigation = useNavigation();
-  // const header = "o8XFSYOJPz4xtNx6eb3cBHjTu6PEevxlw9wvroVyCj1y6wAAAYXJxtC8";
+  const header = "o8XFSYOJPz4xtNx6eb3cBHjTu6PEevxlw9wvroVyCj1y6wAAAYXJxtC8";
   const logout = () => {
-    //   axios
-    //     .get(`http://3.35.26.37:8080/members/logout`, {
-    //       body: {
-    //         accessToken: header,
-    //       },
+    axios
+      .get(`http://3.35.26.37:8080/members/logout`, {
+        body: {
+          // accessToken: header,
+        },
 
-    //       params: {
-    //         // grant_type: "authorization_code",
+        params: {
+          // grant_type: "authorization_code",
 
-    //         accessToken: header,
-    //       },
-    //     })
-    //     .then(function (response) {
-    //       returnValue = "none";
-    //       console.log("data", response.data);
-    //       navigation.navigate("Main");
-    //     })
-    //     .catch(function (error) {
-    //       console.log("error", error);
-    //     });
-    // };
-    return (
-      <View style={{ flex: 1 }}>
-        <WebView
-          originWhitelist={["*"]}
-          scalesPageToFit={false}
-          style={{ marginTop: 30 }}
-          source={{ uri: EXPIRE_URI }}
-          injectedJavaScript={runFirst}
-          // onMessage={() => {
-          //   logout();
-          //   navigation.navigate("Main");
-          // }}
-        />
-      </View>
-    );
+          accessToken: header,
+        },
+      })
+      .then(function (response) {
+        returnValue = "none";
+        console.log("data", response.data);
+        navigation.navigate("Main");
+      })
+      .catch(function (error) {
+        console.log("error", error);
+      });
   };
+  return (
+    <View style={{ flex: 1 }}>
+      <WebView
+        originWhitelist={["*"]}
+        scalesPageToFit={false}
+        style={{ marginTop: 30 }}
+        source={{ uri: EXPIRE_URI }}
+        injectedJavaScript={runFirst}
+        onMessage={() => {
+          logout();
+        }}
+      />
+    </View>
+  );
 };
+
 export default KakaoLogout;
