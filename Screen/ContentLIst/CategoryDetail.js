@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { Image, ScrollView, Text, View } from "react-native";
+import React, { useState } from "react";
+import { Image, View } from "react-native";
 import styled from "styled-components/native";
-import Dropdown from "../Common/Dropdown/Dropdown";
-import ScrollViewLayout from "../Components/Layout/ScrollViewLayout";
+import Dropdown from "../../Common/Dropdown/Dropdown";
+import ScrollViewLayout from "../../Components/Layout/ScrollViewLayout";
 import ContentBox from "./ContentBox";
 
 const datas = [

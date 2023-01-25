@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import ScrollViewLayout from "../Components/Layout/ScrollViewLayout";
 import UserRecommendBox from "./UserRecommendBox";
 
 function UserRecommendData({ route }) {
@@ -52,7 +51,7 @@ function UserRecommendData({ route }) {
 
   const navigation = useNavigation();
 
-  return <UserRecommendBox datas={datas}/>;
+  return <UserRecommendBox datas={datas} />;
 }
 
 export default UserRecommendData;

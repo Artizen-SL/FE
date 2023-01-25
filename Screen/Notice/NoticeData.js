@@ -37,7 +37,7 @@ const NoticeData = () => {
       },
   ];
 
-  return <NoticeList datas={datas}/>;
+  return datas;
 };
 
 export default NoticeData;

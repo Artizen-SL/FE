@@ -9,11 +9,10 @@ import {
   ImageBackground,
 } from "react-native";
 import Theme from "../../Theme/Theme";
-import ScrollViewLayout from "../Components/Layout/ScrollViewLayout";
 import styled, { css } from "styled-components/native";
 
 const UserRecommendBox = ({ datas }) => {
-   const navigation = useNavigation();
+  const navigation = useNavigation();
   return (
     <View style={{ marginTop: 10 }}>
       {datas?.map((data) => {
@@ -84,7 +83,7 @@ const styles = StyleSheet.create({
     width: 312,
     height: 156,
     borderRadius: 5,
-    marginTop:6,
+    marginTop: 6,
   },
   bgImage: { width: "100%", height: "100%" },
   logo: { width: 117, height: 32 },
