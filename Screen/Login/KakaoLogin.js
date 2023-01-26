@@ -3,36 +3,41 @@ import { View } from "react-native";
 import { WebView } from "react-native-webview";
 import axios from "axios";
 import { REST_API_KEY, REDIRECT_URI } from "@env";
-
+import { useNavigation } from "@react-navigation/native";
+import { AsyncStorage } from "react-native";
 // other import settings...
 
 const runFirst = `window.ReactNativeWebView.postMessage("this is message from web");`;
 
-const KakaoLogin = ({ navigation }) => {
+const KakaoLogin = () => {
+  const navigation = useNavigation();
   function LogInProgress(data) {
     // access code는 url에 붙어 장황하게 날아온다.
 
+    //event.nativeEvent
+    // {"canGoBack": false, "canGoForward": false, "data": "this is message from web", "loading": false, "target": 829, "title": "카카오계정으로 로그인", "url": "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=13ad45e4f4aaa4c81ecfcbe91f95837a&redirect_uri=/user/kakao/callback"}
+
     // substringd으로 url에서 code=뒤를 substring하면 된다.
+    // console.log("url", data);
 
     const exp = "code=";
-
-    var condition = data.indexOf(exp);
+    let condition = data.indexOf(exp);
 
     if (condition != -1) {
-      var request_code = data.substring(condition + exp.length);
+      let request_code = data.substring(condition + exp.length);
 
+      //CtwYs-NSmNGfrPDvBfIvR7_0P_Sw4RMKEdlOUE5e-yIScsEXP1V0bgLoWvLyDf_6-hIiyworDSAAAAGF6TxQ-g
       // console.log("access code :: " + request_code);
 
       // 토큰값 받기
-
       requestToken(request_code);
     }
   }
 
   const requestToken = async (request_code) => {
-    var returnValue = "none";
+    let returnValue = "none";
 
-    var request_token_url = "https://kauth.kakao.com/oauth/token";
+    let request_token_url = "https://kauth.kakao.com/oauth/token";
 
     axios({
       method: "post",
@@ -40,21 +45,41 @@ const KakaoLogin = ({ navigation }) => {
       params: {
         grant_type: "authorization_code",
         // client_id: "ic",
-        client_id: REST_API_KEY,
+        client_id: process.env.REST_API_KEY,
         // client_id: REST_API_KEY,
         // redirect_uri: "url",
-        redirect_uri: REDIRECT_URI,
+        // redirect_uri: process.env.REDIRECT_URI,
         // redirect_uri: REDIRECT_URI,
         code: request_code,
       },
     })
       .then(function (response) {
+        // returnValue =
+        //   response.data.token_type + " " + response.data.access_token;
         returnValue = response.data.access_token;
-        navigation.navigate("Main");
+
+        AsyncStorage.setItem("accessToken", returnValue);
+
+        // console.log(returnValue);
+        // console.log("data", response.data);
+
+        sendToken(returnValue);
       })
       .catch(function (error) {
         console.log("error", error);
       });
+  };
+
+  const sendToken = async (accessToken) => {
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/members/kakaoLogin?accessToken=${accessToken}`
+      );
+      console.log("sendToken Res", res);
+      navigation.navigate("MainRouMaintes");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
