@@ -4,6 +4,7 @@ import { WebView } from "react-native-webview";
 import { REST_API_KEY, LOGOUT_REDIRECT_URI } from "@env";
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
+import { AsyncStorage } from "react-native";
 /* Constant variables */
 const EXPIRE_URI = `https://kauth.kakao.com/oauth/logout?client_id=${REST_API_KEY}&logout_redirect_uri=${LOGOUT_REDIRECT_URI}`;
 const runFirst = `window.ReactNativeWebView.postMessage("this is message from web");`; /* Do not erase */
@@ -53,6 +54,8 @@ const KakaoLogout = () => {
   //   return returnValue;
   // }
   const navigation = useNavigation();
+  const accessToken = AsyncStorage.getItem("accessToken");
+  console.log(accessToken);
   const header = "o8XFSYOJPz4xtNx6eb3cBHjTu6PEevxlw9wvroVyCj1y6wAAAYXJxtC8";
   const logout = () => {
     axios
