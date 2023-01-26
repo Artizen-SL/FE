@@ -82,32 +82,6 @@ const KakaoLogin = () => {
     }
   };
 
-  // const 토큰쭈삼 = async () => {
-  //   // var request_token_url = "https://kauth.kakao.com/oauth/token";
-
-  //   axios({
-  //     method: "get",
-  //     url: "http://3.35.26.37:8080/members/token",
-  //   })
-  //     .then(function (response) {
-  //       console.log("응답", response);
-  //       AsyncStorage.setItem(
-  //         "accessToken",
-  //         JSON.stringify({ accessToken: response.토큰 }),
-  //         () => {
-  //           console.log("유저정보 저장 완료");
-  //         }
-  //       );
-  //       AsyncStorage.getItem("accessToken", (err, result) => {
-  //         const token = JSON.parse(result);
-  //         console.log("토큰 나와라 미친자슥아 : " + token.accessToken); // 출력 => 닉네임 : User1
-  //       });
-  //     })
-  //     .catch(function (error) {
-  //       console.log("error", error);
-  //     });
-  // };
-
   return (
     <View style={{ flex: 1 }}>
       <WebView
