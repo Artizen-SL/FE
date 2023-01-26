@@ -2,15 +2,11 @@ import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import KakaoLogin from "./Screen/Login/KakaoLogin";
-<<<<<<< HEAD
 import CommunityRoutes from "./Navigation/CommunityRoutes";
 import Theme from "./Theme/Theme";
 import MainRoutes from "./Navigation/MainRoutes";
 import Login from "./Screen/Login/Login";
-=======
 import KakaoLogout from "./Screen/Login/KakaoLogout";
-
->>>>>>> feature/login
 const Tab = createBottomTabNavigator();
 export default function App() {
   return (
