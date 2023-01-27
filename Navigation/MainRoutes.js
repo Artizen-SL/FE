@@ -2,7 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import CategoryDetail from "../Screen/ContentList/CategoryDetail";
-import ContentDetail from "../Screen/ContentList/ContentDetail";
+import ContentDetail from "../Screen/ContentList/ContentDetail"
 import Main from "../Screen/Main/Main";
 import NoticeList from "../Screen/Notice/NoticeList";
 
