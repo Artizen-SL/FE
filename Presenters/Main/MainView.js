@@ -8,7 +8,7 @@ import {
   ImageBackground,
   Dimensions,
 } from "react-native";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import styled, { css } from "styled-components/native";
 import Theme from "../../Theme/Theme";
 import ScrollViewLayout from "../../Components/Layout/ScrollViewLayout";
@@ -17,36 +17,10 @@ import UserRecommendData from "./UserRecommendData";
 import useGpsRes from "../../utils/useGpsRes";
 import RecentlyData from "./RecentlyData";
 import BestData from "./BestData";
-import MainCarouselData from "./MainCarouselData";
+import MainCarouselData from "../../Screen/Main/MainCarouselData";
 
-const Main = ({ navigation }) => {
-  const screenWidth = Math.round(Dimensions.get("window").width);
-
-  const pages = MainCarouselData();
-
-  const [gpsRes, setGpsRes] = useState({ region: "Loading...", district: "" });
-
-  const resetGpsAsk = async () => {
-    const { region, district, disagree } = await useGpsRes();
-    setGpsRes({ ...gpsRes, region: region, district: district });
-  };
-
-  useEffect(() => {
-    const location = resetGpsAsk();
-    console.log(location);
-
-    if (typeof location === "object") {
-      setGpsRes({ ...gpsRes, region: "", district: "" });
-      resetGpsAsk();
-    }
-  }, []);
-
+const MainView = ({ gpsRes, screenWidth, pages, resetGpsAsk }) => {
   return (
-    // <MainView 
-    // gpsRes={gpsRes} 
-    // screenWidth={screenWidth} 
-    // pages={pages}
-    // resetGpsAsk={resetGpsAsk} />
     <ScrollViewLayout>
       <ImageBackground
         source={require("../../assets/background/main.png")}
@@ -212,7 +186,7 @@ const Main = ({ navigation }) => {
   );
 };
 
-export default Main;
+export default MainView;
 
 const styles = StyleSheet.create({
   container: {
