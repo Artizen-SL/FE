@@ -1,6 +1,6 @@
 import * as Location from "expo-location";
 import { useState } from "react";
-import useGpsAsk from "./useGpsAsk";
+// import useGpsAsk from "./useGpsAsk";
 
 const useGpsRes = async () => {
   const granted = await useGpsAsk();
@@ -17,13 +17,11 @@ const useGpsRes = async () => {
     );
     region = location[0]?.region;
     district = location[0]?.district;
-    console.log("location===>",location)
-    console.log("latitude, longitude===>",latitude, longitude)
-    return { region, district};
+    return { region, district };
   } else {
     disagree = "Loding";
   }
-  
+
   return region, district, disagree;
 };
 

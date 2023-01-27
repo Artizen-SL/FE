@@ -2,52 +2,61 @@ import React from "react";
 import { View } from "react-native";
 import { WebView } from "react-native-webview";
 import axios from "axios";
-import { REST_API_KEY, REDIRECT_URI } from "@env";
-import qs from "qs";
-
+import { REST_API_KEY, REDIRECT_URI, REACT_APP_BASE_URL } from "@env";
+import { useNavigation } from "@react-navigation/native";
+import { AsyncStorage } from "react-native";
 // other import settings...
 
 const runFirst = `window.ReactNativeWebView.postMessage("this is message from web");`;
 
-const KakaoLogin = ({ navigation }) => {
-  const getCode = (target) => {
+const KakaoLogin = () => {
+  const navigation = useNavigation();
+  function LogInProgress(data) {
     const exp = "code=";
-    const condition = target.indexOf(exp);
-    if (condition !== -1) {
-      const requestCode = target.substring(condition + exp.length);
-      requestToken(requestCode);
+    let condition = data.indexOf(exp);
+
+    if (condition != -1) {
+      let request_code = data.substring(condition + exp.length);
+
+      requestToken(request_code);
     }
+  }
+
+  const requestToken = async (request_code) => {
+    let returnValue = "none";
+
+    let request_token_url = "https://kauth.kakao.com/oauth/token";
+
+    axios({
+      method: "post",
+      url: request_token_url,
+      params: {
+        grant_type: "authorization_code",
+        client_id: process.env.REST_API_KEY,
+        code: request_code,
+      },
+    })
+      .then(function (response) {
+        returnValue = response.data.access_token;
+
+        AsyncStorage.setItem("accessToken", returnValue);
+
+        sendToken(returnValue);
+      })
+      .catch(function (error) {
+        console.log("error", error);
+      });
   };
 
-  const requestToken = async (code) => {
-    const requestTokenUrl = "https://kauth.kakao.com/oauth/token";
-
-    const options = qs.stringify({
-      grant_type: "authorization_code",
-      client_id: REST_API_KEY,
-      redirect_uri: REDIRECT_URI,
-      code,
-    });
-
+  const sendToken = async (accessToken) => {
     try {
-      const tokenResponse = await axios.post(requestTokenUrl, options);
-      const ACCESS_TOKEN = tokenResponse.data.access_token;
-
-      const body = {
-        ACCESS_TOKEN,
-      };
-
-      const response = await axios.post(REDIRECT_URI, body);
-      const value = response.data;
-      console.log(value);
-      await navigation.navigate("Main");
-      const result = await storeUser(value);
-      if (result === "stored") {
-        const user = await getData("user");
-        dispatch(read_S(user));
-      }
-    } catch (e) {
-      console.log(e);
+      const res = await axios.get(
+        `${REACT_APP_BASE_URL}/members/kakaoLogin?accessToken=${accessToken}`
+      );
+      console.log("sendToken Res", res);
+      navigation.navigate("MainRoutes");
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -63,8 +72,7 @@ const KakaoLogin = ({ navigation }) => {
         injectedJavaScript={runFirst}
         javaScriptEnabled={true}
         onMessage={(event) => {
-          const data = event.nativeEvent.url;
-          getCode(data);
+          LogInProgress(event.nativeEvent["url"]);
         }}
 
         // onMessage ... :: webview에서 온 데이터를 event handler로 잡아서 logInProgress로 전달
