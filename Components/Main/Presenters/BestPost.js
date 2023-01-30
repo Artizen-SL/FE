@@ -1,10 +1,9 @@
 import React from "react";
 import { StyleSheet, View, Image, ImageBackground, Text } from "react-native";
 import styled, { css } from "styled-components/native";
-import Theme from "../../Theme/Theme";
+import Theme from "../../../Theme/Theme";
 
 const BestPost = ({ datas }) => {
-  console.log(datas[0].posterUrl);
   return (
     <View style={styles.row}>
       {datas.map((data) => {

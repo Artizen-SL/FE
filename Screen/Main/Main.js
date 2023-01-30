@@ -12,14 +12,15 @@ import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components/native";
 import Theme from "../../Theme/Theme";
 import ScrollViewLayout from "../../Components/Layout/ScrollViewLayout";
-import MainCarousel from "./MainCarousel";
-import UserRecommendData from "./UserRecommendData";
+import MainCarousel from "../../Components/Main/MainCarousel";
+import UserRecommendData from "../../Components/Main/Data/UserRecommendData";
 import useGpsRes from "../../utils/useGpsRes";
-import RecentlyData from "./RecentlyData";
-import BestData from "./BestData";
-import MainCarouselData from "./MainCarouselData";
+import RecentlyData from "../../Components/Main/Data/RecentlyData";
+import BestData from "../../Components/Main/Data/BestData";
+import MainCarouselData from "../../Components/Main/Data/MainCarouselData";
+// import MainView from "../../Components/Main/Presenters/MainView";
 
-const Main = ({ navigation }) => {
+const Main = () => {
   const screenWidth = Math.round(Dimensions.get("window").width);
 
   const pages = MainCarouselData();
@@ -42,12 +43,8 @@ const Main = ({ navigation }) => {
   }, []);
 
   return (
-    // <MainView 
-    // gpsRes={gpsRes} 
-    // screenWidth={screenWidth} 
-    // pages={pages}
-    // resetGpsAsk={resetGpsAsk} />
     <ScrollViewLayout>
+      {/* <MainView /> */}
       <ImageBackground
         source={require("../../assets/background/main.png")}
         style={styles.bgImage}

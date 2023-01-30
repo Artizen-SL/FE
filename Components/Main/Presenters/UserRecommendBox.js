@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from "react-native";
-import Theme from "../../Theme/Theme";
+import Theme from "../../../Theme/Theme";
 import styled, { css } from "styled-components/native";
 
 const UserRecommendBox = ({ datas }) => {
@@ -37,7 +37,7 @@ const UserRecommendBox = ({ datas }) => {
               }}
             >
               <Text style={styles.smailTitle}>
-                <Image source={require("../../assets/Icon/recommend.png")} />'
+                <Image source={require("../../../assets/Icon/recommend.png")} />'
                 <Text style={{ fontWeight: "bold" }}>아티즌</Text>' 님 이런{" "}
                 <Text style={{ fontWeight: "bold" }}>{categoryName}</Text>는
                 어떠세요?
@@ -45,10 +45,10 @@ const UserRecommendBox = ({ datas }) => {
             </View>
             <ImageBackground
               source={{ uri: data?.posterUrl }}
-              style={styles.recommendImage}
+              style={styles.recommendImage} 
             >
               <Image
-                source={require("../../assets/Icon/ribbon.png")}
+                source={require("../../../assets/Icon/ribbon.png")}
                 style={{ marginLeft: 16 }}
               />
               <View style={{ marginLeft: 18, marginTop: 25 }}>

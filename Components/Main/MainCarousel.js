@@ -1,23 +1,24 @@
-import React, { useState,useRef,useEffect,useMemo } from "react";
-import { FlatList, Image, ImageBackground,Dimensions } from "react-native";
+import React, { useState, useRef, useEffect, useMemo } from "react";
+import { FlatList, Image, ImageBackground, Dimensions } from "react-native";
 import styled from "styled-components/native";
 import MainPage from "./MainPage";
 import useInterval from "../../utils/useInterval";
 
-const windowWidth = Dimensions.get('window').width;
+const windowWidth = Dimensions.get("window").width;
 const margin = 8;
 
-const cardSize = {width: windowWidth - 24 * 2, height: 400};
+const cardSize = { width: windowWidth - 24 * 2, height: 400 };
 const offset = cardSize.width + margin;
 
 const MainCarousel = ({ pages, pageWidth, gap }) => {
   const [page, setPage] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const flatListRef = useRef(null);
-  const snapToOffsets = useMemo(() => Array.from(Array(pages?.length))?.map((_, index) => index * offset),
-  [pages],
+  const snapToOffsets = useMemo(
+    () => Array.from(Array(pages?.length))?.map((_, index) => index * offset),
+    [pages]
   );
-  
+
   useEffect(() => {
     if (currentIndex !== snapToOffsets.length) {
       flatListRef.current?.scrollToOffset({
@@ -30,7 +31,6 @@ const MainCarousel = ({ pages, pageWidth, gap }) => {
   // useInterval(() => {
   //   setCurrentIndex(prev => (prev === snapToOffsets.length - 1 ? 0 : prev + 1));
   // }, 3600);
-
 
   // props 정보를 reder 하는 함수
   function renderItem({ item }) {
