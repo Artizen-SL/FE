@@ -1,4 +1,4 @@
-import BestPost from "./BestPost";
+import BestPost from "../Presenters/BestPost";
 
 const BestData = () => {
     const datas = [
