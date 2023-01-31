@@ -5,6 +5,7 @@ import CategoryDetail from "../Screen/ContentList/CategoryDetail";
 import ContentDetail from "../Screen/ContentList/ContentDetail"
 import Main from "../Screen/Main/Main";
 import NoticeList from "../Screen/Notice/NoticeList";
+import InfoSearchInput from "../Screen/Search/Search"
 
 const MainStack = createNativeStackNavigator();
 
@@ -27,7 +28,12 @@ function MainRoutes() {
       <MainStack.Screen
         name="NoticeList"
         component={NoticeList}
-        // options={{ headerShown: false }}
+        options={{ headerShown: false }}
+      />
+        <MainStack.Screen
+        name="InfoSearchInput"
+        component={InfoSearchInput}
+        options={{ headerShown: false }}
       />
     </MainStack.Navigator>
   );
