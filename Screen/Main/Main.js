@@ -20,7 +20,7 @@ import BestData from "../../Components/Main/Data/BestData";
 import MainCarouselData from "../../Components/Main/Data/MainCarouselData";
 // import MainView from "../../Components/Main/Presenters/MainView";
 
-const Main = () => {
+const Main = ({navigation}) => {
   const screenWidth = Math.round(Dimensions.get("window").width);
 
   const pages = MainCarouselData();
