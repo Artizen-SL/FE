@@ -20,7 +20,7 @@ import BestData from "../../Components/Main/Data/BestData";
 import MainCarouselData from "../../Components/Main/Data/MainCarouselData";
 // import MainView from "../../Components/Main/Presenters/MainView";
 
-const Main = ({navigation}) => {
+const Main = ({ navigation }) => {
   const screenWidth = Math.round(Dimensions.get("window").width);
 
   const pages = MainCarouselData();
@@ -55,8 +55,16 @@ const Main = ({navigation}) => {
               source={require("../../assets/login/logo_v1_3.png")}
               style={styles.logo}
             />
-            <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-              <Text>로그인</Text>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("MainRoutes", {
+                  screen: "Search",
+                })
+              }
+            >
+              <Image
+                source={require("../../assets/Icon/Search.png")}
+              />
             </TouchableOpacity>
           </View>
           <ImageBackground
@@ -228,6 +236,14 @@ const styles = StyleSheet.create({
   header: {
     flex: 1,
   },
+  row: {
+    flex: 1,
+    flexDirection: "row",
+    flexWrap: "nowrap",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    gap: 3,
+  },
   bgImage: { width: "100%", height: "100%" },
   logo: { width: 117, height: 32 },
   longBox: {
@@ -267,8 +283,9 @@ const styles = StyleSheet.create({
   headerarea: {
     flex: 1,
     height: 45,
-    width: 340,
+    width: 360,
     flexDirection: "row",
+    flexWrap: "nowrap",
     justifyContent: "space-between",
     alignItems: "center",
     margin: 7,
