@@ -56,8 +56,7 @@ const dropDownData = [
   },
 ];
 
-function ContentDetail({ route }) {
-  const { category, id } = route.params.params;
+function ContentDetail() {
   const [selected, setSelected] = useState(undefined);
 
   const screenWidth = Math.round(Dimensions.get("window").width);

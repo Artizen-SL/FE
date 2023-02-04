@@ -1,7 +1,7 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CommunityMain from "../Screen/Community/CommunityMain";
-import CommnunityDetail from "../Screen/Community/CommnunityDetail";
+import CommunityDetail from "../Screen/Community/CommunityDetail";
 import CommunityPost from "../Screen/Community/CommunityPost";
 
 const CommunityStack = createNativeStackNavigator();
@@ -16,8 +16,8 @@ function CommunityRoutes() {
         {(props) => <CommunityMain {...props} />}
       </CommunityStack.Screen>
       <CommunityStack.Screen
-        name="CommnunityDetail"
-        component={CommnunityDetail}
+        name="CommunityDetail"
+        component={CommunityDetail}
         options={{ headerShown: false }}
       />
       <CommunityStack.Screen
