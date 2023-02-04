@@ -1,10 +1,11 @@
+import { width } from "deprecated-react-native-prop-types/DeprecatedImagePropType";
 import {
   StyleSheet,
   View,
   Text,
   Button,
   Image,
-  Input,
+  TextInput,
   TouchableOpacity,
   ImageBackground,
   Dimensions,
@@ -12,6 +13,7 @@ import {
 import styled, { css } from "styled-components/native";
 import Theme from "../../../Theme/Theme";
 import ScrollViewLayout from "../../Layout/ScrollViewLayout";
+import Layout from "../../Layout/Layout";
 
 const InfoSearchInput = () => {
   return (
@@ -21,10 +23,23 @@ const InfoSearchInput = () => {
         style={styles.bgImage}
       >
         <View style={[styles.container, styles.header]}>
-          <Input />
-          <TouchableOpacity>
-            <Image source={require("../../../assets/Icon/Search-bg-ver.png")} />
-          </TouchableOpacity>
+          <View style={styles.rowCenter}>
+            <TextInput
+              style={styles.input}
+              name="search"
+              placeholder="전시, 장소, 공연, 출연진, 작품검색"
+            />
+            <TouchableOpacity>
+              <Image
+                source={require("../../../assets/Icon/Search-bg-ver.png")}
+              />
+            </TouchableOpacity>
+          </View>
+          <Line />
+          <View style={styles.rowCenter}>
+            <Text style={styles.skyBoldText}>아티즌</Text>
+            <Text style={styles.blackBoldText}>의 추천 검색어</Text>
+          </View>
         </View>
       </ImageBackground>
     </ScrollViewLayout>
@@ -73,14 +88,15 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
     marginLeft: 5,
   },
-  BlBoldText: {
+  blackBoldText: {
     color: Theme.colors.Black,
-    fontSize: 14,
+    fontSize: 15,
     fontWeight: "bold",
-    width: 114,
-    borderBottomColor: Theme.colors.Black,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    marginLeft: 10,
+  },
+  skyBoldText: {
+    color: Theme.colors.SkyBlue,
+    fontSize: 15,
+    fontWeight: "bold",
   },
   whiteBackground: {
     width: "100%",
@@ -94,6 +110,27 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     margin: 7,
+  },
+  input: {
+    width: 254,
+    height: 40,
+    marginTop: 15,
+    marginBottom: 15,
+    marginRight: 9,
+    borderWidth: 1,
+    borderColor: Theme.colors.SkyBlue,
+    borderRadius: 5,
+    padding: 10,
+  },
+  rowCenter: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  rowLeft: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    width: "100%",
   },
 });
 
@@ -123,4 +160,11 @@ const LongBox = styled.View`
 const UserGps = styled.Text`
   color: ${Theme.colors.SkyBlue};
   font-weight: 700;
+`;
+const Line = styled.View`
+  width: 312px;
+  border: 0.5px solid ${Theme.colors.LightGray};
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16;
 `;
