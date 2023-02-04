@@ -1,5 +1,3 @@
-import React from "react";
-
 import {
   StyleSheet,
   View,
@@ -13,51 +11,36 @@ import {
 } from "react-native";
 import styled, { css } from "styled-components/native";
 import Theme from "../../../Theme/Theme";
-import ScrollViewLayout from "../../Layout/ScrollViewLayout";
-import { SafeAreaView } from "react-native-safe-area-context";
+import Layout from "../../Layout/Layout";
 
-const InfoSearchInput = ({navigate}) => {
+const RecommendSearchWord = ({datas,navigate}) => {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <ScrollViewLayout>
-        <View style={styles.container}>
-          <View style={styles.rowCenter}>
-            <TextInput
-              style={styles.input}
-              name="search"
-              placeholder="전시, 장소, 공연, 출연진, 작품검색"
-            />
-            <TouchableOpacity>
-              <Image
-                source={require("../../../assets/Icon/Search-bg-ver.png")}
-              />
-            </TouchableOpacity>
-          </View>
-          <Line/>
-        </View>
-      </ScrollViewLayout>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <View style={styles.rowLeft}>
+        <Text style={styles.skyBoldText}>아티즌</Text>
+        <Text style={styles.blackBoldText}>의 추천 검색어</Text>
+      </View>
+      <Layout>
+        <TextArea>
+          {datas.map((data) => {
+            return <RecSearchText>{data.name}</RecSearchText>;
+          })}
+        </TextArea>
+      </Layout>
+    </View>
   );
 };
 
-export default InfoSearchInput;
-
+export default RecommendSearchWord;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
   },
-  smallRound: {
-    width: 50,
-    height: 50,
-  },
   center: {
     alignItems: "center",
     justifyContent: "center",
-  },
-  header: {
-    flex: 1,
   },
   bgImage: { width: "100%", height: "100%" },
   logo: { width: 117, height: 32 },
@@ -132,48 +115,25 @@ const styles = StyleSheet.create({
   },
 });
 
-const StView = styled.View`
-  /* background-color: pink; */
-`;
-
-const SmallRound = styled.View`
-  width: 50px;
-  height: 50px;
-  border: 1px solid ${Theme.colors.LightGray};
-`;
-
-const LogoView = styled.View`
-  flex: 6;
-  align-items: center;
-  justify-content: center;
-`;
-
-const LongBox = styled.View`
-  flex: row;
-  width: 312px;
-  height: 34px;
-  background-color: white;
-  border-radius: 5px;
-`;
-const RecSearchText = styled.Text`
+const RecSearchText = styled(Text)`
   color: ${Theme.colors.DarkGray};
   font-size: 12px;
   text-decoration: underline;
   margin: 5px;
 `;
-const Line = styled.View`
+const Line = styled(View)`
   width: 312px;
   border: 0.5px solid ${Theme.colors.LightGray};
   align-items: center;
   justify-content: center;
-  margin-bottom: 16px;
+  margin-bottom: 16;
 `;
 const BgImage = styled(ImageBackground)`
   flex: 1;
   justify-content: center;
   align-items: center;
 `;
-const TextArea = styled.View`
+const TextArea = styled(View)`
   flex-wrap: wrap;
   width: 300px;
   flex-direction: row;
