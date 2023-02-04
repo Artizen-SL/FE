@@ -1,29 +1,76 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import styled, { css } from "styled-components/native";
 import Theme from "../../Theme/Theme";
 
-const TagView = ({ children }) => {
+const TagView = ({ children, variant, tag }) => {
   return (
-    <View style={TagStyles.StTagWrapper}>
-      <Text style={TagStyles.StTagText}>{children}</Text>
-    </View>
+    <StTagWrapper variant={variant} tag={tag}>
+      <StTagText variant={variant} tag={tag}>
+        {children}
+      </StTagText>
+    </StTagWrapper>
   );
 };
 
 export default TagView;
 
-const TagStyles = StyleSheet.create({
-  StTagWrapper: {
-    width: 60,
-    height: 30,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: Theme.colors.SkyBlue,
-    borderRadius: 13,
-    // marginRight: tagViewMarginRight,
-  },
-  StTagText: {
-    color: Theme.colors.White,
-    fontSize: 15,
-  },
-});
+const StTagWrapper = styled(View)`
+  justify-content: center;
+  align-items: center;
+  border-radius: 13px;
+
+  ${({ variant, tag }) => {
+    switch (variant) {
+      case "category":
+        return css`
+          width: 60px;
+          height: 30px;
+          background-color: #48b7e2;
+        `;
+      case "community":
+        return css`
+          width: 60px;
+          height: 25px;
+          border: 1px solid
+            ${({ tag }) =>
+              tag === "자유글"
+                ? "#48B7E2"
+                : tag === "나눔"
+                ? "#E8D4B9"
+                : tag === "동행구함"
+                ? "#D68B92"
+                : ""};
+          background-color: white;
+        `;
+    }
+  }}
+`;
+
+const StTagText = styled(Text)`
+  font-size: 15px;
+
+  ${({ variant }) => {
+    switch (variant) {
+      case "category":
+        return css`
+          color: #d68b92;
+        `;
+      case "community":
+        return css`
+          color: ${({ tag }) =>
+            tag === "자유글"
+              ? "#48B7E2"
+              : tag === "나눔"
+              ? "#E8D4B9"
+              : tag === "동행구함"
+              ? "#D68B92"
+              : ""};
+        `;
+      default:
+        return css`
+          color: white;
+        `;
+    }
+  }}
+`;
