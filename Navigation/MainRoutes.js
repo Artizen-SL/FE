@@ -33,7 +33,7 @@ function MainRoutes() {
       <MainStack.Screen
         name="Search"
         component={Search}
-        // options={{ headerShown: false }}
+        options={{ headerShown: false }}
       />
     </MainStack.Navigator>
   );

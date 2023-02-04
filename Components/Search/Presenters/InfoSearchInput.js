@@ -14,35 +14,38 @@ import styled, { css } from "styled-components/native";
 import Theme from "../../../Theme/Theme";
 import ScrollViewLayout from "../../Layout/ScrollViewLayout";
 import Layout from "../../Layout/Layout";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const InfoSearchInput = () => {
   return (
-    <ScrollViewLayout>
-      <ImageBackground
-        source={require("../../../assets/background/main.png")}
-        style={styles.bgImage}
-      >
-        <View style={[styles.container, styles.header]}>
-          <View style={styles.rowCenter}>
-            <TextInput
-              style={styles.input}
-              name="search"
-              placeholder="전시, 장소, 공연, 출연진, 작품검색"
-            />
-            <TouchableOpacity>
-              <Image
-                source={require("../../../assets/Icon/Search-bg-ver.png")}
+    <SafeAreaView style={{ flex: 1 }}>
+      <ScrollViewLayout>
+        <BgImage
+          resizeMode="cover"
+          source={require("../../../assets/background/notice.png")}
+        >
+          <View style={[styles.container, styles.header]}>
+            <View style={styles.rowCenter}>
+              <TextInput
+                style={styles.input}
+                name="search"
+                placeholder="전시, 장소, 공연, 출연진, 작품검색"
               />
-            </TouchableOpacity>
+              <TouchableOpacity>
+                <Image
+                  source={require("../../../assets/Icon/Search-bg-ver.png")}
+                />
+              </TouchableOpacity>
+            </View>
+            <Line />
+            <View style={styles.rowCenter}>
+              <Text style={styles.skyBoldText}>아티즌</Text>
+              <Text style={styles.blackBoldText}>의 추천 검색어</Text>
+            </View>
           </View>
-          <Line />
-          <View style={styles.rowCenter}>
-            <Text style={styles.skyBoldText}>아티즌</Text>
-            <Text style={styles.blackBoldText}>의 추천 검색어</Text>
-          </View>
-        </View>
-      </ImageBackground>
-    </ScrollViewLayout>
+        </BgImage>
+      </ScrollViewLayout>
+    </SafeAreaView>
   );
 };
 
@@ -167,4 +170,9 @@ const Line = styled.View`
   align-items: center;
   justify-content: center;
   margin-bottom: 16;
+`;
+const BgImage = styled(ImageBackground)`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
 `;
