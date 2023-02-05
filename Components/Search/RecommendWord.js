@@ -1,4 +1,3 @@
-import InfoSearchInput from "./Presenters/InfoSearchInput";
 import RecommendSearchData from "./Data/RecommendSearchData";
 import RecommendSearchWord from "./Presenters/RecommendSearchWord";
 import { useNavigation } from "@react-navigation/native";
