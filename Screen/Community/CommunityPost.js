@@ -13,6 +13,7 @@ import {
 import { FlatList } from "react-native-gesture-handler";
 import styled from "styled-components";
 import Dropdown from "../../Common/Dropdown/Dropdown";
+import ImagePickerBtn from "../../Common/ImagePicker/ImagePickerBtn";
 import CommunityContentsWrapper from "../../Components/Community/Presenters/CommunityContentsWrapper";
 import TagView from "../../Components/Elem/TagView";
 
@@ -122,10 +123,11 @@ const CommunityPost = () => {
           }}
         >
           <TextInput multiline placeholder="내용을 작성해주세요.">
-            asdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfaasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddassfddasf
+            asdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfaasdfasfddasfdsafdasasdfasfddasdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfadsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfa
           </TextInput>
         </ScrollView>
       </StPostingWrapper>
+      <ImagePickerBtn />
     </CommunityContentsWrapper>
   );
 };
