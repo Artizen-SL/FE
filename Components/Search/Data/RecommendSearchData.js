@@ -1,6 +1,6 @@
 import InfoSearchInput from "../Presenters/InfoSearchInput";
 
-const RecommendSearch = () => {
+const RecommendSearchData = () => {
   const datas = [
     {
       id: 1,
@@ -36,4 +36,4 @@ const RecommendSearch = () => {
   return datas;
 }
 
-export default RecommendSearch
+export default RecommendSearchData;
