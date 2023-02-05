@@ -16,7 +16,12 @@ import Theme from "../../../Theme/Theme";
 import ScrollViewLayout from "../../Layout/ScrollViewLayout";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const InfoSearchInput = ({navigation}) => {
+const InfoSearchInput = ({
+  navigation,
+  onChangeSearch,
+  searchWord,
+  onPressSearch,
+}) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollViewLayout>
@@ -24,16 +29,22 @@ const InfoSearchInput = ({navigation}) => {
           <View style={styles.rowCenter}>
             <TextInput
               style={styles.input}
+              value={searchWord}
               name="search"
+              onChangeText={(e) => onChangeSearch("keyword", e)}
+              onSubmitEditing={onPressSearch}
               placeholder="전시, 장소, 공연, 출연진, 작품검색"
+              returnKeyType="search"
             />
-            <TouchableOpacity>
+            <TouchableOpacity
+            onPress={()=>{onPressSearch()}}
+            >
               <Image
                 source={require("../../../assets/Icon/Search-bg-ver.png")}
               />
             </TouchableOpacity>
           </View>
-          <Line/>
+          <Line />
         </View>
       </ScrollViewLayout>
     </SafeAreaView>

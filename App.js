@@ -8,31 +8,43 @@ import Theme from "./Theme/Theme";
 import MainRoutes from "./Navigation/MainRoutes";
 import Login from "./Screen/Login/Login";
 import KakaoLogout from "./Screen/Login/KakaoLogout";
-import { Provider } from "jotai"
+// import * as Sentry from "@sentry/react-native";
+import { Provider } from "jotai";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const Tab = createBottomTabNavigator();
+const queryClient = new QueryClient();
+
 export default function App() {
+  // Sentry.init({
+  //   dsn: process.env.REACT_APP_SENTRY_DSN,
+  //   environment: "production",
+  //   normalizeDepth: 6,
+  // });
+
   return (
-    <NavigationContainer>
-      <Provider>
-      <ThemeProvider theme={Theme}>
-        <Tab.Navigator>
-          <Tab.Screen
-            name="MainRoutes"
-            component={MainRoutes}
-            options={{ headerShown: false }}
-          />
-          <Tab.Screen
-            name="CommunityRoutes"
-            component={CommunityRoutes}
-            options={{ headerShown: false }}
-          />
-          <Tab.Screen name="Login" component={Login} />
-          <Tab.Screen name="KakaoLogin" component={KakaoLogin} />
-          <Tab.Screen name="KakaoLogout" component={KakaoLogout} />
-        </Tab.Navigator>
-      </ThemeProvider>
-      </Provider>
-    </NavigationContainer>
+    <QueryClientProvider client={queryClient}>
+      <NavigationContainer>
+        <Provider>
+          <ThemeProvider theme={Theme}>
+            <Tab.Navigator>
+              <Tab.Screen
+                name="MainRoutes"
+                component={MainRoutes}
+                options={{ headerShown: false }}
+              />
+              <Tab.Screen
+                name="CommunityRoutes"
+                component={CommunityRoutes}
+                options={{ headerShown: false }}
+              />
+              <Tab.Screen name="Login" component={Login} />
+              <Tab.Screen name="KakaoLogin" component={KakaoLogin} />
+              <Tab.Screen name="KakaoLogout" component={KakaoLogout} />
+            </Tab.Navigator>
+          </ThemeProvider>
+        </Provider>
+      </NavigationContainer>
+    </QueryClientProvider>
   );
 }
