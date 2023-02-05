@@ -1,9 +1,9 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigation } from "@react-navigation/native";
 import InfoSearchInput from "./Presenters/InfoSearchInput"
 
 const InfoInput = () => {
-    const navigate = useNavigate();
-  return <InfoSearchInput navigate={navigate}/>;
+    const navigation = useNavigation();
+  return <InfoSearchInput navigation={navigation}/>;
 }
 
 export default InfoInput
