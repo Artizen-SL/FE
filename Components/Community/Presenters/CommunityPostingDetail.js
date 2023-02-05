@@ -36,15 +36,9 @@ const CommunityPostingDetail = ({
 
       {postingImages.map((item, idx) => {
         return (
-          <>
-            {/* <View styles={{ width: 100, height: 100 }}> */}
-            <StPostingImage
-              key={idx}
-              source={{ uri: item }}
-              resizeMode="contain"
-            />
-            {/* </View> */}
-          </>
+          <View key={idx}>
+            <StPostingImage source={{ uri: item }} resizeMode="contain" />
+          </View>
         );
       })}
     </StPostingDetailContainer>

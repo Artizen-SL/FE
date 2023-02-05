@@ -23,7 +23,7 @@ function CommunityRoutes() {
       <CommunityStack.Screen
         name="CommunityPost"
         component={CommunityPost}
-        options={{ headerShown: false }}
+        options={{ headerShown: false, tabBarStyle: { display: "none" } }}
       />
     </CommunityStack.Navigator>
   );
