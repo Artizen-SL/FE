@@ -13,7 +13,7 @@ import styled, { css } from "styled-components/native";
 import Theme from "../../../Theme/Theme";
 import Layout from "../../Layout/Layout";
 
-const RecommendSearchWord = ({datas,navigate}) => {
+const RecommendSearchWord = ({datas,navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.rowLeft}>

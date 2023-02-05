@@ -16,7 +16,7 @@ import Theme from "../../../Theme/Theme";
 import ScrollViewLayout from "../../Layout/ScrollViewLayout";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const InfoSearchInput = ({navigate}) => {
+const InfoSearchInput = ({navigation}) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollViewLayout>
