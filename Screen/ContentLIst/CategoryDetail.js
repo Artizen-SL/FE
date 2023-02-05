@@ -103,10 +103,7 @@ function CategoryDetail({ route }) {
             alignItems: "center",
           }}
         >
-          <Image
-            source={require("../../assets/Icon/gallery.png")}
-            style={{}}
-          ></Image>
+          <Image source={require("../../assets/Icon/gallery.png")}></Image>
           <StyledText
             style={{
               fontSize: 20,

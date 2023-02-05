@@ -1,7 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import styled, { css } from "styled-components/native";
-import Theme from "../../Theme/Theme";
 
 const TagView = ({ children, variant, tag }) => {
   return (
