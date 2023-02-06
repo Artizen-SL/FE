@@ -114,7 +114,6 @@ function CategoryDetail({ route }) {
       },
     }
   );
-  console.log(categoryDetails);
 
   return (
     <View style={{ flex: 1 }}>
