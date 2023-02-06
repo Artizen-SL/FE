@@ -2,82 +2,178 @@ import { useNavigation } from "@react-navigation/native";
 import React from "react";
 
 import {
+  FlatList,
   ImageBackground,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
 import styled from "styled-components/native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import TagView from "../../Components/Elem/TagView";
+import CommunityContentsWrapper from "../../Components/Community/Presenters/CommunityContentsWrapper";
+
+const communityMainItems = [
+  {
+    id: 1,
+    tag: "자유글",
+    title: "title",
+    content: "content",
+    date: "2022/01/1 12:00",
+    nickname: "nickname",
+    commentNum: "12",
+  },
+  {
+    id: 2,
+    tag: "동행구함",
+    title: "title",
+    content: "content",
+    date: "2022/01/1 12:00",
+    nickname: "nickname",
+    commentNum: "12",
+  },
+  {
+    id: 3,
+    tag: "나눔",
+    title: "title",
+    content: "content",
+    date: "2022/01/1 12:00",
+    nickname: "nickname",
+    commentNum: "12",
+  },
+  {
+    id: 4,
+    tag: "자유글",
+    title: "title",
+    content: "content",
+    date: "2022/01/1 12:00",
+    nickname: "nickname",
+    commentNum: "12",
+  },
+  {
+    id: 5,
+    tag: "자유글",
+    title: "title",
+    content: "content",
+    date: "2022/01/1 12:00",
+    nickname: "nickname",
+    commentNum: "12",
+  },
+  {
+    id: 6,
+    tag: "자유글",
+    title: "title",
+    content: "content",
+    date: "2022/01/1 12:00",
+    nickname: "nickname",
+    commentNum: "12",
+  },
+  {
+    id: 7,
+    tag: "자유글",
+    title: "title",
+    content: "content",
+    date: "2022/01/1 12:00",
+    nickname: "nickname",
+    commentNum: "12",
+  },
+  {
+    id: 8,
+    tag: "자유글",
+    title: "title",
+    content: "content",
+    date: "2022/01/1 12:00",
+    nickname: "nickname",
+    commentNum: "12",
+  },
+  {
+    id: 9,
+    tag: "자유글",
+    title: "title",
+    content: "content",
+    date: "2022/01/1 12:00",
+    nickname: "nickname",
+    commentNum: "12",
+  },
+  {
+    id: 10,
+    tag: "자유글",
+    title: "title",
+    content: "content",
+    date: "2022/01/1 12:00",
+    nickname: "nickname",
+    commentNum: "12",
+  },
+  {
+    id: 11,
+    tag: "자유글",
+    title: "title",
+    content: "content",
+    date: "2022/01/1 12:00",
+    nickname: "nickname",
+    commentNum: "12",
+  },
+];
 
 const CommunityMain = () => {
   const navigation = useNavigation();
 
+  const renderItem = ({ item }) => {
+    return (
+      <StCommuContentWrapper
+        onPress={() =>
+          navigation.navigate("CommunityRoutes", {
+            screen: "CommunityDetail",
+            params: { commuContentId: item.id },
+          })
+        }
+      >
+        <StCommuContentTitle>
+          <TagView variant="community" tag={item.tag}>
+            {item.tag}
+          </TagView>
+          <Text>{item.title}</Text>
+        </StCommuContentTitle>
+        <View>
+          <Text>{item.content}</Text>
+        </View>
+        <View>
+          <Text>
+            {item.date} / {item.nickname}
+          </Text>
+        </View>
+      </StCommuContentWrapper>
+    );
+  };
+
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ flex: 1 }}>
-        <ImageBackground
-          resizeMode="cover"
-          source={require("../../assets/background/community-bg.png")}
-          style={styles.image}
-        >
-          <CommunityContainer>
-            <StTitleWrapper>
-              <StTitleText>Community</StTitleText>
-            </StTitleWrapper>
-            <ScrollViewLayout></ScrollViewLayout>
-          </CommunityContainer>
-          {/* <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("CommunityRoutes", {
-              screen: "CommnunityDetail",
-            })
-          }
-        >
-          <Text>CommunityMain</Text>
-        </TouchableOpacity> */}
-        </ImageBackground>
-      </View>
-    </SafeAreaView>
+    <CommunityContentsWrapper title="Community">
+      {
+        <FlatList
+          // ListHeaderComponent={<></>}
+          renderItem={renderItem}
+          data={communityMainItems}
+          keyExtractor={(item) => item.id}
+          contentContainerStyle={{}}
+          // ListFooterComponent={}
+        />
+      }
+    </CommunityContentsWrapper>
   );
 };
 
 export default CommunityMain;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  image: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  text: {
-    color: "white",
-    fontSize: 42,
-    lineHeight: 84,
-    fontWeight: "bold",
-    textAlign: "center",
-    backgroundColor: "#000000c0",
-  },
-});
+const StCommuContentWrapper = styled(TouchableOpacity)`
+  display: flex;
+  height: 70px;
+  margin: 10px 10px;
+  border-color: #ddd;
+  border-bottom-width: 1px;
+`;
 
-const CommunityContainer = styled(View)`
-  height: 95%;
-  width: 95%;
-  background-color: pink;
-  border-radius: 20px;
-  box-shadow: 0px 4px 4px black;
-`;
-const StTitleWrapper = styled(View)`
-  width: 100%;
-  padding-left: 15px;
-  padding-top: 10px;
-  /* border-bottom: Theme.colors.; */
-`;
-const StTitleText = styled(Text)`
-  font-size: 25px;
-  font-weight: bold;
+const StCommuContentTitle = styled(View)`
+  display: flex;
+  flex-direction: row;
 `;

@@ -1,6 +1,6 @@
 import * as Location from "expo-location";
 import { useState } from "react";
-// import useGpsAsk from "./useGpsAsk";
+import useGpsAsk from "./useGpsAsk";
 
 const useGpsRes = async () => {
   const granted = await useGpsAsk();

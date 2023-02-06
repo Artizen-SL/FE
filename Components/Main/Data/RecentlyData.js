@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import RecentlyPost from "./RecentlyPost";
+import RecentlyPost from "../Presenters/RecentlyPost";
 
 const RecentlyData = ({ route }) => {
   const datas = [
