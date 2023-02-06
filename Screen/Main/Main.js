@@ -12,12 +12,13 @@ import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components/native";
 import Theme from "../../Theme/Theme";
 import ScrollViewLayout from "../../Components/Layout/ScrollViewLayout";
-import MainCarousel from "./MainCarousel";
-import UserRecommendData from "./UserRecommendData";
+import MainCarousel from "../../Components/Main/MainCarousel";
+import UserRecommendData from "../../Components/Main/Data/UserRecommendData";
 import useGpsRes from "../../utils/useGpsRes";
-import RecentlyData from "./RecentlyData";
-import BestData from "./BestData";
-import MainCarouselData from "./MainCarouselData";
+import RecentlyData from "../../Components/Main/Data/RecentlyData";
+import BestData from "../../Components/Main/Data/BestData";
+import MainCarouselData from "../../Components/Main/Data/MainCarouselData";
+// import MainView from "../../Components/Main/Presenters/MainView";
 
 const Main = ({ navigation }) => {
   const screenWidth = Math.round(Dimensions.get("window").width);
@@ -43,6 +44,7 @@ const Main = ({ navigation }) => {
 
   return (
     <ScrollViewLayout>
+      {/* <MainView /> */}
       <ImageBackground
         source={require("../../assets/background/main.png")}
         style={styles.bgImage}
@@ -53,8 +55,14 @@ const Main = ({ navigation }) => {
               source={require("../../assets/login/logo_v1_3.png")}
               style={styles.logo}
             />
-            <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-              <Text>로그인</Text>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("MainRoutes", {
+                  screen: "Search",
+                })
+              }
+            >
+              <Image source={require("../../assets/Icon/Search.png")} />
             </TouchableOpacity>
           </View>
           <ImageBackground
@@ -64,8 +72,6 @@ const Main = ({ navigation }) => {
             <View
               style={{
                 marginTop: 40,
-                // borderWidth: 1,
-                // borderStyle: "solid",
               }}
             >
               <MainCarousel
@@ -75,6 +81,7 @@ const Main = ({ navigation }) => {
                 pageWidth={screenWidth - (20 + 20 * 2)}
               />
             </View>
+            {/*카테고리별 아이콘*/}
             <View
               style={{
                 flex: 1,
@@ -133,6 +140,8 @@ const Main = ({ navigation }) => {
               </TouchableOpacity>
             </View>
           </ImageBackground>
+
+          {/*사용자 위치*/}
           <View
             style={{
               flex: 1,
@@ -168,19 +177,36 @@ const Main = ({ navigation }) => {
               </Text>
             </View>
           </View>
+
+          {/*공지사항*/}
           <View style={{ marginTop: 20 }}>
-            <Text style={styles.BlBoldText}>
-              <Image
-                source={require("../../assets/Icon/notice.png")}
-                style={{ marginRight: 5 }}
-              />
-              Notice
-            </Text>
+            <RowBox>
+              <View style={{ flexDirection: "row",alignItems:"center" }}>                
+                <BoldTextBL>
+                <Image
+                  source={require("../../assets/Icon/notice.png")}
+                />
+                Notice
+              </BoldTextBL>
+              </View>
+              <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("MainRoutes", {
+                  screen: "NoticeList",
+                })
+              }
+              >
+              <IconImage source={require("../../assets/Icon/rightArrow.png")} />
+              </TouchableOpacity>
+            </RowBox>
           </View>
+
+          {/*추천*/}
           <View style={styles.center}>
             <UserRecommendData />
           </View>
 
+          {/*best*/}
           <View style={{ marginTop: 20 }}>
             <Text style={styles.BlBoldText}>
               <Image
@@ -226,6 +252,14 @@ const styles = StyleSheet.create({
   header: {
     flex: 1,
   },
+  row: {
+    flex: 1,
+    flexDirection: "row",
+    flexWrap: "nowrap",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    gap: 3,
+  },
   bgImage: { width: "100%", height: "100%" },
   logo: { width: 117, height: 32 },
   longBox: {
@@ -265,8 +299,9 @@ const styles = StyleSheet.create({
   headerarea: {
     flex: 1,
     height: 45,
-    width: 340,
+    width: 360,
     flexDirection: "row",
+    flexWrap: "nowrap",
     justifyContent: "space-between",
     alignItems: "center",
     margin: 7,
@@ -289,14 +324,25 @@ const LogoView = styled.View`
   justify-content: center;
 `;
 
-const LongBox = styled.View`
-  flex: row;
+const RowBox = styled(View)`
   width: 312px;
-  height: 34px;
-  background-color: white;
-  border-radius: 5px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 `;
 const UserGps = styled.Text`
   color: ${Theme.colors.SkyBlue};
   font-weight: 700;
+`;
+const BoldTextBL = styled(Text)`
+  color: ${Theme.colors.Black};
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: underline;
+  align-items: center;
+  justify-content: center;
+`;
+const IconImage = styled(Image)`
+  width: 20px;
+  height: 20px;
 `;
