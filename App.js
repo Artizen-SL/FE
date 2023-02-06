@@ -7,13 +7,11 @@ import CommunityRoutes from "./Navigation/CommunityRoutes";
 import Theme from "./Theme/Theme";
 import MainRoutes from "./Navigation/MainRoutes";
 import Login from "./Screen/Login/Login";
-import KakaoLogout from "./Screen/Login/KakaoLogout";
-// import * as Sentry from "@sentry/react-native";
-import { Provider } from "jotai";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const Tab = createBottomTabNavigator();
 const queryClient = new QueryClient();
+
 export default function App() {
   // Sentry.init({
   //   dsn: process.env.REACT_APP_SENTRY_DSN,
