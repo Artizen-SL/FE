@@ -7,18 +7,34 @@ const http = axios.create({
   baseURL: BASE_URL,
 });
 
-export const getRequest  = async ({
-method,
-url,
-throwWhenError,
-prams,
+// Get Request
+export const getRequest = async ({
+  method,
+  url,
+  throwWhenError = false,
+  params,
 }) => {
-    try{
-        const res = await http[method](url,{prams});
-        return res;
-    } catch(error){
-        console.log(error);
-        // Sentry.captureException(error);
-        // if (throwWhenError) throw error;
-    }
+  try {
+    const response = await http[method](url, { params });
+    return response;
+  } catch (error) {
+    // Sentry.captureException(error);
+    if (throwWhenError) throw error;
+  }
 };
+
+// Post/Put/Delete Request
+// export const request = async ({
+//   method,
+//   url,
+//   throwWhenError = false,
+//   payload,
+// }) => {
+//   try {
+//     const response = await http[method](url, payload);
+//     return response;
+//   } catch (error) {
+//     Sentry.captureException(error);
+//     if (throwWhenError) throw error;
+//   }
+// };

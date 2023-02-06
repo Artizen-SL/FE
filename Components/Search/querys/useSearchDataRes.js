@@ -1,4 +1,4 @@
-import { getRequest } from "../../../axios/axiosconfig";
+import { getRequest } from "../../../axios/axiosConfig";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 const fetchSearchList = ({ keyword, prams }) => {
