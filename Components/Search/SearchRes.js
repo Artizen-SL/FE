@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
-import useSearchDataRes from "./Data/useSearchDataRes"
+import useSearchDataRes from "./querys/useSearchDataRes"
 import InfoSearchRes from "./Presenters/InfoSearchRes";
 
 const SearchRes = () => {

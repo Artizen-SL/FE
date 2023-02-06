@@ -1,4 +1,4 @@
-import RecommendSearchData from "./Data/RecommendSearchData";
+import RecommendSearchData from "./querys/RecommendSearchData";
 import RecommendSearchWord from "./Presenters/RecommendSearchWord";
 import { useNavigation } from "@react-navigation/native";
 
