@@ -3,6 +3,7 @@ import { Image, View } from "react-native";
 import styled from "styled-components/native";
 import Dropdown from "../../Common/Dropdown/Dropdown";
 import ScrollViewLayout from "../../Components/Layout/ScrollViewLayout";
+import useCategoryDetail from "../../querys/category/useFetchCategoryDetail";
 import ContentBox from "./ContentBox";
 
 const datas = [
@@ -60,16 +61,16 @@ const datas = [
 
 const dropDownData = [
   {
-    label: "미술관",
+    label: "뮤지컬",
     Routes: "MainRoutes",
     screen: "CategoryDetail",
-    params: { category: "FineArtList" },
+    params: { category: "뮤지컬" },
   },
   {
-    label: "전시회",
+    label: "연극",
     Routes: "MainRoutes",
     screen: "CategoryDetail",
-    params: { category: "ShowList" },
+    params: { category: "연극" },
   },
   {
     label: "콘서트",
@@ -90,6 +91,13 @@ function CategoryDetail({ route }) {
   const [selected, setSelected] = useState(undefined);
 
   // 받은 카테고리에 따라서 데이터 송수신하기
+
+  const {
+    data: categoryData,
+    isError,
+    isLoading,
+  } = useCategoryDetail(category);
+  console.log("categoryData", categoryData);
 
   return (
     <View style={{ flex: 1 }}>

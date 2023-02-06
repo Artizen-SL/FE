@@ -95,7 +95,7 @@ const Main = ({ navigation }) => {
                 onPress={() =>
                   navigation.navigate("MainRoutes", {
                     screen: "CategoryDetail",
-                    params: { category: "FineArtList" },
+                    params: { category: "뮤지컬" },
                   })
                 }
               >
@@ -181,22 +181,22 @@ const Main = ({ navigation }) => {
           {/*공지사항*/}
           <View style={{ marginTop: 20 }}>
             <RowBox>
-              <View style={{ flexDirection: "row",alignItems:"center" }}>                
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <BoldTextBL>
-                <Image
-                  source={require("../../assets/Icon/notice.png")}
-                />
-                Notice
-              </BoldTextBL>
+                  <Image source={require("../../assets/Icon/notice.png")} />
+                  Notice
+                </BoldTextBL>
               </View>
               <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("MainRoutes", {
-                  screen: "NoticeList",
-                })
-              }
+                onPress={() =>
+                  navigation.navigate("MainRoutes", {
+                    screen: "NoticeList",
+                  })
+                }
               >
-              <IconImage source={require("../../assets/Icon/rightArrow.png")} />
+                <IconImage
+                  source={require("../../assets/Icon/rightArrow.png")}
+                />
               </TouchableOpacity>
             </RowBox>
           </View>
