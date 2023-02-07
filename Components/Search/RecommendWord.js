@@ -1,14 +1,18 @@
 import RecommendSearchData from "./querys/RecommendSearchData";
 import RecommendSearchWord from "./Presenters/RecommendSearchWord";
+import { useFetchSearch } from "../../querys/search/useFetchSearch";
 import { useNavigation } from "@react-navigation/native";
+import { useState } from "react";
 
-
-const RecommendWord = () => {
-    const datas = RecommendSearchData();
-    const navigation =  useNavigation();
-  return <RecommendSearchWord datas={datas} navigation={navigation}/>;
+const RecommendWord = ({ sendKeyword, setSendKeyword }) => {
+  const datas = RecommendSearchData();
+  return (
+    <RecommendSearchWord
+      datas={datas}
+      sendKeyword={sendKeyword}
+      setSendKeyword={setSendKeyword}
+    />
+  );
 };
 
 export default RecommendWord;
-
-

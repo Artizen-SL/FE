@@ -23,31 +23,27 @@ const InfoSearchInput = ({
   onPressSearch,
 }) => {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <ScrollViewLayout>
-        <View style={styles.container}>
-          <View style={styles.rowCenter}>
-            <TextInput
-              style={styles.input}
-              value={searchWord}
-              name="search"
-              onChangeText={(e) => onChangeSearch("keyword", e)}
-              onSubmitEditing={onPressSearch}
-              placeholder="전시, 장소, 공연, 출연진, 작품검색"
-              returnKeyType="search"
-            />
-            <TouchableOpacity
-            onPress={()=>{onPressSearch()}}
-            >
-              <Image
-                source={require("../../../assets/Icon/Search-bg-ver.png")}
-              />
-            </TouchableOpacity>
-          </View>
-          <Line />
-        </View>
-      </ScrollViewLayout>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <View style={styles.rowCenter}>
+        <TextInput
+          style={styles.input}
+          value={searchWord}
+          name="search"
+          onChangeText={(e) => onChangeSearch("keyword", e)}
+          onSubmitEditing={onPressSearch}
+          placeholder="전시, 장소, 공연, 출연진, 작품검색"
+          returnKeyType="search"
+        />
+        <TouchableOpacity
+          onPress={() => {
+            onPressSearch();
+          }}
+        >
+          <Image source={require("../../../assets/Icon/Search-bg-ver.png")} />
+        </TouchableOpacity>
+      </View>
+      <Line />
+    </View>
   );
 };
 

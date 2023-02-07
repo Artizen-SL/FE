@@ -10,24 +10,42 @@ import {
   Dimensions,
 } from "react-native";
 import styled, { css } from "styled-components/native";
+import ScrollViewLayout from "../../Layout/ScrollViewLayout";
 import Theme from "../../../Theme/Theme";
 import Layout from "../../Layout/Layout";
 
-const RecommendSearchWord = ({datas,navigation}) => {
+const RecommendSearchWord = ({
+  datas,
+  setSendKeyword,
+  sendKeyword,
+}) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.rowLeft}>
-        <Text style={styles.skyBoldText}>아티즌</Text>
-        <Text style={styles.blackBoldText}>의 추천 검색어</Text>
+    <ScrollViewLayout>
+      <View style={styles.container}>
+        <View style={styles.rowLeft}>
+          <Text style={styles.skyBoldText}>아티즌</Text>
+          <Text style={styles.blackBoldText}>의 추천 검색어</Text>
+        </View>
+        <Layout>
+          <TextArea>
+            {datas.map((data) => {
+              return (
+                <TouchableOpacity
+                  onPress={() => {
+                    setSendKeyword({
+                      ...sendKeyword,
+                      keyword: data?.name,
+                    });
+                  }}
+                >
+                  <RecSearchText>{data?.name}</RecSearchText>
+                </TouchableOpacity>
+              );
+            })}
+          </TextArea>
+        </Layout>
       </View>
-      <Layout>
-        <TextArea>
-          {datas.map((data) => {
-            return <RecSearchText>{data.name}</RecSearchText>;
-          })}
-        </TextArea>
-      </Layout>
-    </View>
+    </ScrollViewLayout>
   );
 };
 
