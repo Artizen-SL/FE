@@ -1,19 +1,18 @@
 import { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
-import useSearchDataRes from "./querys/useSearchDataRes"
 import InfoSearchRes from "./Presenters/InfoSearchRes";
+import InfoSearchNotAvailable from "./Presenters/InfoSearchNotAvailable";
 
-const SearchRes = () => {
-    const datas = useSearchDataRes();
-    const navigation = useNavigation();
-    useEffect(()=>{
-      if(datas.length > 0 && datas !== undefined){
-        navigation.navigate("SearchRoutes", {
-          screen: "InfoSearchNotAvailable",
-        })
-      }
-    },[datas]); 
-  return <InfoSearchRes datas={datas}/>;
-}
+const SearchRes = ({ navigation, searchWord, sendKeyword, searchData,setSearchWord }) => {
+  return (
+    <InfoSearchRes
+      navigation={navigation}
+      searchWord={searchWord}
+      sendKeyword={sendKeyword}
+      searchData={searchData}
+      setSearchWord={setSearchWord}
+    />
+  );
+};
 
-export default SearchRes
+export default SearchRes;

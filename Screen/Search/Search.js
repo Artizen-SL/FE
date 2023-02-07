@@ -5,7 +5,6 @@ const Search = () => {
   return (
     <ScrollViewLayout>
       <InfoInput />
-      <RecommendWord />
     </ScrollViewLayout>
   );
 };

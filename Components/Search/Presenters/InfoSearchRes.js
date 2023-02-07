@@ -1,34 +1,33 @@
 import {
-    StyleSheet,
-    View,
-    Text,
-    Button,
-    Image,
-    TextInput,
-    TouchableOpacity,
-    ImageBackground,
-    Dimensions,
-  } from "react-native";
-  import styled, { css } from "styled-components/native";
-  import Theme from "../../../Theme/Theme";
-  import ScrollViewLayout from "../../Layout/ScrollViewLayout";
-  import { SafeAreaView } from "react-native-safe-area-context";
+  StyleSheet,
+  View,
+  Text,
+  Button,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  ImageBackground,
+  Dimensions,
+} from "react-native";
+import styled, { css } from "styled-components/native";
+import Theme from "../../../Theme/Theme";
+import ScrollViewLayout from "../../Layout/ScrollViewLayout";
+import { SafeAreaView } from "react-native-safe-area-context";
+import Layout from "../../Layout/Layout";
 
-const InfoSearchRes = ({datas}) => {
+const InfoSearchRes = ({ navigation, searchWord, sendKeyword, searchData }) => {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-    <ScrollViewLayout>
+    <MarginLeft>
       <LowLeft>
-        <Image source={require("../../../assets/Icon/Search-bg-ver.png")} />
-        <SearchWord>검색어</SearchWord>
+        <Image source={require("../../../assets/Icon/SearchBL.png")} />
+        <SearchWord>"{sendKeyword.keyword}"</SearchWord>
         <BlackBoldText>검색결과 입니다.</BlackBoldText>
       </LowLeft>
-    </ScrollViewLayout>
-  </SafeAreaView>
-  )
-}
+    </MarginLeft>
+  );
+};
 
-export default InfoSearchRes
+export default InfoSearchRes;
 
 const SearchWord = styled(Text)`
   color: ${Theme.colors.Pink};
@@ -57,4 +56,8 @@ const LowLeft = styled(View)`
   flex-direction: row;
   justify-content: flex-start;
   width: 100%;
+`;
+
+const MarginLeft = styled(View)`
+  margin-left: 15px;
 `;

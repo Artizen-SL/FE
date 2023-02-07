@@ -13,28 +13,39 @@ import styled, { css } from "styled-components/native";
 import Theme from "../../../Theme/Theme";
 import ScrollViewLayout from "../../Layout/ScrollViewLayout";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Layout from "../../Layout/Layout";
 
-const InfoSearchNotAvailable = () => {
+const InfoSearchNotAvailable = ({
+  navigation,
+  searchWord,
+  sendKeyword,
+  searchData,
+}) => {
+  console.log("searchWord==>", sendKeyword);
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <ScrollViewLayout>
-        <LowLeft>
-          <Image source={require("../../../assets/Icon/Search-bg-ver.png")} />
-          <SearchWord>검색어</SearchWord>
-          <BlackBoldText>검색결과 입니다.</BlackBoldText>
-        </LowLeft>
+    <>
+    <MarginLeft>
+      <LowLeft>
+        <Image source={require("../../../assets/Icon/SearchBL.png")} />
+        <SearchWord>"{searchWord?.keyword}"</SearchWord>
+        <BlackBoldText>검색결과 입니다.</BlackBoldText>
+      </LowLeft>
+      </MarginLeft>
+      <Center>
         <GrayText>검색결과가 없습니다.</GrayText>
         <TouchableOpacity
           onPress={() =>
             navigation.navigate("MainRoutes", {
-              screen: "Search",
+              screen: "Main",
             })
           }
         >
-          <LinkText>뒤로가기</LinkText>
+          <LinkText
+          
+          >뒤로가기</LinkText>
         </TouchableOpacity>
-      </ScrollViewLayout>
-    </SafeAreaView>
+      </Center>
+      </>
   );
 };
 
@@ -55,6 +66,7 @@ const BlackBoldText = styled(Text)`
 const GrayText = styled(Text)`
   color: ${Theme.colors.DarkGray};
   font-size: 13px;
+  margin-bottom: 10px;
 `;
 
 const LinkText = styled(Text)`
@@ -67,4 +79,15 @@ const LowLeft = styled(View)`
   flex-direction: row;
   justify-content: flex-start;
   width: 100%;
+`;
+
+const MarginLeft = styled(View)`
+  margin-left: 30px;
+`;
+
+const Center = styled(View)`
+ justify-content: center;
+ align-items: center;
+ gap: 20px;
+ margin-top: 50px;
 `;
