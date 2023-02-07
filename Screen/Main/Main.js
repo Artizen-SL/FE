@@ -95,31 +95,31 @@ const Main = ({ navigation }) => {
                 onPress={() =>
                   navigation.navigate("MainRoutes", {
                     screen: "CategoryDetail",
-                    params: { category: "뮤지컬" },
+                    params: { category: "연극/뮤지컬" },
                   })
                 }
               >
                 <Image source={require("../../assets/Icon/gallery.png")} />
-                <Text>미술관</Text>
+                <Text>연극/뮤지컬</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.center}
                 onPress={() =>
                   navigation.navigate("MainRoutes", {
                     screen: "CategoryDetail",
-                    params: { category: "ShowList" },
+                    params: { category: "클래식/무용" },
                   })
                 }
               >
                 <Image source={require("../../assets/Icon/show.png")} />
-                <Text>공연</Text>
+                <Text>클래식/무용</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.center}
                 onPress={() =>
                   navigation.navigate("MainRoutes", {
                     screen: "CategoryDetail",
-                    params: { category: "ConcertList" },
+                    params: { category: "콘서트" },
                   })
                 }
               >
@@ -131,12 +131,12 @@ const Main = ({ navigation }) => {
                 onPress={() =>
                   navigation.navigate("MainRoutes", {
                     screen: "CategoryDetail",
-                    params: { category: "ExpoList" },
+                    params: { category: "서커스/마술" },
                   })
                 }
               >
                 <Image source={require("../../assets/Icon/expo.png")} />
-                <Text>박람회</Text>
+                <Text>서커스/마술</Text>
               </TouchableOpacity>
             </View>
           </ImageBackground>

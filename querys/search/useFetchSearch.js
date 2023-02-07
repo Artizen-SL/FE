@@ -13,8 +13,8 @@ const useFetchSearch = (keyword) => {
     {
       queryKey: ["getSearchContent", keyword],
       queryFn: async () => {
-        const response = await getSearchContent(keyword);
-        return response.data;
+        const { data } = await getSearchContent(keyword);
+        return data;
       },
     },
     {

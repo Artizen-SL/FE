@@ -12,8 +12,8 @@ const useCategoryDetail = (genre) => {
   return useQuery({
     queryKey: ["getCategoryDetail", genre],
     queryFn: async () => {
-      const response = await getCategoryDetail(genre);
-      return response.data;
+      const { data } = await getCategoryDetail(genre);
+      return data;
     },
   });
 };

@@ -17,7 +17,7 @@ function Dropdown({ label, data, onSelect }) {
   const navigation = useNavigation();
   const [visible, setVisible] = useState(false);
   const [selected, setSelected] = useState(undefined);
-  const [dropdownTop, setDropdownTop] = useState(0);
+  const [dropdownBottom, setDropdownTop] = useState(0);
 
   const toggleDropdown = () => {
     visible ? setVisible(false) : openDropdown();
@@ -25,7 +25,7 @@ function Dropdown({ label, data, onSelect }) {
 
   const openDropdown = () => {
     DropdownButton.current.measure((_fx, _fy, _w, h, _px, py) => {
-      setDropdownTop(py - 4 * h);
+      setDropdownTop(h + 68);
     });
     setVisible(true);
   };
@@ -54,7 +54,7 @@ function Dropdown({ label, data, onSelect }) {
           style={styles.overlay}
           onPress={() => setVisible(false)}
         >
-          <View style={[styles.dropdown, { top: dropdownTop }]}>
+          <View style={[styles.dropdown, { bottom: dropdownBottom }]}>
             <FlatList
               data={data}
               renderItem={renderItem}
@@ -72,7 +72,7 @@ function Dropdown({ label, data, onSelect }) {
       onPress={toggleDropdown}
       style={styles.button}
     >
-      <Image source={require("../../assets/Icon/gallery.png")} />
+      <Image source={require("../../assets/Icon/categoryDropdownBtn.png")} />
       <Image />
       {renderDropdown()}
     </TouchableOpacity>
@@ -87,8 +87,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     position: "absolute",
-    right: 30,
-    bottom: 30,
+    right: 20,
+    bottom: 20,
   },
   buttonText: {
     flex: 1,

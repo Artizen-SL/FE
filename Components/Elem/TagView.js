@@ -53,7 +53,7 @@ const StTagText = styled(Text)`
     switch (variant) {
       case "category":
         return css`
-          color: #d68b92;
+          color: white;
         `;
       case "community":
         return css`
