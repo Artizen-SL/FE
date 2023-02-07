@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getRequest } from "../../axios/axiosconfig";
+import { getRequest } from "../../axios/axiosConfig";
 
 const getSearchContent = (keyword) => {
   return getRequest({
