@@ -6,8 +6,7 @@ import styled from "styled-components/native";
 import Dropdown from "../../Common/Dropdown/Dropdown";
 import ScrollViewLayout from "../../Components/Layout/ScrollViewLayout";
 import useCategoryDetail from "../../querys/category/useFetchCategoryDetail";
-import ContentBox from "./ContentBox";
-
+import ContentBoxView from "../../Presenters/ContentList/ContentBoxView";
 const datas = [
   {
     category: "expo",
@@ -63,28 +62,28 @@ const datas = [
 
 const dropDownData = [
   {
-    label: "뮤지컬",
+    label: "연극/뮤지컬",
     Routes: "MainRoutes",
     screen: "CategoryDetail",
-    params: { category: "뮤지컬" },
+    params: { category: "연극/뮤지컬" },
   },
   {
-    label: "연극",
+    label: "클래식/무용",
     Routes: "MainRoutes",
     screen: "CategoryDetail",
-    params: { category: "연극" },
+    params: { category: "클래식/무용" },
   },
   {
     label: "콘서트",
     Routes: "MainRoutes",
     screen: "CategoryDetail",
-    params: { category: "ConcertList" },
+    params: { category: "콘서트" },
   },
   {
-    label: "박물관",
+    label: "서커스/마술",
     Routes: "MainRoutes",
     screen: "CategoryDetail",
-    params: { category: "ExpoList" },
+    params: { category: "서커스/마술" },
   },
 ];
 
@@ -92,14 +91,11 @@ function CategoryDetail({ route }) {
   const { category } = route.params;
   const [selected, setSelected] = useState(undefined);
 
-  // 받은 카테고리에 따라서 데이터 송수신하기
-
   const {
     data: categoryData,
     isError,
     isLoading,
   } = useCategoryDetail(category);
-  console.log("categoryData", categoryData);
 
   return (
     <View style={{ flex: 1 }}>
@@ -125,9 +121,12 @@ function CategoryDetail({ route }) {
             {category}
           </StyledText>
         </View>
-        {datas.map((data) => {
-          return <ContentBox key={data.id} data={data} />;
-        })}
+        {categoryData &&
+          categoryData?.map((data) => {
+            return (
+              <ContentBoxView key={data?.id} data={data} category={category} />
+            );
+          })}
       </ScrollViewLayout>
       <Dropdown
         label="Select Item"

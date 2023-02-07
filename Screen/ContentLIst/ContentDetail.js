@@ -4,9 +4,10 @@ import Theme from "../../Theme/Theme";
 import Dropdown from "../../Common/Dropdown/Dropdown";
 
 import ScrollViewLayout from "../../Components/Layout/ScrollViewLayout";
-import ContentDetailInfoLine from "./ContentDetailInfoLine";
+import ContentDetailInfoLine from "../../Presenters/ContentList/ContentDetailInfoLineView";
 import Carousel from "../../Common/Carousel/Carousel";
 import { useQuery } from "@tanstack/react-query";
+import useFetchContentDetail from "../../querys/category/useFetchContentDetail";
 
 const PAGES = [
   {
@@ -62,7 +63,8 @@ const dropDownData = [
 // 콘서트
 // 클래식/무용
 
-function ContentDetail() {
+function ContentDetail({ route }) {
+  const { id, category } = route.params;
   const [selected, setSelected] = useState(undefined);
 
   const screenWidth = Math.round(Dimensions.get("window").width);
@@ -70,27 +72,13 @@ function ContentDetail() {
 
   // 받은 카테고리에 따라서 데이터 송수신하기
 
-  const baseURL = process.env.REACT_APP_BASE_URL;
-
   const {
-    data: contentDetail,
+    data: contentDetailData,
     isLoading,
-    error: contentDetailsError,
-  } = useQuery(
-    ["getContentDetail"],
-    async () => {
-      try {
-        const { data } = await axios.get(`${baseURL}/artizens`);
-        return data;
-      } catch (error) {}
-    },
-    {
-      onSuccess: () => {},
-      onError: (error) => {
-        throw error;
-      },
-    }
-  );
+    isError,
+  } = useFetchContentDetail(id);
+  console.log("contentDetailData", contentDetailData);
+
   // console.log(contentDetail);
 
   return (
@@ -111,17 +99,22 @@ function ContentDetail() {
             </Text>
             <View style={[detailStyles.textLine, { width: 80 }]} />
           </View>
-          <ContentDetailInfoLine tagView={"작가"} infoText={"서지운"} />
-          <ContentDetailInfoLine tagView={"장소"} infoText={"천안"} />
+          <ContentDetailInfoLine
+            tagView={"스태프"}
+            infoText={contentDetailData?.staff}
+          />
+          <ContentDetailInfoLine
+            tagView={"장소"}
+            infoText={contentDetailData?.place}
+          />
           <ContentDetailInfoLine tagView={"시간"} infoText={"10:00 ~ 21:00"} />
-          <ContentDetailInfoLine tagView={"기간"} infoText={"2022 ~ 2023"} />
+          <ContentDetailInfoLine
+            tagView={"기간"}
+            infoText={contentDetailData?.date}
+          />
         </View>
         <View style={detailStyles.divideLine} />
-        {!!selected && (
-          <Text>
-            Selected: label = {selected.label} and value = {selected.value}
-          </Text>
-        )}
+
         <Text
           style={[
             detailStyles.contentInfoWrapper,
@@ -129,39 +122,35 @@ function ContentDetail() {
             { marginVertical: 20 },
           ]}
         >
-          <Text style={[detailColorStyles.skyBlue]}>뉴욕타임스</Text>
-          <Text> {category} 소개입니다.</Text>
+          <Text style={[detailColorStyles.skyBlue]}>
+            {contentDetailData?.name}
+          </Text>
+          <Text> 소개입니다.</Text>
         </Text>
 
-        <Text
-          style={[
-            detailStyles.contentInfoWrapper,
-            detailFontStyles.mainText,
-            { marginVertical: 0, marginBottom: 15 },
-          ]}
-        >
-          (더미멘트입니다)4대에 걸친 재일조선인 가족의 이야기를 그린 세계적
-          베스트셀러, 이민진 작가의 장편소설 《파친코》가 새롭게 출간되었다.
-          《파친코》는 재미교포 1.5세대인 이민진 작가가 30년에 달하는 세월에
-          걸쳐 집필한 대하소설로, 2017년 출간되어 《뉴욕타임스》 베스트셀러에
-          올랐다. 현재까지 전 세계 33개국에 번역 수출되었으며, BBC, 아마존 등
-          75개 이상의 주요 매체의 ‘올해의 책’으로 선정되었을 뿐 아니라
-          전미도서상 최종 후보에 이름을 올리며 평단과 대중을 모두 사로잡은
-          작품이다. 버락 오바마 전 미국 대통령으로부터 “회복과 연민에 대한
-          강력한 이야기”라는 찬사를 받으며 주목을 받았다.지난 4월 판권 계약이
-          종료되며 절판되었던 《파친코》는 새로운 번역과 디자인으로 한국
-          독자에게 돌아왔다. (더미멘트입니다)4대에 걸친 재일조선인 가족의
-          이야기를 그린 세계적 베스트셀러, 이민진 작가의 장편소설 《파친코》가
-          새롭게 출간되었다. 《파친코》는 재미교포 1.5세대인 이민진 작가가
-          30년에 달하는 세월에 걸쳐 집필한 대하소설로, 2017년 출간되어
-          《뉴욕타임스》 베스트셀러에 올랐다. 현재까지 전 세계 33개국에 번역
-          수출되었으며, BBC, 아마존 등 75개 이상의 주요 매체의 ‘올해의 책’으로
-          선정되었을 뿐 아니라 전미도서상 최종 후보에 이름을 올리며 평단과
-          대중을 모두 사로잡은 작품이다. 버락 오바마 전 미국 대통령으로부터
-          “회복과 연민에 대한 강력한 이야기”라는 찬사를 받으며 주목을
-          받았다.지난 4월 판권 계약이 종료되며 절판되었던 《파친코》는 새로운
-          번역과 디자인으로 한국 독자에게 돌아왔다.
-        </Text>
+        {!contentDetailData?.content ? (
+          <>
+            <Text
+              style={[
+                detailStyles.contentInfoWrapper,
+                detailFontStyles.mainText,
+                { marginVertical: 0, marginBottom: 15 },
+              ]}
+            >
+              내용이 없습니다.
+            </Text>
+          </>
+        ) : (
+          <Text
+            style={[
+              detailStyles.contentInfoWrapper,
+              detailFontStyles.mainText,
+              { marginVertical: 0, marginBottom: 15 },
+            ]}
+          >
+            {contentDetailData?.content}
+          </Text>
+        )}
         <View style={detailStyles.detailImageContainer}>
           <Image
             source={{

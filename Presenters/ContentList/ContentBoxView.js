@@ -11,7 +11,8 @@ import {
 import Theme from "../../Theme/Theme";
 
 function ContentBox({
-  data: { category, id, name, posterUrl, startDate, finishDate, place },
+  data: { genre, id, name, posterUrl, date, facility },
+  category,
 }) {
   const navigation = useNavigation();
   return (
@@ -21,20 +22,27 @@ function ContentBox({
       onPress={() =>
         navigation.navigate("ContentDetail", {
           screen: "ContentDetail",
-          params: { id: id, category: category },
+          id: id,
+          category: category,
         })
       }
     >
       <View>
         <View style={styles.StImgWrapper}>
-          <Image source={{ uri: posterUrl }} style={styles.StImg} />
+          {posterUrl ? (
+            <Image source={{ uri: posterUrl }} style={styles.StImg} />
+          ) : (
+            <Image
+              source={require("../../assets/login/logo_v1_3.png")}
+              style={styles.StEmptyImg}
+              resizeMode="contain"
+            />
+          )}
         </View>
         <View style={styles.StTextWrapper}>
           <Text style={styles.StNameText}>{name}</Text>
-          <Text style={styles.StText}>
-            기간 : {startDate}~{finishDate}
-          </Text>
-          <Text style={styles.StText}>위치 : {place}</Text>
+          <Text style={styles.StText}>기간 : {date}</Text>
+          <Text style={styles.StText}>장소 : {facility}</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -77,6 +85,12 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
+  StEmptyImg: {
+    borderRadius: 20,
+    width: "100%",
+    height: "100%",
+    backgroundColor: "gray",
+  },
   StTextWrapper: {
     width: "100%",
     height: "30%",
@@ -92,7 +106,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   StText: {
-    fontSize: 10,
+    fontSize: 13,
     color: Theme.colors.Gray,
   },
 });

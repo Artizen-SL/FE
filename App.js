@@ -8,7 +8,8 @@ import Theme from "./Theme/Theme";
 import MainRoutes from "./Navigation/MainRoutes";
 import Login from "./Screen/Login/Login";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
+import { Provider } from "jotai";
+import KakaoLogout from "./Screen/Login/KakaoLogout";
 const Tab = createBottomTabNavigator();
 const queryClient = new QueryClient();
 
