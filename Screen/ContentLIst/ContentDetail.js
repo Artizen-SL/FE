@@ -57,6 +57,11 @@ const dropDownData = [
   },
 ];
 
+// 전시회
+// 연극/뮤지컬
+// 콘서트
+// 클래식/무용
+
 function ContentDetail() {
   const [selected, setSelected] = useState(undefined);
 
