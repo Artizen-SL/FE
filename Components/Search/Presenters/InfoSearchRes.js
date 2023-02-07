@@ -12,6 +12,7 @@ import {
 import styled, { css } from "styled-components/native";
 import Theme from "../../../Theme/Theme";
 import ScrollViewLayout from "../../Layout/ScrollViewLayout";
+import InfoSearchContentView from "./InfoSearchContentView";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Layout from "../../Layout/Layout";
 
@@ -23,6 +24,16 @@ const InfoSearchRes = ({ navigation, searchWord, sendKeyword, searchData }) => {
         <SearchWord>"{sendKeyword.keyword}"</SearchWord>
         <BlackBoldText>검색결과 입니다.</BlackBoldText>
       </LowLeft>
+      <View style={{ flex: 1 }}>
+      <ScrollViewLayout>
+        {searchData &&
+          searchData?.map((data) => {
+            return (
+              <InfoSearchContentView key={data?.id} data={data} />
+            );
+          })}
+      </ScrollViewLayout>
+    </View>
     </MarginLeft>
   );
 };
@@ -60,4 +71,11 @@ const LowLeft = styled(View)`
 
 const MarginLeft = styled(View)`
   margin-left: 15px;
+`;
+
+const StyledText = styled.Text`
+  /* text-shadow-color: rgba(0, 0, 0, 0.25);
+  text-shadow-offset: 0px 4px;
+  text-shadow-radius: 3px;*/
+  text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
 `;
