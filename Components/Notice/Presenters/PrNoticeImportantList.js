@@ -16,17 +16,17 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Layout from "../../Layout/Layout";
 
 const PrNoticeImportantList = ({ datas }) => {
-  return (
+  return(
     <View>
-      {datas.map((data) => {
+      {datas?.map((data) => {
         return (
           <Layout>
-            <LongBox key={data?.noticeId}>
+            <LongBox key={data?.id}>
               <FdRow>
                 <BoldTextSky>공지</BoldTextSky>
-                <Title >{data?.noticeTitle}</Title>
+                <Title >{data?.title}</Title>
               </FdRow>
-              <TextGray >{data?.noticeDate}</TextGray>
+              <TextGray >{data?.createdAt}</TextGray>
             </LongBox>
           </Layout>
         );

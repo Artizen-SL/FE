@@ -1,19 +1,21 @@
+
 import { useQuery } from "@tanstack/react-query";
 import { getRequest } from "../../axios/axiosConfig";
 
-const getNoticeContent = () => {
+
+const getImportantNoticeContent = () => {
     return getRequest({
       method: "get",
-      url: `/notification`,
+      url: `/notification/importance`,
     });
   };
 
-const useFetchNotice = () => {
+const useFetchImportantNotice = () => {
     return useQuery(
         {
-          queryKey: ["getNoticeContent"],
+          queryKey: ["getImportantNoticeContent"],
           queryFn: async () => {
-            const { data } = await getNoticeContent();
+            const { data } = await getImportantNoticeContent();
             return data;
           },
         },
@@ -24,4 +26,4 @@ const useFetchNotice = () => {
       );
 }
 
-export default useFetchNotice;
+export default useFetchImportantNotice;
