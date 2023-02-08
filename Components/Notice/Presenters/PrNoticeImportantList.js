@@ -15,21 +15,19 @@ import ScrollViewLayout from "../../Layout/ScrollViewLayout";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Layout from "../../Layout/Layout";
 
-const PrNoticeList = ({ datas }) => {
+const PrNoticeImportantList = ({ datas }) => {
   return (
     <View>
       {datas.map((data) => {
         return (
           <Layout>
-            <NoticeBox key={data?.noticeId}>
-              <View>
+            <LongBox key={data?.noticeId}>
               <FdRow>
-                <Title>{data?.noticeTitle}</Title>
-                <TextGray>{data?.noticeDate}</TextGray>
+                <BoldTextSky>공지</BoldTextSky>
+                <Title >{data?.noticeTitle}</Title>
               </FdRow>
-              <TextGray>{data?.noticeContent}</TextGray>
-              </View>
-            </NoticeBox>
+              <TextGray >{data?.noticeDate}</TextGray>
+            </LongBox>
           </Layout>
         );
       })}
@@ -37,18 +35,19 @@ const PrNoticeList = ({ datas }) => {
   );
 };
 
-export default PrNoticeList;
+export default PrNoticeImportantList;
 
-const NoticeBox = styled.View`
+const LongBox = styled.View`
   flex: 1;
   width: 320px;
   height: 54px;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  background-color: ${Theme.colors.White};
   padding: 5px;
   border-radius: 10px;
-  border-top: 1px solid ${Theme.colors.LightGray};
+  border: 1px solid ${Theme.colors.LightGray};
 `;
 const FdRow = styled.View`
   flex-direction: row;
