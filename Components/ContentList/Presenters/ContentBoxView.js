@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   Dimensions,
 } from "react-native";
-import Theme from "../../Theme/Theme";
+import Theme from "../../../Theme/Theme";
 
 function ContentBox({
   data: { genre, id, name, posterUrl, date, facility },
@@ -33,7 +33,7 @@ function ContentBox({
             <Image source={{ uri: posterUrl }} style={styles.StImg} />
           ) : (
             <Image
-              source={require("../../assets/login/logo_v1_3.png")}
+              source={require("../../../assets/login/logo_v1_3.png")}
               style={styles.StEmptyImg}
               resizeMode="contain"
             />
