@@ -1,4 +1,4 @@
-import NoticeListData from "./Data/NoticeListData"
+import NoticeListData from "./Data/NoticeListImportantData"
 import PrNoticeList from "./Presenters/PrNoticeList";
 
 const NoticeList = () => {
