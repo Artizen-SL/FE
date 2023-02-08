@@ -16,7 +16,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Layout from "../../Layout/Layout";
 
 const PrNoticeList = ({ datas }) => {
-  console.log("datas===>",datas)
   return (
     <View>
       {datas.map((data) => {
@@ -25,19 +24,19 @@ const PrNoticeList = ({ datas }) => {
             onPress={() =>
               navigation.navigate("NoticeRoutes", {
                 screen: "NoticeDetail",
-                params: { id: data.noticeId },
+                params: { id: data?.id },
               })
             }
           >
             <Layout>
-              <NoticeBox key={data?.noticeId}>
+              <NoticeBox key={data?.id}>
                 <View>
                   <FdRow>
-                    <Title>{data?.noticeTitle}</Title>
-                    <TextGray>{data?.noticeDate}</TextGray>
+                    <Title>{data?.title}</Title>
+                    <TextGray>{data?.createdAt}</TextGray>
                   </FdRow>
                   <Content style={{ marginTop: 5, marginBottom: 5 }}>
-                    {data?.noticeContent}
+                    {data?.content}
                   </Content>
                   <GrayLine></GrayLine>
                 </View>

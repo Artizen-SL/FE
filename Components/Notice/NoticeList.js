@@ -1,15 +1,14 @@
 import NoticeListData from "./Data/NoticeListImportantData"
 import PrNoticeList from "./Presenters/PrNoticeList";
 import useFetchNotice from "../../querys/notice/useFetchNotice";
+import { useEffect } from "react";
 
 const NoticeList = () => {
-    const datas = NoticeListData();
     const {
-      data: noticeData,
+      data:datas,
       isError,
       isLoading,
     } = useFetchNotice();
-    console.log(" noticeData==>", noticeData)
   return<PrNoticeList datas={datas}/>
 }
 
