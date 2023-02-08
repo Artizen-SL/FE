@@ -133,15 +133,21 @@ const CommunityMain = () => {
           <TagView variant="community" tag={item.tag}>
             {item.tag}
           </TagView>
-          <Text>{item.title}</Text>
+          <StTitleWrapper>
+            <StTitle numberOfLines={1} ellipsizeMode="tail">
+              {item.title}
+            </StTitle>
+          </StTitleWrapper>
         </StCommuContentTitle>
         <View>
-          <Text>{item.content}</Text>
+          <StSubText numberOfLines={1} ellipsizeMode="tail">
+            {item.content}
+          </StSubText>
         </View>
         <View>
-          <Text>
+          <StSubText numberOfLines={1} ellipsizeMode="tail">
             {item.date} / {item.nickname}
-          </Text>
+          </StSubText>
         </View>
       </StCommuContentWrapper>
     );
@@ -176,4 +182,20 @@ const StCommuContentWrapper = styled(TouchableOpacity)`
 const StCommuContentTitle = styled(View)`
   display: flex;
   flex-direction: row;
+  align-items: center;
+`;
+
+const StTitle = styled(Text)`
+  margin-left: 10px;
+  font-weight: bold;
+`;
+
+const StTitleWrapper = styled(View)`
+  display: flex;
+  flex-wrap: nowrap;
+  width: 80%;
+`;
+
+const StSubText = styled(Text)`
+  color: gray;
 `;
