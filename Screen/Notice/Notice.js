@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import {
   StyleSheet,
   Text,
@@ -15,6 +16,7 @@ import NoticeList from "../../Components/Notice/NoticeList";
 import NoticeImportantList from "../../Components/Notice/NoticeImportantList";
 
 const Notice = () => {
+  const navigation = useNavigation();
   return (
     <ScrollViewLayout>
       <ImageBackground
@@ -23,6 +25,15 @@ const Notice = () => {
         < RowBox>
           <Logo source={require("../../assets/Icon/notice.png")} />
           < BoldTextBL>공지사항</ BoldTextBL>
+          <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("NoticeRoutes", {
+              screen: "NoticePost",
+            })
+          }
+          >
+          <Text>글쓰기</Text>
+          </TouchableOpacity>
         </ RowBox>
         <NoticeImportantList />
         <NoticeList />

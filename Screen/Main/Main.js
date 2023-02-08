@@ -204,7 +204,7 @@ const Main = ({ navigation }) => {
             <RowBox>
               <TouchableOpacity
                 onPress={() =>
-                  navigation.navigate("MainRoutes", {
+                  navigation.navigate("NoticeRoutes", {
                     screen: "Notice",
                   })
                 }
@@ -216,8 +216,8 @@ const Main = ({ navigation }) => {
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() =>
-                  navigation.navigate("MainRoutes", {
-                    screen: "NoticeList",
+                  navigation.navigate("NoticeRoutes", {
+                    screen: "Notice",
                   })
                 }
               >
