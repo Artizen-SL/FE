@@ -5,7 +5,7 @@ import Page from "./Page";
 
 const Carousel = ({ pages, pageWidth, gap, offset }) => {
   const [page, setPage] = useState(0);
-
+  console.log("pages", pages);
   // props 정보를 reder 하는 함수
   function renderItem({ item }) {
     return (
@@ -34,7 +34,7 @@ const Carousel = ({ pages, pageWidth, gap, offset }) => {
         data={pages}
         decelerationRate="fast"
         horizontal
-        keyExtractor={(item) => `page__${item.color}`}
+        keyExtractor={(item) => `page__${item.url}`}
         onScroll={onScroll}
         pagingEnabled
         renderItem={renderItem}
