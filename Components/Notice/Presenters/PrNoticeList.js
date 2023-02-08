@@ -16,7 +16,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Layout from "../../Layout/Layout";
 
 const PrNoticeList = ({ datas }) => {
-  console.log(datas)
   return (
     <View>
       {datas.map((data) => {
