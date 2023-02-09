@@ -1,6 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useRef, useState } from "react";
 import {
+  Alert,
   Image,
   Modal,
   ScrollView,
@@ -16,6 +17,7 @@ import Dropdown from "../../Common/Dropdown/Dropdown";
 import ImagePickerBtn from "../../Common/ImagePicker/ImagePickerBtn";
 import CommunityContentsWrapper from "../../Components/Community/Presenters/CommunityContentsWrapper";
 import TagView from "../../Components/Elem/TagView";
+import usePostCommunity from "../../querys/community/usePostCommunity";
 
 const data = [
   {
@@ -28,6 +30,7 @@ const data = [
     tag: "나눔",
   },
 ];
+
 const CommunityPost = () => {
   const navigation = useNavigation();
   const DropdownButton = useRef();
@@ -36,6 +39,67 @@ const CommunityPost = () => {
   });
   const [visible, setVisible] = useState(false);
   const [dropdownTop, setDropdownTop] = useState(0);
+
+  const [commuInputs, setCommuInputs] = useState({
+    tag: "자유글",
+    title: "",
+    content: "",
+    imageUrl: "",
+  });
+
+  const onChangeHandler = (name, event) => {
+    const { text } = event.nativeEvent;
+    setCommuInputs({ ...commuInputs, [name]: text });
+  };
+
+  const { mutate: postCommunityMutate } = usePostCommunity();
+
+  const onSubmitHandler = () => {
+    if (
+      commuInputs.tag === "" ||
+      commuInputs.title === "" ||
+      commuInputs.content === "" ||
+      commuInputs.imageUrl === ""
+    ) {
+      return Alert.alert("오류", "빈칸을 채워주세요", [
+        {
+          text: "나가기",
+          style: "cancel",
+        },
+      ]);
+    }
+
+    Alert.alert("확인", "정말 입력하시겠습니까?", [
+      {
+        text: "나가기",
+        style: "cancel",
+      },
+      {
+        text: "작성",
+        onPress: () => {
+          const frm = new FormData();
+          frm.append("title", commuInputs.title);
+          frm.append("content", commuInputs.content);
+          frm.append("imageUrl", commuInputs.imageUrl);
+          frm.append("tag", commuInputs.tag);
+          postCommunityMutate(
+            { payload: frm },
+            {
+              onSuccess: (data) => {
+                console.log("data", data);
+                navigation.navigate("CommunityRoutes", {
+                  screen: "CommunityMain",
+                });
+              },
+              onError: (error) => {
+                console.log(error);
+              },
+            }
+          );
+        },
+      },
+    ]);
+  };
 
   const toggleDropdown = () => {
     visible ? setVisible(false) : openDropdown();
@@ -50,6 +114,7 @@ const CommunityPost = () => {
 
   const onItemPress = (item) => {
     setSelected(item);
+    setCommuInputs({ ...commuInputs, tag: item.tag });
     setVisible(false);
   };
 
@@ -106,10 +171,13 @@ const CommunityPost = () => {
               <TextInput
                 placeholder="제목을 입력해주세요."
                 multiline={false}
+                type="text"
+                onChange={(e) => onChangeHandler("title", e)}
+                value={commuInputs.title}
               ></TextInput>
             </View>
           </StPostingTitleView>
-          <StPostingBtn>
+          <StPostingBtn onPress={onSubmitHandler}>
             <StPostingBtnText>작성</StPostingBtnText>
           </StPostingBtn>
         </StPostingTopView>
@@ -127,24 +195,17 @@ const CommunityPost = () => {
               borderColor: "black",
             }}
           >
-            <TextInput multiline placeholder="내용을 작성해주세요." style={{}}>
-              sdkajfl;dsjafl;kjdsalkfjdlsa;jfld;ksafl;dskafl;jdsal;fjdasl;fkjdls;ajfdlk;sjafl;dkjsal;fkjdsla;jfdl;ksajfld;sajfl;dsajlf;djsa;lfkjdls;akfl;dsaj
-              sdkajfl;dsjafl;kjdsalkfjdlsa;jfld;ksafl;dskafl;jdsal;fjdasl;fkjdls;ajfdlk;sjafl;dkjsal;fkjdsla;jfdl;ksajfld;sajfl;dsajlf;djsa;lfkjdls;akfl;dsaj
-              sdkajfl;dsjafl;kjdsalkfjdlsa;jfld;ksafl;dskafl;jdsal;fjdasl;fkjdls;ajfdlk;sjafl;dkjsal;fkjdsla;jfdl;ksajfld;sajfl;dsajlf;djsa;lfkjdls;akfl;dsaj
-              sdkajfl;dsjafl;kjdsalkfjdlsa;jfld;ksafl;dskafl;jdsal;fjdasl;fkjdls;ajfdlk;sjafl;dkjsal;fkjdsla;jfdl;ksajfld;sajfl;dsajlf;djsa;lfkjdls;akfl;dsaj
-              sdkajfl;dsjafl;kjdsalkfjdlsa;jfld;ksafl;dskafl;jdsal;fjdasl;fkjdls;ajfdlk;sjafl;dkjsal;fkjdsla;jfdl;ksajfld;sajfl;dsajlf;djsa;lfkjdls;akfl;dsaj
-              sdkajfl;dsjafl;kjdsalkfjdlsa;jfld;ksafl;dskafl;jdsal;fjdasl;fkjdls;ajfdlk;sjafl;dkjsal;fkjdsla;jfdl;ksajfld;sajfl;dsajlf;djsa;lfkjdls;akfl;dsaj
-              sdkajfl;dsjafl;kjdsalkfjdlsa;jfld;ksafl;dskafl;jdsal;fjdasl;fkjdls;ajfdlk;sjafl;dkjsal;fkjdsla;jfdl;ksajfld;sajfl;dsajlf;djsa;lfkjdls;akfl;dsaj
-              sdkajfl;dsjafl;kjdsalkfjdlsa;jfld;ksafl;dskafl;jdsal;fjdasl;fkjdls;ajfdlk;sjafl;dkjsal;fkjdsla;jfdl;ksajfld;sajfl;dsajlf;djsa;lfkjdls;akfl;dsaj
-              sdkajfl;dsjafl;kjdsalkfjdlsa;jfld;ksafl;dskafl;jdsal;fjdasl;fkjdls;ajfdlk;sjafl;dkjsal;fkjdsla;jfdl;ksajfld;sajfl;dsajlf;djsa;lfkjdls;akfl;dsaj
-              sdkajfl;dsjafl;kjdsalkfjdlsa;jfld;ksafl;dskafl;jdsal;fjdasl;fkjdls;ajfdlk;sjafl;dkjsal;fkjdsla;jfdl;ksajfld;sajfl;dsajlf;djsa;lfkjdls;akfl;dsaj
-              sdkajfl;dsjafl;kjdsalkfjdlsa;jfld;ksafl;dskafl;jdsal;fjdasl;fkjdls;ajfdlk;sjafl;dkjsal;fkjdsla;jfdl;ksajfld;sajfl;dsajlf;djsa;lfkjdls;akfl;dsaj
-              sdkajfl;dsjafl;kjdsalkfjdlsa;jfld;ksafl;dskafl;jdsal;fjdasl;fkjdls;ajfdlk;sjafl;dkjsal;fkjdsla;jfdl;ksajfld;sajfl;dsajlf;djsa;lfkjdls;akfl;dsaj
-            </TextInput>
+            <TextInput
+              multiline
+              placeholder="내용을 작성해주세요."
+              type="text"
+              onChange={(e) => onChangeHandler("content", e)}
+              value={commuInputs.content}
+            ></TextInput>
           </ScrollView>
         </View>
       </StPostingWrapper>
-      <ImagePickerBtn />
+      <ImagePickerBtn setImagePick={setCommuInputs} imagePick={commuInputs} />
     </CommunityContentsWrapper>
   );
 };

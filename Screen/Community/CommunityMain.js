@@ -1,5 +1,5 @@
-import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import { useIsFocused, useNavigation } from "@react-navigation/native";
+import React, { useEffect } from "react";
 
 import {
   FlatList,
@@ -13,111 +13,22 @@ import {
 import styled from "styled-components/native";
 import TagView from "../../Components/Elem/TagView";
 import CommunityContentsWrapper from "../../Components/Community/Presenters/CommunityContentsWrapper";
-
-const communityMainItems = [
-  {
-    id: 1,
-    tag: "자유글",
-    title: "title",
-    content: "content",
-    date: "2022/01/1 12:00",
-    nickname: "nickname",
-    commentNum: "12",
-  },
-  {
-    id: 2,
-    tag: "동행구함",
-    title: "title",
-    content: "content",
-    date: "2022/01/1 12:00",
-    nickname: "nickname",
-    commentNum: "12",
-  },
-  {
-    id: 3,
-    tag: "나눔",
-    title: "title",
-    content: "content",
-    date: "2022/01/1 12:00",
-    nickname: "nickname",
-    commentNum: "12",
-  },
-  {
-    id: 4,
-    tag: "자유글",
-    title: "title",
-    content: "content",
-    date: "2022/01/1 12:00",
-    nickname: "nickname",
-    commentNum: "12",
-  },
-  {
-    id: 5,
-    tag: "자유글",
-    title: "title",
-    content: "content",
-    date: "2022/01/1 12:00",
-    nickname: "nickname",
-    commentNum: "12",
-  },
-  {
-    id: 6,
-    tag: "자유글",
-    title: "title",
-    content: "content",
-    date: "2022/01/1 12:00",
-    nickname: "nickname",
-    commentNum: "12",
-  },
-  {
-    id: 7,
-    tag: "자유글",
-    title: "title",
-    content: "content",
-    date: "2022/01/1 12:00",
-    nickname: "nickname",
-    commentNum: "12",
-  },
-  {
-    id: 8,
-    tag: "자유글",
-    title: "title",
-    content: "content",
-    date: "2022/01/1 12:00",
-    nickname: "nickname",
-    commentNum: "12",
-  },
-  {
-    id: 9,
-    tag: "자유글",
-    title: "title",
-    content: "content",
-    date: "2022/01/1 12:00",
-    nickname: "nickname",
-    commentNum: "12",
-  },
-  {
-    id: 10,
-    tag: "자유글",
-    title: "title",
-    content: "content",
-    date: "2022/01/1 12:00",
-    nickname: "nickname",
-    commentNum: "12",
-  },
-  {
-    id: 11,
-    tag: "자유글",
-    title: "title",
-    content: "content",
-    date: "2022/01/1 12:00",
-    nickname: "nickname",
-    commentNum: "12",
-  },
-];
+import useFetchCommunity from "../../querys/community/useFetchCommunity";
 
 const CommunityMain = () => {
   const navigation = useNavigation();
+  const isFocused = useIsFocused();
+  const {
+    data: communityMainDatas,
+    isLoading,
+    isError,
+    refetch,
+  } = useFetchCommunity();
+  console.log(communityMainDatas);
+
+  useEffect(() => {
+    refetch();
+  }, [isFocused]);
 
   const renderItem = ({ item }) => {
     return (
@@ -125,13 +36,15 @@ const CommunityMain = () => {
         onPress={() =>
           navigation.navigate("CommunityRoutes", {
             screen: "CommunityDetail",
-            params: { commuContentId: item.id },
+            params: {
+              id: item?.id,
+            },
           })
         }
       >
         <StCommuContentTitle>
-          <TagView variant="community" tag={item.tag}>
-            {item.tag}
+          <TagView variant="community" tag={item.tag ?? "자유글"}>
+            {item.tag ?? "자유글"}
           </TagView>
           <StTitleWrapper>
             <StTitle numberOfLines={1} ellipsizeMode="tail">
@@ -146,7 +59,8 @@ const CommunityMain = () => {
         </View>
         <View>
           <StSubText numberOfLines={1} ellipsizeMode="tail">
-            {item.date} / {item.nickname}
+            {item?.createdAt.slice(0, 10)} {item.createdAt.slice(11, 16)} /{" "}
+            {item.nickname ?? "익명"}
           </StSubText>
         </View>
       </StCommuContentWrapper>
@@ -159,7 +73,7 @@ const CommunityMain = () => {
         <FlatList
           // ListHeaderComponent={<></>}
           renderItem={renderItem}
-          data={communityMainItems}
+          data={communityMainDatas}
           keyExtractor={(item) => item.id}
           contentContainerStyle={{}}
           // ListFooterComponent={}

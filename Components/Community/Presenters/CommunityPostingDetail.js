@@ -4,43 +4,42 @@ import styled from "styled-components";
 import TagView from "../../Elem/TagView";
 
 const CommunityPostingDetail = ({
-  data: {
-    category,
-    date,
-    description,
-    profileImage,
-    id,
-    nickname,
-    title,
-    postingImages,
-  },
+  data: { content, createdAt, imageUrl, tag, id, title },
 }) => {
   return (
     <StPostingDetailContainer>
       <StPostingHeader>
-        <StPostingUserImage source={{ uri: profileImage }} />
+        {/* <StPostingUserImage source={{ uri: profileImage }} /> */}
+        <StPostingUserImage
+          source={require("../../../assets/logo/artizenRabbit.png")}
+        />
         <View>
-          <StNicknameText>{nickname}</StNicknameText>
-          <StDateText>{date}</StDateText>
+          {/* <StNicknameText>{nickname ?? "익명"}</StNicknameText> */}
+          <StNicknameText>{"익명"}</StNicknameText>
+          <StDateText>{createdAt.slice(0, 10)}</StDateText>
         </View>
       </StPostingHeader>
 
       <StTitleView>
-        <TagView variant="community" tag="자유글">
-          {category}
+        <TagView variant="community" tag={tag}>
+          {tag}
         </TagView>
         <StTitleText>{title}</StTitleText>
       </StTitleView>
 
-      <Text>{description}</Text>
+      <StContentText>{content}</StContentText>
 
-      {postingImages.map((item, idx) => {
+      <View>
+        <StPostingImage source={{ uri: imageUrl }} resizeMode="contain" />
+      </View>
+      <StDividerView />
+      {/* {postingImages.map((item, idx) => {
         return (
           <View key={idx}>
             <StPostingImage source={{ uri: item }} resizeMode="contain" />
           </View>
         );
-      })}
+      })} */}
     </StPostingDetailContainer>
   );
 };
@@ -87,7 +86,17 @@ const StTitleText = styled(Text)`
   font-weight: bold;
 `;
 
+const StContentText = styled(Text)`
+  margin-bottom: 20px;
+`;
+
 const StPostingImage = styled(Image)`
   width: 100%;
   height: 500px;
+`;
+const StDividerView = styled(View)`
+  border-color: gray;
+  border-bottom-width: 1px;
+  margin-bottom: 10px;
+  margin-top: 5px;
 `;

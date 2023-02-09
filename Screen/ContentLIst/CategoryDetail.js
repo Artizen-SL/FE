@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Image, View } from "react-native";
+import React, { useRef, useState } from "react";
+import { Image, Text, View } from "react-native";
 import styled from "styled-components/native";
 import Dropdown from "../../Common/Dropdown/Dropdown";
 import ScrollViewLayout from "../../Components/Layout/ScrollViewLayout";
@@ -36,12 +36,24 @@ const dropDownData = [
 function CategoryDetail({ route }) {
   const { category } = route.params;
   const [selected, setSelected] = useState(undefined);
+  const obsRef = useRef(null); //observer Element
+  const [list, setList] = useState([]);
+  // const [page, setPage] = useState(1);
+  const preventRef = useRef(true);
 
   const {
     data: categoryData,
     isError,
     isLoading,
-  } = useCategoryDetail(category);
+  } = useCategoryDetail(category, 1);
+  // const {
+  //   fetchNextPage,
+  //   fetchPreviousPage,
+  //   hasNextPage,
+  //   hasPreviousPage,
+  //   isFetchingNextPage,
+  //   isFetchingPreviousPage,
+  // } = useCategoryDetail(category, 1);
 
   return (
     <View style={{ flex: 1 }}>
@@ -73,6 +85,10 @@ function CategoryDetail({ route }) {
               <ContentBoxView key={data?.id} data={data} category={category} />
             );
           })}
+
+        <View ref={obsRef}>
+          <Text>옵저버</Text>
+        </View>
       </ScrollViewLayout>
       <Dropdown
         label="Select Item"
