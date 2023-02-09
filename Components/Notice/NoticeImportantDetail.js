@@ -1,12 +1,13 @@
-import { Image, View, Text} from "react-native";
+import PrNoticeIMPDetail from "./Presenters/PrNoticeIMPDetail";
+import useFetchIMPNoticeDetail from "../../querys/notice/useFetchIMPNoticeDetail";
+import useFetchNoticeDetail from "../../querys/notice/useFetchNoticeDetail";
 
 
-const NoticeImportantDetail = () => {
-  return (
-    <View>
-      <Text>중요공지 디테일</Text>
-    </View>
-  )
+const NoticeImportantDetail = ({route}) => {
+  const {id} = route.params;
+  const { data, isError, isLoading } = useFetchNoticeDetail(id);
+  console.log("NoticeImportantDetail",data);
+  return <PrNoticeIMPDetail data={data}/>
 }
 
 export default NoticeImportantDetail

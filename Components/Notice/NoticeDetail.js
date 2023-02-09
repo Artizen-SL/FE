@@ -1,12 +1,12 @@
-import { Image, View, Text} from "react-native";
+import { Image, View, Text } from "react-native";
+import PrNoticeDetail from "./Presenters/PrNoticeDetail";
+import useFetchNoticeDetail from "../../querys/notice/useFetchNoticeDetail";
 
+const NoticeDetail = ({route}) => {
+  const { id } = route.params;
+  const { data, isError, isLoading } = useFetchNoticeDetail(id);
 
-const NoticeDetail = () => {
-  return (
-    <View>
-      <Text>공지디테일</Text>
-    </View>
-  )
-}
+  return <PrNoticeDetail data={data} id={id}/>;
+};
 
-export default NoticeDetail
+export default NoticeDetail;

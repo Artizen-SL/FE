@@ -15,20 +15,29 @@ import ScrollViewLayout from "../../Layout/ScrollViewLayout";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Layout from "../../Layout/Layout";
 
-const PrNoticeImportantList = ({ datas }) => {
-  return(
+const PrNoticeImportantList = ({ datas, navigation }) => {
+  return (
     <View>
       {datas?.map((data) => {
         return (
-          <Layout>
-            <LongBox key={data?.id}>
-              <FdRow>
-                <BoldTextSky>공지</BoldTextSky>
-                <Title >{data?.title}</Title>
-              </FdRow>
-              <TextGray >{data?.createdAt}</TextGray>
-            </LongBox>
-          </Layout>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate("NoticeRoutes", {
+                screen: "NoticeImportantDetail",
+                params: { id: data?.id },
+              })
+            }
+          >
+            <Layout>
+              <LongBox key={data?.id}>
+                <FdRow>
+                  <BoldTextSky>공지</BoldTextSky>
+                  <Title>{data?.title}</Title>
+                  <TextGray>{data?.createdAt.slice(0, 10)}</TextGray>
+                </FdRow>
+              </LongBox>
+            </Layout>
+          </TouchableOpacity>
         );
       })}
     </View>
@@ -39,7 +48,7 @@ export default PrNoticeImportantList;
 
 const LongBox = styled.View`
   flex: 1;
-  width: 320px;
+  width: 100%;
   height: 54px;
   flex-direction: row;
   align-items: center;
@@ -51,7 +60,8 @@ const LongBox = styled.View`
 `;
 const FdRow = styled.View`
   flex-direction: row;
-  margin: 0 0 0 10px; 
+  margin: 0 0 0 10px;
+  width: 100%;
 `;
 
 const BoldTextSky = styled(Text)`
@@ -72,12 +82,13 @@ const TextGray = styled(Text)`
 `;
 const Title = styled(Text)`
   color: ${Theme.colors.Black};
-  width: 160px;
+  /* width: 160px; */
+  width: 50%;
   font-size: 13px;
-  overflow: hidden;  		
-  text-overflow: ellipsis;  	
-  white-space: nowrap; 		
-  word-break:break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
   align-items: center;
   justify-content: center;
   margin-right: 10px;
