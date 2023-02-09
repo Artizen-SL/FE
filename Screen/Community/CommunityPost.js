@@ -115,17 +115,34 @@ const CommunityPost = () => {
         </StPostingTopView>
 
         <StDividerView />
-        <ScrollView
+        <View
           style={{
             borderWidth: 1,
             borderColor: "black",
-            maxheight: "83%",
           }}
         >
-          <TextInput multiline placeholder="내용을 작성해주세요.">
-            asdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfaasdfasfddasfdsafdasasdfasfddasdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfadsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfasfddasfdsafdasasdfa
-          </TextInput>
-        </ScrollView>
+          <ScrollView
+            style={{
+              borderWidth: 1,
+              borderColor: "black",
+            }}
+          >
+            <TextInput multiline placeholder="내용을 작성해주세요." style={{}}>
+              sdkajfl;dsjafl;kjdsalkfjdlsa;jfld;ksafl;dskafl;jdsal;fjdasl;fkjdls;ajfdlk;sjafl;dkjsal;fkjdsla;jfdl;ksajfld;sajfl;dsajlf;djsa;lfkjdls;akfl;dsaj
+              sdkajfl;dsjafl;kjdsalkfjdlsa;jfld;ksafl;dskafl;jdsal;fjdasl;fkjdls;ajfdlk;sjafl;dkjsal;fkjdsla;jfdl;ksajfld;sajfl;dsajlf;djsa;lfkjdls;akfl;dsaj
+              sdkajfl;dsjafl;kjdsalkfjdlsa;jfld;ksafl;dskafl;jdsal;fjdasl;fkjdls;ajfdlk;sjafl;dkjsal;fkjdsla;jfdl;ksajfld;sajfl;dsajlf;djsa;lfkjdls;akfl;dsaj
+              sdkajfl;dsjafl;kjdsalkfjdlsa;jfld;ksafl;dskafl;jdsal;fjdasl;fkjdls;ajfdlk;sjafl;dkjsal;fkjdsla;jfdl;ksajfld;sajfl;dsajlf;djsa;lfkjdls;akfl;dsaj
+              sdkajfl;dsjafl;kjdsalkfjdlsa;jfld;ksafl;dskafl;jdsal;fjdasl;fkjdls;ajfdlk;sjafl;dkjsal;fkjdsla;jfdl;ksajfld;sajfl;dsajlf;djsa;lfkjdls;akfl;dsaj
+              sdkajfl;dsjafl;kjdsalkfjdlsa;jfld;ksafl;dskafl;jdsal;fjdasl;fkjdls;ajfdlk;sjafl;dkjsal;fkjdsla;jfdl;ksajfld;sajfl;dsajlf;djsa;lfkjdls;akfl;dsaj
+              sdkajfl;dsjafl;kjdsalkfjdlsa;jfld;ksafl;dskafl;jdsal;fjdasl;fkjdls;ajfdlk;sjafl;dkjsal;fkjdsla;jfdl;ksajfld;sajfl;dsajlf;djsa;lfkjdls;akfl;dsaj
+              sdkajfl;dsjafl;kjdsalkfjdlsa;jfld;ksafl;dskafl;jdsal;fjdasl;fkjdls;ajfdlk;sjafl;dkjsal;fkjdsla;jfdl;ksajfld;sajfl;dsajlf;djsa;lfkjdls;akfl;dsaj
+              sdkajfl;dsjafl;kjdsalkfjdlsa;jfld;ksafl;dskafl;jdsal;fjdasl;fkjdls;ajfdlk;sjafl;dkjsal;fkjdsla;jfdl;ksajfld;sajfl;dsajlf;djsa;lfkjdls;akfl;dsaj
+              sdkajfl;dsjafl;kjdsalkfjdlsa;jfld;ksafl;dskafl;jdsal;fjdasl;fkjdls;ajfdlk;sjafl;dkjsal;fkjdsla;jfdl;ksajfld;sajfl;dsajlf;djsa;lfkjdls;akfl;dsaj
+              sdkajfl;dsjafl;kjdsalkfjdlsa;jfld;ksafl;dskafl;jdsal;fjdasl;fkjdls;ajfdlk;sjafl;dkjsal;fkjdsla;jfdl;ksajfld;sajfl;dsajlf;djsa;lfkjdls;akfl;dsaj
+              sdkajfl;dsjafl;kjdsalkfjdlsa;jfld;ksafl;dskafl;jdsal;fjdasl;fkjdls;ajfdlk;sjafl;dkjsal;fkjdsla;jfdl;ksajfld;sajfl;dsajlf;djsa;lfkjdls;akfl;dsaj
+            </TextInput>
+          </ScrollView>
+        </View>
       </StPostingWrapper>
       <ImagePickerBtn />
     </CommunityContentsWrapper>

@@ -51,10 +51,10 @@ const Main = ({ navigation }) => {
       >
         <View style={[styles.container, styles.header]}>
           <View style={styles.headerarea}>
-            <Image
-              source={require("../../assets/login/logo_v1_3.png")}
-              style={styles.logo}
-            />
+            <View style={styles.logo}>
+              <Logo source={require("../../assets/logo/artizenRabbit.png")} />
+              <LogoTitle source={require("../../assets/logo/artizenNew.png")} />
+            </View>
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate("MainRoutes", {
@@ -92,6 +92,17 @@ const Main = ({ navigation }) => {
             >
               <TouchableOpacity
                 style={styles.center}
+                onPress={() => {
+                  alert("서비스 준비중 입니다.");
+                }}
+              >
+                <Circle>
+                  <Logo source={require("../../assets/Icon/gallery.png")} />
+                </Circle>
+                <Text>전시회</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.center}
                 onPress={() =>
                   navigation.navigate("MainRoutes", {
                     screen: "CategoryDetail",
@@ -99,20 +110,10 @@ const Main = ({ navigation }) => {
                   })
                 }
               >
-                <Image source={require("../../assets/Icon/gallery.png")} />
+                <Circle>
+                  <Logo source={require("../../assets/Icon/musical.png")} />
+                </Circle>
                 <Text>연극/뮤지컬</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.center}
-                onPress={() =>
-                  navigation.navigate("MainRoutes", {
-                    screen: "CategoryDetail",
-                    params: { category: "클래식/무용" },
-                  })
-                }
-              >
-                <Image source={require("../../assets/Icon/show.png")} />
-                <Text>클래식/무용</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.center}
@@ -123,9 +124,27 @@ const Main = ({ navigation }) => {
                   })
                 }
               >
-                <Image source={require("../../assets/Icon/concert.png")} />
+                <Circle>
+                  <Logo source={require("../../assets/Icon/concert.png")} />
+                </Circle>
                 <Text>콘서트</Text>
               </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.center}
+                onPress={() =>
+                  navigation.navigate("MainRoutes", {
+                    screen: "CategoryDetail",
+                    params: { category: "클래식/무용" },
+                  })
+                }
+              >
+                <Circle>
+                  <Logo source={require("../../assets/Icon/classic.png")} />
+                </Circle>
+
+                <Text>클래식/무용</Text>
+              </TouchableOpacity>
+
               <TouchableOpacity
                 style={styles.center}
                 onPress={() =>
@@ -135,7 +154,9 @@ const Main = ({ navigation }) => {
                   })
                 }
               >
-                <Image source={require("../../assets/Icon/expo.png")} />
+                <Circle>
+                  <Logo source={require("../../assets/Icon/magic.png")} />
+                </Circle>
                 <Text>서커스/마술</Text>
               </TouchableOpacity>
             </View>
@@ -181,16 +202,22 @@ const Main = ({ navigation }) => {
           {/*공지사항*/}
           <View style={{ marginTop: 20 }}>
             <RowBox>
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <BoldTextBL>
-                  <Image source={require("../../assets/Icon/notice.png")} />
-                  Notice
-                </BoldTextBL>
-              </View>
               <TouchableOpacity
                 onPress={() =>
-                  navigation.navigate("MainRoutes", {
-                    screen: "NoticeList",
+                  navigation.navigate("NoticeRoutes", {
+                    screen: "Notice",
+                  })
+                }
+              >
+                <View style={{ flexDirection: "row", alignItems: "center" }}>
+                  <Logo source={require("../../assets/Icon/notice.png")} />
+                  <BoldTextBL style={{ marginLeft: 6 }}>Notice</BoldTextBL>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("NoticeRoutes", {
+                    screen: "Notice",
                   })
                 }
               >
@@ -207,24 +234,22 @@ const Main = ({ navigation }) => {
           </View>
 
           {/*best*/}
-          <View style={{ marginTop: 20 }}>
-            <Text style={styles.BlBoldText}>
-              <Image
-                source={require("../../assets/Icon/best.png")}
-                style={{ marginRight: 5 }}
-              />
-              Best Artizen
-            </Text>
+
+          <View style={{ marginTop: 30 }}>
+            <View style={{ flexDirection: "row", marginLeft: 15 }}>
+              <Logo source={require("../../assets/Icon/best.png")} />
+              <BoldTextBL style={{ marginLeft: 6 }}>Best Artizen</BoldTextBL>
+            </View>
+
             <BestData />
           </View>
+
+          {/*new*/}
           <View style={{ marginTop: 20 }}>
-            <Text style={styles.BlBoldText}>
-              <Image
-                source={require("../../assets/Icon/new.png")}
-                style={{ marginRight: 5 }}
-              />
-              NEW Artizen
-            </Text>
+            <View style={{ flexDirection: "row", marginLeft: 15  }}>
+              <Logo source={require("../../assets/Icon/new.png")} />
+              <BoldTextBL style={{ marginLeft: 6 }}>NEW Artizen</BoldTextBL>
+            </View>
             <RecentlyData />
           </View>
         </View>
@@ -261,7 +286,15 @@ const styles = StyleSheet.create({
     gap: 3,
   },
   bgImage: { width: "100%", height: "100%" },
-  logo: { width: 117, height: 32 },
+
+  logo: {
+    width: 117,
+    height: 32,
+    flexDirection: "row",
+    alignContent: "center",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   longBox: {
     flex: 1,
     flexDirection: "row",
@@ -345,4 +378,22 @@ const BoldTextBL = styled(Text)`
 const IconImage = styled(Image)`
   width: 20px;
   height: 20px;
+`;
+const LogoTitle = styled(Image)`
+  width: 76px;
+  height: 16px;
+  margin-left: 6px;
+`;
+const Logo = styled(Image)`
+  width: 30px;
+  height: 30px;
+`;
+const Circle = styled(View)`
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  border: 1px solid ${Theme.colors.LightGray};
+  background-color: ${Theme.colors.White};
+  align-items: center;
+  justify-content: center;
 `;

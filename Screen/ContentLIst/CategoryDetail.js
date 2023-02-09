@@ -1,64 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import React, { useState } from "react";
 import { Image, View } from "react-native";
 import styled from "styled-components/native";
 import Dropdown from "../../Common/Dropdown/Dropdown";
 import ScrollViewLayout from "../../Components/Layout/ScrollViewLayout";
 import useCategoryDetail from "../../querys/category/useFetchCategoryDetail";
-import ContentBoxView from "../../Presenters/ContentList/ContentBoxView";
-const datas = [
-  {
-    category: "expo",
-    id: 1,
-    name: "별을 켜다",
-    posterUrl:
-      "https://www.enet.or.kr/files/attach/images/64330/613/078/cdeb716b65bbb2c6112a10719994e81b.jpg",
-    startDate: "2022/01/02",
-    finishDate: "2023/12/23",
-    place: "광진구 yes24 Hall",
-  },
-  {
-    category: "expo",
-    id: 2,
-    name: "별을 켜다",
-    posterUrl:
-      "https://www.enet.or.kr/files/attach/images/64330/613/078/cdeb716b65bbb2c6112a10719994e81b.jpg",
-    startDate: "2022/01/02",
-    finishDate: "2023/12/23",
-    place: "광진구 yes24 Hall",
-  },
-  {
-    category: "expo",
-    id: 3,
-    name: "별을 켜다",
-    posterUrl:
-      "https://www.enet.or.kr/files/attach/images/64330/613/078/cdeb716b65bbb2c6112a10719994e81b.jpg",
-    startDate: "2022/01/02",
-    finishDate: "2023/12/23",
-    place: "광진구 yes24 Hall",
-  },
-  {
-    category: "expo",
-    id: 4,
-    name: "별을 켜다",
-    posterUrl:
-      "https://www.enet.or.kr/files/attach/images/64330/613/078/cdeb716b65bbb2c6112a10719994e81b.jpg",
-    startDate: "2022/01/02",
-    finishDate: "2023/12/23",
-    place: "광진구 yes24 Hall",
-  },
-  {
-    category: "expo",
-    id: 5,
-    name: "별을 켜다",
-    posterUrl:
-      "https://www.enet.or.kr/files/attach/images/64330/613/078/cdeb716b65bbb2c6112a10719994e81b.jpg",
-    startDate: "2022/01/02",
-    finishDate: "2023/12/23",
-    place: "광진구 yes24 Hall",
-  },
-];
+import ContentBoxView from "../../Components/ContentList/Presenters/ContentBoxView";
 
 const dropDownData = [
   {

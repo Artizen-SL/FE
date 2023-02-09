@@ -36,8 +36,8 @@ const UserRecommendBox = ({ datas }) => {
                 marginTop: 20,
               }}
             >
+              <Logo source={require("../../../assets/Icon/recommend.png")} />
               <Text style={styles.smailTitle}>
-                <Image source={require("../../../assets/Icon/recommend.png")} />'
                 <Text style={{ fontWeight: "bold" }}>아티즌</Text>' 님 이런{" "}
                 <Text style={{ fontWeight: "bold" }}>{categoryName}</Text>는
                 어떠세요?
@@ -45,7 +45,7 @@ const UserRecommendBox = ({ datas }) => {
             </View>
             <ImageBackground
               source={{ uri: data?.posterUrl }}
-              style={styles.recommendImage} 
+              style={styles.recommendImage}
             >
               <Image
                 source={require("../../../assets/Icon/ribbon.png")}
@@ -144,4 +144,9 @@ const WhiteText = styled.Text`
   color: ${Theme.colors.White};
   font-size: 14;
   font-weight: 700;
+`;
+
+const Logo = styled(Image)`
+  width: 30px;
+  height: 30px;
 `;

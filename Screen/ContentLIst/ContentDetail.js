@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View, Image, Dimensions } from "react-native";
 import Theme from "../../Theme/Theme";
 import Dropdown from "../../Common/Dropdown/Dropdown";
+import FastImage from "react-native-fast-image";
 
 import ScrollViewLayout from "../../Components/Layout/ScrollViewLayout";
-import ContentDetailInfoLine from "../../Presenters/ContentList/ContentDetailInfoLineView";
 import Carousel from "../../Common/Carousel/Carousel";
-import { useQuery } from "@tanstack/react-query";
 import useFetchContentDetail from "../../querys/category/useFetchContentDetail";
-
+import ContentDetailInfoLine from "../../Components/ContentList/Presenters/ContentDetailInfoLineView";
 const PAGES = [
   {
     num: 1,
@@ -70,7 +69,8 @@ function ContentDetail({ route }) {
   const screenWidth = Math.round(Dimensions.get("window").width);
   //  pageWidth={screenWidth - (gap + padding * 2)}
 
-  // 받은 카테고리에 따라서 데이터 송수신하기
+  const [images, setImages] = useState([]);
+  const [posterUrls, setPosterUrls] = useState([]);
 
   const {
     data: contentDetailData,
@@ -79,7 +79,46 @@ function ContentDetail({ route }) {
   } = useFetchContentDetail(id);
   console.log("contentDetailData", contentDetailData);
 
-  // console.log(contentDetail);
+  useEffect(() => {
+    setPosterUrls([]);
+    // posterUrl이 string인 경우
+    if (typeof contentDetailData?.posterUrl === "string") {
+      setPosterUrls((prev) => [
+        ...prev,
+        { posterUrl: contentDetailData?.posterUrl },
+      ]);
+    }
+
+    // 배열인 경우
+  }, [contentDetailData?.posterUrl]);
+  // console.log(posterUrls);
+  // console.log(contentDetailData?.posterUrl);
+  useEffect(() => {
+    const imagePromises = contentDetailData?.imageList?.map((img) => {
+      return new Promise((resolve, reject) => {
+        Image.getSize(
+          img,
+          (width, height) => {
+            // successfully got image dimensions
+            resolve({ url: img, width, height, ratio: width / height });
+          },
+          () => {
+            // error case
+            console.warn(`Error with ${img}`);
+            resolve(null);
+          }
+        );
+      });
+    });
+
+    if (imagePromises) {
+      Promise.all(imagePromises)
+        .then((images) => images.filter(Boolean))
+        .then(setImages);
+    }
+  }, [contentDetailData]);
+
+  console.log(images);
 
   return (
     <View style={{ flex: 1 }}>
@@ -87,7 +126,7 @@ function ContentDetail({ route }) {
         <Carousel
           gap={10}
           offset={0}
-          pages={PAGES}
+          pages={posterUrls}
           pageWidth={screenWidth - (10 + 10 * 2)}
         />
 
@@ -101,16 +140,29 @@ function ContentDetail({ route }) {
           </View>
           <ContentDetailInfoLine
             tagView={"스태프"}
-            infoText={contentDetailData?.staff}
+            infoText={
+              contentDetailData?.staff === ""
+                ? "없음"
+                : contentDetailData?.staff
+            }
           />
           <ContentDetailInfoLine
             tagView={"장소"}
-            infoText={contentDetailData?.place}
+            infoText={
+              contentDetailData?.facility === ""
+                ? "없음"
+                : contentDetailData?.facility
+            }
           />
-          <ContentDetailInfoLine tagView={"시간"} infoText={"10:00 ~ 21:00"} />
+          {/* <ContentDetailInfoLine
+            tagView={"시간"}
+            infoText={contentDetailData?.date ?? "없음"}
+          /> */}
           <ContentDetailInfoLine
             tagView={"기간"}
-            infoText={contentDetailData?.date}
+            infoText={
+              contentDetailData?.date === "" ? "없음" : contentDetailData?.date
+            }
           />
         </View>
         <View style={detailStyles.divideLine} />
@@ -151,22 +203,38 @@ function ContentDetail({ route }) {
             {contentDetailData?.content}
           </Text>
         )}
-        <View style={detailStyles.detailImageContainer}>
-          <Image
-            source={{
-              uri: "https://www.enet.or.kr/files/attach/images/64330/613/078/cdeb716b65bbb2c6112a10719994e81b.jpg",
-            }}
-            style={detailStyles.detailImage}
-          ></Image>
-        </View>
-
-        <View style={detailStyles.detailImageContainer}>
-          <Image
-            source={{
-              uri: "http://storage.enuri.info/pic_upload/knowbox2/202107/073552927202107105b8bf0db-4614-4a57-83f7-fbe8bc69e5c1.JPEG",
-            }}
-            style={detailStyles.detailImage}
-          ></Image>
+        <View style={detailStyles.detailImagesContainer}>
+          {images?.map((image, idx) => {
+            return (
+              // <View key={idx} style={detailStyles.detailImageContainer}>
+              <View
+                style={{
+                  width: "100%",
+                  height: (screenWidth - 20) * (1 / image.ratio),
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Image
+                  key={idx}
+                  // resizeMode="contain"
+                  resizeMode={FastImage.resizeMode.contain}
+                  source={{
+                    uri: image.url,
+                    // uri: "http://www.kopis.or.kr/upload/pfmPoster/PF_PF203891_221209_092426.gif",
+                  }}
+                  // style={detailStyles.detailImage}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    // width: image.width,
+                    // height: image.height,
+                    // borderWidth: 1,
+                  }}
+                ></Image>
+              </View>
+            );
+          })}
         </View>
 
         <View style={detailStyles.divideLine} />
@@ -221,21 +289,11 @@ const detailStyles = StyleSheet.create({
     paddingHorizontal: Dimensions.get("window").width / 15,
     marginVertical: 30,
   },
-  detailImageContainer: {
-    flex: 1,
-    alignItems: "center",
-    height: "100%",
-    textAlign: "center",
-    marginTop: 15,
-    marginBottom: 15,
-    // borderWidth: 1,
-    // borderStyle: "solid",
-    // borderColor: "black",
-  },
-  detailImage: {
-    resizeMode: "contain",
-    height: Dimensions.get("window").height / 2,
-    width: "100%",
+  detailImagesContainer: {
+    // flex: 1,
+    // justifyContent: "center",
+    // alignItems: "center",
+    paddingBottom: 350,
   },
 });
 

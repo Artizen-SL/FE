@@ -3,12 +3,14 @@ import { Dimensions, Image } from "react-native";
 import styled from "styled-components/native";
 
 export default function Page({ item, style }) {
+  console.log(item);
   return (
     <PageItem color={item.color} style={[style]}>
       {/* <PageNum>{item.num}</PageNum> */}
       <Image
         source={{
-          uri: "https://www.enet.or.kr/files/attach/images/64330/613/078/cdeb716b65bbb2c6112a10719994e81b.jpg",
+          // uri: item?.posterUrl,
+          uri: item?.posterUrl,
         }}
         style={{
           resizeMode: "contain",
