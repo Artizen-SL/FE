@@ -15,11 +15,19 @@ import ScrollViewLayout from "../../Layout/ScrollViewLayout";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Layout from "../../Layout/Layout";
 
-const PrNoticeImportantList = ({ datas }) => {
+const PrNoticeImportantList = ({ datas,navigation }) => {
   return(
     <View>
       {datas?.map((data) => {
         return (
+          <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("NoticeRoutes", {
+              screen: "NoticeImportantDetail",
+              params: { id: data?.id },
+            })
+          }
+          >
           <Layout>
             <LongBox key={data?.id}>
               <FdRow>
@@ -29,6 +37,7 @@ const PrNoticeImportantList = ({ datas }) => {
               <TextGray >{data?.createdAt}</TextGray>
             </LongBox>
           </Layout>
+          </TouchableOpacity>
         );
       })}
     </View>
@@ -39,7 +48,7 @@ export default PrNoticeImportantList;
 
 const LongBox = styled.View`
   flex: 1;
-  width: 320px;
+  width: 100%;
   height: 54px;
   flex-direction: row;
   align-items: center;

@@ -34,8 +34,10 @@ const Notice = () => {
               <Text>글쓰기</Text>
             </TouchableOpacity>
           </RowBox>
+          <Layout>
           <NoticeImportantList />
           <NoticeList />
+          </Layout>
         </ScrollViewLayout>
       </ImageBackground>
     </View>
