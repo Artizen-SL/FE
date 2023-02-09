@@ -9,6 +9,7 @@ import {
   RCTImageView,
   TextInput,
   Button,
+  ScrollView,
 } from "react-native";
 import ScrollViewLayout from "../../Components/Layout/ScrollViewLayout";
 import Layout from "../../Components/Layout/Layout";
@@ -17,13 +18,14 @@ import Theme from "../../Theme/Theme";
 import NoticeList from "../../Components/Notice/NoticeList";
 import NoticeImportantList from "../../Components/Notice/NoticeImportantList";
 import { useEffect, useState } from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const Notice = () => {
   const navigation = useNavigation();
   const [noticePassword, setNoticePassword] = useState("");
   const [onPost, setOnPost] = useState(false);
   const onChangePassword = (e) => {
-    setNoticePassword((prev) => prev = e);
+    setNoticePassword((prev) => (prev = e));
     console.log(e);
   };
   const onPostChange = () => {
@@ -40,9 +42,9 @@ const Notice = () => {
   };
 
   return (
-    <View>
-      <ImageBackground source={require("../../assets/background/notice.png")}>
-        <ScrollViewLayout>
+    <SafeAreaView>
+      <ScrollView>
+        <ImageBackground source={require("../../assets/background/notice.png")}>
           <RowBox>
             <Logo source={require("../../assets/Icon/notice.png")} />
             <BoldTextBL>공지사항</BoldTextBL>
@@ -71,9 +73,9 @@ const Notice = () => {
             <NoticeImportantList />
             <NoticeList />
           </Layout>
-        </ScrollViewLayout>
-      </ImageBackground>
-    </View>
+        </ImageBackground>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

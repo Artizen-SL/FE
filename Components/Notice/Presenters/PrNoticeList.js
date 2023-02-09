@@ -15,9 +15,10 @@ import ScrollViewLayout from "../../Layout/ScrollViewLayout";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Layout from "../../Layout/Layout";
 
-const PrNoticeList = ({ datas,navigation }) => {
+const PrNoticeList = ({ datas, navigation }) => {
   return (
-    <View>
+    // <View style={{ borderWidth: 1, flex: 1, justifyContent: "center", alignItems:"center" }}>
+    <View style={{}}>
       {datas?.map((data) => {
         return (
           <TouchableOpacity
@@ -57,10 +58,11 @@ const NoticeBox = styled.View`
   height: 60px;
   flex-direction: row;
   align-items: center;
+  justify-items: center;
   justify-content: space-between;
 `;
 const GrayLine = styled.View`
-  width: 320px;
+  width: 100%;
   height: 1px;
   background-color: ${Theme.colors.LightGray};
 `;

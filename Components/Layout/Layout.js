@@ -17,5 +17,8 @@ const styles = StyleSheet.create({
 });
 
 const StView = styled(View)`
-  margin: ${({ marginSide, marginUpdown }) => (marginSide && marginUpdown?`${marginUpdown} ${marginSide}`:"3% 5% 0 5%")};
+  margin: ${({ marginSide, marginUpdown }) =>
+    marginSide && marginUpdown
+      ? `${marginUpdown} ${marginSide}`
+      : "3% 5% 0 5%"};
 `;
