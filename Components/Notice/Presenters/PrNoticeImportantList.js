@@ -33,7 +33,9 @@ const PrNoticeImportantList = ({ datas, navigation }) => {
                 <FdRow>
                   <BoldTextSky>공지</BoldTextSky>
                   <Title>{data?.title}</Title>
-                  <TextGray>{data?.createdAt.slice(0, 10)}</TextGray>
+                  <View>
+                    <TextGray>{data?.createdAt}</TextGray>
+                  </View>
                 </FdRow>
               </LongBox>
             </Layout>
@@ -83,7 +85,7 @@ const TextGray = styled(Text)`
 const Title = styled(Text)`
   color: ${Theme.colors.Black};
   /* width: 160px; */
-  width: 50%;
+  width: 57%;
   font-size: 13px;
   overflow: hidden;
   text-overflow: ellipsis;

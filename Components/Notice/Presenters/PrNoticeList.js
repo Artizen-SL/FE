@@ -18,7 +18,7 @@ import Layout from "../../Layout/Layout";
 const PrNoticeList = ({ datas, navigation }) => {
   return (
     // <View style={{ borderWidth: 1, flex: 1, justifyContent: "center", alignItems:"center" }}>
-    <View style={{}}>
+    <View>
       {datas?.map((data) => {
         return (
           <TouchableOpacity
@@ -31,16 +31,14 @@ const PrNoticeList = ({ datas, navigation }) => {
           >
             <Layout>
               <NoticeBox key={data?.id}>
-                <View>
-                  <FdRow>
-                    <Title>{data?.title}</Title>
-                    <TextGray>{data?.createdAt}</TextGray>
-                  </FdRow>
-                  <Content style={{ marginTop: 5, marginBottom: 5 }}>
-                    {data?.content}
-                  </Content>
-                  <GrayLine></GrayLine>
-                </View>
+                <FdRow>
+                  <Title>{data?.title}</Title>
+                  <TextGray>{data?.createdAt}</TextGray>
+                </FdRow>
+                <Content style={{ marginTop: 5, marginBottom: 5 }}>
+                  {data?.content}
+                </Content>
+                <GrayLine></GrayLine>
               </NoticeBox>
             </Layout>
           </TouchableOpacity>
@@ -54,21 +52,26 @@ export default PrNoticeList;
 
 const NoticeBox = styled.View`
   flex: 1;
-  width: 90%;
-  height: 60px;
-  flex-direction: row;
-  align-items: center;
-  justify-items: center;
-  justify-content: space-between;
+  width: 100%;
+  height: 54px;
+  border-bottom: 1px solid ${Theme.colors.LightGray};
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 10px;
 `;
 const GrayLine = styled.View`
+  flex: 1;
   width: 100%;
   height: 1px;
   background-color: ${Theme.colors.LightGray};
 `;
 const FdRow = styled.View`
+width: 100%;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   /* margin: 0 0 0 10px; */
 `;
 
