@@ -1,48 +1,74 @@
 import {
-    StyleSheet,
-    View,
-    Text,
-    Button,
-    Image,
-    TextInput,
-    TouchableOpacity,
-    ImageBackground,
-    Dimensions,
-  } from "react-native";
-  import styled, { css } from "styled-components/native";
-  import Theme from "../../../Theme/Theme";
-  import ScrollViewLayout from "../../Layout/ScrollViewLayout";
-  import { SafeAreaView } from "react-native-safe-area-context";
-  import Layout from "../../Layout/Layout";
+  StyleSheet,
+  View,
+  Text,
+  Button,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  ImageBackground,
+  Dimensions,
+} from "react-native";
+import styled, { css } from "styled-components/native";
+import Theme from "../../../Theme/Theme";
+import ScrollViewLayout from "../../Layout/ScrollViewLayout";
+import { SafeAreaView } from "react-native-safe-area-context";
+import Layout from "../../Layout/Layout";
 
-const PrNoticeIMPDetail = ({data}) => {
+const PrNoticeIMPDetail = ({
+  id,
+  delNotice,
+  setDelNotice,
+  delPassword,
+  onPressHandler,
+  onDelChange,
+  onChangePassword,
+  data,
+}) => {
   return (
     <SafeAreaView>
-    <Left>
-      <RowBox style={{marginTop:30}}>
-        <Logo source={require("../../../assets/Icon/notice.png")} />
-        <BoldTextBL>공지사항</BoldTextBL>
-      </RowBox>
-    </Left>
-    <ScrollViewLayout>
-      <Center>
-        <NoticeImage source={{ uri: data?.imageUrl }} />
-        <GrayLine></GrayLine>
-      </Center>
       <Left>
-        <RowBox style={{marginBottom:5}}>
-          <BoldTextSky>공지</BoldTextSky>
-          <BoldTextBL>{data?.title}</BoldTextBL>
+        <RowBox style={{ marginTop: 30 }}>
+          <Logo source={require("../../../assets/Icon/notice.png")} />
+          <BoldTextBL>공지사항</BoldTextBL>
         </RowBox>
-        <TextGray style={{marginBottom:20}}>{data?.createdAt}</TextGray>
-        <TextDarkGray>{data?.content}</TextDarkGray>
       </Left>
-    </ScrollViewLayout>
-  </SafeAreaView>
-  )
-}
+      <ScrollViewLayout>
+        <Center>
+          <NoticeImage source={{ uri: data?.imageUrl }} />
+          <TouchableOpacity onPress={onDelChange}>
+            <Text>삭제</Text>
+          </TouchableOpacity>
+          {delNotice === true ? (
+            <>
+              <TextInput
+                value={delPassword}
+                name="delPassword"
+                onChangeText={(e) => onChangePassword(e)}
+                // onSubmitEditing={onPressHandler(id)}
+                placeholder="password"
+                returnKeyType="enter"
+                secureTextEntry
+              />
+              <Button title="삭제" onPress={onPressHandler(id)} />
+            </>
+          ) : null}
+          <GrayLine></GrayLine>
+        </Center>
+        <Left>
+          <RowBox style={{ marginBottom: 5 }}>
+            <BoldTextSky>공지</BoldTextSky>
+            <BoldTextBL>{data?.title}</BoldTextBL>
+          </RowBox>
+          <TextGray style={{ marginBottom: 20 }}>{data?.createdAt}</TextGray>
+          <TextDarkGray>{data?.content}</TextDarkGray>
+        </Left>
+      </ScrollViewLayout>
+    </SafeAreaView>
+  );
+};
 
-export default PrNoticeIMPDetail
+export default PrNoticeIMPDetail;
 
 const Logo = styled(Image)`
   width: 30px;

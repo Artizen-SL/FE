@@ -1,4 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
+import { useIsFocused, useNavigation } from "@react-navigation/native";
 import {
   StyleSheet,
   Text,
@@ -21,16 +21,20 @@ import { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const Notice = () => {
+
   const navigation = useNavigation();
   const [noticePassword, setNoticePassword] = useState("");
   const [onPost, setOnPost] = useState(false);
+  
   const onChangePassword = (e) => {
     setNoticePassword((prev) => (prev = e));
     console.log(e);
   };
+  
   const onPostChange = () => {
     setOnPost(!onPost);
   };
+  
   const onPressHandler = () => {
     if (noticePassword === "1111") {
       navigation.navigate("NoticeRoutes", {
@@ -63,7 +67,7 @@ const Notice = () => {
                   onChangeText={(e) => onChangePassword(e)}
                   onSubmitEditing={onPressHandler}
                   placeholder="password"
-                  returnKeyType="none"
+                  returnKeyType="enter"
                   secureTextEntry
                 />
               </View>
