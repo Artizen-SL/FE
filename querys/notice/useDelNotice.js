@@ -1,17 +1,17 @@
 import { useMutation } from "@tanstack/react-query";
 import { request } from "../../axios/axiosConfig";
 
-const delNotice = (id) => {
+const delNotice = (payload ) => {
     return request({
       method: "delete",
-      url: `/notification/${id}`,
-      payload,
+      url: `/notification/${payload }`
     });
 };
 
 const useDelNotice = () => {
     return useMutation({
-        mutationFn: async ({ payload }) => {
+        mutationFn: async (payload) => {
+            console.log("payload==>",payload);
           const response = await delNotice(payload);
           return response?.data;
         },

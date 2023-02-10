@@ -45,12 +45,11 @@ const PrNoticeIMPDetail = ({
                 value={delPassword}
                 name="delPassword"
                 onChangeText={(e) => onChangePassword(e)}
-                // onSubmitEditing={onPressHandler(id)}
                 placeholder="password"
                 returnKeyType="enter"
                 secureTextEntry
               />
-              <Button title="삭제" onPress={onPressHandler(id)} />
+              <Button title="삭제" onPress={() => onPressHandler(id)} />
             </>
           ) : null}
           <GrayLine></GrayLine>
