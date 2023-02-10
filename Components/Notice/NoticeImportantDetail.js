@@ -4,8 +4,10 @@ import useFetchNoticeDetail from "../../querys/notice/useFetchNoticeDetail";
 import { useState } from "react";
 import useDelNotice from "../../querys/notice/useDelNotice";
 import { Alert } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const NoticeImportantDetail = ({ route }) => {
+  const navigation = useNavigation();
   const { id } = route.params;
   const { data, isError, isLoading } = useFetchNoticeDetail(id);
 
@@ -37,6 +39,9 @@ const NoticeImportantDetail = ({ route }) => {
             delNoticeMutate(id, {
               onSuccess: (data, variable, context) => {
                 Alert.alert("삭제완료");
+                navigation.navigate("NoticeRoutes", {
+                  screen: "Notice",
+                });
               },
               onError: (error, variable, context) => {
                 Alert.alert("삭제실패");
