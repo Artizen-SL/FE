@@ -4,6 +4,8 @@ import CommunityComment from "../../Components/Community/Presenters/CommunityCom
 import CommunityContentsWrapper from "../../Components/Community/Presenters/CommunityContentsWrapper";
 import CommunityPostingDetail from "../../Components/Community/Presenters/CommunityPostingDetail";
 import useFetchCommunityDetail from "../../querys/community/useFetchCommunityDetail";
+import useFetchMyPage from "../../querys/mypage/useFetchMyPage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const communityCommentList = [
   {
@@ -53,6 +55,7 @@ const CommunityDetail = ({ route }) => {
     isError,
   } = useFetchCommunityDetail(id);
   console.log(communityDetailData);
+
   const renderItem = ({ item }) => {
     return <CommunityComment item={item} />;
   };

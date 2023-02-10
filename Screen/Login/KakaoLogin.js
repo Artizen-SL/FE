@@ -68,10 +68,12 @@ const KakaoLogin = () => {
       const refreshToken = res.headers["refresh-token"];
 
       // console.log(res);
+      console.log(authorization);
+      console.log(accessToken);
 
-      if (status === 200 && accessToken) {
-        AsyncStorage.setItem("accessToken", accessToken);
-        AsyncStorage.setItem("refreshToken", refreshToken);
+      if (status === 200) {
+        await AsyncStorage.setItem("accessToken", accessToken);
+        await AsyncStorage.setItem("refreshToken", refreshToken);
         setIsLoggedIn(true);
         navigation.navigate("MainTab");
       }

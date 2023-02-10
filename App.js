@@ -58,7 +58,7 @@ export default function App() {
       <NavigationContainer>
         <ThemeProvider theme={Theme}>
           <Provider>
-            <AuthStack.Navigator>
+            <AuthStack.Navigator initialRouteName="Login">
               {/* {isLoggedIn ? (
                 <AuthStack.Screen
                   name="MainTab"
