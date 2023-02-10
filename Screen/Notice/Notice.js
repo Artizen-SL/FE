@@ -23,6 +23,7 @@ import useFetchNotice from "../../querys/notice/useFetchNotice";
 
 const Notice = () => {
   const navigation = useNavigation();
+  const isFocused = useIsFocused();
   const [noticePassword, setNoticePassword] = useState("");
   const [onPost, setOnPost] = useState(false);
 
@@ -45,8 +46,11 @@ const Notice = () => {
     }
   };
 
-  const { data: datas, isError, isLoading } = useFetchNotice();
+  const { data: datas, isError, isLoading ,refetch } = useFetchNotice();
 
+  useEffect(() => {
+    refetch();
+  }, [isFocused]);
   
    return (
     <SafeAreaView>

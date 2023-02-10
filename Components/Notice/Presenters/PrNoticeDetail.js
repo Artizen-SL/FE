@@ -37,7 +37,7 @@ const PrNoticeDetail = ({
       <Center>
         <NoticeImage source={{ uri: data?.imageUrl }} />
         <TouchableOpacity onPress={onDelChange}>
-          <Text>삭제</Text>
+          <TransText>삭제</TransText>
         </TouchableOpacity>
         {delNotice === true ? (
           <>
@@ -93,6 +93,9 @@ const BoldTextBL = styled(Text)`
   align-items: center;
   justify-content: center;
   margin-left: 6px;
+`;
+const TransText = styled(Text)`
+  color: transparent;
 `;
 const BoldTextSky = styled(Text)`
   color: ${Theme.colors.SkyBlue};
