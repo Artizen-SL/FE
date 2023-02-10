@@ -15,23 +15,24 @@ import Theme from "../../../Theme/Theme";
 import ScrollViewLayout from "../../Layout/ScrollViewLayout";
 import Layout from "../../Layout/Layout";
 import { SafeAreaView } from "react-native-safe-area-context";
-
+import ImagePickerBtn from "../../../Common/ImagePicker/ImagePickerBtn";
 const PrNoticePost = ({
   important,
   setImportant,
   notice,
-  pickImage,
-  image,
+  onChangeHandler,
+  setNotice,
+  onSubmitHandler,
 }) => {
   return (
     <SafeAreaView>
       <ScrollViewLayout>
         <Layout>
           <RowCenter>
-            {important === true ? (
+            {notice.importance === "1" ? (
               <TouchableOpacity
                 onPress={() => {
-                  setImportant(!important);
+                  setNotice({...notice,importance:"0"});
                 }}
               >
                 <Star source={require("../../../assets/Icon/skyStar.png")} />
@@ -39,34 +40,46 @@ const PrNoticePost = ({
             ) : (
               <TouchableOpacity
                 onPress={() => {
-                  setImportant(!important);
+                  setNotice({...notice,importance:"1"});
                 }}
               >
                 <Star source={require("../../../assets/Icon/grayStar.png")} />
               </TouchableOpacity>
             )}
-            <ButtonSky>
+            <ButtonSky
+            onPress={onSubmitHandler}
+            >
               <BtnText>등록</BtnText>
             </ButtonSky>
           </RowCenter>
           <TitleInput
             style={{ marginTop: 20 }}
             value={notice.title}
+            type="text"
+            multiline={false}
             name="title"
-            //   onChangeText={(e)=>{onChangeText(e)}}
+            onChangeText={(e) => {
+              onChangeHandler("title", e);
+            }}
             placeholder="제목을 입력하세요"
           />
           <ContentInput
             style={{ marginTop: 10, marginBottom: 10 }}
+            type="text"
             value={notice.content}
             name="content"
             placeholder="내용을 입력하세요"
+            onChangeText={(e) => {
+              onChangeHandler("content", e);
+            }}
           />
           <ColumnCenter>
-            <BtnImage onPress={pickImage}>
+      <ImagePickerBtn setImagePick={setNotice} imagePick={notice} />
+
+            {/* <BtnImage onPress={pickImage}>
               <BtnText>사진등록</BtnText>
             </BtnImage>
-            {image && <ImagesPreview source={{ uri: image }} />}
+            {image && <ImagesPreview source={{ uri: image }} />} */}
           </ColumnCenter>
         </Layout>
       </ScrollViewLayout>
