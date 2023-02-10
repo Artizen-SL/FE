@@ -1,9 +1,35 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 // import * as Sentry from "@sentry/react-native";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
-const http = axios.create({
-  baseURL: BASE_URL, 
+
+const config = {
+  baseURL: BASE_URL,
+  headers: {
+    Authorization: "",
+  },
+};
+
+const http = axios.create(config);
+
+http.interceptors.request.use(async function (config) {
+  try {
+    const accessToken = await AsyncStorage.getItem("accessToken");
+
+    if (!config) {
+      config = {};
+    }
+    if (!config.headers) {
+      config.headers = {};
+    }
+    config.headers.Authorization = accessToken;
+
+    return config;
+  } catch (error) {
+    console.log("intercpetor error", error);
+    return config;
+  }
 });
 
 // Get Request
@@ -18,7 +44,7 @@ export const getRequest = async ({
     return response;
   } catch (error) {
     // Sentry.captureException(error);
-    console.log(error);
+    console.log("getRequest", error);
     if (throwWhenError) throw error;
   }
 };

@@ -1,7 +1,11 @@
 import React from "react";
 import { Text, View } from "react-native";
+import useFetchMyPage from "../../querys/mypage/useFetchMyPage";
 
 function Test() {
+  const { data: myPageDatas } = useFetchMyPage();
+  // console.log("myPageDatas", myPageDatas);
+
   return (
     <View>
       <Text>test</Text>

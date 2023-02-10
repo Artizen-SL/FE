@@ -1,16 +1,24 @@
 import React from "react";
-import { View } from "react-native";
+import { Alert, View } from "react-native";
 import { WebView } from "react-native-webview";
 import axios from "axios";
 import { REST_API_KEY, REDIRECT_URI, REACT_APP_BASE_URL } from "@env";
 import { useNavigation } from "@react-navigation/native";
-import { AsyncStorage } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { isLoggedInAtom } from "../../Jotai/atoms/authAtoms";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
+
 // other import settings...
 
 const runFirst = `window.ReactNativeWebView.postMessage("this is message from web");`;
 
 const KakaoLogin = () => {
   const navigation = useNavigation();
+  const isLoggedIn = useAtomValue(isLoggedInAtom);
+  const setIsLoggedIn = useSetAtom(isLoggedInAtom);
+
+  console.log("isLoggedIn", isLoggedIn);
+
   function LogInProgress(data) {
     const exp = "code=";
     let condition = data.indexOf(exp);
@@ -38,9 +46,6 @@ const KakaoLogin = () => {
     })
       .then(function (response) {
         returnValue = response.data.access_token;
-
-        AsyncStorage.setItem("accessToken", returnValue);
-
         sendToken(returnValue);
       })
       .catch(function (error) {
@@ -48,14 +53,37 @@ const KakaoLogin = () => {
       });
   };
 
-  const sendToken = async (accessToken) => {
+  const sendToken = async (kakaoAccessToken) => {
     try {
       const res = await axios.get(
-        `${REACT_APP_BASE_URL}/members/kakaoLogin?accessToken=${accessToken}`
+        `${REACT_APP_BASE_URL}/members/kakaoLogin?accessToken=${kakaoAccessToken}`
       );
-      console.log("sendToken Res", res);
-      navigation.navigate("MainRoutes");
+      const {
+        data,
+        headers: { authorization },
+        status,
+      } = res;
+
+      const accessToken = authorization;
+      const refreshToken = res.headers["refresh-token"];
+
+      // console.log(res);
+      console.log(authorization);
+      console.log(accessToken);
+
+      if (status === 200) {
+        await AsyncStorage.setItem("accessToken", accessToken);
+        await AsyncStorage.setItem("refreshToken", refreshToken);
+        setIsLoggedIn(true);
+        navigation.navigate("MainTab");
+      }
     } catch (error) {
+      Alert.alert("Error", `${error}`, [
+        {
+          text: "Error",
+          style: "cancel",
+        },
+      ]);
       console.log(error);
     }
   };
