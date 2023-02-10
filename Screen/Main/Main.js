@@ -15,9 +15,11 @@ import ScrollViewLayout from "../../Components/Layout/ScrollViewLayout";
 import MainCarousel from "../../Components/Main/MainCarousel";
 import UserRecommendData from "../../Components/Main/Data/UserRecommendData";
 import useGpsRes from "../../utils/useGpsRes";
+import useFetchImportantNotice from "../../querys/notice/useFetchImportantNotice";
 import RecentlyData from "../../Components/Main/Data/RecentlyData";
 import BestData from "../../Components/Main/Data/BestData";
 import MainCarouselData from "../../Components/Main/Data/MainCarouselData";
+import MainNotice from "../../Components/Main/MainNotice";
 // import MainView from "../../Components/Main/Presenters/MainView";
 
 const Main = ({ navigation }) => {
@@ -41,6 +43,9 @@ const Main = ({ navigation }) => {
       resetGpsAsk();
     }
   }, []);
+
+    const { data: datas, isError, isLoading } = useFetchImportantNotice();
+
 
   return (
     <ScrollViewLayout>
@@ -224,8 +229,9 @@ const Main = ({ navigation }) => {
                 <IconImage
                   source={require("../../assets/Icon/rightArrow.png")}
                 />
-              </TouchableOpacity>
+              </TouchableOpacity>              
             </RowBox>
+            <MainNotice datas={datas}/>
           </View>
 
           {/*추천*/}
@@ -234,7 +240,6 @@ const Main = ({ navigation }) => {
           </View>
 
           {/*best*/}
-
           <View style={{ marginTop: 30 }}>
             <View style={{ flexDirection: "row", marginLeft: 15 }}>
               <Logo source={require("../../assets/Icon/best.png")} />

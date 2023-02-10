@@ -15,30 +15,55 @@ import ScrollViewLayout from "../../Layout/ScrollViewLayout";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Layout from "../../Layout/Layout";
 
-const PrNoticeDetail = ({ data }) => {
+const PrNoticeDetail = ({ 
+  id,
+  delNotice,
+  setDelNotice,
+  delPassword,
+  onPressHandler,
+  onDelChange,
+  onChangePassword,
+  data,
+ }) => {
   return (
     <SafeAreaView>
+    <Left>
+      <RowBox style={{ marginTop: 30 }}>
+        <Logo source={require("../../../assets/Icon/notice.png")} />
+        <BoldTextBL>공지사항</BoldTextBL>
+      </RowBox>
+    </Left>
+    <ScrollViewLayout>
+      <Center>
+        <NoticeImage source={{ uri: data?.imageUrl }} />
+        <TouchableOpacity onPress={onDelChange}>
+          <Text>삭제</Text>
+        </TouchableOpacity>
+        {delNotice === true ? (
+          <>
+            <TextInput
+              value={delPassword}
+              name="delPassword"
+              onChangeText={(e) => onChangePassword(e)}
+              placeholder="password"
+              returnKeyType="enter"
+              secureTextEntry
+            />
+            <Button title="삭제" onPress={() => onPressHandler(id)} />
+          </>
+        ) : null}
+        <GrayLine></GrayLine>
+      </Center>
       <Left>
-        <RowBox style={{marginTop:30}}>
-          <Logo source={require("../../../assets/Icon/notice.png")} />
-          <BoldTextBL>공지사항</BoldTextBL>
+        <RowBox style={{ marginBottom: 5 }}>
+          <BoldTextSky>공지</BoldTextSky>
+          <BoldTextBL>{data?.title}</BoldTextBL>
         </RowBox>
+        <TextGray style={{ marginBottom: 20 }}>{data?.createdAt}</TextGray>
+        <TextDarkGray>{data?.content}</TextDarkGray>
       </Left>
-      <ScrollViewLayout>
-        <Center>
-          <NoticeImage source={{ uri: data?.imageUrl }} />
-          <GrayLine></GrayLine>
-        </Center>
-        <Left>
-          <RowBox style={{marginBottom:5}}>
-            <BoldTextSky>공지</BoldTextSky>
-            <BoldTextBL>{data?.title}</BoldTextBL>
-          </RowBox>
-          <TextGray style={{marginBottom:20}}>{data?.createdAt}</TextGray>
-          <TextDarkGray>{data?.content}</TextDarkGray>
-        </Left>
-      </ScrollViewLayout>
-    </SafeAreaView>
+    </ScrollViewLayout>
+  </SafeAreaView>
   );
 };
 

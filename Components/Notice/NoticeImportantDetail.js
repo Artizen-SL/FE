@@ -5,13 +5,14 @@ import { useState } from "react";
 import useDelNotice from "../../querys/notice/useDelNotice";
 import { Alert } from "react-native";
 
-const NoticeImportantDetail = ({route}) => {
-  const {id} = route.params;
+const NoticeImportantDetail = ({ route }) => {
+  const { id } = route.params;
   const { data, isError, isLoading } = useFetchNoticeDetail(id);
-  console.log("NoticeImportantDetail",data);
-  const [delNotice,setDelNotice] = useState(false);
-  const [delPassword,setDelPassword] = useState('');
-  
+
+  //공지삭제
+  const [delNotice, setDelNotice] = useState(false);
+  const [delPassword, setDelPassword] = useState("");
+
   const onDelChange = () => {
     setDelNotice(!delNotice);
   };
@@ -20,52 +21,46 @@ const NoticeImportantDetail = ({route}) => {
     setDelPassword((prev) => (prev = e));
     console.log(e);
   };
- 
-  const {mutate: delNoticeMutate} = useDelNotice();
 
-  const onPressHandler = id => {
+  const { mutate: delNoticeMutate } = useDelNotice();
+
+  const onPressHandler = (id) => {
     if (delPassword === "1111") {
-      Alert.alert("확인","정말 삭제하시겠습니까?",[
+      Alert.alert("확인", "정말 삭제하시겠습니까?", [
         {
-          text:"취소",
+          text: "취소",
           style: "cancel",
         },
         {
           text: "OK",
           onPress: () => {
-            delNoticeMutate(id,{
-              onSuccess:(data, variable, context) => {
+            delNoticeMutate(id, {
+              onSuccess: (data, variable, context) => {
                 Alert.alert("삭제완료");
               },
-              onError:(error,variable,context) => {
+              onError: (error, variable, context) => {
                 Alert.alert("삭제실패");
-              }
-             })
-          }
-        }
-      ])
-      // delNoticeMutate(id,{
-      //  onSuccess:(data, variable, context) => {
-      //    Alert.alert("삭제완료");
-      //  },
-      //  onError:(error,variable,context) => {
-      //    Alert.alert("삭제실패");
-      //  }
-      // })
-  
-    } else if (delPassword !== "1111"){
+              },
+            });
+          },
+        },
+      ]);
+    } else if (delPassword !== "1111") {
       Alert.alert("비밀번호가 일치하지않습니다.");
-    } 
+    }
   };
-    return <PrNoticeIMPDetail
-    id={id}
-    delNotice={delNotice}
-    delPassword={delPassword} 
-    setDelNotice={setDelNotice}
-    onPressHandler ={onPressHandler}
-    onDelChange={onDelChange}
-    onChangePassword={onChangePassword}
-    data={data}/>
-}
+  return (
+    <PrNoticeIMPDetail
+      id={id}
+      delNotice={delNotice}
+      delPassword={delPassword}
+      setDelNotice={setDelNotice}
+      onPressHandler={onPressHandler}
+      onDelChange={onDelChange}
+      onChangePassword={onChangePassword}
+      data={data}
+    />
+  );
+};
 
-export default NoticeImportantDetail
+export default NoticeImportantDetail;
