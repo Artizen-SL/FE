@@ -1,14 +1,12 @@
 import * as React from "react";
 import {
   StyleSheet,
-  View,
   Text,
-  Button,
   Image,
   TouchableOpacity,
   ImageBackground,
 } from "react-native";
-import styled, { css } from "styled-components/native";
+import styled from "styled-components/native";
 
 const Login = ({ navigation }) => {
   return (
@@ -22,6 +20,14 @@ const Login = ({ navigation }) => {
           <LogoText>전시부터 공연까지! 우리들만의 문화 놀이터!</LogoText>
         </LogoView>
         <LoginView>
+          <TouchableOpacity
+            onPress={() => {
+              setIsLoggedIn(!isLoggedIn);
+              navigation.navigate("MainRoutes", { screen: "Main" });
+            }}
+          >
+            <Text>실험</Text>
+          </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("KakaoLogin")}>
             <Image source={require("../../assets/login/kakao.png")} />
           </TouchableOpacity>
