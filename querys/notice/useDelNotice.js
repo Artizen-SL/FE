@@ -15,7 +15,7 @@ const useDelNotice = () => {
           const response = await delNotice(payload);
           return response?.data;
         },
-        // suspense: true,
+        suspense: true,
       });
 }
 

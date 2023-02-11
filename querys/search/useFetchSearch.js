@@ -16,6 +16,7 @@ const useFetchSearch = (keyword) => {
         const { data } = await getSearchContent(keyword);
         return data;
       },
+      suspense: true, 
     },
     {
       enabled: false,

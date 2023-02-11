@@ -13,11 +13,19 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { isLoggedInAtom } from "./Jotai/atoms/authAtoms";
 import MainTab from "./Navigation/MainTab";
-import { useEffect } from "react";
+import { Suspense,useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import IsLoading from "./Common/IsLoading/IsLoading";
+
 // const Tab = createBottomTabNavigator();
 const AuthStack = createStackNavigator();
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions:{
+    queries:{
+      suspense:true,
+    },
+  },
+});
 
 export default function App() {
   // Sentry.init({
@@ -57,6 +65,10 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <NavigationContainer>
         <ThemeProvider theme={Theme}>
+          <Suspense 
+          fallback={
+            <IsLoading/>
+          }>
           <Provider>
             <AuthStack.Navigator initialRouteName="Login">
               {/* {isLoggedIn ? (
@@ -99,6 +111,7 @@ export default function App() {
               </>
             </AuthStack.Navigator>
           </Provider>
+          </Suspense>
         </ThemeProvider>
       </NavigationContainer>
     </QueryClientProvider>
