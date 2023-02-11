@@ -15,23 +15,23 @@ import Layout from "../../../Components/Layout/Layout";
 import styled, { css } from "styled-components/native";
 import Theme from "../../../Theme/Theme";
 
-const PrMainNotice = ({ datas,navigation  }) => {
+const PrMainNotice = ({ datas, navigation }) => {
   return (
     <View>
       {datas?.map((data) => {
         return (
           <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("NoticeRoutes", {
-              screen: "NoticeDetail",
-              params: { id: data?.id },
-            })
-          }
+            onPress={() =>
+              navigation.navigate("NoticeRoutes", {
+                screen: "NoticeDetail",
+                params: { id: data?.id },
+              })
+            }
           >
             <NoticeBox key={data?.id}>
               <RowBox>
                 <Logo source={require("../../../assets/Icon/skyStar.png")} />
-                <Text>{data?.title}</Text>
+                <TextBL>{data?.title}</TextBL>
                 <Text>{data?.createdAt}</Text>
               </RowBox>
             </NoticeBox>
@@ -45,10 +45,9 @@ const PrMainNotice = ({ datas,navigation  }) => {
 export default PrMainNotice;
 
 const RowBoxWrap = styled(View)`
-width: 100%;
-flex-direction: row;
+  width: 100%;
+  flex-direction: row;
   justify-content: center;
-
 `;
 
 const NoticeBox = styled(View)`
@@ -56,29 +55,34 @@ const NoticeBox = styled(View)`
   height: 34px;
   border-radius: 5px;
   background-color: ${Theme.colors.White};
-  align-items: center;
   margin-bottom: 2px;
   justify-content: center;
+  justify-items: flex-start;
   margin-top: 2px;
 `;
 
 const Logo = styled(Image)`
-  width: 47px;
+  width: 48px;
   height: 21px;
+  margin-left: 6px;
 `;
 
-const BoldTextBL = styled(Text)`
+const TextBL = styled(Text)`
+  width: 170px;
   color: ${Theme.colors.Black};
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 13px;
   align-items: center;
   justify-content: center;
   margin-left: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow : ellipsis
+
 `;
 const RowBox = styled(View)`
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
 `;
 
 const HiddenText = styled(Text)`

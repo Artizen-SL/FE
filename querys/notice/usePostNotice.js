@@ -16,7 +16,7 @@ const usePostNotice = () => {
           const response = await postNotice(payload);
           return response?.data;
         },
-        // suspense: true,
+        suspense: true,
       });
 }
 

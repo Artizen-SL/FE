@@ -18,6 +18,7 @@ const useFetchImportantNotice = () => {
             const { data } = await getImportantNoticeContent();
             return data;
           },
+          suspense: true, 
         },
         {
           enabled: false,

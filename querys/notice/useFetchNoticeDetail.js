@@ -16,6 +16,7 @@ const useFetchNoticeDetail = (id) => {
           const response = await getNoticeDetail(id);
           return response.data;
         },
+        suspense: true, 
       });
 }
 
