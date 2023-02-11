@@ -18,17 +18,38 @@ import useFetchCommunity from "../../querys/community/useFetchCommunity";
 const CommunityMain = () => {
   const navigation = useNavigation();
   const isFocused = useIsFocused();
+  // const {
+  //   data: communityMainDatas,
+  //   isLoading,
+  //   isError,
+  //   refetch,
+  // } = useFetchCommunity();
+
   const {
-    data: communityMainDatas,
+    data,
     isLoading,
     isError,
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage,
     refetch,
-  } = useFetchCommunity();
-  console.log(communityMainDatas);
+  } = useFetchCommunity(0, 10);
+  console.log("data", data);
+  console.log("data.pages", data?.pages);
+
+  const communityMainDatas = data?.pages?.flat();
+
+  console.log("communityMainDatas", communityMainDatas);
 
   useEffect(() => {
-    refetch();
+    refetch({ refetchPage: (page, index) => index === 0 });
   }, [isFocused]);
+
+  const loadMore = () => {
+    if (hasNextPage) {
+      fetchNextPage();
+    }
+  };
 
   const renderItem = ({ item }) => {
     return (
@@ -43,24 +64,24 @@ const CommunityMain = () => {
         }
       >
         <StCommuContentTitle>
-          <TagView variant="community" tag={item.tag ?? "자유글"}>
-            {item.tag ?? "자유글"}
+          <TagView variant="community" tag={item?.tag ?? "자유글"}>
+            {item?.tag ?? "자유글"}
           </TagView>
           <StTitleWrapper>
             <StTitle numberOfLines={1} ellipsizeMode="tail">
-              {item.title}
+              {item?.title}
             </StTitle>
           </StTitleWrapper>
         </StCommuContentTitle>
         <View>
           <StSubText numberOfLines={1} ellipsizeMode="tail">
-            {item.content}
+            {item?.content}
           </StSubText>
         </View>
         <View>
           <StSubText numberOfLines={1} ellipsizeMode="tail">
-            {item?.createdAt.slice(0, 10)} {item.createdAt.slice(11, 16)} /{" "}
-            {item.nickname ?? "익명"}
+            {item?.createdAt.slice(0, 10)} {item?.createdAt.slice(11, 16)} /{" "}
+            {item?.nickname ?? "익명"}
           </StSubText>
         </View>
       </StCommuContentWrapper>
@@ -74,8 +95,10 @@ const CommunityMain = () => {
           // ListHeaderComponent={<></>}
           renderItem={renderItem}
           data={communityMainDatas}
-          keyExtractor={(item) => item.id}
-          contentContainerStyle={{}}
+          keyExtractor={(item) => item?.id}
+          onEndReached={loadMore}
+          onEndReachedThreshold={0.1}
+          // contentContainerStyle={{}}
           // ListFooterComponent={}
         />
       }
