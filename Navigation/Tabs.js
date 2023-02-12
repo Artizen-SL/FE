@@ -2,8 +2,9 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Test from "../Screen/Test/Test";
 import Test1 from "../Screen/Test/Test1";
-import BottomTabBar from "../Screen/Common/BottomTabs/BottomTabBar";
+import BottomTabBar from "../Common/BottomTabs/BottomTabBar";
 import Main from "../Screen/Main/Main";
+import { Ionicons } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
 function Tabs() {

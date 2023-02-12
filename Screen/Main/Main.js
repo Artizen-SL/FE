@@ -1,6 +1,7 @@
 import {
   StyleSheet,
   View,
+  Alert,
   Text,
   Button,
   Image,
@@ -124,7 +125,7 @@ const Main = ({ navigation }) => {
               <TouchableOpacity
                 style={styles.center}
                 onPress={() => {
-                  alert("서비스 준비중 입니다.");
+                  Alert.alert("서비스 준비중 입니다.");
                 }}
               >
                 <Circle>
