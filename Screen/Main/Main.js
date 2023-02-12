@@ -20,6 +20,8 @@ import RecentlyData from "../../Components/Main/Data/RecentlyData";
 import BestData from "../../Components/Main/Data/BestData";
 import MainCarouselData from "../../Components/Main/Data/MainCarouselData";
 import MainNotice from "../../Components/Main/MainNotice";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import useFetchMyPage from "../../querys/mypage/useFetchMyPage";
 // import MainView from "../../Components/Main/Presenters/MainView";
 
 const Main = ({ navigation }) => {
@@ -44,9 +46,22 @@ const Main = ({ navigation }) => {
     }
   }, []);
 
-    const { data: datas, isError, isLoading } = useFetchImportantNotice();
+  const { data: datas, isError, isLoading } = useFetchImportantNotice();
 
-
+  // useEffect(() => {
+  //   const getTokenAsync = async () => {
+  //     let userToken;
+  //     try {
+  //       userToken = await AsyncStorage.getItem("accessToken");
+  //       console.log("userToken===>", userToken);
+  //       } catch(error){
+  //         console.log("error", error);
+  //       }
+  //   };
+  //   getTokenAsync();
+  // },[]);
+  const { data: myPageDatas } = useFetchMyPage();
+  console.log("myPageDatas===>", myPageDatas);
   return (
     <ScrollViewLayout>
       {/* <MainView /> */}
@@ -60,15 +75,26 @@ const Main = ({ navigation }) => {
               <Logo source={require("../../assets/logo/artizenRabbit.png")} />
               <LogoTitle source={require("../../assets/logo/artizenNew.png")} />
             </View>
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("MainRoutes", {
-                  screen: "Search",
-                })
-              }
-            >
-              <Image source={require("../../assets/Icon/Search.png")} />
-            </TouchableOpacity>
+            <View style={[styles.row]}>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("MainRoutes", {
+                    screen: "Search",
+                  })
+                }
+              >
+                <Image source={require("../../assets/Icon/Search.png")} />
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("MyPageRoutes", {
+                    screen: "MyPage",
+                  })
+                }
+              >
+                <Profile source={{ uri: myPageDatas?.profileImg }} />
+              </TouchableOpacity>
+            </View>
           </View>
           <ImageBackground
             source={require("../../assets/background/white.png")}
@@ -229,9 +255,9 @@ const Main = ({ navigation }) => {
                 <IconImage
                   source={require("../../assets/Icon/rightArrow.png")}
                 />
-              </TouchableOpacity>              
+              </TouchableOpacity>
             </RowBox>
-            <MainNotice datas={datas}/>
+            <MainNotice datas={datas} />
           </View>
 
           {/*추천*/}
@@ -251,7 +277,7 @@ const Main = ({ navigation }) => {
 
           {/*new*/}
           <View style={{ marginTop: 20 }}>
-            <View style={{ flexDirection: "row", marginLeft: 15  }}>
+            <View style={{ flexDirection: "row", marginLeft: 15 }}>
               <Logo source={require("../../assets/Icon/new.png")} />
               <BoldTextBL style={{ marginLeft: 6 }}>NEW Artizen</BoldTextBL>
             </View>
@@ -388,6 +414,11 @@ const LogoTitle = styled(Image)`
   width: 76px;
   height: 16px;
   margin-left: 6px;
+`;
+const Profile = styled(Image)`
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
 `;
 const Logo = styled(Image)`
   width: 30px;
