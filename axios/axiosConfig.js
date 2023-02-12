@@ -28,7 +28,7 @@ http.interceptors.request.use(async function (config) {
     console.log("config===>", config);
     return config;
   } catch (error) {
-    console.log("intercpetor error", error);
+    // console.log("intercpetor error", error);
     return config;
   }
 });
