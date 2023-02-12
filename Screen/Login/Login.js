@@ -20,19 +20,8 @@ const Login = ({ navigation }) => {
           <LogoText>전시부터 공연까지! 우리들만의 문화 놀이터!</LogoText>
         </LogoView>
         <LoginView>
-          <TouchableOpacity
-            onPress={() => {
-              setIsLoggedIn(!isLoggedIn);
-              navigation.navigate("MainRoutes", { screen: "Main" });
-            }}
-          >
-            <Text>실험</Text>
-          </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("KakaoLogin")}>
             <Image source={require("../../assets/login/kakao.png")} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate("KakaoLogout")}>
-            <Text>로그아웃</Text>
           </TouchableOpacity>
         </LoginView>
       </ImageBackground>
