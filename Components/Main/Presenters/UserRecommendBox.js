@@ -11,7 +11,7 @@ import {
 import Theme from "../../../Theme/Theme";
 import styled, { css } from "styled-components/native";
 
-const UserRecommendBox = ({ datas }) => {
+const UserRecommendBox = ({ datas,user }) => {
   const navigation = useNavigation();
   return (
     <View style={{ marginTop: 10 }}>
@@ -38,7 +38,7 @@ const UserRecommendBox = ({ datas }) => {
             >
               <Logo source={require("../../../assets/Icon/recommend.png")} />
               <Text style={styles.smailTitle}>
-                <Text style={{ fontWeight: "bold" }}>아티즌</Text>' 님 이런{" "}
+                <Text style={{ fontWeight: "bold" }}>{user}</Text> 님 이런{" "}
                 <Text style={{ fontWeight: "bold" }}>{categoryName}</Text>는
                 어떠세요?
               </Text>
