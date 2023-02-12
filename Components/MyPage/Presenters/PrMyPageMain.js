@@ -1,4 +1,11 @@
-import { View, Text, ScrollView, Image, TouchableOpacity,Alert } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 import { AsyncStorage } from "react-native";
 import styled, { css } from "styled-components/native";
 import Theme from "../../../Theme/Theme";
@@ -26,48 +33,44 @@ const PrMyPageMain = ({ myPageDatas, notice, navigation }) => {
             elevation: 5,
           }}
         >
-            
-          <Box>
-          <TouchableOpacity
-          onPress={()=>{
-            navigation.navigate("MyPageRoutes", {
+          <Box
+            onPress={() => {
+              navigation.navigate("MyPageRoutes", {
                 screen: "MyTicket",
-              })
-          }}
+              });
+            }}
           >
             <IconImage source={require("../../../assets/mypage/Tickets.png")} />
             <Text>마이티켓</Text>
-            </TouchableOpacity>
           </Box>
 
-          <Box>
-          <TouchableOpacity
-          onPress={()=>{
-            navigation.navigate("MyPageRoutes", {
+          <Box
+            onPress={() => {
+              navigation.navigate("MyPageRoutes", {
                 screen: "MyLike",
-              })
-          }}
+              });
+            }}
           >
             <IconImage source={require("../../../assets/mypage/Like.png")} />
             <Text>좋아요</Text>
-          </TouchableOpacity>
-            
           </Box>
 
-          <Box>
-          <TouchableOpacity
-          onPress={()=>{
-            navigation.navigate("MyPageRoutes", {
+          <Box
+            onPress={() => {
+              navigation.navigate("MyPageRoutes", {
                 screen: "MyPost",
-              })
-          }}
+              });
+            }}
           >
             <IconImage source={require("../../../assets/mypage/Write.png")} />
             <Text>내가 쓴 글</Text>
-            </TouchableOpacity>
           </Box>
 
-          <Box>
+          <Box
+            onPress={() => {
+              Alert.alert("서비스 준비중 입니다.");
+            }}
+          >
             <IconImage source={require("../../../assets/mypage/Message.png")} />
             <Text>채팅 목록</Text>
           </Box>
@@ -75,6 +78,11 @@ const PrMyPageMain = ({ myPageDatas, notice, navigation }) => {
 
         <View>
           <ListBox
+            onPress={() => {
+              navigation.navigate("MyPageRoutes", {
+                screen: "MyTicket",
+              });
+            }}
             style={{
               shadowColor: "#000",
               shadowOffset: {
@@ -91,6 +99,11 @@ const PrMyPageMain = ({ myPageDatas, notice, navigation }) => {
           </ListBox>
 
           <ListBox
+            onPress={() => {
+              navigation.navigate("MyPageRoutes", {
+                screen: "MyLike",
+              });
+            }}
             style={{
               shadowColor: "#000",
               shadowOffset: {
@@ -107,6 +120,11 @@ const PrMyPageMain = ({ myPageDatas, notice, navigation }) => {
           </ListBox>
 
           <ListBox
+            onPress={() => {
+              navigation.navigate("MyPageRoutes", {
+                screen: "MyPost",
+              });
+            }}
             style={{
               shadowColor: "#000",
               shadowOffset: {
@@ -123,6 +141,9 @@ const PrMyPageMain = ({ myPageDatas, notice, navigation }) => {
           </ListBox>
 
           <ListBox
+            onPress={() => {
+              Alert.alert("서비스 준비중 입니다.");
+            }}
             style={{
               shadowColor: "#000",
               shadowOffset: {

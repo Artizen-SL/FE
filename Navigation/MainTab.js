@@ -1,9 +1,12 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
-import KakaoLogout from "../Screen/Login/KakaoLogout";
+// import KakaoLogout from "../Screen/Login/KakaoLogout";
 import CommunityRoutes from "./CommunityRoutes";
 import MainRoutes from "./MainRoutes";
-import Test from "../Screen/Test/Test";
+import MyPage from "../Components/MyPage/MyPage";
+import { Ionicons } from "@expo/vector-icons";
+import { Alert } from "react-native";
+
 const MainBottomTab = createBottomTabNavigator();
 
 const MainTab = () => {
@@ -12,23 +15,33 @@ const MainTab = () => {
       <MainBottomTab.Screen
         name="MainRoutes"
         component={MainRoutes}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: false,
+          tabBarLabel: "아티즌",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="home-outline" color={color} size={size} />
+          ),
+        }}
       />
       <MainBottomTab.Screen
         name="CommunityRoutes"
         component={CommunityRoutes}
-        options={{ headerShown: false }}
+        options={{ headerShown: false,
+          tabBarLabel: "자유게시판",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="reader-outline" color={color} size={size} />
+          ),
+        }}
       />
       <MainBottomTab.Screen
-        name="KakaoLogout"
-        component={KakaoLogout}
-        options={{ headerShown: false }}
-      />
-
-      <MainBottomTab.Screen
-        name="Test"
-        component={Test}
-        options={{ headerShown: false }}
+        name="MyPage"
+        component={MyPage}
+        options={{ headerShown: false,
+          tabBarLabel: "MY",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="ios-person-outline" color={color} size={size} />
+          ),
+         }}
       />
     </MainBottomTab.Navigator>
   );
