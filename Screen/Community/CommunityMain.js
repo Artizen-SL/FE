@@ -33,7 +33,7 @@ const CommunityMain = () => {
     fetchNextPage,
     isFetchingNextPage,
     refetch,
-  } = useFetchCommunity(0, 10);
+  } = useFetchCommunity(0, 8);
   console.log("data", data);
   console.log("data.pages", data?.pages);
 
@@ -42,7 +42,11 @@ const CommunityMain = () => {
   console.log("communityMainDatas", communityMainDatas);
 
   useEffect(() => {
-    refetch({ refetchPage: (page, index) => index === 0 });
+    refetch({
+      refetchPage: (page, index) => {
+        index === 0;
+      },
+    });
   }, [isFocused]);
 
   const loadMore = () => {
@@ -50,6 +54,7 @@ const CommunityMain = () => {
       fetchNextPage();
     }
   };
+  console.log("hasNextPage", hasNextPage);
 
   const renderItem = ({ item }) => {
     return (
@@ -97,7 +102,7 @@ const CommunityMain = () => {
           data={communityMainDatas}
           keyExtractor={(item) => item?.id}
           onEndReached={loadMore}
-          onEndReachedThreshold={0.1}
+          onEndReachedThreshold={0.5}
           // contentContainerStyle={{}}
           // ListFooterComponent={}
         />

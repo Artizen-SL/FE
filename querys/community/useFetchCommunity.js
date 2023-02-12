@@ -12,14 +12,15 @@ const useFetchCommunity = (pageParam, size) => {
   return useInfiniteQuery({
     queryKey: ["getCommunity"],
     queryFn: async () => {
-      const res = await getCommunity(pageParam, size);
-      return res.data;
+      const { data } = await getCommunity(pageParam, size);
+      return data;
     },
-    getNextPageParam: (lastPage, pages) => {
-      // console.log(lastPage);
-      // console.log("pages", pages.flat());
 
-      return lastPage.length / size + 1;
+    getNextPageParam: (lastPage) => {
+      console.log(lastPage);
+      console.log("lastPage", lastPage.isLast);
+      let nextPage = pageParam + 1;
+      return lastPage.isLast ? undefined : nextPage;
     },
 
     // getNextPageParam: (lastPage, page) => {
@@ -30,15 +31,5 @@ const useFetchCommunity = (pageParam, size) => {
     // },
   });
 };
-
-// const useFetchCommunity = () => {
-//   return useQuery({
-//     queryKey: ["getCommunity"],
-//     queryFn: async () => {
-//       const { data } = await getCommunity();
-//       return data;
-//     },
-//   });
-// };
 
 export default useFetchCommunity;

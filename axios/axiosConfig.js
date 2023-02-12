@@ -4,6 +4,7 @@ import axios from "axios";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
+// console.log("process.env.REACT_APP_BASE_URL", process.env.REACT_APP_BASE_URL);
 const config = {
   baseURL: BASE_URL,
   headers: {
@@ -24,10 +25,10 @@ http.interceptors.request.use(async function (config) {
       config.headers = {};
     }
     config.headers.Authorization = accessToken;
-    // console.log("config===>", config);
+    console.log("config===>", config);
     return config;
   } catch (error) {
-    console.log("intercpetor error", error);
+    // console.log("intercpetor error", error);
     return config;
   }
 });
