@@ -26,19 +26,45 @@ const PrMyPageMain = ({ myPageDatas, notice, navigation }) => {
             elevation: 5,
           }}
         >
+            
           <Box>
+          <TouchableOpacity
+          onPress={()=>{
+            navigation.navigate("MyPageRoutes", {
+                screen: "MyTicket",
+              })
+          }}
+          >
             <IconImage source={require("../../../assets/mypage/Tickets.png")} />
             <Text>마이티켓</Text>
+            </TouchableOpacity>
           </Box>
 
           <Box>
+          <TouchableOpacity
+          onPress={()=>{
+            navigation.navigate("MyPageRoutes", {
+                screen: "MyLike",
+              })
+          }}
+          >
             <IconImage source={require("../../../assets/mypage/Like.png")} />
             <Text>좋아요</Text>
+          </TouchableOpacity>
+            
           </Box>
 
           <Box>
+          <TouchableOpacity
+          onPress={()=>{
+            navigation.navigate("MyPageRoutes", {
+                screen: "MyPost",
+              })
+          }}
+          >
             <IconImage source={require("../../../assets/mypage/Write.png")} />
             <Text>내가 쓴 글</Text>
+            </TouchableOpacity>
           </Box>
 
           <Box>

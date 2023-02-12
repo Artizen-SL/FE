@@ -15,11 +15,20 @@ import {
   import { SafeAreaView } from "react-native-safe-area-context";
   import Layout from "../../Layout/Layout";
 
-const PrMyTicket = () => {
+const PrMyTicket = ({navigation}) => {
     return (
-        <View>
+        <ScrollViewLayout>
+            <TouchableOpacity
+             onPress={()=>{
+                navigation.navigate("MyPageRoutes", {
+                    screen: "MyTicketPost",
+                  })
+              }}
+            >
+                <Text>글쓰기</Text>
+            </TouchableOpacity>
             <Text> 마이티켓</Text>
-        </View>
+        </ScrollViewLayout>
       )
 }
 
