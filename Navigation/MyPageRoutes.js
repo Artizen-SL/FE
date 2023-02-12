@@ -10,7 +10,7 @@ const MyPageStack = createNativeStackNavigator();
 const MyPageRoutes = () => {
   return (
     <MyPageStack.Navigator initialRouteName="MyPage">
-        <MyPageStack.Screen
+      <MyPageStack.Screen
         name="MyPage"
         component={MyPage}
         options={{ headerShown: false }}
@@ -36,7 +36,7 @@ const MyPageRoutes = () => {
         options={{ headerShown: false }}
       />
     </MyPageStack.Navigator>
-  )
-}
+  );
+};
 
 export default MyPageRoutes;
