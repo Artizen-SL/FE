@@ -263,7 +263,7 @@ const Main = ({ navigation }) => {
 
           {/*추천*/}
           <View style={styles.center}>
-            <UserRecommendData />
+            <UserRecommendData user={myPageDatas.nickname}/>
           </View>
 
           {/*best*/}

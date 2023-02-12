@@ -162,18 +162,17 @@ const PrMyPageMain = ({ myPageDatas, notice, navigation }) => {
 
         {notice?.map((data) => {
           return (
-            <NoticeBox>
+            <NoticeBox
+              onPress={() =>
+                navigation.navigate("NoticeRoutes", {
+                  screen: "NoticeDetail",
+                  params: { id: data?.id },
+                })
+              }
+            >
               <NoticeTitle>공지</NoticeTitle>
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate("NoticeRoutes", {
-                    screen: "NoticeDetail",
-                    params: { id: data?.id },
-                  })
-                }
-              >
-                <Text>{data.title}</Text>
-              </TouchableOpacity>
+
+              <Text>{data.title}</Text>
             </NoticeBox>
           );
         })}

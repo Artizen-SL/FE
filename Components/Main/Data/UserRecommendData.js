@@ -3,7 +3,7 @@ import { ScrollView, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import UserRecommendBox from "../Presenters/UserRecommendBox";
 
-function UserRecommendData() {
+function UserRecommendData({user}) {
   // const { category } = route.params;
   // 받은 카테고리에 따라서 데이터 송수신하기
   const datas = [
@@ -51,7 +51,7 @@ function UserRecommendData() {
 
   const navigation = useNavigation();
 
-  return <UserRecommendBox datas={datas} />;
+  return <UserRecommendBox datas={datas} user={user}/>;
 }
 
 export default UserRecommendData;
