@@ -9,33 +9,7 @@ import { FlatList } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useIsFocused } from "@react-navigation/native";
 import { height } from "deprecated-react-native-prop-types/DeprecatedImagePropType";
-
-const dropDownData = [
-  {
-    label: "연극/뮤지컬",
-    Routes: "MainRoutes",
-    screen: "CategoryDetail",
-    params: { category: "연극/뮤지컬" },
-  },
-  {
-    label: "클래식/무용",
-    Routes: "MainRoutes",
-    screen: "CategoryDetail",
-    params: { category: "클래식/무용" },
-  },
-  {
-    label: "콘서트",
-    Routes: "MainRoutes",
-    screen: "CategoryDetail",
-    params: { category: "콘서트" },
-  },
-  {
-    label: "서커스/마술",
-    Routes: "MainRoutes",
-    screen: "CategoryDetail",
-    params: { category: "서커스/마술" },
-  },
-];
+import { dropDownData } from "../../Constants";
 
 function CategoryDetail({ route }) {
   const { category } = route.params;

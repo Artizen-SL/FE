@@ -8,6 +8,7 @@ import ScrollViewLayout from "../../Components/Layout/ScrollViewLayout";
 import Carousel from "../../Common/Carousel/Carousel";
 import useFetchContentDetail from "../../querys/category/useFetchContentDetail";
 import ContentDetailInfoLine from "../../Components/ContentList/Presenters/ContentDetailInfoLineView";
+import { dropDownData } from "../../Constants";
 const PAGES = [
   {
     num: 1,
@@ -28,32 +29,6 @@ const PAGES = [
   {
     num: 5,
     color: "#CCABD8",
-  },
-];
-const dropDownData = [
-  {
-    label: "미술관",
-    Routes: "MainRoutes",
-    screen: "CategoryDetail",
-    params: { category: "FineArtList" },
-  },
-  {
-    label: "전시회",
-    Routes: "MainRoutes",
-    screen: "CategoryDetail",
-    params: { category: "ShowList" },
-  },
-  {
-    label: "콘서트",
-    Routes: "MainRoutes",
-    screen: "CategoryDetail",
-    params: { category: "ConcertList" },
-  },
-  {
-    label: "박물관",
-    Routes: "MainRoutes",
-    screen: "CategoryDetail",
-    params: { category: "ExpoList" },
   },
 ];
 
