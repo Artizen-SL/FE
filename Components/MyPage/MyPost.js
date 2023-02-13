@@ -1,4 +1,6 @@
 import { Text,Alert } from "react-native";
+import { useQueryClient } from "@tanstack/react-query";
+
 import { useIsFocused, useNavigation } from "@react-navigation/native";
 import { useEffect } from "react";
 import PrMyPost from "./Presenters/PrMyPost";
@@ -7,6 +9,7 @@ import useDelCommunity from "../../querys/community/useDelCommunity";
 
 const MyPost = () => {
   const navigation = useNavigation();
+  const queryClient = useQueryClient();
   const isFocused = useIsFocused();
   const {
     data,
@@ -53,9 +56,11 @@ const MyPost = () => {
               onSuccess: (data, variable, context) => {
                 console.log("data",data);
                 Alert.alert("삭제완료");
-                // navigation.navigate("MyPageRoutes", {
-                //   screen: "MyPage",
-                // });
+                queryClient.invalidateQueries("getCommunity");
+                refetch();
+                navigation.navigate("MyPageRoutes", {
+                  screen: "MyPage",
+                });
               },
               onError: (error, variable, context) => {
                 Alert.alert("삭제실패");
@@ -69,7 +74,7 @@ const MyPost = () => {
   if (isError) {
     return <Text>{error?.message}</Text>;
   }
-  return <PrMyPost myPostDatas={myPostDatas} loadMore={loadMore} onPressHandler={onPressHandler}/>;
+  return <PrMyPost navigation={navigation} myPostDatas={myPostDatas} loadMore={loadMore} onPressHandler={onPressHandler}/>;
 };
 
 export default MyPost;
