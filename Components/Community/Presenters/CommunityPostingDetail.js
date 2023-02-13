@@ -32,6 +32,15 @@ const CommunityPostingDetail = ({
       <View>
         <StPostingImage source={{ uri: imageUrl }} resizeMode="contain" />
       </View>
+
+      {/* <LikeContainer>
+        <StLikeImg
+          source={require("../../../assets/Icon/Love.png")}
+          resizeMode="contain"
+        />
+        <Text></Text>
+      </LikeContainer> */}
+
       <StDividerView />
       {/* {postingImages.map((item, idx) => {
         return (
@@ -99,4 +108,20 @@ const StDividerView = styled(View)`
   border-bottom-width: 1px;
   margin-bottom: 10px;
   margin-top: 5px;
+`;
+
+const LikeContainer = styled(View)`
+  flex: 1;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: 30px;
+  border-width: 1px;
+  margin-top: 5px;
+`;
+
+const StLikeImg = styled(Image)`
+  width: 25;
+  height: 25;
 `;
