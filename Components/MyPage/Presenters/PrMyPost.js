@@ -18,7 +18,7 @@ import Layout from "../../Layout/Layout";
 import TagView from "../../Elem/TagView";
 import PrMyPageWrapper from "./PrMyPageWrapper";
 
-const PrMyPost = ({ myPostDatas, loadMore }) => {
+const PrMyPost = ({ myPostDatas, loadMore, onPressHandler }) => {
   const renderItem = ({ item }) => {
     return (
       <StCommuContentWrapper
@@ -46,18 +46,26 @@ const PrMyPost = ({ myPostDatas, loadMore }) => {
             {item?.content}
           </StSubText>
         </View>
-        <View>
+        <RowBox>
           <StSubText numberOfLines={1} ellipsizeMode="tail">
-            {item?.createdAt.slice(0, 10)} {item?.createdAt.slice(11, 16)} {" "}
+            {item?.createdAt}{" "}
           </StSubText>
-        </View>
+          <TouchableOpacity
+          onPress={()=>{onPressHandler(item.communityId)}}
+          >
+            <IconImage source={require("../../../assets/Icon/trash.png")} />
+          </TouchableOpacity>
+        </RowBox>
       </StCommuContentWrapper>
     );
   };
 
   return (
-    <PrMyPageWrapper title="내가 쓴 글" icon={require("../../../assets/mypage/Write.png")}>
-      {myPostDatas && myPostDatas.length > 0 ? (        
+    <PrMyPageWrapper
+      title="내가 쓴 글"
+      icon={require("../../../assets/mypage/Write.png")}
+    >
+      {myPostDatas && myPostDatas.length > 0 ? (
         <FlatList
           // ListHeaderComponent={<></>}
           renderItem={renderItem}
@@ -68,11 +76,11 @@ const PrMyPost = ({ myPostDatas, loadMore }) => {
           // contentContainerStyle={{}}
           // ListFooterComponent={}
         />
-      ):(
-      <Layout>
-        <Text>내가 쓴 글이 없어요</Text>
-      </Layout>)}
-     
+      ) : (
+        <Layout>
+          <Text>내가 쓴 글이 없어요</Text>
+        </Layout>
+      )}
     </PrMyPageWrapper>
   );
 };
@@ -92,6 +100,11 @@ const StCommuContentTitle = styled(View)`
   flex-direction: row;
   align-items: center;
 `;
+const RowBox = styled(View)`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
 
 const StTitle = styled(Text)`
   margin-left: 10px;
@@ -106,4 +119,8 @@ const StTitleWrapper = styled(View)`
 
 const StSubText = styled(Text)`
   color: gray;
+`;
+const IconImage = styled(Image)`
+  width: 15px;
+  height: 15px;
 `;
