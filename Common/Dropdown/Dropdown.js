@@ -155,8 +155,8 @@ const styles = StyleSheet.create({
   },
 
   stDropDownBtn: {
-    width: 75,
-    height: 75,
+    width: 45,
+    height: 45,
   },
   stDropDownImages: {
     width: 30,
