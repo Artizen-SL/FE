@@ -2,16 +2,16 @@
 
 ## 👉🏻 프로젝트 소개
 
-> 독서가 부족한 현대인들을 위해! 갓생을 살고싶은 현대인들을 위해! <br>
-> 새로운 사람들과 즐겁게 얘기하며 독서 할 수 있는 웹 어플리케이션 <br>
+>  예술문화를 사랑하는 모든분들을 위한!<br>
+> 위치기반 문화컨텐츠 추천 어플리케이션! <br>
 
 ### [ODOK 바로가기](http://o-dok.com/)
 
-### [Front-End Github](https://github.com/Hanghae-Hot6/Front)
+### [Front-End Github](https://github.com/Artizen-SL/FE)
 
-### [Back-End Github](https://github.com/Hanghae-Hot6/Back)
+### [Back-End Github](https://github.com/Artizen-SL/BE)
 
-### [Project Notion](https://www.notion.so/ckd12394/5-ODOK-5b66f278ac9044609f709d7a89deee7f)
+### [Project Notion](https://www.notion.so/Artizen-e4d9ab34a66245548244765aeceeae5e)
 
 <br>
 <hr>
@@ -22,10 +22,10 @@
 | 이름   | 깃허브 주소                                                | 포지션   |
 | ------ | ---------------------------------------------------------- | -------- |
 | 서지운 | [MildColor의 github](https://github.com/MildColor)         | Frontend |
-| 임소희 | [1005jsc의 github](https://github.com/1005jsc)             | Frontend |
+| 임소희 | [Limsoheeee의 github](https://github.com/Limsoheeee)             | Frontend |
 | 국경훈 | [kyunghoonkook의 github](https://github.com/kyunghoonkook) | Frontend |
-| 장지윤 | [ryucm의 github](https://github.com/ryucm)                 | Backend  |
-| 김지애 | [chokyeil의 github](https://github.com/chokyeil)           | Backend  |
+| 장지윤 | [Jaylin의 github](https://github.com/Jaylin16)                 | Backend  |
+| 김지애 | [kimjiae970의 github](https://github.com/kimjiae970)           | Backend  |
 | 박현도 | [atto08의 github](https://github.com/atto08)               | Backend  |
 
 
@@ -52,22 +52,15 @@
 ## 🛠 프론트 기술 스택
 
 <div align=center> 
-   <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=black">
-  <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black">
-  <img src="https://img.shields.io/badge/Create React App-09D3AC?style=for-the-badge&logo=Create React App&logoColor=black">
-  <img src="https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=Redux&logoColor=white">
-   <img src="https://img.shields.io/badge/Redux Toolkit-764ABC?style=for-the-badge&logo=Redux&logoColor=white"/>
+   <img src="https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
   <img src="https://img.shields.io/badge/React Query-FF4154?style=for-the-badge&logo=React Query&logoColor=white">
-  <img src="https://img.shields.io/badge/React Router-CA4245?style=for-the-badge&logo=React Router&logoColor=white">
-  
+  <img src="https://img.shields.io/badge/jotai-666666?style=for-the-badge&logoColor=white">
+   <img src="https://img.shields.io/badge/Expo-100000?style=for-the-badge&logoColor=white">
+   <img src="https://img.shields.io/badge/react navigation-8B89CC?style=for-the-badge&logo=reactnavigation&logoColor=white">
 <br>
-   <img src="https://img.shields.io/badge/socket.io-010101?style=for-the-badge&logo=socket.io&logoColor=white">
-  <img src="https://img.shields.io/badge/Stomp-353535?style=for-the-badge&logoColor=white">
   <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white">
   <img src="https://img.shields.io/badge/Yarn-2C8EBB?style=for-the-badge&logo=Yarn&logoColor=white">
   <img src="https://img.shields.io/badge/styled-components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white">
-  <img src="https://img.shields.io/badge/GitHub Actions-2088FF?style=for-the-badge&logo=GitHub Actions&logoColor=white">
-  <img src="https://img.shields.io/badge/Amazon S3-569A31?style=for-the-badge&logo=Amazon S3&logoColor=white">
   <br>
 </div>
 <br>
@@ -118,7 +111,7 @@
 
 ## ✒ 와이어 프레임
 
-### [Figma 보러가기](https://www.figma.com/file/PTN0SpVnreH7JxRmfFmA32/%ED%95%AD%ED%95%B499_%EC%98%A4%EB%8F%85?node-id=0%3A1&t=e7SJsG8aMZCz08ou-0)
+### [Figma 보러가기](https://www.figma.com/embed?embed_host=notion&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FbXLQWaIqqcAWXnOFoN0M5l%2FArtizen%3Fnode-id%3D0%253A1%26t%3Dw0Wx3gv3e97LY911-0)
 
 <br>
 <br>
@@ -128,10 +121,13 @@
 | 스택              | 도입 이유    | 버전    |
 | ----------------- | --- | --- |
 
-| RTK | 1. 요구사항 및 문제:<br>리액트로 앱을 제작할 시에 생겨나는 고질적인 문제인 prop drilling을 피하기 위해,앱 전역적으로 데이터들을 관리해주는 상태관리 라이브러리 도입 필요성을 느낌<br><br>2. 대안 : redux, recoli, mobx, context api, <br><br>3. 의사결정 : <br>서버에서 비동기로 받아오는 데이터는 React Query로 담당하기로 하였고, 앱 내에서만 사용하는 데이터들을 관리하는 라이브러리가 필요하다 판단.<br>recoil, context api, mobx, redux 네가지 모두 위의 조건을 충족하는데 문제는 없다 .<br>recoil은 사용법이 쉽고 직관적이라는 장점이 있지만 가끔 버그가 발견되었다는 다른 개발자들의 말을 들었다.(스스로 직접 겪어보지는 못하였음)<br>mobx는 class 문법을 사용해야 하는데 팀원들은 class문법에 익숙하지 않아서 선택지에서 제외.<br>context api를 사용하기 위해서는 팀원들끼리 컨벤션을 처음부터 정해줘야했다 이 과정에 많은 시간이 소모될 것 같아서 패스했다.<br>결국 프론트 팀원들 모두가 친숙한 redux를 사용하기로 함 .<br>많은 Redux 패턴들 중에서 Redux에서 공식적으로 사용하기를 권장하고 있는 Redux 패턴 방법인 Redux toolkit 사용하였다 Redux toolkit은 특히 typescript에 대한 연동이 잘 되어있고 공식 문서도 설명이 잘 되어있어 프로젝트에 적합한 상태 관리 툴이라고 판단. | ^1.8.6  |
+
+| react-native | 1. 요구사항 및 문제:<br>리액트로 앱을 제작할 시에 생겨나는 고질적인 문제인 prop drilling을 피하기 위해,앱 전역적으로 데이터들을 관리해주는 상태관리 라이브러리 도입 필요성을 느낌<br><br>2. 대안 : redux, recoli, mobx, context api, <br><br>3. 의사결정 : <br>서버에서 비동기로 받아오는 데이터는 React Query로 담당하기로 하였고, 앱 내에서만 사용하는 데이터들을 관리하는 라이브러리가 필요하다 판단.<br>recoil, context api, mobx, redux 네가지 모두 위의 조건을 충족하는데 문제는 없다 .<br>recoil은 사용법이 쉽고 직관적이라는 장점이 있지만 가끔 버그가 발견되었다는 다른 개발자들의 말을 들었다.(스스로 직접 겪어보지는 못하였음)<br>mobx는 class 문법을 사용해야 하는데 팀원들은 class문법에 익숙하지 않아서 선택지에서 제외.<br>context api를 사용하기 위해서는 팀원들끼리 컨벤션을 처음부터 정해줘야했다 이 과정에 많은 시간이 소모될 것 같아서 패스했다.<br>결국 프론트 팀원들 모두가 친숙한 redux를 사용하기로 함 .<br>많은 Redux 패턴들 중에서 Redux에서 공식적으로 사용하기를 권장하고 있는 Redux 패턴 방법인 Redux toolkit 사용하였다 Redux toolkit은 특히 typescript에 대한 연동이 잘 되어있고 공식 문서도 설명이 잘 되어있어 프로젝트에 적합한 상태 관리 툴이라고 판단. | ^1.8.6  |
+| expo | 1. 요구사항 및 문제:<br>리액트로 앱을 제작할 시에 생겨나는 고질적인 문제인 prop drilling을 피하기 위해,앱 전역적으로 데이터들을 관리해주는 상태관리 라이브러리 도입 필요성을 느낌<br><br>2. 대안 : redux, recoli, mobx, context api, <br><br>3. 의사결정 : <br>서버에서 비동기로 받아오는 데이터는 React Query로 담당하기로 하였고, 앱 내에서만 사용하는 데이터들을 관리하는 라이브러리가 필요하다 판단.<br>recoil, context api, mobx, redux 네가지 모두 위의 조건을 충족하는데 문제는 없다 .<br>recoil은 사용법이 쉽고 직관적이라는 장점이 있지만 가끔 버그가 발견되었다는 다른 개발자들의 말을 들었다.(스스로 직접 겪어보지는 못하였음)<br>mobx는 class 문법을 사용해야 하는데 팀원들은 class문법에 익숙하지 않아서 선택지에서 제외.<br>context api를 사용하기 위해서는 팀원들끼리 컨벤션을 처음부터 정해줘야했다 이 과정에 많은 시간이 소모될 것 같아서 패스했다.<br>결국 프론트 팀원들 모두가 친숙한 redux를 사용하기로 함 .<br>많은 Redux 패턴들 중에서 Redux에서 공식적으로 사용하기를 권장하고 있는 Redux 패턴 방법인 Redux toolkit 사용하였다 Redux toolkit은 특히 typescript에 대한 연동이 잘 되어있고 공식 문서도 설명이 잘 되어있어 프로젝트에 적합한 상태 관리 툴이라고 판단. | ^1.8.6  |
+| jotai | 1. 요구사항 및 문제:<br>리액트로 앱을 제작할 시에 생겨나는 고질적인 문제인 prop drilling을 피하기 위해,앱 전역적으로 데이터들을 관리해주는 상태관리 라이브러리 도입 필요성을 느낌<br><br>2. 대안 : redux, recoli, mobx, context api, <br><br>3. 의사결정 : <br>서버에서 비동기로 받아오는 데이터는 React Query로 담당하기로 하였고, 앱 내에서만 사용하는 데이터들을 관리하는 라이브러리가 필요하다 판단.<br>recoil, context api, mobx, redux 네가지 모두 위의 조건을 충족하는데 문제는 없다 .<br>recoil은 사용법이 쉽고 직관적이라는 장점이 있지만 가끔 버그가 발견되었다는 다른 개발자들의 말을 들었다.(스스로 직접 겪어보지는 못하였음)<br>mobx는 class 문법을 사용해야 하는데 팀원들은 class문법에 익숙하지 않아서 선택지에서 제외.<br>context api를 사용하기 위해서는 팀원들끼리 컨벤션을 처음부터 정해줘야했다 이 과정에 많은 시간이 소모될 것 같아서 패스했다.<br>결국 프론트 팀원들 모두가 친숙한 redux를 사용하기로 함 .<br>많은 Redux 패턴들 중에서 Redux에서 공식적으로 사용하기를 권장하고 있는 Redux 패턴 방법인 Redux toolkit 사용하였다 Redux toolkit은 특히 typescript에 대한 연동이 잘 되어있고 공식 문서도 설명이 잘 되어있어 프로젝트에 적합한 상태 관리 툴이라고 판단. | ^1.8.6  |
 | React-Query       | 1. 요구사항 및 문제:<br>- 기존에 비동기 데이터 처리를 위한 redux thunk 를 사용할 경우, redux의 기본원칙을 충족하기 위해서는 보일러 플레이트 코드가 방대해지고, 서버데이터와 클라이언트 데이터가 섞여서 데이터를 관리하는데에 문제 발생.<br>⇒ 서버데이터와 클라이언트의 데이터를 분리시켜 관리하고, 유연한 작업을 위한 라이브러리의 도입이 필요.<br><br>2. 대안 : <br>1) redux saga<br>2) react async<br>3) redux-thunk<br>4) react-query<br><br>3. 의사결정 :<br>- redux saga: 상대적으로 높은 learning curve<br><br>⇒ 단기 프로젝트에서 부적합<br>- react async: 적은 참고자료와 다운로드 수<br>⇒  현시점에서 도입하기에 부적합<br>- redux thunk<br>⇒ redux 설정이 서드파티로 인해 더욱 비대해고, 비동기 데이터를 관리하기 위해 관련된 코드를 개발자가 결정하고 구현해야한다. 협업시에 복잡해지고, 개발 시간에서도 단점으로 작용.<br>- react query<br>⇒ 보일러플레이트 코드의 감소, react-query에서 제공하는 규격화된 상태관리 방식은 협업과 코드작성시 효율적, 지속적으로 서버의 상태를 불러오고, 캐싱하기 때문에 비동기 데이터를 관리하기에 용이. 개발 속도와 편리성을 위해 react query 채택 | ^3.39.2 |
 | Axios             | 1. 요구사항 및 문제: 백엔드와 데이터 비동기 통신을 하기 위한 라이브러리 도입 필요.편의를 위한 기능과 브라우저 지원과 같은 확장성 고려.<br><br>2. 대안 :  AXIOS, FETCH, AJAX<br><br>3.의사결정: <br>- FETCH : 별도의 설치과정이 불필요하지만, 응답데이터를 JSON메소드를 통한 변환 과정이 필요, 브라우저 지원범위는 AXIOS 보다 적음. <br>-AJAX : jquery 를 통해 쉽게 구현가능, Error, Success, Complete의 상태를 통해 흐름을 구분 가능, 그러나 promise기반이 아님.<br>-AXIOS : 설치과정이 필요하지만, 더 넓은 브라우저 지원범위, 응답데이터를 자동으로 JSON으로 변환, 별도의 인스턴스 생성가능으로 인한 유지보수, 가독성 면에서 장점, interceptor 기능 제공 <br>⇒ jquery는 프로젝트에 도입하지 않고, Fetch와 AJAX 보다 더 많은 편의 기능을 제공하는 AXIOS를 도입.   | ^1.1.3  |
-| Socket, StompJs   | 1. 요구사항 및 문제:<br>채팅 기능을 구현하기 위해서는 단방향적인 http통신을 쓰는 것은 서버, 프론트 둘 다에게 비효율적인 방식이기때문에 양방향 커뮤니케이션을 제공하는 웹소켓 프로토콜을 사용하기로 함. 웹소켓 프로토콜를 기반으로 만들어진 검증된 라이브러리를 사용하여 초기 세팅 리소스를 덜음.<br><br>2. 대안 : 웹소켓 프로토콜 : socket.io, ws, sockJs-client , 웹소켓 기능 API : stompJS<br><br>3. 의사결정 : <br>순수 웹소켓은 모든 클라이언트의 브라우저에서 WebSocket을 지원한다는 보장이 없다, 또는 서버가 순수 웹소켓 사용이 불가능할 경우가 있기 때문에 websocket 프로토콜을 제공하는 라이브러리를 사용하기로 함<br>websocket 프로토콜 라이브러리중 socket.io, ws는 노드에 최적화 되어있고, Spring 프레임워크는 Servlet 스택 위에서 Server/Client 용도의 SockJS 프로토콜을 모두 지원하기 때문에 SockJs를채택함 <br>서버와 커넥트 되었을 때, 메세지를 보낼 때, 서버와 연결이 끊겼을 때와같은 채팅을 구현할 시 기본적으로 필요로하는 기능들이 잘 정리되어 들어있는 Stomp라이브러리의 도움을 받아 채팅 로직을 구현하기로 함| ^6.1.2  |
+
 
 ## 🔨 기술 도입 이유 - 라이브러리, 기술적 의사 결정 - 백엔드
 
