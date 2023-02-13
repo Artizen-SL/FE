@@ -8,6 +8,9 @@
       "distribution": "internal"
     },
     "preview": {
+      "android": {
+        "gradleCommand": ":app:assembleRelease"
+      },
       "distribution": "internal"
     },
     "production": {}
