@@ -27,7 +27,11 @@ function CategoryDetail({ route }) {
     remove,
   } = useCategoryDetail(category, 10);
 
-  const categoryData = data?.pages.flat();
+  console.log(data);
+
+  const categoryData = data?.pages.flatMap((item) => {
+    return item.page.flat();
+  });
 
   useEffect(() => {
     remove();
