@@ -134,32 +134,11 @@ function CategoryDetail({ route }) {
         // ListFooterComponent={}
       />
 
-      {/* <View
-          style={{
-            flex: 1,
-            // width: "100%",
-            // height: "100%",
-            width: 500,
-            height: 1000,
-          }}
-        >
-          <FlatList
-            // ListHeaderComponent={<></>}
-            renderItem={renderItem}
-            data={categoryData}
-            keyExtractor={(item) => item?.id}
-            onEndReached={loadMore}
-            onEndReachedThreshold={0.4}
-            // contentContainerStyle={{}}
-            // ListFooterComponent={}
-          />
-        </View> */}
-      {/* <Dropdown
+      <Dropdown
         label="Select Item"
         data={dropDownData}
         onSelect={setSelected}
-      /> */}
-      {/* </View> */}
+      />
     </SafeAreaView>
   );
 }
