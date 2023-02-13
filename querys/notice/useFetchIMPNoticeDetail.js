@@ -15,6 +15,7 @@ const useFetchIMPNoticeDetail = (id) => {
       const response = await getIMPNoticeDetail (id);
       return response.data;
     },
+    suspense: true, 
   });
 }
 

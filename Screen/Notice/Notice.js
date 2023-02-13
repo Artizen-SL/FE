@@ -20,9 +20,11 @@ import NoticeImportantList from "../../Components/Notice/NoticeImportantList";
 import { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import useFetchNotice from "../../querys/notice/useFetchNotice";
+import IsLoading from "../../Common/IsLoading/IsLoading";
 
 const Notice = () => {
   const navigation = useNavigation();
+  const isFocused = useIsFocused();
   const [noticePassword, setNoticePassword] = useState("");
   const [onPost, setOnPost] = useState(false);
 
@@ -45,9 +47,15 @@ const Notice = () => {
     }
   };
 
-  const { data: datas, isError, isLoading } = useFetchNotice();
+  const { data: datas, isError, isLoading ,refetch } = useFetchNotice();
 
+  useEffect(() => {
+    refetch();
+  }, [isFocused]);
   
+  if(isLoading) {
+    <IsLoading />
+  }
    return (
     <SafeAreaView>
       <ScrollView>

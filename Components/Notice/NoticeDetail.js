@@ -1,12 +1,16 @@
-import { Alert } from "react-native";
+import { View,Image,Alert } from "react-native";
 import { useState } from "react";
 import PrNoticeDetail from "./Presenters/PrNoticeDetail";
 import useFetchNoticeDetail from "../../querys/notice/useFetchNoticeDetail";
 import useDelNotice from "../../querys/notice/useDelNotice";
+import { useNavigation } from "@react-navigation/native";
+import IsLoading from "../../Common/IsLoading/IsLoading";
 
 const NoticeDetail = ({ route }) => {
+  const navigation = useNavigation();
   const { id } = route.params;
-  const { data, isError, isLoading } = useFetchNoticeDetail(id);
+  const {
+     data, isError, isLoading } = useFetchNoticeDetail(id);
   
   //공지삭제
   const [delNotice, setDelNotice] = useState(false);
@@ -36,6 +40,9 @@ const NoticeDetail = ({ route }) => {
             delNoticeMutate(id, {
               onSuccess: (data, variable, context) => {
                 Alert.alert("삭제완료");
+                navigation.navigate("NoticeRoutes", {
+                  screen: "Notice",
+                });
               },
               onError: (error, variable, context) => {
                 Alert.alert("삭제실패");
@@ -48,6 +55,10 @@ const NoticeDetail = ({ route }) => {
       Alert.alert("비밀번호가 일치하지않습니다.");
     }
   };
+
+  if(isLoading) {
+    return <IsLoading/>
+  }
 
   return (
     <PrNoticeDetail

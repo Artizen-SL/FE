@@ -16,6 +16,7 @@ const useFetchNotice = () => {
             const { data } = await getNoticeContent();
             return data;
           },
+          suspense: true 
         },
         {
           enabled: false,

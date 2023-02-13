@@ -77,7 +77,7 @@ function ContentDetail({ route }) {
     isLoading,
     isError,
   } = useFetchContentDetail(id);
-  console.log("contentDetailData", contentDetailData);
+  // console.log("contentDetailData", contentDetailData);
 
   useEffect(() => {
     setPosterUrls([]);

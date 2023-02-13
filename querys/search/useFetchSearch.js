@@ -4,7 +4,7 @@ import { getRequest } from "../../axios/axiosConfig";
 const getSearchContent = (keyword) => {
   return getRequest({
     method: "get",
-    url: `/search/artizens?keyword=${keyword}`,
+    url: `/search/artizens?keyword=${keyword}&page=${1}&size=${5}`,
   });
 };
 
@@ -16,6 +16,7 @@ const useFetchSearch = (keyword) => {
         const { data } = await getSearchContent(keyword);
         return data;
       },
+      suspense: true,
     },
     {
       enabled: false,

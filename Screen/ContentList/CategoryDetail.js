@@ -40,7 +40,7 @@ function CategoryDetail({ route }) {
   const obsRef = useRef(null); //observer Element
   const [list, setList] = useState([]);
   // const [page, setPage] = useState(1);
-  const preventRef = useRef(true);
+  // const preventRef = useRef(true);
 
   const {
     data: categoryData,

@@ -37,7 +37,7 @@ const PrNoticeIMPDetail = ({
         <Center>
           <NoticeImage source={{ uri: data?.imageUrl }} />
           <TouchableOpacity onPress={onDelChange}>
-            <Text>삭제</Text>
+            < TransText>삭제</ TransText>
           </TouchableOpacity>
           {delNotice === true ? (
             <>
@@ -116,6 +116,11 @@ const TextDarkGray = styled(Text)`
   justify-content: center;
   margin-left: 2%;
 `;
+
+const TransText = styled(Text)`
+  color: transparent; 
+`;
+
 const RowBox = styled(View)`
   flex-direction: row;
   align-items: center;

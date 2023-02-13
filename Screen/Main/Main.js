@@ -1,6 +1,7 @@
 import {
   StyleSheet,
   View,
+  Alert,
   Text,
   Button,
   Image,
@@ -20,6 +21,8 @@ import RecentlyData from "../../Components/Main/Data/RecentlyData";
 import BestData from "../../Components/Main/Data/BestData";
 import MainCarouselData from "../../Components/Main/Data/MainCarouselData";
 import MainNotice from "../../Components/Main/MainNotice";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import useFetchMyPage from "../../querys/mypage/useFetchMyPage";
 // import MainView from "../../Components/Main/Presenters/MainView";
 
 const Main = ({ navigation }) => {
@@ -44,9 +47,22 @@ const Main = ({ navigation }) => {
     }
   }, []);
 
-    const { data: datas, isError, isLoading } = useFetchImportantNotice();
+  const { data: datas, isError, isLoading } = useFetchImportantNotice();
 
-
+  // useEffect(() => {
+  //   const getTokenAsync = async () => {
+  //     let userToken;
+  //     try {
+  //       userToken = await AsyncStorage.getItem("accessToken");
+  //       console.log("userToken===>", userToken);
+  //       } catch(error){
+  //         console.log("error", error);
+  //       }
+  //   };
+  //   getTokenAsync();
+  // },[]);
+  const { data: myPageDatas } = useFetchMyPage();
+  console.log("myPageDatas===>", myPageDatas);
   return (
     <ScrollViewLayout>
       {/* <MainView /> */}
@@ -55,21 +71,32 @@ const Main = ({ navigation }) => {
         style={styles.bgImage}
       >
         <View style={[styles.container, styles.header]}>
-          <View style={styles.headerarea}>
+          <Headerarea>
             <View style={styles.logo}>
               <Logo source={require("../../assets/logo/artizenRabbit.png")} />
               <LogoTitle source={require("../../assets/logo/artizenNew.png")} />
             </View>
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("MainRoutes", {
-                  screen: "Search",
-                })
-              }
-            >
-              <Image source={require("../../assets/Icon/Search.png")} />
-            </TouchableOpacity>
-          </View>
+            <View style={[styles.row]}>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("MainRoutes", {
+                    screen: "Search",
+                  })
+                }
+              >
+                <Image source={require("../../assets/Icon/Search.png")} />
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("MyPageRoutes", {
+                    screen: "MyPage",
+                  })
+                }
+              >
+                <Profile source={{ uri: myPageDatas?.profileImg }} />
+              </TouchableOpacity>
+            </View>
+          </Headerarea>
           <ImageBackground
             source={require("../../assets/background/white.png")}
             style={styles.whiteBackground}
@@ -98,7 +125,7 @@ const Main = ({ navigation }) => {
               <TouchableOpacity
                 style={styles.center}
                 onPress={() => {
-                  alert("서비스 준비중 입니다.");
+                  Alert.alert("서비스 준비중 입니다.");
                 }}
               >
                 <Circle>
@@ -176,7 +203,7 @@ const Main = ({ navigation }) => {
               marginTop: 15,
             }}
           >
-            <View style={styles.longBox}>
+            <LongBox>
               <Image
                 source={require("../../assets/Icon/gps.png")}
                 style={{
@@ -201,7 +228,7 @@ const Main = ({ navigation }) => {
               <Text style={styles.skyblueText} onPress={resetGpsAsk}>
                 (위치 재설정)
               </Text>
-            </View>
+            </LongBox>
           </View>
 
           {/*공지사항*/}
@@ -229,14 +256,14 @@ const Main = ({ navigation }) => {
                 <IconImage
                   source={require("../../assets/Icon/rightArrow.png")}
                 />
-              </TouchableOpacity>              
+              </TouchableOpacity>
             </RowBox>
-            <MainNotice datas={datas}/>
+            <MainNotice datas={datas} />
           </View>
 
           {/*추천*/}
           <View style={styles.center}>
-            <UserRecommendData />
+            <UserRecommendData user={myPageDatas.nickname}/>
           </View>
 
           {/*best*/}
@@ -251,7 +278,7 @@ const Main = ({ navigation }) => {
 
           {/*new*/}
           <View style={{ marginTop: 20 }}>
-            <View style={{ flexDirection: "row", marginLeft: 15  }}>
+            <View style={{ flexDirection: "row", marginLeft: 15 }}>
               <Logo source={require("../../assets/Icon/new.png")} />
               <BoldTextBL style={{ marginLeft: 6 }}>NEW Artizen</BoldTextBL>
             </View>
@@ -304,7 +331,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
-    width: 312,
+    width: 100,
     height: 34,
     backgroundColor: "#fff",
     borderRadius: 5,
@@ -337,7 +364,7 @@ const styles = StyleSheet.create({
   headerarea: {
     flex: 1,
     height: 45,
-    width: 360,
+    width: 100,
     flexDirection: "row",
     flexWrap: "nowrap",
     justifyContent: "space-between",
@@ -389,6 +416,11 @@ const LogoTitle = styled(Image)`
   height: 16px;
   margin-left: 6px;
 `;
+const Profile = styled(Image)`
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+`;
 const Logo = styled(Image)`
   width: 30px;
   height: 30px;
@@ -402,3 +434,34 @@ const Circle = styled(View)`
   align-items: center;
   justify-content: center;
 `;
+
+const Headerarea = styled(View)`
+ flex: 1;
+  height: 60px;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 5%;
+  padding-right: 5%;
+`;
+
+
+const LongBox = styled(View)`
+ flex: 1;
+  height: 34px;
+  width: 80%;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 5%;
+  padding-right: 5%;
+  border-radius: 5px;
+  background-color: ${Theme.colors.White};
+  margin-top: 20px;
+`;
+
+
+
