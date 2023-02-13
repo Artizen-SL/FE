@@ -163,6 +163,7 @@ const PrMyPageMain = ({ myPageDatas, notice, navigation }) => {
         {notice?.map((data) => {
           return (
             <NoticeBox
+            key={data.id}
               onPress={() =>
                 navigation.navigate("NoticeRoutes", {
                   screen: "NoticeDetail",

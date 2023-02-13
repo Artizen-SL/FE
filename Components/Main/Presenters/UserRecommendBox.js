@@ -27,9 +27,8 @@ const UserRecommendBox = ({ datas,user }) => {
           ? (categoryName = "박람회")
           : (categoryName = "");
         return (
-          <View>
-            <View
-              key={data.id}
+          <View key={data.id}>
+            <View              
               style={{
                 flexDirection: "row",
                 alignItems: "center",
@@ -43,9 +42,8 @@ const UserRecommendBox = ({ datas,user }) => {
                 어떠세요?
               </Text>
             </View>
-            <ImageBackground
+            <RecommendImage 
               source={{ uri: data?.posterUrl }}
-              style={styles.recommendImage}
             >
               <Image
                 source={require("../../../assets/Icon/ribbon.png")}
@@ -58,7 +56,7 @@ const UserRecommendBox = ({ datas,user }) => {
                 </WhiteText>
                 <WhiteText>{data?.place}</WhiteText>
               </View>
-            </ImageBackground>
+            </RecommendImage>
           </View>
         );
       })}
@@ -150,3 +148,10 @@ const Logo = styled(Image)`
   width: 30px;
   height: 30px;
 `;
+const RecommendImage = styled(ImageBackground)`
+  width: 100%;
+  height: 156px;
+  border-radius: 50px;
+  margin-top: 6px;
+`;
+

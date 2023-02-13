@@ -28,9 +28,9 @@ const MainCarousel = ({ pages, pageWidth, gap }) => {
     }
   }, [currentIndex, snapToOffsets]);
 
-  // useInterval(() => {
-  //   setCurrentIndex(prev => (prev === snapToOffsets.length - 1 ? 0 : prev + 1));
-  // }, 3600);
+  useInterval(() => {
+    setCurrentIndex(prev => (prev === snapToOffsets.length - 1 ? 0 : prev + 1));
+  }, 3600);
 
   // props 정보를 reder 하는 함수
   function renderItem({ item }) {
@@ -56,9 +56,10 @@ const MainCarousel = ({ pages, pageWidth, gap }) => {
           paddingHorizontal: 0,
         }}
         data={pages}
-        decelerationRate="fast"
+        decelerationRate="normal"
         horizontal
-        keyExtractor={(item) => `page__${item.color}`}
+        // keyExtractor={(item) => `page__${item.color}`}
+        keyExtractor={(item, index) => index.toString()}
         onScroll={onScroll}
         pagingEnabled
         renderItem={renderItem}
@@ -79,8 +80,8 @@ const MainCarousel = ({ pages, pageWidth, gap }) => {
 export default MainCarousel;
 
 const Container = styled.View`
-  height: 200;
-  border-radius: 5;
+  height: 200px;
+  border-radius: 5px;
   justify-content: center;
   align-items: center;
   margin-bottom: 30px;

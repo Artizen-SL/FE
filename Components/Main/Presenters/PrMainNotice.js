@@ -21,6 +21,7 @@ const PrMainNotice = ({ datas, navigation }) => {
       {datas?.map((data) => {
         return (
           <TouchableOpacity
+          key={data?.id}
             onPress={() =>
               navigation.navigate("NoticeRoutes", {
                 screen: "NoticeDetail",
@@ -28,7 +29,7 @@ const PrMainNotice = ({ datas, navigation }) => {
               })
             }
           >
-            <NoticeBox key={data?.id}>
+            <NoticeBox>
               <RowBox>
                 <Logo source={require("../../../assets/Icon/skyStar.png")} />
                 <TextBL>{data?.title}</TextBL>
