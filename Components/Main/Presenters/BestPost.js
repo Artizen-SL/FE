@@ -5,46 +5,30 @@ import Theme from "../../../Theme/Theme";
 
 const BestPost = ({ datas }) => {
   return (
-    <View style={styles.row}>
+    <RowBox>
       {datas.map((data) => {
         return (
-          <View style={styles.center} key={data?.id}>
+          <Center key={data?.id}>
             <MiddleSqureImage
               source={{ uri: data?.posterUrl }}          
             >
               <WhiteText>{data?.name}</WhiteText>
             </MiddleSqureImage>
-          </View>
+          </Center>
         );
       })}
-    </View>
+    </RowBox>
   );
 };
 
 export default BestPost;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  container2: {
-    width: "100%",
-    height: 200,
-  },
-  round: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-  },
   center: {
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 10,
     margin: 3,
-  },
-  smallText: {
-    fontSize: 12,
-    marginLeft: 5,
   },
   row: {
     width: 320,
@@ -53,13 +37,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start",
     margin: 10,
-  },
-  middleSqure: {
-    width: 153,
-    height: 153,
-    borderRadius: 5,
-    alignItems: "center",
-    justifyContent: "center",
   },
 });
 
@@ -70,14 +47,30 @@ const Round = styled.View`
 
 const WhiteText = styled.Text`
   color: ${Theme.colors.White};
-  font-size: 14;
+  font-size: 14px;
   font-weight: 700;
 `
 const MiddleSqureImage = styled.ImageBackground`
-  width: 153;
-  height: 153;
+  width: 153px;
+  height: 153px;
   border-radius: 10px;
   align-items: center;
   justify-content: center;
   background-color: "rgba(0, 0, 0, 0.5)";
+`;
+
+const RowBox = styled(View)`
+  width: 320px;
+ flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 10px;
+`;
+
+const Center = styled(View)`
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  margin: 3px;
 `;

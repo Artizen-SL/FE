@@ -26,11 +26,6 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 200,
   },
-  round: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-  },
   center: {
     alignItems: "center",
     justifyContent: "center",

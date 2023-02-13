@@ -72,10 +72,10 @@ const Main = ({ navigation }) => {
       >
         <View style={[styles.container, styles.header]}>
           <Headerarea>
-            <View style={styles.logo}>
+            <LogoBox >
               <Logo source={require("../../assets/logo/artizenRabbit.png")} />
               <LogoTitle source={require("../../assets/logo/artizenNew.png")} />
-            </View>
+            </LogoBox>
             <View style={[styles.row]}>
               <TouchableOpacity
                 onPress={() =>
@@ -320,22 +320,12 @@ const styles = StyleSheet.create({
   bgImage: { width: "100%", height: "100%" },
 
   logo: {
-    width: 117,
-    height: 32,
+    width: "117px",
+    height: "32px",
     flexDirection: "row",
     alignContent: "center",
     justifyContent: "center",
     alignItems: "center",
-  },
-  longBox: {
-    flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    width: 100,
-    height: 34,
-    backgroundColor: "#fff",
-    borderRadius: 5,
-    marginTop: 22,
   },
   smallText: {
     fontSize: 12,
@@ -347,15 +337,6 @@ const styles = StyleSheet.create({
     borderBottomColor: Theme.colors.SkyBlue,
     borderBottomWidth: StyleSheet.hairlineWidth,
     marginLeft: 5,
-  },
-  BlBoldText: {
-    color: Theme.colors.Black,
-    fontSize: 14,
-    fontWeight: "bold",
-    width: 114,
-    borderBottomColor: Theme.colors.Black,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    marginLeft: 10,
   },
   whiteBackground: {
     width: "100%",
@@ -461,6 +442,16 @@ const LongBox = styled(View)`
   border-radius: 5px;
   background-color: ${Theme.colors.White};
   margin-top: 20px;
+`;
+
+const LogoBox = styled(View)`
+width: 117px;
+height: 32px;
+  flex-direction: row;
+  align-items: center;
+justify-content: center;
+  align-items: center;
+
 `;
 
 
