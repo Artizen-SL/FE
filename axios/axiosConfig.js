@@ -4,14 +4,12 @@ import axios from "axios";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-// console.log("process.env.REACT_APP_BASE_URL", process.env.REACT_APP_BASE_URL);
 const config = {
   baseURL: BASE_URL,
   headers: {
     Authorization: "",
   },
 };
-console.log("BASE_URL", BASE_URL);
 
 const http = axios.create(config);
 
@@ -26,10 +24,8 @@ http.interceptors.request.use(async function (config) {
       config.headers = {};
     }
     config.headers.Authorization = accessToken;
-    // console.log("config===>", config);
     return config;
   } catch (error) {
-    // console.log("intercpetor error", error);
     return config;
   }
 });
@@ -46,7 +42,6 @@ export const getRequest = async ({
     return response;
   } catch (error) {
     // Sentry.captureException(error);
-    console.log("getRequest", error);
     if (throwWhenError) throw error;
   }
 };
@@ -80,7 +75,6 @@ export const request = async ({
     return response;
   } catch (error) {
     // Sentry.captureException(error);
-    console.log(error);
     if (throwWhenError) throw error;
   }
 };
@@ -100,7 +94,6 @@ export const multipartRequest = async ({
     return response;
   } catch (error) {
     // Sentry.captureException(error);
-    console.log(error);
     if (throwWhenError) throw error;
   }
 };

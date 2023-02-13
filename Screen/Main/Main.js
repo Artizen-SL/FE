@@ -39,7 +39,6 @@ const Main = ({ navigation }) => {
 
   useEffect(() => {
     const location = resetGpsAsk();
-    console.log(location);
 
     if (typeof location === "object") {
       setGpsRes({ ...gpsRes, region: "", district: "" });
@@ -54,15 +53,12 @@ const Main = ({ navigation }) => {
   //     let userToken;
   //     try {
   //       userToken = await AsyncStorage.getItem("accessToken");
-  //       console.log("userToken===>", userToken);
   //       } catch(error){
-  //         console.log("error", error);
   //       }
   //   };
   //   getTokenAsync();
   // },[]);
   const { data: myPageDatas } = useFetchMyPage();
-  console.log("myPageDatas===>", myPageDatas);
   return (
     <ScrollViewLayout>
       {/* <MainView /> */}
@@ -72,7 +68,7 @@ const Main = ({ navigation }) => {
       >
         <View style={[styles.container, styles.header]}>
           <Headerarea>
-            <LogoBox >
+            <LogoBox>
               <Logo source={require("../../assets/logo/artizenRabbit.png")} />
               <LogoTitle source={require("../../assets/logo/artizenNew.png")} />
             </LogoBox>
@@ -263,7 +259,7 @@ const Main = ({ navigation }) => {
 
           {/*추천*/}
           <View style={styles.center}>
-            <UserRecommendData user={myPageDatas.nickname}/>
+            <UserRecommendData user={myPageDatas.nickname} />
           </View>
 
           {/*best*/}
@@ -417,7 +413,7 @@ const Circle = styled(View)`
 `;
 
 const Headerarea = styled(View)`
- flex: 1;
+  flex: 1;
   height: 60px;
   width: 100%;
   flex-direction: row;
@@ -428,9 +424,8 @@ const Headerarea = styled(View)`
   padding-right: 5%;
 `;
 
-
 const LongBox = styled(View)`
- flex: 1;
+  flex: 1;
   height: 34px;
   width: 80%;
   flex-direction: row;
@@ -445,14 +440,10 @@ const LongBox = styled(View)`
 `;
 
 const LogoBox = styled(View)`
-width: 117px;
-height: 32px;
+  width: 117px;
+  height: 32px;
   flex-direction: row;
   align-items: center;
-justify-content: center;
+  justify-content: center;
   align-items: center;
-
 `;
-
-
-

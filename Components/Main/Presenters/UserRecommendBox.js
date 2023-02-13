@@ -11,7 +11,7 @@ import {
 import Theme from "../../../Theme/Theme";
 import styled, { css } from "styled-components/native";
 
-const UserRecommendBox = ({ datas,user }) => {
+const UserRecommendBox = ({ datas, user }) => {
   const navigation = useNavigation();
   return (
     <View style={{ marginTop: 10 }}>
@@ -28,7 +28,7 @@ const UserRecommendBox = ({ datas,user }) => {
           : (categoryName = "");
         return (
           <View key={data.id}>
-            <View              
+            <View
               style={{
                 flexDirection: "row",
                 alignItems: "center",
@@ -42,9 +42,7 @@ const UserRecommendBox = ({ datas,user }) => {
                 어떠세요?
               </Text>
             </View>
-            <RecommendImage 
-              source={{ uri: data?.posterUrl }}
-            >
+            <RecommendImage source={{ uri: data?.posterUrl }}>
               <Image
                 source={require("../../../assets/Icon/ribbon.png")}
                 style={{ marginLeft: 16 }}
@@ -140,7 +138,7 @@ const LongBox = styled.View`
 
 const WhiteText = styled.Text`
   color: ${Theme.colors.White};
-  font-size: 14;
+  font-size: 14px;
   font-weight: 700;
 `;
 
@@ -154,4 +152,3 @@ const RecommendImage = styled(ImageBackground)`
   border-radius: 50px;
   margin-top: 6px;
 `;
-

@@ -1,4 +1,4 @@
-import { Text,Alert } from "react-native";
+import { Text, Alert } from "react-native";
 import { useQueryClient } from "@tanstack/react-query";
 
 import { useIsFocused, useNavigation } from "@react-navigation/native";
@@ -22,9 +22,6 @@ const MyPost = () => {
     remove,
   } = useFetchMyPost(1, 8);
 
-  console.log("data", data);
-  console.log("data.pages", data?.pages);
-
   const myPostDatas = data?.pages?.flat();
 
   useEffect(() => {
@@ -45,38 +42,43 @@ const MyPost = () => {
   const { mutate: delCommunityMutate } = useDelCommunity();
 
   const onPressHandler = (id) => {
-    console.log('onPressHandler', id);
-          Alert.alert("확인", "정말 삭제하시겠습니까?", [
-        {
-          text: "취소",
-          style: "cancel",
+    Alert.alert("확인", "정말 삭제하시겠습니까?", [
+      {
+        text: "취소",
+        style: "cancel",
+      },
+      {
+        text: "OK",
+        onPress: () => {
+          delCommunityMutate(id, {
+            onSuccess: (data, variable, context) => {
+              Alert.alert("삭제완료");
+              queryClient.invalidateQueries("getCommunity");
+              refetch();
+              navigation.navigate("MyPageRoutes", {
+                screen: "MyPage",
+              });
+            },
+            onError: (error, variable, context) => {
+              Alert.alert("삭제실패");
+            },
+          });
         },
-        {
-          text: "OK",
-          onPress: () => {
-            delCommunityMutate(id, {
-              onSuccess: (data, variable, context) => {
-                console.log("data",data);
-                Alert.alert("삭제완료");
-                queryClient.invalidateQueries("getCommunity");
-                refetch();
-                navigation.navigate("MyPageRoutes", {
-                  screen: "MyPage",
-                });
-              },
-              onError: (error, variable, context) => {
-                Alert.alert("삭제실패");
-              },
-            });
-          },
-        },
-      ]);
+      },
+    ]);
   };
 
   if (isError) {
     return <Text>{error?.message}</Text>;
   }
-  return <PrMyPost navigation={navigation} myPostDatas={myPostDatas} loadMore={loadMore} onPressHandler={onPressHandler}/>;
+  return (
+    <PrMyPost
+      navigation={navigation}
+      myPostDatas={myPostDatas}
+      loadMore={loadMore}
+      onPressHandler={onPressHandler}
+    />
+  );
 };
 
 export default MyPost;

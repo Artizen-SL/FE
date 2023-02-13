@@ -3,7 +3,6 @@ import { Dimensions, Image } from "react-native";
 import styled from "styled-components/native";
 
 export default function Page({ item, style }) {
-  console.log(item);
   return (
     <PageItem color={item.color} style={[style]}>
       {/* <PageNum>{item.num}</PageNum> */}

@@ -4,7 +4,6 @@ import useFetchMyPage from "../../querys/mypage/useFetchMyPage";
 
 function Test() {
   const { data: myPageDatas } = useFetchMyPage();
-  // console.log("myPageDatas", myPageDatas);
 
   return (
     <View>

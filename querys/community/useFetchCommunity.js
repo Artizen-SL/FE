@@ -16,10 +16,7 @@ export const getCommunity = (pageParam, size) => {
 //       return data;
 //     },
 //     getNextPageParam: (lastPage, page) => {
-//       console.log("lastPage", lastPage);
-//       console.log("lastPage.page", lastPage.isLast);
 //       const nextPage = pageParam + 1;
-//       console.log(nextPage);
 //       return lastPage.isLast ? null : nextPage;
 //     },
 //   });

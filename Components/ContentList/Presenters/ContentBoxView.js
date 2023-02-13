@@ -33,9 +33,7 @@ function ContentBox({
             onSuccess: (data) => {
               if (data.code === "PUSH_LIKE") return setIsHeart(true);
             },
-            onError: (error) => {
-              console.log(error);
-            },
+            onError: (error) => {},
           });
         },
       },
@@ -75,7 +73,13 @@ function ContentBox({
               alignItems: "center",
             }}
           >
-            <Text style={styles.StNameText}>{name}</Text>
+            <Text
+              style={styles.StNameText}
+              numberOfLines={1}
+              ellipsizeMode="tail"
+            >
+              {name}
+            </Text>
 
             <TouchableOpacity onPress={onHeartPressHandler}>
               {isHeart ? (
@@ -154,6 +158,7 @@ const styles = StyleSheet.create({
   StNameText: {
     fontSize: 15,
     fontWeight: "bold",
+    width: "80%",
   },
   StText: {
     fontSize: 13,

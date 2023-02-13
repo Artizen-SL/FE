@@ -21,7 +21,6 @@ const NoticeImportantDetail = ({ route }) => {
 
   const onChangePassword = (e) => {
     setDelPassword((prev) => (prev = e));
-    console.log(e);
   };
 
   const { mutate: delNoticeMutate } = useDelNotice();

@@ -16,8 +16,6 @@ const useFetchMyPost = (pageParam, size) => {
       return data;
     },
     getNextPageParam: (lastPage) => {
-      console.log(lastPage);
-      console.log("lastPage", lastPage.isLast);
       let nextPage = pageParam + 1;
       return lastPage.isLast ? undefined : lastPage.nextPage;
     },

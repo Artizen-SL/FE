@@ -14,7 +14,6 @@ const useFetchImportantNotice = () => {
       queryKey: ["getImportantNoticeContent"],
       queryFn: async () => {
         const { data } = await getImportantNoticeContent();
-        console.log(data);
         return data;
       },
       suspense: true,

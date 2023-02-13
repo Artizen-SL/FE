@@ -50,25 +50,22 @@ function CategoryDetail({ route }) {
     fetchNextPage,
     isFetchingNextPage,
     refetch,
+    remove,
   } = useCategoryDetail(category, 10);
-  // console.log("data", data);
-  // console.log("data", data.pages);
-  // console.log("dataFlat", data.pages.flat());
-  // console.log("data.pages", data?.pages.flat());
 
   const categoryData = data?.pages.flat();
 
   useEffect(() => {
+    remove();
     refetch({
       refetchPage: (page, index) => {
         index === 0;
       },
     });
-  }, [isFocused]);
+  }, [isFocused, category]);
 
   const loadMore = () => {
     if (hasNextPage) {
-      console.log("fetching!");
       fetchNextPage();
     }
   };

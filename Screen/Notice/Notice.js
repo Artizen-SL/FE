@@ -30,7 +30,6 @@ const Notice = () => {
 
   const onChangePassword = (e) => {
     setNoticePassword((prev) => (prev = e));
-    console.log(e);
   };
 
   const onPostChange = () => {
@@ -47,17 +46,17 @@ const Notice = () => {
     }
   };
 
-  const { data: datas, isError, isLoading ,refetch,remove } = useFetchNotice();
+  const { data: datas, isError, isLoading, refetch, remove } = useFetchNotice();
 
   useEffect(() => {
     remove();
     refetch();
   }, [isFocused]);
-  
-  if(isLoading) {
-    <IsLoading />
+
+  if (isLoading) {
+    <IsLoading />;
   }
-   return (
+  return (
     <SafeAreaView>
       <ScrollView>
         <ImageBackground source={require("../../assets/background/notice.png")}>
@@ -86,9 +85,9 @@ const Notice = () => {
             ) : null}
           </RowBox>
           <Layout>
-            <NoticeImportantList datas={datas?.top5}/>
+            <NoticeImportantList datas={datas?.top5} />
             <Center>
-            <NoticeList datas={datas?.notificationList}/>
+              <NoticeList datas={datas?.notificationList} />
             </Center>
           </Layout>
         </ImageBackground>
@@ -119,7 +118,7 @@ const RowBox = styled(View)`
 `;
 
 const Center = styled(View)`
-flex: 1;
+  flex: 1;
   justify-content: center;
 `;
 

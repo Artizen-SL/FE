@@ -51,14 +51,11 @@ const NoticePost = () => {
             { payload: frm },
             {
               onSuccess: (data) => {
-                console.log("data", data);
                 navigation.navigate("NoticeRoutes", {
                   screen: "Notice",
                 });
               },
-              onError: (error) => {
-                console.log(error);
-              },
+              onError: (error) => {},
             }
           );
         },

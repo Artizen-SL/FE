@@ -86,14 +86,11 @@ const CommunityPost = () => {
             { payload: frm },
             {
               onSuccess: (data) => {
-                console.log("data", data);
                 navigation.navigate("CommunityRoutes", {
                   screen: "CommunityMain",
                 });
               },
-              onError: (error) => {
-                console.log(error);
-              },
+              onError: (error) => {},
             }
           );
         },

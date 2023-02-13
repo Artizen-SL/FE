@@ -13,7 +13,6 @@ const CommunityDetail = ({ route }) => {
     isLoading,
     isError,
   } = useFetchCommunityDetail(id);
-  console.log(communityDetailData);
 
   const renderItem = ({ item }) => {
     return <CommunityComment item={item} />;

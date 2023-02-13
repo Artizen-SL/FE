@@ -21,15 +21,14 @@ const InfoSearchNotAvailable = ({
   sendKeyword,
   searchData,
 }) => {
-  console.log("searchWord==>", sendKeyword);
   return (
     <>
-    <MarginLeft>
-      <LowLeft>
-        <Image source={require("../../../assets/Icon/SearchBL.png")} />
-        <SearchWord>"{searchWord?.keyword}"</SearchWord>
-        <BlackBoldText>검색결과 입니다.</BlackBoldText>
-      </LowLeft>
+      <MarginLeft>
+        <LowLeft>
+          <Image source={require("../../../assets/Icon/SearchBL.png")} />
+          <SearchWord>"{searchWord?.keyword}"</SearchWord>
+          <BlackBoldText>검색결과 입니다.</BlackBoldText>
+        </LowLeft>
       </MarginLeft>
       <Center>
         <GrayText>검색결과가 없습니다.</GrayText>
@@ -40,12 +39,10 @@ const InfoSearchNotAvailable = ({
             })
           }
         >
-          <LinkText
-          
-          >뒤로가기</LinkText>
+          <LinkText>뒤로가기</LinkText>
         </TouchableOpacity>
       </Center>
-      </>
+    </>
   );
 };
 
@@ -86,8 +83,8 @@ const MarginLeft = styled(View)`
 `;
 
 const Center = styled(View)`
- justify-content: center;
- align-items: center;
- gap: 20px;
- margin-top: 50px;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 50px;
 `;

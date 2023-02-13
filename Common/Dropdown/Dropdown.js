@@ -40,12 +40,10 @@ function Dropdown({ label, data, onSelect }) {
   };
 
   const renderItem = ({ item }) => {
-    console.log("item", item);
     const { category } = item.params;
-    console.log("category", category);
 
     return (
-      <View style={styles.item} onPress={() => onItemPress(item)}>
+      <TouchableOpacity style={styles.item} onPress={() => onItemPress(item)}>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           {category === "연극/뮤지컬" ? (
             <Image
@@ -77,7 +75,7 @@ function Dropdown({ label, data, onSelect }) {
           )}
           <Text>{item.label}</Text>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   };
 

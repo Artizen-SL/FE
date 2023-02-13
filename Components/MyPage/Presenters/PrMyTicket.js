@@ -19,16 +19,19 @@ import PrMyPageWrapper from "./PrMyPageWrapper";
 
 const PrMyTicket = ({ navigation, myTicketDatas, loadMore }) => {
   const renderItem = ({ item }) => {
-    console.log(" item ", item);
     return (
       <Box>
-        <ImageBox source={{ uri: item.ticketImg }}>        
-        <IconImage source={require("../../../assets/Icon/trash.png")}/>
+        <ImageBox source={{ uri: item.ticketImg }}>
+          <IconImage source={require("../../../assets/Icon/trash.png")} />
         </ImageBox>
         <Center>
-          <Text numberOfLines={2} ellipsizeMode="tail">{item.cultureName}</Text>
+          <Text numberOfLines={2} ellipsizeMode="tail">
+            {item.cultureName}
+          </Text>
           <GrayText>{item.date}</GrayText>
-          <GrayText numberOfLines={1} ellipsizeMode="tail">{item.place}</GrayText>
+          <GrayText numberOfLines={1} ellipsizeMode="tail">
+            {item.place}
+          </GrayText>
         </Center>
       </Box>
     );

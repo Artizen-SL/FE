@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
 const RoundImage = styled.Image`
   width: 100px;
   height: 100px;
-  border-radius: 50;
+  border-radius: 50px;
 `;
 
 const Round = styled.View`

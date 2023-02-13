@@ -18,20 +18,16 @@ const KakaoLogout = () => {
   const logout = async () => {
     try {
       // const accessToken = await AsyncStorage.getItem("accessToken");
-      // console.log("logout", accessToken);
       // const res = await axios.get(
       //   `${REACT_APP_BASE_URL}/members/logout?accessToken=${accessToken}`
       // );
 
-      // console.log("logout", res);
       // navigation.navigate("MainRoutes");
       await AsyncStorage.removeItem("accessToken");
       await AsyncStorage.removeItem("refreshToken");
       setIsLoggedIn(false);
       navigation.navigate("MainTab");
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   return (

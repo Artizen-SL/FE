@@ -1,4 +1,4 @@
-import { View,Image,Alert } from "react-native";
+import { View, Image, Alert } from "react-native";
 import { useState } from "react";
 import PrNoticeDetail from "./Presenters/PrNoticeDetail";
 import useFetchNoticeDetail from "../../querys/notice/useFetchNoticeDetail";
@@ -9,9 +9,8 @@ import IsLoading from "../../Common/IsLoading/IsLoading";
 const NoticeDetail = ({ route }) => {
   const navigation = useNavigation();
   const { id } = route.params;
-  const {
-     data, isError, isLoading } = useFetchNoticeDetail(id);
-  
+  const { data, isError, isLoading } = useFetchNoticeDetail(id);
+
   //공지삭제
   const [delNotice, setDelNotice] = useState(false);
   const [delPassword, setDelPassword] = useState("");
@@ -22,7 +21,6 @@ const NoticeDetail = ({ route }) => {
 
   const onChangePassword = (e) => {
     setDelPassword((prev) => (prev = e));
-    console.log(e);
   };
 
   const { mutate: delNoticeMutate } = useDelNotice();
@@ -56,8 +54,8 @@ const NoticeDetail = ({ route }) => {
     }
   };
 
-  if(isLoading) {
-    return <IsLoading/>
+  if (isLoading) {
+    return <IsLoading />;
   }
 
   return (

@@ -33,7 +33,6 @@ const InfoInput = () => {
     if (!searchWord.keyword.length > 0 && searchWord.keyword) {
       return searchWord;
     } else {
-      console.log("searchWord==>", searchWord);
       setSendKeyword({ ...searchWord });
     }
   };

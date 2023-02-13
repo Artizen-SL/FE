@@ -20,10 +20,6 @@ const useCategoryDetail = (genre, size) => {
     },
 
     getNextPageParam: (lastPage) => {
-      // console.log(lastPage);
-      // console.log("lastPage", lastPage);
-      // let nextPage = pageParam + 1;
-      // console.log("nextPage", nextPage);
       // return lastPage.isLast ? undefined : nextPage;
     },
   });

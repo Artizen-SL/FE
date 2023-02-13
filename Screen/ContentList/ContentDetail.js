@@ -77,7 +77,6 @@ function ContentDetail({ route }) {
     isLoading,
     isError,
   } = useFetchContentDetail(id);
-  // console.log("contentDetailData", contentDetailData);
 
   useEffect(() => {
     setPosterUrls([]);
@@ -88,11 +87,9 @@ function ContentDetail({ route }) {
         { posterUrl: contentDetailData?.posterUrl },
       ]);
     }
-
     // 배열인 경우
   }, [contentDetailData?.posterUrl]);
-  // console.log(posterUrls);
-  // console.log(contentDetailData?.posterUrl);
+
   useEffect(() => {
     const imagePromises = contentDetailData?.imageList?.map((img) => {
       return new Promise((resolve, reject) => {
@@ -117,8 +114,6 @@ function ContentDetail({ route }) {
         .then(setImages);
     }
   }, [contentDetailData]);
-
-  console.log(images);
 
   return (
     <View style={{ flex: 1 }}>
@@ -214,9 +209,9 @@ function ContentDetail({ route }) {
                   alignItems: "center",
                   justifyContent: "center",
                 }}
+                key={idx}
               >
                 <Image
-                  key={idx}
                   // resizeMode="contain"
                   resizeMode={FastImage.resizeMode.contain}
                   source={{

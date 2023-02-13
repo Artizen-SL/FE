@@ -5,7 +5,6 @@ import Page from "./Page";
 
 const Carousel = ({ pages, pageWidth, gap, offset }) => {
   const [page, setPage] = useState(0);
-  console.log("pages", pages);
   // props 정보를 reder 하는 함수
   function renderItem({ item }) {
     return (

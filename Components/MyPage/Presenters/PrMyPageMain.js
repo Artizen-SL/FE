@@ -11,7 +11,6 @@ import styled, { css } from "styled-components/native";
 import Theme from "../../../Theme/Theme";
 
 const PrMyPageMain = ({ myPageDatas, notice, navigation }) => {
-  console.log("PrMyPageMain", myPageDatas);
   return (
     <ScrollView>
       <BgImage source={require("../../../assets/mypage/bg.png")}>
@@ -163,7 +162,7 @@ const PrMyPageMain = ({ myPageDatas, notice, navigation }) => {
         {notice?.map((data) => {
           return (
             <NoticeBox
-            key={data.id}
+              key={data.id}
               onPress={() =>
                 navigation.navigate("NoticeRoutes", {
                   screen: "NoticeDetail",

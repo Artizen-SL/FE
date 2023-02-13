@@ -19,7 +19,6 @@ const MyTicketPost = () => {
   //search Btn
   const [submitSearchText, setSubmitSearchText] = useState(undefined);
   const { data: searchDatas } = useFetchSearch(submitSearchText);
-  console.log(myTicketInputs);
   const { mutate: myPageTicketMutate } = usePostMyPageTicket();
 
   // 검색 버튼 누를 시
@@ -59,19 +58,15 @@ const MyTicketPost = () => {
           frm.append("star", myTicketInputs.star);
           frm.append("ticketImg", myTicketInputs.imageUrl);
           frm.append("review", myTicketInputs.review);
-          console.log(frm);
           myPageTicketMutate(
             { payload: frm },
             {
               onSuccess: (data) => {
-                console.log("data", data);
                 navigation.navigate("MyPageRoutes", {
                   screen: "MyTicket",
                 });
               },
-              onError: (error) => {
-                console.log(error);
-              },
+              onError: (error) => {},
             }
           );
         },

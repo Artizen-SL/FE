@@ -20,6 +20,7 @@ import PrMyPageWrapper from "./PrMyPageWrapper";
 
 const PrMyPost = ({ myPostDatas, loadMore, onPressHandler, navigation }) => {
   const renderItem = ({ item }) => {
+    console.log(item);
     return (
       <>
         {item && item.communityId > 0 ? (
@@ -80,7 +81,7 @@ const PrMyPost = ({ myPostDatas, loadMore, onPressHandler, navigation }) => {
           // ListHeaderComponent={<></>}
           renderItem={renderItem}
           data={myPostDatas}
-          keyExtractor={(item) => item?.id}
+          keyExtractor={(item) => item?.communityId}
           onEndReached={loadMore}
           onEndReachedThreshold={0.5}
           // contentContainerStyle={{}}

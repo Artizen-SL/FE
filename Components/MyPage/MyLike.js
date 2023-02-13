@@ -1,7 +1,7 @@
 import { Text } from "react-native";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
 import { useEffect } from "react";
-import PrMyLike from './Presenters/PrMyLike'
+import PrMyLike from "./Presenters/PrMyLike";
 import useFetchMyLike from "../../querys/mypage/useFetchMyLike";
 
 const MyLike = () => {
@@ -16,11 +16,8 @@ const MyLike = () => {
     isFetchingNextPage,
     refetch,
   } = useFetchMyLike(1, 8);
-  console.log("MyLikedata", data);
-  console.log("data.pages", data?.pages);
 
   const mylikeDatas = data?.pages?.flat();
-  console.log("mylikeDatas", mylikeDatas);
   useEffect(() => {
     refetch({
       refetchPage: (page, index) => {
@@ -39,7 +36,13 @@ const MyLike = () => {
     return <Text>{error?.message}</Text>;
   }
 
-  return <PrMyLike mylikeDatas={mylikeDatas} loadMore={loadMore}/>
-}
+  return (
+    <PrMyLike
+      mylikeDatas={mylikeDatas}
+      loadMore={loadMore}
+      navigation={navigation}
+    />
+  );
+};
 
-export default MyLike
+export default MyLike;

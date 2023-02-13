@@ -17,8 +17,6 @@ const KakaoLogin = () => {
   const isLoggedIn = useAtomValue(isLoggedInAtom);
   const setIsLoggedIn = useSetAtom(isLoggedInAtom);
 
-  console.log("isLoggedIn", isLoggedIn);
-
   function LogInProgress(data) {
     const exp = "code=";
     let condition = data.indexOf(exp);
@@ -48,9 +46,7 @@ const KakaoLogin = () => {
         returnValue = response.data.access_token;
         sendToken(returnValue);
       })
-      .catch(function (error) {
-        console.log("error", error);
-      });
+      .catch(function (error) {});
   };
 
   const sendToken = async (kakaoAccessToken) => {
@@ -63,13 +59,8 @@ const KakaoLogin = () => {
         headers: { authorization },
         status,
       } = res;
-
       const accessToken = authorization;
       const refreshToken = res.headers["refresh-token"];
-
-      // console.log(res);
-      console.log(authorization);
-      console.log(accessToken);
 
       if (status === 200) {
         await AsyncStorage.setItem("accessToken", accessToken);
@@ -84,7 +75,6 @@ const KakaoLogin = () => {
           style: "cancel",
         },
       ]);
-      console.log(error);
     }
   };
 
