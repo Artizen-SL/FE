@@ -18,7 +18,7 @@ const useCategoryDetail = (genre, pageParam, size) => {
 
     getNextPageParam: (lastPage) => {
       console.log(lastPage);
-      console.log("lastPage", lastPage.isLast);
+      console.log("lastPage", lastPage);
       let nextPage = pageParam + 1;
       console.log("nextPage", nextPage);
       return lastPage.isLast ? undefined : nextPage;
