@@ -50,8 +50,10 @@ function CategoryDetail({ route }) {
     fetchNextPage,
     isFetchingNextPage,
     refetch,
-  } = useCategoryDetail(category, 0, 10);
+  } = useCategoryDetail(category, 10);
   // console.log("data", data);
+  // console.log("data", data.pages);
+  // console.log("dataFlat", data.pages.flat());
   // console.log("data.pages", data?.pages.flat());
 
   const categoryData = data?.pages.flat();
@@ -86,28 +88,30 @@ function CategoryDetail({ route }) {
                 flexDirection: "row",
                 alignItems: "center",
                 width: "100%",
-                height: 100,
                 backgroundColor: "whitesmoke",
+                padding: 10,
               }}
             >
               {category === "연극/뮤지컬" ? (
-                <Image
+                <CategoryIcon
                   source={require("../../assets/Icon/musical.png")}
-                ></Image>
+                ></CategoryIcon>
               ) : category === "콘서트" ? (
-                <Image
+                <CategoryIcon
                   source={require("../../assets/Icon/concert.png")}
-                ></Image>
+                ></CategoryIcon>
               ) : category === "클래식/무용" ? (
-                <Image
+                <CategoryIcon
                   source={require("../../assets/Icon/classic.png")}
-                ></Image>
+                ></CategoryIcon>
               ) : category === "서커스/마술" ? (
-                <Image source={require("../../assets/Icon/magic.png")}></Image>
+                <CategoryIcon
+                  source={require("../../assets/Icon/magic.png")}
+                ></CategoryIcon>
               ) : category === "전시회" ? (
-                <Image
+                <CategoryIcon
                   source={require("../../assets/Icon/gallery.png")}
-                ></Image>
+                ></CategoryIcon>
               ) : (
                 <></>
               )}
@@ -150,4 +154,9 @@ const StyledText = styled.Text`
   text-shadow-offset: 0px 4px;
   text-shadow-radius: 3px;*/
   text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
+`;
+
+const CategoryIcon = styled(Image)`
+  width: 50px;
+  height: 50px;
 `;

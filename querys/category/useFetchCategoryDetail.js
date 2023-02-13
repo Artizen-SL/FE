@@ -8,20 +8,23 @@ const getCategoryDetail = (genre, pageParam, size) => {
   });
 };
 
-const useCategoryDetail = (genre, pageParam, size) => {
+const useCategoryDetail = (genre, size) => {
   return useInfiniteQuery({
-    queryKey: ["getCategoryDetail", genre],
-    queryFn: async () => {
+    queryKey: ["getCategoryDetail"],
+    queryFn: async ({ pageParam = 0 }) => {
       const { data } = await getCategoryDetail(genre, pageParam, size);
+
+      // const { pages: page, isLast } = data;
+
       return data;
     },
 
     getNextPageParam: (lastPage) => {
-      console.log(lastPage);
-      console.log("lastPage", lastPage);
-      let nextPage = pageParam + 1;
-      console.log("nextPage", nextPage);
-      return lastPage.isLast ? undefined : nextPage;
+      // console.log(lastPage);
+      // console.log("lastPage", lastPage);
+      // let nextPage = pageParam + 1;
+      // console.log("nextPage", nextPage);
+      // return lastPage.isLast ? undefined : nextPage;
     },
   });
 };
