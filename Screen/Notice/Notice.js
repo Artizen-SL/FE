@@ -47,9 +47,10 @@ const Notice = () => {
     }
   };
 
-  const { data: datas, isError, isLoading ,refetch } = useFetchNotice();
+  const { data: datas, isError, isLoading ,refetch,remove } = useFetchNotice();
 
   useEffect(() => {
+    remove();
     refetch();
   }, [isFocused]);
   
