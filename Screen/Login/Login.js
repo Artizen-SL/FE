@@ -16,8 +16,7 @@ const Login = ({ navigation }) => {
         style={styles.bgImage}
       >
         <LogoView>
-          <Image source={require("../../assets/login/logo_v1_3.png")} />
-          <LogoText>전시부터 공연까지! 우리들만의 문화 놀이터!</LogoText>
+          <IntroduceIMG  source={require("../../assets/login/introduce.png")} />
         </LogoView>
         <LoginView>
           <TouchableOpacity onPress={() => navigation.navigate("KakaoLogin")}>
@@ -57,3 +56,9 @@ const styles = StyleSheet.create({
   },
   bgImage: { width: "100%", height: "100%" },
 });
+
+const IntroduceIMG = styled(Image)`
+  flex: 1;
+  width: 100%;
+  height: 80%;
+`;
