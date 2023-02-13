@@ -3,6 +3,7 @@ import { useIsFocused, useNavigation } from "@react-navigation/native";
 import { useEffect } from "react";
 import PrMyTicket from './Presenters/PrMyTicket'
 import useFetchMyTicket from '../../querys/mypage/useFetchMyTicket'
+import useDelCommunity from "../../querys/community/useDelCommunity";
 
 const MyTicket = () => {
     const navigation = useNavigation();
@@ -35,6 +36,9 @@ const MyTicket = () => {
       fetchNextPage();
     }
   };
+
+  const { mutate: delCommunityMutate } = useDelCommunity();
+
 
   if (isError) {
     return <Text>{error?.message}</Text>;
