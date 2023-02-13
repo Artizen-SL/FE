@@ -30,6 +30,7 @@ const CommunityMain = () => {
     fetchNextPage,
     isFetchingNextPage,
     refetch,
+    remove,
   } = useInfiniteQuery({
     queryKey: ["getCommunity"],
     queryFn: async ({ pageParam = 0 }) => {
@@ -48,19 +49,17 @@ const CommunityMain = () => {
   });
 
   useEffect(() => {
-    if (isFocused) {
-      console.log("refetch");
-      refetch({
-        refetchPage: (page, index) => {
-          index === 0;
-        },
-      });
-    }
+    remove();
+
+    refetch({
+      refetchPage: (page, index) => {
+        index === 0;
+      },
+    });
   }, [isFocused]);
 
   const loadMore = () => {
     if (hasNextPage) {
-      console.log("fetching!");
       fetchNextPage();
     }
   };
