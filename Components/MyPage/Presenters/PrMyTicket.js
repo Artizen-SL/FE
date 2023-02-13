@@ -22,46 +22,52 @@ const PrMyTicket = ({ navigation, myTicketDatas, loadMore }) => {
     console.log(" item ", item);
     return (
       <Box>
-        <ImageBox />
-        <Text>{item.cultureName}</Text>
+        <ImageBox source={{ uri: item.ticketImg }} />
+        <Center>
+          <Text>{item.cultureName}</Text>
+          <GrayText>{item.date}</GrayText>
+          <GrayText>{item.place}</GrayText>
+        </Center>
       </Box>
     );
   };
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <Wrapper>
-        <View>
-          <IconImage source={require("../../../assets/mypage/Tickets.png")} />
-          <Text>마이티켓 목록</Text>
-        </View>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate("MyPageRoutes", {
-              screen: "MyTicketPost",
-            });
-          }}
-        >
-          <Text>글쓰기</Text>
-        </TouchableOpacity>
-      </Wrapper>
+    <SafeAreaView>
       <Layout>
-     
-          {myTicketDatas && myTicketDatas.length > 0 ? (
-            <FlatList
-              // ListHeaderComponent={<></>}
-              renderItem={renderItem}
-              numColumns={2}
-              data={myTicketDatas}
-              keyExtractor={(item) => item?.id}
-              onEndReached={loadMore}
-              onEndReachedThreshold={0.5}
-              // contentContainerStyle={{}}
-              // ListFooterComponent={}
+        <RowView>
+          <RowBox>
+            <StTicketImg
+              source={require("../../../assets/mypage/Tickets.png")}
             />
-          ) : (
-            <Text>내가 쓴 글이 없어요</Text>
-          )}
-    
+            <Text>마이티켓 목록</Text>
+          </RowBox>
+
+          <PostBtn
+            onPress={() => {
+              navigation.navigate("MyPageRoutes", {
+                screen: "MyTicketPost",
+              });
+            }}
+          >
+            <WhiteText>기록하기</WhiteText>
+          </PostBtn>
+        </RowView>
+
+        {myTicketDatas && myTicketDatas.length > 0 ? (
+          <FlatList
+            // ListHeaderComponent={<></>}
+            renderItem={renderItem}
+            numColumns={2}
+            data={myTicketDatas}
+            keyExtractor={(item) => item?.id}
+            onEndReached={loadMore}
+            onEndReachedThreshold={0.5}
+            // contentContainerStyle={{}}
+            // ListFooterComponent={}
+          />
+        ) : (
+          <Text>내가 쓴 글이 없어요</Text>
+        )}
       </Layout>
     </SafeAreaView>
   );
@@ -71,16 +77,17 @@ export default PrMyTicket;
 
 const Box = styled(View)`
   width: 50%;
-  height: 217px;
+  height: 230px;
   background-color: ${Theme.colors.White};
   border-radius: 5px;
   border: 1px solid ${Theme.colors.LightGray};
+  margin: 0 2px 5px 2px;
 `;
 
-const ImageBox = styled(View)`
+const ImageBox = styled(Image)`
   width: 100%;
   height: 139px;
-  background-color: ${Theme.colors.SkyBlue};
+  background-color: ${Theme.colors.LightGray};
   border-radius: 5px;
 `;
 
@@ -89,5 +96,46 @@ const IconImage = styled(Image)`
   height: 30px;
 `;
 
-const Wrapper = styled(View)`
+const RowBox = styled(View)`
+  flex-direction: row;
+  align-items: center;
+`;
+const Center = styled(View)`
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10px auto;
+`;
+
+const RowView = styled(View)`
+  flex-direction: row;
+  justify-content: space-between;
+  justify-items: center;
+  align-items: center;
+  margin-bottom: 10px;
+`;
+
+const StTicketImg = styled(Image)`
+  width: 30px;
+  height: 30px;
+  margin-right: 7px;
+`;
+
+const PostBtn = styled(TouchableOpacity)`
+  width: 60px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: ${Theme.colors.SkyBlue};
+  align-items: center;
+  justify-content: center;
+`;
+
+const WhiteText = styled(Text)`
+  color: ${Theme.colors.White};
+  font-size: 12px;
+`;
+
+const GrayText = styled(Text)`
+  color: ${Theme.colors.LightGray};
+  font-size: 10px;
 `;
