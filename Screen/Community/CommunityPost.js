@@ -148,64 +148,59 @@ const CommunityPost = () => {
 
   return (
     <CommunityContentsWrapper title="Posting">
-      <StPostingWrapper>
-        <StPostingTopView>
-          <StPostingTitleView>
-            <TouchableOpacity
-              style={{ flexDirection: "row" }}
-              ref={DropdownButton}
-              onPress={toggleDropdown}
-            >
-              <TagView variant="community" tag={selected.tag ?? "자유글"}>
-                {selected.tag ?? "자유글"}
-              </TagView>
+      <ScrollView>
+        <StPostingWrapper>
+          <StPostingTopView>
+            <StPostingTitleView>
+              <TouchableOpacity
+                style={{ flexDirection: "row" }}
+                ref={DropdownButton}
+                onPress={toggleDropdown}
+              >
+                <TagView variant="community" tag={selected.tag ?? "자유글"}>
+                  {selected.tag ?? "자유글"}
+                </TagView>
 
-              <Image
-                style={{ width: 25, height: 25 }}
-                source={require("../../assets/Icon/arrow-down.png")}
-              ></Image>
-              {renderDropdown()}
-            </TouchableOpacity>
+                <Image
+                  style={{ width: 25, height: 25 }}
+                  source={require("../../assets/Icon/arrow-down.png")}
+                ></Image>
+                {renderDropdown()}
+              </TouchableOpacity>
 
-            <View style={{ width: "58%" }}>
-              <TextInput
-                placeholder="제목을 입력해주세요."
-                multiline={false}
-                type="text"
-                onChange={(e) => onChangeHandler("title", e)}
-                value={commuInputs.title}
-              ></TextInput>
-            </View>
-          </StPostingTitleView>
-          <StPostingBtn onPress={onSubmitHandler}>
-            <StPostingBtnText>작성</StPostingBtnText>
-          </StPostingBtn>
-        </StPostingTopView>
+              <View style={{ width: "58%" }}>
+                <TextInput
+                  placeholder="제목을 입력해주세요."
+                  multiline={false}
+                  type="text"
+                  onChange={(e) => onChangeHandler("title", e)}
+                  value={commuInputs.title}
+                ></TextInput>
+              </View>
+            </StPostingTitleView>
+            <StPostingBtn onPress={onSubmitHandler}>
+              <StPostingBtnText>작성</StPostingBtnText>
+            </StPostingBtn>
+          </StPostingTopView>
 
-        <StDividerView />
-        <View
-          style={{
-            borderWidth: 1,
-            borderColor: "black",
-          }}
-        >
-          <ScrollView
-            style={{
-              borderWidth: 1,
-              borderColor: "black",
-            }}
-          >
-            <TextInput
-              multiline
-              placeholder="내용을 작성해주세요."
-              type="text"
-              onChange={(e) => onChangeHandler("content", e)}
-              value={commuInputs.content}
-            ></TextInput>
-          </ScrollView>
+          <StDividerView />
+          <TextInput
+            multiline
+            placeholder="내용을 작성해주세요."
+            type="text"
+            onChange={(e) => onChangeHandler("content", e)}
+            value={commuInputs.content}
+          ></TextInput>
+
+          <StDividerView />
+        </StPostingWrapper>
+        <View style={{ width: "100%" }}>
+          <ImagePickerBtn
+            setImagePick={setCommuInputs}
+            imagePick={commuInputs}
+          />
         </View>
-      </StPostingWrapper>
-      <ImagePickerBtn setImagePick={setCommuInputs} imagePick={commuInputs} />
+      </ScrollView>
     </CommunityContentsWrapper>
   );
 };
@@ -245,7 +240,7 @@ const StDividerView = styled(View)`
   margin-bottom: 15px;
   margin-top: 5px;
 `;
-
+const StContentTextInput = styled(TextInput)``;
 const styles = StyleSheet.create({
   button: {
     zIndex: 10,

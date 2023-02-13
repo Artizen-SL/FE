@@ -15,21 +15,13 @@ const useFetchCommunity = (pageParam, size) => {
       const { data } = await getCommunity(pageParam, size);
       return data;
     },
-
-    getNextPageParam: (lastPage) => {
-      console.log(lastPage);
-      console.log("lastPage", lastPage.isLast);
-      let nextPage = pageParam + 1;
-      console.log("nextPage", nextPage);
-      return lastPage.isLast ? undefined : nextPage;
+    getNextPageParam: (lastPage, page) => {
+      console.log("lastPage", lastPage);
+      console.log("lastPage.page", lastPage.isLast);
+      const nextPage = pageParam + 1;
+      console.log(nextPage);
+      return lastPage.isLast ? null : nextPage;
     },
-
-    // getNextPageParam: (lastPage, page) => {
-    //   console.log("lastPage", lastPage);
-    //   console.log("lastPage.page", lastPage.page);
-    //   const nextPage = lastPage?.page + 1;
-    //   return nextPage > lastPage?.total_pages ? null : nextPage;
-    // },
   });
 };
 

@@ -27,7 +27,7 @@ const CommunityMain = () => {
     fetchNextPage,
     isFetchingNextPage,
     refetch,
-  } = useFetchCommunity(0, 12);
+  } = useFetchCommunity(0, 10);
   // console.log("data", data);
   // console.log("data.pages", data?.pages);
 
@@ -36,6 +36,7 @@ const CommunityMain = () => {
   console.log("communityMainDatas", data?.pages);
 
   // useEffect(() => {
+  //   console.log("refetch");
   //   refetch({
   //     refetchPage: (page, index) => {
   //       index === 0;
@@ -46,10 +47,11 @@ const CommunityMain = () => {
   const loadMore = () => {
     if (hasNextPage) {
       console.log("fetching!");
+      console.log("hasNextPage", hasNextPage);
+      console.log("fetchNextPage()", fetchNextPage());
       fetchNextPage();
     }
   };
-  console.log("hasNextPage", hasNextPage);
 
   const renderItem = ({ item }) => {
     return (
