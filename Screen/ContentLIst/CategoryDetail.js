@@ -35,6 +35,7 @@ const dropDownData = [
 
 function CategoryDetail({ route }) {
   const { category } = route.params;
+  console.log(category);
   const [selected, setSelected] = useState(undefined);
   const obsRef = useRef(null); //observer Element
   const [list, setList] = useState([]);
@@ -67,7 +68,19 @@ function CategoryDetail({ route }) {
             alignItems: "center",
           }}
         >
-          <Image source={require("../../assets/Icon/gallery.png")}></Image>
+          {category === "연극/뮤지컬" ? (
+            <Image source={require("../../assets/Icon/musical.png")}></Image>
+          ) : category === "콘서트" ? (
+            <Image source={require("../../assets/Icon/concert.png")}></Image>
+          ) : category === "클래식/무용" ? (
+            <Image source={require("../../assets/Icon/classic.png")}></Image>
+          ) : category === "서커스/마술" ? (
+            <Image source={require("../../assets/Icon/magic.png")}></Image>
+          ) : category === "전시회" ? (
+            <Image source={require("../../assets/Icon/gallery.png")}></Image>
+          ) : (
+            <></>
+          )}
           <StyledText
             style={{
               fontSize: 20,

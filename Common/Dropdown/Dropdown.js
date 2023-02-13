@@ -10,7 +10,6 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import Theme from "../../Theme/Theme";
 
 function Dropdown({ label, data, onSelect }) {
   const DropdownButton = useRef();
@@ -40,11 +39,47 @@ function Dropdown({ label, data, onSelect }) {
     });
   };
 
-  const renderItem = ({ item }) => (
-    <TouchableOpacity style={styles.item} onPress={() => onItemPress(item)}>
-      <Text>{item.label}</Text>
-    </TouchableOpacity>
-  );
+  const renderItem = ({ item }) => {
+    console.log("item", item);
+    const { category } = item.params;
+    console.log("category", category);
+
+    return (
+      <View style={styles.item} onPress={() => onItemPress(item)}>
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          {category === "연극/뮤지컬" ? (
+            <Image
+              source={require("../../assets/Icon/musical.png")}
+              style={styles.stDropDownImages}
+            ></Image>
+          ) : category === "콘서트" ? (
+            <Image
+              source={require("../../assets/Icon/concert.png")}
+              style={styles.stDropDownImages}
+            ></Image>
+          ) : category === "클래식/무용" ? (
+            <Image
+              source={require("../../assets/Icon/classic.png")}
+              style={styles.stDropDownImages}
+            ></Image>
+          ) : category === "서커스/마술" ? (
+            <Image
+              source={require("../../assets/Icon/magic.png")}
+              style={styles.stDropDownImages}
+            ></Image>
+          ) : category === "전시회" ? (
+            <Image
+              source={require("../../assets/Icon/gallery.png")}
+              style={styles.stDropDownImages}
+            ></Image>
+          ) : (
+            <></>
+          )}
+          <Text>{item.label}</Text>
+        </View>
+      </View>
+    );
+  };
 
   const renderDropdown = () => {
     return (
@@ -72,7 +107,10 @@ function Dropdown({ label, data, onSelect }) {
       onPress={toggleDropdown}
       style={styles.button}
     >
-      <Image source={require("../../assets/Icon/categoryDropdownBtn.png")} />
+      <Image
+        source={require("../../assets/logo/artizenRabbit.png")}
+        style={styles.stDropDownBtn}
+      />
       <Image />
       {renderDropdown()}
     </TouchableOpacity>
@@ -83,7 +121,7 @@ export default Dropdown;
 
 const styles = StyleSheet.create({
   button: {
-    zIndex: 10,
+    zIndex: 11,
     justifyContent: "center",
     alignItems: "center",
     position: "absolute",
@@ -112,11 +150,17 @@ const styles = StyleSheet.create({
   item: {
     paddingHorizontal: 10,
     paddingVertical: 10,
-    borderBottomWidth: 1,
+    // backgroundColor: "rgba(0, 0, 0, 0.1)",
+    // opacity: 0.5,
   },
-});
-const bgStyles = StyleSheet.create({
-  skyBlue: {
-    backgroundColor: Theme.colors.SkyBlue,
+
+  stDropDownBtn: {
+    width: 75,
+    height: 75,
+  },
+  stDropDownImages: {
+    width: 30,
+    height: 30,
+    marginRight: 5,
   },
 });
