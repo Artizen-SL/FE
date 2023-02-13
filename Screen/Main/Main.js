@@ -203,7 +203,7 @@ const Main = ({ navigation }) => {
               marginTop: 15,
             }}
           >
-            <View style={styles.longBox}>
+            <LongBox>
               <Image
                 source={require("../../assets/Icon/gps.png")}
                 style={{
@@ -228,7 +228,7 @@ const Main = ({ navigation }) => {
               <Text style={styles.skyblueText} onPress={resetGpsAsk}>
                 (위치 재설정)
               </Text>
-            </View>
+            </LongBox>
           </View>
 
           {/*공지사항*/}
@@ -331,7 +331,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
-    width: 312,
+    width: 100,
     height: 34,
     backgroundColor: "#fff",
     borderRadius: 5,
@@ -446,5 +446,22 @@ const Headerarea = styled(View)`
   padding-left: 5%;
   padding-right: 5%;
 `;
+
+
+const LongBox = styled(View)`
+ flex: 1;
+  height: 34px;
+  width: 80%;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 5%;
+  padding-right: 5%;
+  border-radius: 5px;
+  background-color: ${Theme.colors.White};
+  margin-top: 20px;
+`;
+
 
 
