@@ -19,6 +19,7 @@ const MyPost = () => {
     fetchNextPage,
     isFetchingNextPage,
     refetch,
+    remove,
   } = useFetchMyPost(1, 8);
 
   console.log("data", data);
@@ -27,6 +28,7 @@ const MyPost = () => {
   const myPostDatas = data?.pages?.flat();
 
   useEffect(() => {
+    remove();
     refetch({
       refetchPage: (page, index) => {
         index === 0;
