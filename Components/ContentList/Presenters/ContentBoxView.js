@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import React, { useState } from "react";
 import {
   Image,
   StyleSheet,
@@ -7,7 +7,9 @@ import {
   View,
   TouchableOpacity,
   Dimensions,
+  Alert,
 } from "react-native";
+import usePostHeart from "../../../querys/category/usePostHeart";
 import Theme from "../../../Theme/Theme";
 
 function ContentBox({
@@ -15,6 +17,31 @@ function ContentBox({
   category,
 }) {
   const navigation = useNavigation();
+  const [isHeart, setIsHeart] = useState(false);
+  const { mutate: postHeartMutate } = usePostHeart();
+
+  const onHeartPressHandler = () => {
+    Alert.alert("확인", "컨텐츠를 좋아요 하시겠습니까? ", [
+      {
+        text: "나가기",
+        style: "cancel",
+      },
+      {
+        text: "네",
+        onPress: () => {
+          postHeartMutate(id, {
+            onSuccess: (data) => {
+              if (data.code === "PUSH_LIKE") return setIsHeart(true);
+            },
+            onError: (error) => {
+              console.log(error);
+            },
+          });
+        },
+      },
+    ]);
+  };
+
   return (
     <TouchableOpacity
       style={styles.StContentWrapper}
@@ -40,7 +67,30 @@ function ContentBox({
           )}
         </View>
         <View style={styles.StTextWrapper}>
-          <Text style={styles.StNameText}>{name}</Text>
+          <View
+            style={{
+              flex: 1,
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Text style={styles.StNameText}>{name}</Text>
+
+            <TouchableOpacity onPress={onHeartPressHandler}>
+              {isHeart ? (
+                <Image
+                  style={styles.StHeartIcon}
+                  source={require("../../../assets/Icon/heart.png")}
+                />
+              ) : (
+                <Image
+                  style={styles.StHeartIcon}
+                  source={require("../../../assets/Icon/grayHeart.png")}
+                />
+              )}
+            </TouchableOpacity>
+          </View>
           <Text style={styles.StText}>기간 : {date}</Text>
           <Text style={styles.StText}>장소 : {facility}</Text>
         </View>
@@ -108,5 +158,10 @@ const styles = StyleSheet.create({
   StText: {
     fontSize: 13,
     color: Theme.colors.Gray,
+  },
+
+  StHeartIcon: {
+    width: 25,
+    height: 25,
   },
 });
