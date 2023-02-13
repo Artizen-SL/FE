@@ -1,5 +1,5 @@
 import { useIsFocused, useNavigation } from "@react-navigation/native";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   FlatList,
@@ -13,7 +13,10 @@ import {
 import styled from "styled-components/native";
 import TagView from "../../Components/Elem/TagView";
 import CommunityContentsWrapper from "../../Components/Community/Presenters/CommunityContentsWrapper";
-import useFetchCommunity from "../../querys/community/useFetchCommunity";
+import useFetchCommunity, {
+  getCommunity,
+} from "../../querys/community/useFetchCommunity";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 const CommunityMain = () => {
   const navigation = useNavigation();
@@ -27,28 +30,37 @@ const CommunityMain = () => {
     fetchNextPage,
     isFetchingNextPage,
     refetch,
-  } = useFetchCommunity(0, 10);
-  // console.log("data", data);
-  // console.log("data.pages", data?.pages);
+  } = useInfiniteQuery({
+    queryKey: ["getCommunity"],
+    queryFn: async ({ pageParam = 0 }) => {
+      const { data } = await getCommunity(pageParam, 10);
 
-  const communityMainDatas = data?.pages[0].communityList;
+      const { communityList: page, isLast } = data;
+      return { page, nextPage: pageParam + 1, isLast };
+    },
+    getNextPageParam: (lastPage, page) => {
+      return !lastPage.isLast ? lastPage.nextPage : undefined;
+    },
+  });
 
-  console.log("communityMainDatas", data?.pages);
+  const communityMainDatas = data?.pages.flatMap((item) => {
+    return item.page.flat();
+  });
 
-  // useEffect(() => {
-  //   console.log("refetch");
-  //   refetch({
-  //     refetchPage: (page, index) => {
-  //       index === 0;
-  //     },
-  //   });
-  // }, [isFocused]);
+  useEffect(() => {
+    if (isFocused) {
+      console.log("refetch");
+      refetch({
+        refetchPage: (page, index) => {
+          index === 0;
+        },
+      });
+    }
+  }, [isFocused]);
 
   const loadMore = () => {
     if (hasNextPage) {
       console.log("fetching!");
-      console.log("hasNextPage", hasNextPage);
-      console.log("fetchNextPage()", fetchNextPage());
       fetchNextPage();
     }
   };
@@ -92,18 +104,16 @@ const CommunityMain = () => {
 
   return (
     <CommunityContentsWrapper title="Community">
-      {
-        <FlatList
-          // ListHeaderComponent={<></>}
-          renderItem={renderItem}
-          data={communityMainDatas}
-          keyExtractor={(item) => item?.id}
-          onEndReached={loadMore}
-          onEndReachedThreshold={0.4}
-          // contentContainerStyle={{}}
-          // ListFooterComponent={}
-        />
-      }
+      <FlatList
+        // ListHeaderComponent={<></>}
+        renderItem={renderItem}
+        data={communityMainDatas}
+        keyExtractor={(item) => item?.id}
+        onEndReached={loadMore}
+        onEndReachedThreshold={0.2}
+        // contentContainerStyle={{}}
+        // ListFooterComponent={}
+      />
     </CommunityContentsWrapper>
   );
 };
