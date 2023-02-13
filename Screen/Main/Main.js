@@ -71,7 +71,7 @@ const Main = ({ navigation }) => {
         style={styles.bgImage}
       >
         <View style={[styles.container, styles.header]}>
-          <View style={styles.headerarea}>
+          <Headerarea>
             <View style={styles.logo}>
               <Logo source={require("../../assets/logo/artizenRabbit.png")} />
               <LogoTitle source={require("../../assets/logo/artizenNew.png")} />
@@ -96,7 +96,7 @@ const Main = ({ navigation }) => {
                 <Profile source={{ uri: myPageDatas?.profileImg }} />
               </TouchableOpacity>
             </View>
-          </View>
+          </Headerarea>
           <ImageBackground
             source={require("../../assets/background/white.png")}
             style={styles.whiteBackground}
@@ -364,7 +364,7 @@ const styles = StyleSheet.create({
   headerarea: {
     flex: 1,
     height: 45,
-    width: 360,
+    width: 100,
     flexDirection: "row",
     flexWrap: "nowrap",
     justifyContent: "space-between",
@@ -434,3 +434,17 @@ const Circle = styled(View)`
   align-items: center;
   justify-content: center;
 `;
+
+const Headerarea = styled(View)`
+ flex: 1;
+  height: 60px;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 5%;
+  padding-right: 5%;
+`;
+
+
