@@ -22,11 +22,13 @@ const PrMyTicket = ({ navigation, myTicketDatas, loadMore }) => {
     console.log(" item ", item);
     return (
       <Box>
-        <ImageBox source={{ uri: item.ticketImg }} />
+        <ImageBox source={{ uri: item.ticketImg }}>        
+        <IconImage source={require("../../../assets/Icon/trash.png")}/>
+        </ImageBox>
         <Center>
-          <Text>{item.cultureName}</Text>
+          <Text numberOfLines={2} ellipsizeMode="tail">{item.cultureName}</Text>
           <GrayText>{item.date}</GrayText>
-          <GrayText>{item.place}</GrayText>
+          <GrayText numberOfLines={1} ellipsizeMode="tail">{item.place}</GrayText>
         </Center>
       </Box>
     );
@@ -84,7 +86,7 @@ const Box = styled(View)`
   margin: 0 2px 5px 2px;
 `;
 
-const ImageBox = styled(Image)`
+const ImageBox = styled(ImageBackground)`
   width: 100%;
   height: 139px;
   background-color: ${Theme.colors.LightGray};
@@ -92,8 +94,9 @@ const ImageBox = styled(Image)`
 `;
 
 const IconImage = styled(Image)`
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
+  margin: 5px 0 0 5px;
 `;
 
 const RowBox = styled(View)`
