@@ -18,7 +18,7 @@ import Layout from "../../Layout/Layout";
 import TagView from "../../Elem/TagView";
 import PrMyPageWrapper from "./PrMyPageWrapper";
 
-const PrMyPost = ({ myPostDatas, loadMore, onPressHandler }) => {
+const PrMyPost = ({ myPostDatas, loadMore, onPressHandler, navigation }) => {
   const renderItem = ({ item }) => {
     return (
       <StCommuContentWrapper
@@ -51,7 +51,9 @@ const PrMyPost = ({ myPostDatas, loadMore, onPressHandler }) => {
             {item?.createdAt}{" "}
           </StSubText>
           <TouchableOpacity
-          onPress={()=>{onPressHandler(item.communityId)}}
+            onPress={() => {
+              onPressHandler(item.communityId);
+            }}
           >
             <IconImage source={require("../../../assets/Icon/trash.png")} />
           </TouchableOpacity>
@@ -77,9 +79,7 @@ const PrMyPost = ({ myPostDatas, loadMore, onPressHandler }) => {
           // ListFooterComponent={}
         />
       ) : (
-        <Layout>
-          <Text>내가 쓴 글이 없어요</Text>
-        </Layout>
+        <Text>내가 쓴 글이 없어요.</Text>
       )}
     </PrMyPageWrapper>
   );

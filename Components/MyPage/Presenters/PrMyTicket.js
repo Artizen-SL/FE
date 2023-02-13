@@ -26,9 +26,9 @@ const PrMyTicket = ({ navigation, myTicketDatas, loadMore }) => {
         <IconImage source={require("../../../assets/Icon/trash.png")}/>
         </ImageBox>
         <Center>
-          <Text>{item.cultureName}</Text>
+          <Text numberOfLines={2} ellipsizeMode="tail">{item.cultureName}</Text>
           <GrayText>{item.date}</GrayText>
-          <GrayText>{item.place}</GrayText>
+          <GrayText numberOfLines={1} ellipsizeMode="tail">{item.place}</GrayText>
         </Center>
       </Box>
     );
