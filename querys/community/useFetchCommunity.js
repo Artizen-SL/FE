@@ -20,6 +20,7 @@ const useFetchCommunity = (pageParam, size) => {
       console.log(lastPage);
       console.log("lastPage", lastPage.isLast);
       let nextPage = pageParam + 1;
+      console.log("nextPage", nextPage);
       return lastPage.isLast ? undefined : nextPage;
     },
 

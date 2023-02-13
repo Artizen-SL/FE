@@ -42,19 +42,25 @@ function CategoryDetail({ route }) {
   // const [page, setPage] = useState(1);
   // const preventRef = useRef(true);
 
-  const {
-    data: categoryData,
-    isError,
-    isLoading,
-  } = useCategoryDetail(category, 1);
   // const {
-  //   fetchNextPage,
-  //   fetchPreviousPage,
-  //   hasNextPage,
-  //   hasPreviousPage,
-  //   isFetchingNextPage,
-  //   isFetchingPreviousPage,
-  // } = useCategoryDetail(category, 1);
+  //   data: categoryData,
+  //   isError,
+  //   isLoading,
+  // } = useCategoryDetail(category, 0, 15);
+
+  const {
+    data,
+    isLoading,
+    isError,
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage,
+    refetch,
+  } = useCategoryDetail(category, 0, 12);
+  console.log("data", data);
+  console.log("data.pages", data?.pages.flat());
+
+  const categoryData = data?.pages.flat();
 
   return (
     <View style={{ flex: 1 }}>

@@ -18,12 +18,6 @@ import useFetchCommunity from "../../querys/community/useFetchCommunity";
 const CommunityMain = () => {
   const navigation = useNavigation();
   const isFocused = useIsFocused();
-  // const {
-  //   data: communityMainDatas,
-  //   isLoading,
-  //   isError,
-  //   refetch,
-  // } = useFetchCommunity();
 
   const {
     data,
@@ -33,24 +27,25 @@ const CommunityMain = () => {
     fetchNextPage,
     isFetchingNextPage,
     refetch,
-  } = useFetchCommunity(0, 8);
-  console.log("data", data);
-  console.log("data.pages", data?.pages);
+  } = useFetchCommunity(0, 12);
+  // console.log("data", data);
+  // console.log("data.pages", data?.pages);
 
-  const communityMainDatas = data?.pages?.flat();
+  const communityMainDatas = data?.pages[0].communityList;
 
-  console.log("communityMainDatas", communityMainDatas);
+  console.log("communityMainDatas", data?.pages);
 
-  useEffect(() => {
-    refetch({
-      refetchPage: (page, index) => {
-        index === 0;
-      },
-    });
-  }, [isFocused]);
+  // useEffect(() => {
+  //   refetch({
+  //     refetchPage: (page, index) => {
+  //       index === 0;
+  //     },
+  //   });
+  // }, [isFocused]);
 
   const loadMore = () => {
     if (hasNextPage) {
+      console.log("fetching!");
       fetchNextPage();
     }
   };
@@ -85,7 +80,7 @@ const CommunityMain = () => {
         </View>
         <View>
           <StSubText numberOfLines={1} ellipsizeMode="tail">
-            {item?.createdAt.slice(0, 10)} {item?.createdAt.slice(11, 16)} /{" "}
+            {item?.createdAt?.slice(0, 10)} {item?.createdAt?.slice(11, 16)} /{" "}
             {item?.nickname ?? "익명"}
           </StSubText>
         </View>
@@ -102,7 +97,7 @@ const CommunityMain = () => {
           data={communityMainDatas}
           keyExtractor={(item) => item?.id}
           onEndReached={loadMore}
-          onEndReachedThreshold={0.5}
+          onEndReachedThreshold={0.4}
           // contentContainerStyle={{}}
           // ListFooterComponent={}
         />
