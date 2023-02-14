@@ -12,8 +12,8 @@ const useFetchSearch = (keyword, pageParam, size) => {
   return useInfiniteQuery(
     {
       queryKey: ["getSearchContent", keyword],
-      queryFn: async () => {
-        const { data } = await getSearchContent(keyword, pageParam, size);
+      queryFn: async ({ pageParam = 0 }) => {
+        const { data } = await getSearchContent(keyword, pageParam, 10);
         const { artizenList: page, isLast } = data;
         return { page, nextPage: pageParam + 1, isLast };
       },
