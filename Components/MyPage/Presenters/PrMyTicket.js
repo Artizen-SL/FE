@@ -19,6 +19,7 @@ import PrMyPageWrapper from "./PrMyPageWrapper";
 
 const PrMyTicket = ({ navigation, myTicketDatas, loadMore,onPressHandler }) => {
   const renderItem = ({ item }) => {
+    console.log(item);
     return (
       <>
         {item && item.cultureName ? (
