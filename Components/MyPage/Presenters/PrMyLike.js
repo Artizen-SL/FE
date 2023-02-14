@@ -42,7 +42,7 @@ const PrMyLike = ({ mylikeDatas, loadMore, navigation }) => {
             )}
           </View>
           <View style={styles.StTextWrapper}>
-            <Text style={styles.StNameText}>{item.name}</Text>
+            <Text style={styles.StNameText}>{item.cultureName}</Text>
             <Text style={styles.StText}>기간 : {item.date}</Text>
             <Text style={styles.StText}>장소 : {item.place}</Text>
           </View>

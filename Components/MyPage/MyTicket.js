@@ -8,7 +8,7 @@ import useDelMyTicket from "../../querys/mypage/useDelMyTicket";
 const MyTicket = () => {
   const navigation = useNavigation();
   const isFocused = useIsFocused();
-  
+
   const {
     data,
     isLoading,
@@ -18,9 +18,11 @@ const MyTicket = () => {
     isFetchingNextPage,
     refetch,
     remove,
-  } = useFetchMyTicket(1, 8);
+  } = useFetchMyTicket();
 
-  const myTicketDatas = data?.pages?.flat();
+  const myTicketDatas =  data?.pages?.flatMap((item) => {
+    return item?.page?.flat();
+  });
 
   useEffect(() => {
     remove(),

@@ -15,10 +15,17 @@ const MyLike = () => {
     fetchNextPage,
     isFetchingNextPage,
     refetch,
-  } = useFetchMyLike(1, 8);
+    remove,
+  } = useFetchMyLike();
 
-  const mylikeDatas = data?.pages?.flat();
+  // console.log(data?.pages)
+  const mylikeDatas = data?.pages?.flatMap((item) => {
+    return item?.page?.flat();
+  });
+  // console.log("mylikeDatas",mylikeDatas)
+
   useEffect(() => {
+    remove();
     refetch({
       refetchPage: (page, index) => {
         index === 0;
