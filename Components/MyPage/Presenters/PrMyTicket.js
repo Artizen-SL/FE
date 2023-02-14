@@ -17,7 +17,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Layout from "../../Layout/Layout";
 import PrMyPageWrapper from "./PrMyPageWrapper";
 
-const PrMyTicket = ({ navigation, myTicketDatas, loadMore }) => {
+const PrMyTicket = ({ navigation, myTicketDatas, loadMore,onPressHandler }) => {
   const renderItem = ({ item }) => {
     console.log("item", item);
     return (
@@ -26,6 +26,9 @@ const PrMyTicket = ({ navigation, myTicketDatas, loadMore }) => {
           <Box>
             <ImageBox source={{ uri: item.ticketImg }}>
               <BtnIcon
+              onPress={()=>{
+                onPressHandler(item.myTicketId)
+              }}
               >
                 <IconImage source={require("../../../assets/Icon/trash.png")} />
               </BtnIcon>
