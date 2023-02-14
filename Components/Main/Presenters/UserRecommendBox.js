@@ -1,4 +1,3 @@
-import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import {
   Image,
@@ -10,9 +9,10 @@ import {
 } from "react-native";
 import Theme from "../../../Theme/Theme";
 import styled, { css } from "styled-components/native";
+import { useNavigation } from "@react-navigation/native";
 
-const UserRecommendBox = ({ datas, user, navigation }) => {
-  console.log("UserRecommendBox", datas);
+const UserRecommendBox = ({ datas, user}) => {
+  const navigation = useNavigation();
   return (
     <View style={{ marginTop: 10 }}>
       {datas?.map((data) => {
@@ -36,6 +36,14 @@ const UserRecommendBox = ({ datas, user, navigation }) => {
                 어떠세요?
               </Text>
             </Center>
+            <TouchableOpacity
+            onPress={() =>
+              navigation.navigate("ContentDetail", {
+                screen: "ContentDetail",
+                id: data?.contentId,
+              })
+            }
+            >
             <RecommendImage source={{ uri: data?.posterUrl }}>
               <Image
                 source={require("../../../assets/Icon/ribbon.png")}
@@ -47,6 +55,7 @@ const UserRecommendBox = ({ datas, user, navigation }) => {
                 <WhiteText>{data?.place}</WhiteText>
               </View>
             </RecommendImage>
+            </TouchableOpacity>
           </View>
         );
       })}

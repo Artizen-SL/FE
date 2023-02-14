@@ -1,15 +1,23 @@
 import React from "react";
-import { StyleSheet, View, Image, ImageBackground, Text } from "react-native";
+import { StyleSheet, View, Image, ImageBackground, Text,TouchableOpacity } from "react-native";
 import styled, { css } from "styled-components/native";
 import Theme from "../../../Theme/Theme";
+import { useNavigation } from "@react-navigation/native";
 
 const BestPost = ({ datas }) => {
-  console.log("datas", datas);
+  const navigation = useNavigation();
   return (
     <RowBox>
       {datas.map((data) => {
         return (
-          <Center key={data?.id}>
+          <Center key={data?.id}
+          onPress={() =>
+            navigation.navigate("ContentDetail", {
+              screen: "ContentDetail",
+              id: data?.contentId,
+            })
+          }
+          >
             <MiddleSqureImage source={{ uri: data?.posterUrl }}>
               <WhiteText>{data?.title}</WhiteText>
             </MiddleSqureImage>
@@ -67,7 +75,7 @@ const RowBox = styled(View)`
   margin: 10px;
 `;
 
-const Center = styled(View)`
+const Center = styled(TouchableOpacity)`
   align-items: center;
   justify-content: center;
   border-radius: 10px;
