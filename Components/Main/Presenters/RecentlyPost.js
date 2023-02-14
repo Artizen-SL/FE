@@ -1,16 +1,25 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image,TouchableOpacity } from "react-native";
 import styled, { css } from "styled-components/native";
+import { useNavigation } from "@react-navigation/native";
 
 const RecentlyPost = ({ datas }) => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.row}>
       {datas?.map((data) => {
         return (
-          <Round
+          <Round 
             style={{ margin: 3, marginTop: 6, alignItems: "center" }}
             key={data?.contentId}
+            onPress={() =>
+              navigation.navigate("ContentDetail", {
+                screen: "ContentDetail",
+                id: data?.contentId,
+              })
+            }
           >
-             <View styles={styled.center}>
+             <View  styles={styled.center}>
             <RoundWrapper>
               <RoundImage source={{ uri: data?.posterUrl }} />
             </RoundWrapper>           
@@ -62,7 +71,7 @@ const RoundWrapper = styled(View)`
   border-radius: 50px;
 `;
 
-const Round = styled.View`
+const Round = styled(TouchableOpacity )`
   width: 100px;
   height: 150px;
 `;
