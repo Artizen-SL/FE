@@ -1,4 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
+import { useIsFocused,useNavigation } from "@react-navigation/native";
 import { useState, useEffect } from "react";
 import InfoSearchInput from "./Presenters/InfoSearchInput";
 import { IOScrollView, InView } from "react-native-intersection-observer";
@@ -12,6 +12,7 @@ import { View } from "react-native";
 
 const InfoInput = () => {
   const navigation = useNavigation();
+  const isFocused = useIsFocused();
 
   const [searchWord, setSearchWord] = useState();
   const [sendKeyword, setSendKeyword] = useState();
@@ -24,10 +25,32 @@ const InfoInput = () => {
   };
 
   const {
-    data: searchData,
-    isError,
+    data,
     isLoading,
-  } = useFetchSearch(sendKeyword?.keyword);
+    isError,
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage,
+    refetch,
+    remove,
+  } = useFetchSearch(sendKeyword?.keyword,1,8);
+
+  const searchData = data?.pages?.flat();
+
+  useEffect(() => {
+    remove(),
+      refetch({
+        refetchPage: (page, index) => {
+          index === 0;
+        },
+      });
+  }, [isFocused]);
+
+  const loadMore = () => {
+    if (hasNextPage) {
+      fetchNextPage();
+    }
+  };  
 
   const onPressSearch = () => {
     if (!searchWord.keyword.length > 0 && searchWord.keyword) {
@@ -52,6 +75,7 @@ const InfoInput = () => {
             searchWord={searchWord}
             sendKeyword={sendKeyword}
             searchData={searchData}
+            loadMore={loadMore}
           />
         </ScrollViewLayout>
       ) : (

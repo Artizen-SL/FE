@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import styled, { css } from "styled-components/native";
 
 const RecentlyPost = ({ datas }) => {
@@ -8,10 +8,16 @@ const RecentlyPost = ({ datas }) => {
         return (
           <Round
             style={{ margin: 3, marginTop: 6, alignItems: "center" }}
-            key={data?.id}
+            key={data?.contentId}
           >
-            <RoundImage source={{ uri: data?.posterUrl }} />
-            <Text>{data?.name}</Text>
+             <View styles={styled.center}>
+            <RoundWrapper>
+              <RoundImage source={{ uri: data?.posterUrl }} />
+            </RoundWrapper>           
+              <TitleTextBl numberOfLines={2} ellipsizeMode="tail">
+                {data?.title}
+              </TitleTextBl>
+            </View>
           </Round>
         );
       })}
@@ -29,6 +35,8 @@ const styles = StyleSheet.create({
   center: {
     alignItems: "center",
     justifyContent: "center",
+    alignContent: "center",
+    justifyItems: "center",
   },
   smallText: {
     fontSize: 12,
@@ -42,13 +50,23 @@ const styles = StyleSheet.create({
   },
 });
 
-const RoundImage = styled.Image`
+const RoundImage = styled(Image)`
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+`;
+const RoundWrapper = styled(View)`
   width: 100px;
   height: 100px;
+  /* border-width: 1px; */
   border-radius: 50px;
 `;
 
 const Round = styled.View`
   width: 100px;
   height: 150px;
+`;
+
+const TitleTextBl = styled(Text)`
+  font-size: 12px;
 `;

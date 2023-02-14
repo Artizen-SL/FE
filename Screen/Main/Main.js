@@ -14,51 +14,69 @@ import styled, { css } from "styled-components/native";
 import Theme from "../../Theme/Theme";
 import ScrollViewLayout from "../../Components/Layout/ScrollViewLayout";
 import MainCarousel from "../../Components/Main/MainCarousel";
-import UserRecommendData from "../../Components/Main/Data/UserRecommendData";
+import UserRecommendData from "../../Components/Main/MainRecommendContent";
 import useGpsRes from "../../utils/useGpsRes";
 import useFetchImportantNotice from "../../querys/notice/useFetchImportantNotice";
-import RecentlyData from "../../Components/Main/Data/RecentlyData";
-import BestData from "../../Components/Main/Data/BestData";
+import MainRecentlyContent from "../../Components/Main/MainRecentlyContent";
+import MainBestContent from "../../Components/Main/MainBestContent";
 import MainCarouselData from "../../Components/Main/Data/MainCarouselData";
 import MainNotice from "../../Components/Main/MainNotice";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import useFetchMyPage from "../../querys/mypage/useFetchMyPage";
-// import MainView from "../../Components/Main/Presenters/MainView";
-
+import useFetchLocation from "../../querys/Main/useFetchLocation";
+import IsLoading from "../../Common/IsLoading/IsLoading";
+import MainRecommendContent from "../../Components/Main/Presenters/UserRecommendBox";
+import Layout from "../../Components/Layout/Layout";
 const Main = ({ navigation }) => {
   const screenWidth = Math.round(Dimensions.get("window").width);
 
   const pages = MainCarouselData();
 
-  const [gpsRes, setGpsRes] = useState({ region: "Loading...", district: "" });
+  const [gpsRes, setGpsRes] = useState({
+    region: "Loading...",
+    district: "",
+    latitude: "",
+    longitude: "",
+  });
 
   const resetGpsAsk = async () => {
-    const { region, district, disagree } = await useGpsRes();
-    setGpsRes({ ...gpsRes, region: region, district: district });
+    const { region, district, disagree, latitude, longitude } =
+      await useGpsRes();
+    setGpsRes({
+      ...gpsRes,
+      region: region,
+      district: district,
+      latitude: latitude,
+      longitude: longitude,
+    });
   };
+
+  // const {
+  //   data: locationData,
+  //   refetch,
+  //   remove,
+  // } = useFetchLocation(gpsRes);
+
+  console.log("locationData", locationData);
 
   useEffect(() => {
     const location = resetGpsAsk();
-
     if (typeof location === "object") {
       setGpsRes({ ...gpsRes, region: "", district: "" });
       resetGpsAsk();
     }
   }, []);
 
-  const { data: datas, isError, isLoading } = useFetchImportantNotice();
+  const { data: locationData, refetch, remove } = useFetchLocation(gpsRes);
 
-  // useEffect(() => {
-  //   const getTokenAsync = async () => {
-  //     let userToken;
-  //     try {
-  //       userToken = await AsyncStorage.getItem("accessToken");
-  //       } catch(error){
-  //       }
-  //   };
-  //   getTokenAsync();
-  // },[]);
+  // if(locationData){
+  //   remove();
+  //   refetch();
+  // }
+
+  const { data: datas, isError, isLoading } = useFetchImportantNotice();
   const { data: myPageDatas } = useFetchMyPage();
+
   return (
     <ScrollViewLayout>
       {/* <MainView /> */}
@@ -66,6 +84,7 @@ const Main = ({ navigation }) => {
         source={require("../../assets/background/main.png")}
         style={styles.bgImage}
       >
+        {/*상단 로고, 서치, 프로필*/}
         <View style={[styles.container, styles.header]}>
           <Headerarea>
             <LogoBox>
@@ -93,6 +112,8 @@ const Main = ({ navigation }) => {
               </TouchableOpacity>
             </View>
           </Headerarea>
+          {/*상단 로고, 서치, 프로필*/}
+          {/*메인카루셀*/}
           <ImageBackground
             source={require("../../assets/background/white.png")}
             style={styles.whiteBackground}
@@ -258,9 +279,16 @@ const Main = ({ navigation }) => {
           </View>
 
           {/*추천*/}
-          <View style={styles.center}>
-            <UserRecommendData user={myPageDatas.nickname} />
-          </View>
+          {locationData && locationData.length > 0 ? (
+            <View>
+              <MainRecommendContent
+                user={myPageDatas.nickname}
+                datas={locationData}
+              />
+            </View>
+          ) : (
+            <Text>위치정보를 가져오고 있습니다.</Text>
+          )}
 
           {/*best*/}
           <View style={{ marginTop: 30 }}>
@@ -269,7 +297,7 @@ const Main = ({ navigation }) => {
               <BoldTextBL style={{ marginLeft: 6 }}>Best Artizen</BoldTextBL>
             </View>
 
-            <BestData />
+            <MainBestContent />
           </View>
 
           {/*new*/}
@@ -278,7 +306,7 @@ const Main = ({ navigation }) => {
               <Logo source={require("../../assets/Icon/new.png")} />
               <BoldTextBL style={{ marginLeft: 6 }}>NEW Artizen</BoldTextBL>
             </View>
-            <RecentlyData />
+            <MainRecentlyContent/>
           </View>
         </View>
       </ImageBackground>
@@ -358,6 +386,12 @@ const SmallRound = styled.View`
   width: 50px;
   height: 50px;
   border: 1px solid ${Theme.colors.LightGray};
+`;
+
+const Center = styled.View`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
 `;
 
 const LogoView = styled.View`

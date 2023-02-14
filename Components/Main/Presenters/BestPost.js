@@ -4,15 +4,14 @@ import styled, { css } from "styled-components/native";
 import Theme from "../../../Theme/Theme";
 
 const BestPost = ({ datas }) => {
+  console.log("datas", datas);
   return (
     <RowBox>
       {datas.map((data) => {
         return (
           <Center key={data?.id}>
-            <MiddleSqureImage
-              source={{ uri: data?.posterUrl }}          
-            >
-              <WhiteText>{data?.name}</WhiteText>
+            <MiddleSqureImage source={{ uri: data?.posterUrl }}>
+              <WhiteText>{data?.title}</WhiteText>
             </MiddleSqureImage>
           </Center>
         );
@@ -49,7 +48,7 @@ const WhiteText = styled.Text`
   color: ${Theme.colors.White};
   font-size: 14px;
   font-weight: 700;
-`
+`;
 const MiddleSqureImage = styled.ImageBackground`
   width: 153px;
   height: 153px;
@@ -61,7 +60,7 @@ const MiddleSqureImage = styled.ImageBackground`
 
 const RowBox = styled(View)`
   width: 320px;
- flex-direction: row;
+  flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
