@@ -9,6 +9,7 @@ const getLocationContent = (gpsRes) => {
 };
 
 const useFetchLocation = (gpsRes) => {
+   
   return useQuery(
     {
       queryKey: [" getLocationContent", gpsRes],

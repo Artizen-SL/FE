@@ -14,19 +14,17 @@ import styled, { css } from "styled-components/native";
 import Theme from "../../Theme/Theme";
 import ScrollViewLayout from "../../Components/Layout/ScrollViewLayout";
 import MainCarousel from "../../Components/Main/MainCarousel";
-import UserRecommendData from "../../Components/Main/MainRecommendContent";
 import useGpsRes from "../../utils/useGpsRes";
 import useFetchImportantNotice from "../../querys/notice/useFetchImportantNotice";
 import MainRecentlyContent from "../../Components/Main/MainRecentlyContent";
 import MainBestContent from "../../Components/Main/MainBestContent";
 import MainCarouselData from "../../Components/Main/Data/MainCarouselData";
 import MainNotice from "../../Components/Main/MainNotice";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import useFetchMyPage from "../../querys/mypage/useFetchMyPage";
 import useFetchLocation from "../../querys/Main/useFetchLocation";
-import IsLoading from "../../Common/IsLoading/IsLoading";
 import MainRecommendContent from "../../Components/Main/Presenters/UserRecommendBox";
-import Layout from "../../Components/Layout/Layout";
+
+
 const Main = ({ navigation }) => {
   const screenWidth = Math.round(Dimensions.get("window").width);
 
@@ -60,6 +58,7 @@ const Main = ({ navigation }) => {
   }, []);
 
   const { data: locationData, refetch, remove } = useFetchLocation(gpsRes);
+  console.log(" locationData", locationData)
   const { data: datas, isError, isLoading } = useFetchImportantNotice();
   const { data: myPageDatas } = useFetchMyPage();
 
