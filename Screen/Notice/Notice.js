@@ -37,7 +37,7 @@ const Notice = () => {
   };
 
   const onPressHandler = () => {
-    if (noticePassword === "1111") {
+    if (noticePassword === "artizen666!") {
       navigation.navigate("NoticeRoutes", {
         screen: "NoticePost",
       });
