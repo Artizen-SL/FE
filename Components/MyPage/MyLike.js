@@ -18,11 +18,9 @@ const MyLike = () => {
     remove,
   } = useFetchMyLike();
 
-  // console.log(data?.pages)
   const mylikeDatas = data?.pages?.flatMap((item) => {
     return item?.page?.flat();
   });
-  // console.log("mylikeDatas",mylikeDatas)
 
   useEffect(() => {
     remove();

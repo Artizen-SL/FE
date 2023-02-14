@@ -26,7 +26,7 @@ const NoticeDetail = ({ route }) => {
   const { mutate: delNoticeMutate } = useDelNotice();
 
   const onPressHandler = (id) => {
-    if (delPassword === "1111") {
+    if (delPassword === "artizen666!") {
       Alert.alert("확인", "정말 삭제하시겠습니까?", [
         {
           text: "취소",
@@ -49,7 +49,7 @@ const NoticeDetail = ({ route }) => {
           },
         },
       ]);
-    } else if (delPassword !== "1111") {
+    } else if (delPassword !== "artizen666!") {
       Alert.alert("비밀번호가 일치하지않습니다.");
     }
   };

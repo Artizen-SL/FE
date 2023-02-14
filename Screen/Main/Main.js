@@ -58,7 +58,6 @@ const Main = ({ navigation }) => {
   }, []);
 
   const { data: locationData, refetch, remove } = useFetchLocation(gpsRes);
-  console.log(" locationData", locationData)
   const { data: datas, isError, isLoading } = useFetchImportantNotice();
   const { data: myPageDatas } = useFetchMyPage();
 
