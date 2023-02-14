@@ -15,7 +15,7 @@ const CommunityContentsWrapper = (props) => {
   const navigation = useNavigation();
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <View style={{ flex: 1 }}>
       <CommuBgImage
         resizeMode="cover"
         source={require("../../../assets/background/community-bg.png")}
@@ -41,7 +41,7 @@ const CommunityContentsWrapper = (props) => {
           <></>
         )}
       </CommuBgImage>
-    </SafeAreaView>
+    </View>
   );
 };
 

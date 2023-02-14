@@ -19,14 +19,12 @@ import PrMyPageWrapper from "./PrMyPageWrapper";
 
 const PrMyTicket = ({ navigation, myTicketDatas, loadMore }) => {
   const renderItem = ({ item }) => {
-    console.log("item", item);
     return (
       <>
         {item && item.cultureName ? (
           <Box>
             <ImageBox source={{ uri: item.ticketImg }}>
-              <BtnIcon
-              >
+              <BtnIcon>
                 <IconImage source={require("../../../assets/Icon/trash.png")} />
               </BtnIcon>
             </ImageBox>
@@ -122,7 +120,7 @@ const RowBox = styled(View)`
 `;
 
 const BtnIcon = styled(TouchableOpacity)`
-margin: 10px 0 0 10px;
+  margin: 10px 0 0 10px;
 `;
 const Center = styled(View)`
   flex-direction: column;

@@ -20,7 +20,6 @@ import PrMyPageWrapper from "./PrMyPageWrapper";
 
 const PrMyPost = ({ myPostDatas, loadMore, onPressHandler, navigation }) => {
   const renderItem = ({ item }) => {
-    console.log(item);
     return (
       <>
         {item && item.communityId > 0 ? (
