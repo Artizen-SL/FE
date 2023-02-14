@@ -19,7 +19,6 @@ import PrMyPageWrapper from "./PrMyPageWrapper";
 
 const PrMyTicket = ({ navigation, myTicketDatas, loadMore,onPressHandler }) => {
   const renderItem = ({ item }) => {
-    console.log("item", item);
     return (
       <>
         {item && item.cultureName ? (
@@ -125,7 +124,7 @@ const RowBox = styled(View)`
 `;
 
 const BtnIcon = styled(TouchableOpacity)`
-margin: 10px 0 0 10px;
+  margin: 10px 0 0 10px;
 `;
 const Center = styled(View)`
   flex-direction: column;

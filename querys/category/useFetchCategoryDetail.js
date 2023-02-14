@@ -14,13 +14,13 @@ const useCategoryDetail = (genre, size) => {
     queryFn: async ({ pageParam = 0 }) => {
       const { data } = await getCategoryDetail(genre, pageParam, size);
 
-      // const { pages: page, isLast } = data;
+      const { artizenList: page, isLast } = data;
 
-      return data;
+      return { page, nextPage: pageParam + 1, isLast };
     },
 
     getNextPageParam: (lastPage) => {
-      // return lastPage.isLast ? undefined : nextPage;
+      return !lastPage.isLast ? lastPage.nextPage : undefined;
     },
   });
 };

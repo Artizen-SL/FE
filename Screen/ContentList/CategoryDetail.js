@@ -10,12 +10,13 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useIsFocused } from "@react-navigation/native";
 import { height } from "deprecated-react-native-prop-types/DeprecatedImagePropType";
 import { dropDownData } from "../../Constants";
+import ScrollTopBtn from "../../Common/ScrollTopBtn/ScrollTopBtn";
 
 function CategoryDetail({ route }) {
   const { category } = route.params;
   const [selected, setSelected] = useState(undefined);
   const isFocused = useIsFocused();
-
+  const flatList = useRef();
   const {
     data,
     isLoading,
@@ -27,7 +28,9 @@ function CategoryDetail({ route }) {
     remove,
   } = useCategoryDetail(category, 10);
 
-  const categoryData = data?.pages.flat();
+  const categoryData = data?.pages.flatMap((item) => {
+    return item.page.flat();
+  });
 
   useEffect(() => {
     remove();
@@ -49,7 +52,7 @@ function CategoryDetail({ route }) {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, marginHorizontal: 10 }}>
+    <View style={{ flex: 1, marginHorizontal: 10 }}>
       <FlatList
         ListHeaderComponent={
           <>
@@ -99,6 +102,7 @@ function CategoryDetail({ route }) {
             </View>
           </>
         }
+        ref={flatList}
         stickyHeaderIndices={[0]}
         renderItem={renderItem}
         data={categoryData}
@@ -108,13 +112,13 @@ function CategoryDetail({ route }) {
         // contentContainerStyle={{}}
         // ListFooterComponent={}
       />
-
+      <ScrollTopBtn flatlistRef={flatList} />
       <Dropdown
         label="Select Item"
         data={dropDownData}
         onSelect={setSelected}
       />
-    </SafeAreaView>
+    </View>
   );
 }
 

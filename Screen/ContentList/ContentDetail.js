@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View, Image, Dimensions } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Dimensions,
+  ScrollView,
+} from "react-native";
 import Theme from "../../Theme/Theme";
 import Dropdown from "../../Common/Dropdown/Dropdown";
 import FastImage from "react-native-fast-image";
@@ -92,7 +99,7 @@ function ContentDetail({ route }) {
 
   return (
     <View style={{ flex: 1 }}>
-      <ScrollViewLayout>
+      <ScrollView>
         <Carousel
           gap={10}
           offset={0}
@@ -187,19 +194,13 @@ function ContentDetail({ route }) {
                 key={idx}
               >
                 <Image
-                  // resizeMode="contain"
                   resizeMode={FastImage.resizeMode.contain}
                   source={{
                     uri: image.url,
-                    // uri: "http://www.kopis.or.kr/upload/pfmPoster/PF_PF203891_221209_092426.gif",
                   }}
-                  // style={detailStyles.detailImage}
                   style={{
                     width: "100%",
                     height: "100%",
-                    // width: image.width,
-                    // height: image.height,
-                    // borderWidth: 1,
                   }}
                 ></Image>
               </View>
@@ -208,7 +209,7 @@ function ContentDetail({ route }) {
         </View>
 
         <View style={detailStyles.divideLine} />
-      </ScrollViewLayout>
+      </ScrollView>
       <Dropdown
         label="Select Item"
         data={dropDownData}
