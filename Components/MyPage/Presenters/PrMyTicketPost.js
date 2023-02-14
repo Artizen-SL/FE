@@ -11,10 +11,7 @@ import {
   ScrollView,
 } from "react-native";
 import styled, { css } from "styled-components/native";
-import Theme from "../../../Theme/Theme";
 import ScrollViewLayout from "../../Layout/ScrollViewLayout";
-import { SafeAreaView } from "react-native-safe-area-context";
-import Layout from "../../Layout/Layout";
 import ImagePickerBtn from "../../../Common/ImagePicker/ImagePickerBtn";
 import StarRating from "../../../Common/StarRating/StarRating";
 
@@ -29,7 +26,7 @@ const PrMyTicketPost = ({
     <ScrollViewLayout>
       <RowView>
         <StTicketImg source={require("../../../assets/mypage/Tickets.png")} />
-        <Text>마이티켓 기록하기</Text>
+        <StHeaderText>마이티켓 기록하기</StHeaderText>
       </RowView>
       <SearchRowView>
         <StSearchTextInput
@@ -42,10 +39,12 @@ const PrMyTicketPost = ({
         </TouchableOpacity>
       </SearchRowView>
       <StDividerView />
-      {searchDatas.length !== 0 ? (
+      {searchDatas.length === 0 ? (
+        <></>
+      ) : (
         <SearchResultView>
           {searchDatas.length !== 0 &&
-            searchDatas.slice(0, 10)?.map((item) => {
+            searchDatas?.slice(0, 10)?.map((item) => {
               return (
                 <SearchItemView
                   key={item.id}
@@ -72,28 +71,26 @@ const PrMyTicketPost = ({
               );
             })}
         </SearchResultView>
-      ) : (
-        <></>
       )}
 
       {/* 선택한 곳 렌더 */}
-      <Text>선택한 티켓 : {myTicketInputs.contentName}</Text>
+      <StText>선택한 티켓 : {myTicketInputs.contentName}</StText>
       <ImagePickerBtn
         imagePick={myTicketInputs}
         setImagePick={setMyTicketInputs}
       />
-      <Text>관람한 {myTicketInputs.contentName}은/는 어떠셨나요?</Text>
+      <StText>관람한 {myTicketInputs.contentName}은/는 어떠셨나요?</StText>
       <StarView>
         <StarRating state={myTicketInputs} setState={setMyTicketInputs} />
       </StarView>
-      <Text>먼 훗날 추억 할 수 있는 한줄평을 입력해주세요.</Text>
-      <TextInput
+      <StText>먼 훗날 추억 할 수 있는 한줄평을 입력해주세요.</StText>
+      <StTextInput
         placeholder="한줄평을 작성해 주세요.(30자)"
         onChangeText={(text) =>
           setMyTicketInputs({ ...myTicketInputs, review: text })
         }
         maxLength={30}
-      ></TextInput>
+      ></StTextInput>
 
       <StSubmitBtn onPress={() => onSubmitRecord()}>
         <StSubmitBtnText>등록하기</StSubmitBtnText>
@@ -189,4 +186,22 @@ const StSubmitBtn = styled(TouchableOpacity)`
 
 const StSubmitBtnText = styled(Text)`
   color: #fff;
+`;
+
+const StText = styled(Text)`
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-bottom: 5px;
+`;
+
+const StHeaderText = styled(StText)`
+  font-size: 15px;
+`;
+
+const StTextInput = styled(TextInput)`
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-bottom: 5px;
 `;
