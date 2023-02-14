@@ -9,7 +9,6 @@ const getSearchContent = (keyword, pageParam, size,) => {
 };
 
 const useFetchSearch = (keyword, pageParam, size ) => {
-  console.log(pageParam, size )
   return useInfiniteQuery(
     {
       queryKey: ["getSearchContent", keyword],

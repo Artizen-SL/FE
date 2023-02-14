@@ -51,14 +51,6 @@ const Main = ({ navigation }) => {
     });
   };
 
-  // const {
-  //   data: locationData,
-  //   refetch,
-  //   remove,
-  // } = useFetchLocation(gpsRes);
-
-  console.log("locationData", locationData);
-
   useEffect(() => {
     const location = resetGpsAsk();
     if (typeof location === "object") {
@@ -68,12 +60,6 @@ const Main = ({ navigation }) => {
   }, []);
 
   const { data: locationData, refetch, remove } = useFetchLocation(gpsRes);
-
-  // if(locationData){
-  //   remove();
-  //   refetch();
-  // }
-
   const { data: datas, isError, isLoading } = useFetchImportantNotice();
   const { data: myPageDatas } = useFetchMyPage();
 
@@ -84,35 +70,7 @@ const Main = ({ navigation }) => {
         source={require("../../assets/background/main.png")}
         style={styles.bgImage}
       >
-        {/*상단 로고, 서치, 프로필*/}
         <View style={[styles.container, styles.header]}>
-          <Headerarea>
-            <LogoBox>
-              <Logo source={require("../../assets/logo/artizenRabbit.png")} />
-              <LogoTitle source={require("../../assets/logo/artizenNew.png")} />
-            </LogoBox>
-            <View style={[styles.row]}>
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate("MainRoutes", {
-                    screen: "Search",
-                  })
-                }
-              >
-                <Image source={require("../../assets/Icon/Search.png")} />
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate("MyPageRoutes", {
-                    screen: "MyPage",
-                  })
-                }
-              >
-                <Profile source={{ uri: myPageDatas?.profileImg }} />
-              </TouchableOpacity>
-            </View>
-          </Headerarea>
-          {/*상단 로고, 서치, 프로필*/}
           {/*메인카루셀*/}
           <ImageBackground
             source={require("../../assets/background/white.png")}
@@ -306,7 +264,7 @@ const Main = ({ navigation }) => {
               <Logo source={require("../../assets/Icon/new.png")} />
               <BoldTextBL style={{ marginLeft: 6 }}>NEW Artizen</BoldTextBL>
             </View>
-            <MainRecentlyContent/>
+            <MainRecentlyContent />
           </View>
         </View>
       </ImageBackground>
