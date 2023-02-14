@@ -14,19 +14,19 @@ import { useNavigation } from "@react-navigation/native";
 const PrMyPageWrapper = (props) => {
   const navigation = useNavigation();
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <View style={{ flex: 1 }}>
       <CommuBgImage>
         <CommunityContainer>
           <StTitleWrapper>
             <StTitleText>
               <IconImage source={props.icon} />
-             {""} {props.title}
+              {""} {props.title}
             </StTitleText>
           </StTitleWrapper>
           {props.children}
         </CommunityContainer>
       </CommuBgImage>
-    </SafeAreaView>
+    </View>
   );
 };
 

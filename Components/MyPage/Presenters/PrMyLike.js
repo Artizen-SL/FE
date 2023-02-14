@@ -18,7 +18,6 @@ import Layout from "../../Layout/Layout";
 import PrMyPageWrapper from "./PrMyPageWrapper";
 const PrMyLike = ({ mylikeDatas, loadMore, navigation }) => {
   const renderItem = ({ item }) => {
-    console.log(item);
     return (
       <TouchableOpacity
         style={styles.StContentWrapper}

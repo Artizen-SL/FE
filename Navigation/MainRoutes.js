@@ -4,7 +4,7 @@ import React from "react";
 import CategoryDetail from "../Screen/ContentList/CategoryDetail";
 import ContentDetail from "../Screen/ContentList/ContentDetail";
 import Main from "../Screen/Main/Main";
-import NoticeRoutes from "../Navigation/NoticeRoutes"
+import NoticeRoutes from "../Navigation/NoticeRoutes";
 import MyPageRoutes from "./MyPageRoutes";
 import Search from "../Screen/Search/Search";
 
@@ -31,7 +31,7 @@ function MainRoutes() {
         component={NoticeRoutes}
         options={{ headerShown: false }}
       />
-       <MainStack.Screen
+      <MainStack.Screen
         name="MyPageRoutes"
         component={MyPageRoutes}
         options={{ headerShown: false }}

@@ -26,7 +26,8 @@ const MainTab = () => {
       <MainBottomTab.Screen
         name="CommunityRoutes"
         component={CommunityRoutes}
-        options={{ headerShown: false,
+        options={{
+          headerShown: false,
           tabBarLabel: "자유게시판",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="reader-outline" color={color} size={size} />
@@ -36,12 +37,13 @@ const MainTab = () => {
       <MainBottomTab.Screen
         name="MyPage"
         component={MyPage}
-        options={{ headerShown: false,
+        options={{
+          headerShown: false,
           tabBarLabel: "MY",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="ios-person-outline" color={color} size={size} />
           ),
-         }}
+        }}
       />
     </MainBottomTab.Navigator>
   );
