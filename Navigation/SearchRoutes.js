@@ -4,8 +4,9 @@ import InfoSearchNotAvailable from "../Components/Search/Presenters/InfoSearchNo
 const SearchStack = createNativeStackNavigator();
 
 function SearchRoutes() {
-  return <SearchStack.Navigator>
-    <SearchStack.Screen
+  return (
+    <SearchStack.Navigator>
+      <SearchStack.Screen
         name="InfoSearchRes"
         component={InfoSearchRes}
         options={{ headerShown: false }}
@@ -15,5 +16,6 @@ function SearchRoutes() {
         component={InfoSearchNotAvailable}
         options={{ headerShown: false }}
       />
-  </SearchStack.Navigator>;
+    </SearchStack.Navigator>
+  );
 }

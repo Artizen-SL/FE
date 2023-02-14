@@ -27,8 +27,6 @@ function CategoryDetail({ route }) {
     remove,
   } = useCategoryDetail(category, 10);
 
-  console.log(data);
-
   const categoryData = data?.pages.flatMap((item) => {
     return item.page.flat();
   });
@@ -53,7 +51,7 @@ function CategoryDetail({ route }) {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, marginHorizontal: 10 }}>
+    <View style={{ flex: 1, marginHorizontal: 10 }}>
       <FlatList
         ListHeaderComponent={
           <>
@@ -118,7 +116,7 @@ function CategoryDetail({ route }) {
         data={dropDownData}
         onSelect={setSelected}
       />
-    </SafeAreaView>
+    </View>
   );
 }
 
