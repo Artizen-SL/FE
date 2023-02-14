@@ -33,12 +33,14 @@ const InfoInput = () => {
     isFetchingNextPage,
     refetch,
     remove,
-  } = useFetchSearch(sendKeyword?.keyword,1,8);
+  } = useFetchSearch(sendKeyword?.keyword);
 
-  const searchData = data?.pages?.flat();
+  const searchData = data?.pages?.flatMap((item) => {
+    return item?.page?.flat();
+  });
 
   useEffect(() => {
-    remove(),
+    remove();
       refetch({
         refetchPage: (page, index) => {
           index === 0;
