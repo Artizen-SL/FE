@@ -1,5 +1,12 @@
 import React from "react";
-import { StyleSheet, View, Image, ImageBackground, Text,TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Image,
+  ImageBackground,
+  Text,
+  TouchableOpacity,
+} from "react-native";
 import styled, { css } from "styled-components/native";
 import Theme from "../../../Theme/Theme";
 import { useNavigation } from "@react-navigation/native";
@@ -10,13 +17,14 @@ const BestPost = ({ datas }) => {
     <RowBox>
       {datas.map((data) => {
         return (
-          <Center key={data?.id}
-          onPress={() =>
-            navigation.navigate("ContentDetail", {
-              screen: "ContentDetail",
-              id: data?.contentId,
-            })
-          }
+          <Center
+            key={data?.contentId}
+            onPress={() =>
+              navigation.navigate("ContentDetail", {
+                screen: "ContentDetail",
+                id: data?.contentId,
+              })
+            }
           >
             <MiddleSqureImage source={{ uri: data?.posterUrl }}>
               <WhiteText>{data?.title}</WhiteText>
