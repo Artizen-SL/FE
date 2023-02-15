@@ -3,7 +3,6 @@ import {
   View,
   Alert,
   Text,
-  Button,
   Image,
   TouchableOpacity,
   ImageBackground,
@@ -23,7 +22,8 @@ import MainNotice from "../../Components/Main/MainNotice";
 import useFetchMyPage from "../../querys/mypage/useFetchMyPage";
 import useFetchLocation from "../../querys/Main/useFetchLocation";
 import MainRecommendContent from "../../Components/Main/Presenters/UserRecommendBox";
-
+import IsLoading from "../../Common/Loading/IsLoading";
+import IsError from "../../Common/Error/IsError";
 
 const Main = ({ navigation }) => {
   const screenWidth = Math.round(Dimensions.get("window").width);
@@ -33,22 +33,22 @@ const Main = ({ navigation }) => {
   const [gpsRes, setGpsRes] = useState({
     region: "Loading...",
     district: "",
-    latitude: "",
-    longitude: "",
+    latitude: "37.4938176",
+    longitude: "127.136019",
   });
 
   const resetGpsAsk = async () => {
     const { region, district, disagree, latitude, longitude } =
-      await useGpsRes();
+      await useGpsRes();    
     setGpsRes({
       ...gpsRes,
       region: region,
       district: district,
-      latitude: latitude,
+      latitude:latitude,
       longitude: longitude,
     });
   };
-
+  // console("resetGpsAsk ",region)
   useEffect(() => {
     const location = resetGpsAsk();
     if (typeof location === "object") {
@@ -57,10 +57,22 @@ const Main = ({ navigation }) => {
     }
   }, []);
 
-  const { data: locationData, refetch, remove } = useFetchLocation(gpsRes);
+  const {
+    data: locationData,
+    isError: locationIsError,
+    isLoading: locationIsLoading,
+    refetch,
+    remove,
+  } = useFetchLocation(gpsRes);
   const { data: datas, isError, isLoading } = useFetchImportantNotice();
   const { data: myPageDatas } = useFetchMyPage();
 
+  if (locationIsLoading) {
+    <IsLoading />;
+  }
+  if (locationIsError) {
+    <IsError />;
+  }
   return (
     <ScrollViewLayout>
       {/* <MainView /> */}

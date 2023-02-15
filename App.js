@@ -15,7 +15,7 @@ import { isLoggedInAtom } from "./Jotai/atoms/authAtoms";
 import MainTab from "./Navigation/MainTab";
 import { Suspense, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import IsLoading from "./Common/IsLoading/IsLoading";
+import IsLoading from "./Common/Loading/IsLoading";
 import ScreenHeader from "./Common/ScreenHeader/ScreenHeader";
 
 // const Tab = createBottomTabNavigator();
