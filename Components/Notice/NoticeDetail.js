@@ -4,7 +4,7 @@ import PrNoticeDetail from "./Presenters/PrNoticeDetail";
 import useFetchNoticeDetail from "../../querys/notice/useFetchNoticeDetail";
 import useDelNotice from "../../querys/notice/useDelNotice";
 import { useNavigation } from "@react-navigation/native";
-import IsLoading from "../../Common/IsLoading/IsLoading";
+import IsLoading from "../../Common/Loading/IsLoading";
 
 const NoticeDetail = ({ route }) => {
   const navigation = useNavigation();

@@ -12,13 +12,13 @@ const useGpsRes = async () => {
     const {
       coords: { latitude, longitude },
     } = await Location?.getCurrentPositionAsync({ accuracy: 5 });
-    const location = await Location?.reverseGeocodeAsync(
-      
+    const location = await Location?.reverseGeocodeAsync(      
       { latitude, longitude },
       { useGoogleMaps: false }
     );
     region = location[0]?.region;
     district = location[0]?.district;
+    console.log("latitude",latitude)
     return { region, district,latitude,longitude };
   } else {
     disagree = "Loding";
