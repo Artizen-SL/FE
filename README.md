@@ -1,4 +1,5 @@
-![image](https://ifh.cc/g/JaTH8c.png)
+![image](https://ifh.cc/g/d6ZQzm.jpg)
+
 
 ## 👉🏻 프로젝트 소개
 
@@ -70,16 +71,10 @@
 <div align=center> 
 <img  src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=Spring&logoColor=white">
 <img  src="https://img.shields.io/badge/Spring Boot-6DB33F?style=for-the-badge&logo=Spring Boot&logoColor=white">
-<img  src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white">
-<img  src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=Redis&logoColor=white">
 <img  src="https://img.shields.io/badge/Spring Data JPA-6DB33F?style=for-the-badge&logo=S&logoColor=white"> 
-<img  src="https://img.shields.io/badge/Amazon RDS-527FFF?style=for-the-badge&logo=Amazon RDS&logoColor=white">
 <img  src="https://img.shields.io/badge/Amazon EC2-FF9900?style=for-the-badge&logo=Amazon EC2&logoColor=white">
 <img src="https://img.shields.io/badge/Amazon S3-569A31?style=for-the-badge&logo=Amazon S3&logoColor=white">
 <img  src="https://img.shields.io/badge/GitHub Actions-2088FF?style=for-the-badge&logo=GitHub Actions&logoColor=white">
-<img src="https://img.shields.io/badge/socket.io-010101?style=for-the-badge&logo=socket.io&logoColor=white">
-<img src="https://img.shields.io/badge/Stomp-353535?style=for-the-badge&logoColor=white">
-<img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white">
 
 <br>
 
@@ -96,11 +91,7 @@
 <summary>API</summary>
 <div markdown="1">   
     
-  ![image](https://user-images.githubusercontent.com/113868313/203936279-6962e53b-776e-454c-a077-f79c57c022e7.png)
-  ![image](https://user-images.githubusercontent.com/113868313/203936319-c932153e-2c61-4327-b065-deb6e03bdc01.png)
-  ![image](https://user-images.githubusercontent.com/113868313/203936355-5d833550-0cba-4213-8064-bf55cb766fa6.png)
-  ![image](https://user-images.githubusercontent.com/113868313/203936394-9a2d9cee-5677-4344-aa54-6272748dd76b.png)
-  ![image](https://user-images.githubusercontent.com/113868313/203936442-f38ec82a-195c-47c2-b78b-b859d0058216.png)
+
 
 </div>
 </details>
