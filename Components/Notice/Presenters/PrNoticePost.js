@@ -66,6 +66,7 @@ const PrNoticePost = ({
           <ContentInput
             style={{ marginTop: 10, marginBottom: 10 }}
             type="text"
+            multiline
             value={notice.content}
             name="content"
             placeholder="내용을 입력하세요"
