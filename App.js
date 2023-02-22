@@ -17,6 +17,8 @@ import { Suspense, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import IsLoading from "./Common/Loading/IsLoading";
 import ScreenHeader from "./Common/ScreenHeader/ScreenHeader";
+import GeneralLogin from "./Screen/Login/GeneralSignUp";
+import GeneralSignUp from "./Screen/Login/GeneralSignUp";
 
 // const Tab = createBottomTabNavigator();
 const AuthStack = createStackNavigator();
@@ -81,18 +83,21 @@ export default function App() {
                     headerTitle: () => <ScreenHeader />,
                   }}
                 />
-                <>
-                  <AuthStack.Screen
-                    name="Login"
-                    component={Login}
-                    options={{ headerShown: false }}
-                  />
-                  <AuthStack.Screen
+                <AuthStack.Screen
+                  name="Login"
+                  component={Login}
+                  options={{ headerShown: false }}
+                />
+                <AuthStack.Screen
+                  name="GeneralSignUp"
+                  component={GeneralSignUp}
+                  options={{ headerShown: false }}
+                />
+                {/* <AuthStack.Screen
                     name="KakaoLogin"
                     component={KakaoLogin}
                     options={{ headerShown: false }}
-                  />
-                </>
+                  /> */}
               </AuthStack.Navigator>
             </Provider>
           </Suspense>
