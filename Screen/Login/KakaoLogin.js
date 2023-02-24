@@ -38,7 +38,7 @@ const KakaoLogin = () => {
       url: request_token_url,
       params: {
         grant_type: "authorization_code",
-        client_id: process.env.REST_API_KEY,
+        client_id: REST_API_KEY,
         code: request_code,
       },
     })
