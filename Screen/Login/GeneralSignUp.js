@@ -55,18 +55,20 @@ const GeneralSignUp = () => {
   };
 
   const handleSubmit = () => {
-    formValidator() &&
-      mutate(
-        { email, password },
-        {
-          onSuccess: (data) => {
-            navigation.navigate("MainRoutes");
-          },
-          onError: () => {
-            Alert.alert("Error");
-          },
-        }
-      );
+    navigation.navigate("MainTab");
+
+    // formValidator() &&
+    //   mutate(
+    //     { email, password },
+    //     {
+    //       onSuccess: (data) => {
+    //         navigation.navigate("MainTab");
+    //       },
+    //       onError: () => {
+    //         Alert.alert("Error");
+    //       },
+    //     }
+    //   );
   };
 
   return (

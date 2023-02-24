@@ -88,16 +88,16 @@ export default function App() {
                   component={Login}
                   options={{ headerShown: false }}
                 />
-                <AuthStack.Screen
+                {/* <AuthStack.Screen
                   name="GeneralSignUp"
                   component={GeneralSignUp}
                   options={{ headerShown: false }}
+                /> */}
+                <AuthStack.Screen
+                  name="KakaoLogin"
+                  component={KakaoLogin}
+                  options={{ headerShown: false }}
                 />
-                {/* <AuthStack.Screen
-                    name="KakaoLogin"
-                    component={KakaoLogin}
-                    options={{ headerShown: false }}
-                  /> */}
               </AuthStack.Navigator>
             </Provider>
           </Suspense>
