@@ -35,7 +35,7 @@
 
 ## ⚙️ 서비스 아키텍처
 
-![서비스아키텍쳐ver 1](https://ifh.cc/g/5vxhQg.jpg)
+![서비스아키텍쳐ver 1](https://ifh.cc/g/RSogsz.jpg)
 
 <br>
 
@@ -174,22 +174,22 @@
 ## 🎯 트러블 슈팅
 
 <details>
-<summary>  채팅방 UI 개선 </summary>
+<summary> 1 </summary>
 <div markdown="1">   
    
-### 1. 채팅방 PC화면에서 모바일로 전환, 모바일화면에서 PC화면으로 전환시 더 부드러운 UX로 고치기
+### 1. 
    
 |구분|설명|
 |---|---|
-|문제상황|채팅방의 PC화면(팝업화면)에서 모바일화면(풀화면)으로 전환 또 그 역순으로 전환할 때 채팅창이 닫혀짐<br/>더 부드러운 UX로 개선할 필요가 있었음<br>더 부드러운 UX로 개선하기 위해서는 PC화면일때와 모바일화면일때의 채팅창을 보여주는 방식을 <br>서로 다르게 가져가야 할 필요성을 느낌|
-|문제원인|모바일 화면일때는 풀화면으로 보여주고 PC화면일 떄에는 팝업화면으로 보여주는 방법을 택함<br>풀화면으로 보여주기 위해서 ‘/mobile_chat’이라는 라우터를 따로 열어 줌<br>기존 코드는 채팅창을 열고 닫는 state가 한 컴포넌트에서만 접근이 가능했음<br>화면의 width를 실시간으로 판단하는 hook이 없어 <br>어느 width에 모바일화면으로 접근하는지, PC화면으로 들어오는지 앱이 알수가 없었음|
-|문제해결|채팅창을 열고 닫는 상태를 담는 redux의 slice를 새로 추가하고 상태관리를 전역적으로 바꿔줌<br>화면의 width를 실시간으로 판단하는 hook을 만듬<br>pc화면에서 모바일화면 상태로 돌입될 시 , 또 역순 일 시 hook이 작동이 되고,<br>이에 따라 이벤트가 발생되게끔 코드를 작성<br>이벤트의 콜백으로 PC화면 → 모바일 화면 일 경우, ‘/mobile_chat’으로 주소를 옮기고<br>모바일 화면 → PC화면 일 경우 채팅창 팝업을 띄우게 코드를 작성함|
-|해결결과|유저는 채팅을 하는중에 갑작스럽게 화면 사이즈가 바뀌어도, 끊기지 않고 자연스럽게 채팅을 진행 할 수 있게 됨 |
+|문제상황||
+|문제원인||
+|문제해결||
+|해결결과||
 
 ### 적용 전                                                                                                                                                                                                                                                     
- https://user-images.githubusercontent.com/113868313/207056844-9100fec9-0d6d-483a-8390-15625ebbdab2.mp4
+ 
  ### 적용 후     
-   https://user-images.githubusercontent.com/113868313/207056857-119bbc09-0a22-4339-a31f-6f862d71c6a9.mp4|
+  |
 
 </div>
 </details>
@@ -197,25 +197,18 @@
    <summary> Infinite Carousel </summary>
 <div markdown="1">   
    
-### Infinite Carousel
+### 
    
 |구분|설명|
 |---|---|
-|문제<br>상황|맨 끝 배너에서 첫 번째 배너로 넘어갈 때 자연스럽게 넘어가지 않고 역재생 되는 듯한 애니메이션 발생|
-|문제원인|transition + 양 끝 이미지에 추가적인 이미지가 없기 때문에 처음으로 돌아감 때문에 역재생 애니메이션 발생|
-|문제해결|배너 양 끝에 데이터를 복사해 주고 끝 배너에서 첫 번째 배너로 넘어갈 때 transition을 없애줌|
-|해결결과|해당 하는 이미지의 개수만큼 배너 이벤트가 이루어 지기 때문에 자연스럽게 넘어가는 애니메이션이 생김 |
+|문제<br>상황||
+|문제원인||
+|문제해결||
+|해결결과| |
 
-##### Infinite Carousel 적용 전/후
+##### 
 
-### 적용 전
-
-
-
-
-
-
-https://user-images.githubusercontent.com/113868313/207059748-f2f33559-23ca-4c78-9673-062174aab450.mp4
+### 
 
 
 
@@ -224,9 +217,16 @@ https://user-images.githubusercontent.com/113868313/207059748-f2f33559-23ca-4c78
 
 
 
-### 적용 후
 
-https://user-images.githubusercontent.com/113868313/206861489-23a89d5d-40fb-4c07-94c7-0ddf7797039c.mp4
+
+
+
+
+
+
+### 
+
+
 
 </div>
 </details>
@@ -239,55 +239,48 @@ https://user-images.githubusercontent.com/113868313/206861489-23a89d5d-40fb-4c07
 
 <br>
 <details>
-<summary> <h4>모임 참석 인원 다 찼을때 참석 하기 버튼을 누르면 null이 alert 으로 출력</h4></summary>
+<summary> <h4></h4></summary>
 <div markdown="1">   
-     인원 다 찼을때 post요청에 대한 response를 error로 보내주셨는데 해당 response를 data로 잡고 있었음 back에서 error -> data로 보내 <br>
-<img src="https://user-images.githubusercontent.com/113868313/206859217-8d4bf659-b32b-49fd-b6c4-2896d7cbe2c2.png" />
+     
 </div>
   
 </details>
 
 <details>
-<summary> <h4>클럽 썸네일 이미지가 null 이면 엑박이 뜬다.</h4></summary>
+<summary> <h4></h4></summary>
 <div markdown="1">   
-    프론트/백에서 썸네일이미지가 null 일때 디폴트 썸네일 넣어주어 썸네일 이미지를 넣지 않은 모임도 기본 이미지를 심어주었다.<br>
-<img src="https://user-images.githubusercontent.com/113868313/206859223-00445627-ae65-4fdb-9a41-680c834aae31.png" />
+   
 </div>
    
 </details>
 
 <details>
-<summary><h4>비밀번호 수정 시 비밀번호 확인 일치해도 안 됨 </h4></summary>
+<summary><h4></h4></summary>
 <div markdown="1">   
-   임시 비밀번호를 수정 값으로 확인 하고 있어서 일치 확인이 불가 했었음
+   
  
 </div>
 </details>
 
 <details>
-<summary><h4>모임개설 할 때 스페이스바만 눌러서 모임개설이 됨</h4></summary>
+<summary><h4></h4></summary>
 <div markdown="1">   
-   프론트
-    서버로 input에 들어온 값을 보내기 전에 trim(’ ’)을 이용해 빈 값만 있는 경우를 걸러낸다
-    <br>
-   백엔드
-    개설시 받아오는 requestDto에 필수로 요구하는 입력값은 NotBlank 어노테이션을 달아놓아
-    필수로 요구하는 입력값은 입력하지 않으면 400에러가 발생하도록 변경
-</div>
-</details>
-
-<details>
-<summary><h4>모임개설시에 어떠한 값(인풋)이 입력되지 않았는지 판단하면 좋을 듯</h4></summary>
-<div markdown="1">   
-    input태그에 required 옵션을 달아주어서 form 제출 시 입력되지 않은 값을 명시하게 해줌
    
 </div>
 </details>
 
 <details>
-<summary><h4>과거 채팅  infinite scroll로 가져오기</h4></summary>
+<summary><h4></h4></summary>
 <div markdown="1">   
-    적용 완료
+  
+   
+</div>
+</details>
+
+<details>
+<summary><h4></h4></summary>
+<div markdown="1">   
+   
    
 </div>
 </details>
@@ -300,13 +293,8 @@ https://user-images.githubusercontent.com/113868313/206861489-23a89d5d-40fb-4c07
 <summary> Front-end</summary>
 <div markdown="1">   
     
-    - 반응형 도입 — 모바일ver --완료
-    - 보안 강화 — https -- 완료
-    - infinite carousel -- 완료
-    - infinite scroll — 모바일ver -- 완료
-    - 과거 채팅 무한 스크롤로 불러오기 -- 완료
-    - 후기 기능 -- 완료
-    - api instance -- 완료
+    - 과거 채팅 무한 스크롤로 불러오기
+    - 커뮤니티 댓글 기능 
     - 검색, 좋아요등 서버에 부하가 올 수 있는 api call 최적화
     - 이미지 용량 최적화
     - 채팅에서 이미지 전송 기능 추가
@@ -318,15 +306,7 @@ https://user-images.githubusercontent.com/113868313/206861489-23a89d5d-40fb-4c07
 <summary> Back-end</summary>
 <div markdown="1">
 
-    - Redis를 연동하여 실시간 채팅 구현 고도화
-    - Node.js의 scheduler를 통해 크롤링의 자동화 진행 → AWS Batch - CloudWatch 사용 예정
-    - JPQL을 통해 성능 개선
-    - postgres를 이용한 full-text search 도입 (데이터가 많아질수록 Like를 사용한 검색은 속도가 느리며, 메모리에 부담을 준다)
-    - https 적용
-    - ECS를 통한 배포 --> 현재의 배포에는 EC2 서버에 직접 Redis, JDK, Code Deploy를 설치하고 있다. 이것은 docker-compose를 통해 간단 배포로 변경하고 싶습니다.
-    - ECR까지의 CI는 완료된 상태이나 ECS에서 Load Balace의 target group의 health check를 통과하지 못 하는 상태입니다.
-    - 시간이 남는다면 kafka를 크롤링 서버와 log 수집, 실시간 채팅에 도입한 Data Pipeline을 구축해 보고 싶습니다.
-    - Jwt 토큰 만료 예외처리 - JwtFilter 쪽에서
+
 
 </div>
 </details>
