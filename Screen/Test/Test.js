@@ -1,19 +1,13 @@
 import React from "react";
 import { Text, View } from "react-native";
-import useFetchMyPage from "../../querys/mypage/useFetchMyPage";
-
+import { REACT_APP_SENTRY_DSN, REACT_APP_BASE_URL, REDIRECT_URI } from "@env";
 function Test() {
-  const { data: myPageDatas } = useFetchMyPage();
-
   return (
     <View>
-      <Text>test</Text>
+      <Text>{REACT_APP_SENTRY_DSN}</Text>
+      <Text>{REACT_APP_BASE_URL}</Text>
+      <Text>{REDIRECT_URI}</Text>
       <Text>test1</Text>
-      <Text>test2</Text>
-      <Text>test3</Text>
-      <Text>test4</Text>
-      <Text>test4</Text>
-      <Text>test5</Text>
     </View>
   );
 }

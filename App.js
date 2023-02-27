@@ -19,7 +19,7 @@ import IsLoading from "./Common/Loading/IsLoading";
 import ScreenHeader from "./Common/ScreenHeader/ScreenHeader";
 import GeneralLogin from "./Screen/Login/GeneralSignUp";
 import GeneralSignUp from "./Screen/Login/GeneralSignUp";
-
+import Test from "./Screen/Test/Test";
 // const Tab = createBottomTabNavigator();
 const AuthStack = createStackNavigator();
 const queryClient = new QueryClient({
@@ -68,7 +68,8 @@ export default function App() {
           <Suspense fallback={<IsLoading />}>
             <Provider>
               <AuthStack.Navigator
-                initialRouteName="Login"
+                initialRouteName="Test"
+                // initialRouteName="Login"
                 screenOptions={{
                   headerStyle: {
                     backgroundColor: "#48B7E2",
@@ -84,10 +85,15 @@ export default function App() {
                   }}
                 />
                 <AuthStack.Screen
+                  name="Test"
+                  component={Test}
+                  options={{ headerShown: false }}
+                />
+                {/* <AuthStack.Screen
                   name="Login"
                   component={Login}
                   options={{ headerShown: false }}
-                />
+                /> */}
                 {/* <AuthStack.Screen
                   name="GeneralSignUp"
                   component={GeneralSignUp}
