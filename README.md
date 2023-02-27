@@ -11,7 +11,7 @@
 
 ### [Back-End Github](https://github.com/Artizen-SL/BE)
 
-### [Project Notion](https://www.notion.so/Artizen-e4d9ab34a66245548244765aeceeae5e)
+### [Project Notion](https://www.notion.so/Artizen-6effa9ef521f4a71bce089e8fb83832c)
 
 <br>
 <hr>
