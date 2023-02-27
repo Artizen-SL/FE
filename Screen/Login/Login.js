@@ -16,9 +16,12 @@ const Login = ({ navigation }) => {
         style={styles.bgImage}
       >
         <LogoView>
-          <IntroduceIMG  source={require("../../assets/login/introduce.png")} />
+          <IntroduceIMG source={require("../../assets/login/introduce.png")} />
         </LogoView>
         <LoginView>
+          {/* <TouchableOpacity
+            onPress={() => navigation.navigate("GeneralSignUp")}
+          > */}
           <TouchableOpacity onPress={() => navigation.navigate("KakaoLogin")}>
             <Image source={require("../../assets/login/kakao.png")} />
           </TouchableOpacity>

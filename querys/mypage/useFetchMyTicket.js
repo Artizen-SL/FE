@@ -8,16 +8,16 @@ const getMyTicket = (pageParam, size) => {
   });
 };
 
-const useFetchMyTicket = (pageParam, size) => {
+const useFetchMyTicket = () => {
   return useInfiniteQuery({
     queryKey: ["getMyTicket"],
-    queryFn: async () => {
-      const { data } = await getMyTicket(pageParam, size);
-      return data;
+    queryFn: async ({ pageParam = 1 }) => {
+      const { data } = await getMyTicket(pageParam, 10);
+      const { mypageList: page, isLast } = data;
+      return { page, nextPage: pageParam + 1, isLast };
     },
     getNextPageParam: (lastPage) => {
-      let nextPage = pageParam + 1;
-      return lastPage.isLast ? undefined : lastPage.nextPage;
+      return !lastPage.isLast ? lastPage.nextPage : undefined;
     },
   });
 };

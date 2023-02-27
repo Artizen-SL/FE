@@ -17,23 +17,37 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Layout from "../../Layout/Layout";
 import PrMyPageWrapper from "./PrMyPageWrapper";
 
-const PrMyTicket = ({ navigation, myTicketDatas, loadMore }) => {
+const PrMyTicket = ({ navigation, myTicketDatas, loadMore,onPressHandler }) => {
   const renderItem = ({ item }) => {
     return (
-      <Box>
-        <ImageBox source={{ uri: item.ticketImg }}>
-          <IconImage source={require("../../../assets/Icon/trash.png")} />
-        </ImageBox>
-        <Center>
-          <Text numberOfLines={2} ellipsizeMode="tail">
-            {item.cultureName}
-          </Text>
-          <GrayText>{item.date}</GrayText>
-          <GrayText numberOfLines={1} ellipsizeMode="tail">
-            {item.place}
-          </GrayText>
-        </Center>
-      </Box>
+      <>
+        {item && item.cultureName ? (
+          <Box>
+            <ImageBox source={{ uri: item.ticketImg }}>
+              <BtnIcon
+              onPress={()=>{
+                onPressHandler(item.myTicketId)
+              }}
+              >
+                <IconImage source={require("../../../assets/Icon/trash.png")} />
+              </BtnIcon>
+            </ImageBox>
+            <Center>
+              <Text numberOfLines={2} ellipsizeMode="tail">
+                {item.cultureName}
+              </Text>
+              <GrayText>{item.date}</GrayText>
+              <GrayText numberOfLines={1} ellipsizeMode="tail">
+                {item.place}
+              </GrayText>
+            </Center>
+          </Box>
+        ) : (
+          <Layout>
+            <Text>마이티켓을 등록해보세요!</Text>
+          </Layout>
+        )}
+      </>
     );
   };
   return (
@@ -71,7 +85,9 @@ const PrMyTicket = ({ navigation, myTicketDatas, loadMore }) => {
             // ListFooterComponent={}
           />
         ) : (
-          <Text>내가 쓴 글이 없어요</Text>
+          <Layout>
+            <Text>마이티켓을 등록해보세요!</Text>
+          </Layout>
         )}
       </Layout>
     </SafeAreaView>
@@ -99,12 +115,16 @@ const ImageBox = styled(ImageBackground)`
 const IconImage = styled(Image)`
   width: 20px;
   height: 20px;
-  margin: 5px 0 0 5px;
+  /* margin: 5px 0 0 5px; */
 `;
 
 const RowBox = styled(View)`
   flex-direction: row;
   align-items: center;
+`;
+
+const BtnIcon = styled(TouchableOpacity)`
+  margin: 10px 0 0 10px;
 `;
 const Center = styled(View)`
   flex-direction: column;

@@ -20,7 +20,7 @@ import NoticeImportantList from "../../Components/Notice/NoticeImportantList";
 import { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import useFetchNotice from "../../querys/notice/useFetchNotice";
-import IsLoading from "../../Common/IsLoading/IsLoading";
+import IsLoading from "../../Common/Loading/IsLoading";
 
 const Notice = () => {
   const navigation = useNavigation();
@@ -37,7 +37,7 @@ const Notice = () => {
   };
 
   const onPressHandler = () => {
-    if (noticePassword === "1111") {
+    if (noticePassword === "artizen666!") {
       navigation.navigate("NoticeRoutes", {
         screen: "NoticePost",
       });

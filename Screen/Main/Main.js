@@ -3,7 +3,6 @@ import {
   View,
   Alert,
   Text,
-  Button,
   Image,
   TouchableOpacity,
   ImageBackground,
@@ -14,51 +13,66 @@ import styled, { css } from "styled-components/native";
 import Theme from "../../Theme/Theme";
 import ScrollViewLayout from "../../Components/Layout/ScrollViewLayout";
 import MainCarousel from "../../Components/Main/MainCarousel";
-import UserRecommendData from "../../Components/Main/Data/UserRecommendData";
 import useGpsRes from "../../utils/useGpsRes";
 import useFetchImportantNotice from "../../querys/notice/useFetchImportantNotice";
-import RecentlyData from "../../Components/Main/Data/RecentlyData";
-import BestData from "../../Components/Main/Data/BestData";
+import MainRecentlyContent from "../../Components/Main/MainRecentlyContent";
+import MainBestContent from "../../Components/Main/MainBestContent";
 import MainCarouselData from "../../Components/Main/Data/MainCarouselData";
 import MainNotice from "../../Components/Main/MainNotice";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import useFetchMyPage from "../../querys/mypage/useFetchMyPage";
-// import MainView from "../../Components/Main/Presenters/MainView";
+import useFetchLocation from "../../querys/Main/useFetchLocation";
+import MainRecommendContent from "../../Components/Main/Presenters/UserRecommendBox";
+import IsLoading from "../../Common/Loading/IsLoading";
+import IsError from "../../Common/Error/IsError";
 
 const Main = ({ navigation }) => {
   const screenWidth = Math.round(Dimensions.get("window").width);
 
   const pages = MainCarouselData();
 
-  const [gpsRes, setGpsRes] = useState({ region: "Loading...", district: "" });
+  const [gpsRes, setGpsRes] = useState({
+    region: "Loading...",
+    district: "",
+    latitude: "37.4938176",
+    longitude: "127.136019",
+  });
 
   const resetGpsAsk = async () => {
-    const { region, district, disagree } = await useGpsRes();
-    setGpsRes({ ...gpsRes, region: region, district: district });
+    const { region, district, disagree, latitude, longitude } =
+      await useGpsRes();    
+    setGpsRes({
+      ...gpsRes,
+      region: region,
+      district: district,
+      latitude:latitude,
+      longitude: longitude,
+    });
   };
-
+  // console("resetGpsAsk ",region)
   useEffect(() => {
     const location = resetGpsAsk();
-
     if (typeof location === "object") {
       setGpsRes({ ...gpsRes, region: "", district: "" });
       resetGpsAsk();
     }
   }, []);
 
+  const {
+    data: locationData,
+    isError: locationIsError,
+    isLoading: locationIsLoading,
+    refetch,
+    remove,
+  } = useFetchLocation(gpsRes);
   const { data: datas, isError, isLoading } = useFetchImportantNotice();
-
-  // useEffect(() => {
-  //   const getTokenAsync = async () => {
-  //     let userToken;
-  //     try {
-  //       userToken = await AsyncStorage.getItem("accessToken");
-  //       } catch(error){
-  //       }
-  //   };
-  //   getTokenAsync();
-  // },[]);
   const { data: myPageDatas } = useFetchMyPage();
+
+  if (locationIsLoading) {
+    <IsLoading />;
+  }
+  if (locationIsError) {
+    <IsError />;
+  }
   return (
     <ScrollViewLayout>
       {/* <MainView /> */}
@@ -67,32 +81,7 @@ const Main = ({ navigation }) => {
         style={styles.bgImage}
       >
         <View style={[styles.container, styles.header]}>
-          <Headerarea>
-            <LogoBox>
-              <Logo source={require("../../assets/logo/artizenRabbit.png")} />
-              <LogoTitle source={require("../../assets/logo/artizenNew.png")} />
-            </LogoBox>
-            <View style={[styles.row]}>
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate("MainRoutes", {
-                    screen: "Search",
-                  })
-                }
-              >
-                <Image source={require("../../assets/Icon/Search.png")} />
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate("MyPageRoutes", {
-                    screen: "MyPage",
-                  })
-                }
-              >
-                <Profile source={{ uri: myPageDatas?.profileImg }} />
-              </TouchableOpacity>
-            </View>
-          </Headerarea>
+          {/*메인카루셀*/}
           <ImageBackground
             source={require("../../assets/background/white.png")}
             style={styles.whiteBackground}
@@ -258,9 +247,16 @@ const Main = ({ navigation }) => {
           </View>
 
           {/*추천*/}
-          <View style={styles.center}>
-            <UserRecommendData user={myPageDatas.nickname} />
-          </View>
+          {locationData && locationData.length > 0 ? (
+            <View>
+              <MainRecommendContent
+                user={myPageDatas.nickname}
+                datas={locationData}
+              />
+            </View>
+          ) : (
+            <Text>위치정보를 가져오고 있습니다.</Text>
+          )}
 
           {/*best*/}
           <View style={{ marginTop: 30 }}>
@@ -269,7 +265,7 @@ const Main = ({ navigation }) => {
               <BoldTextBL style={{ marginLeft: 6 }}>Best Artizen</BoldTextBL>
             </View>
 
-            <BestData />
+            <MainBestContent />
           </View>
 
           {/*new*/}
@@ -278,7 +274,7 @@ const Main = ({ navigation }) => {
               <Logo source={require("../../assets/Icon/new.png")} />
               <BoldTextBL style={{ marginLeft: 6 }}>NEW Artizen</BoldTextBL>
             </View>
-            <RecentlyData />
+            <MainRecentlyContent />
           </View>
         </View>
       </ImageBackground>
@@ -358,6 +354,12 @@ const SmallRound = styled.View`
   width: 50px;
   height: 50px;
   border: 1px solid ${Theme.colors.LightGray};
+`;
+
+const Center = styled.View`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
 `;
 
 const LogoView = styled.View`

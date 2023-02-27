@@ -10,12 +10,13 @@ import {
 import styled from "styled-components/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
+import ScrollTopBtn from "../../../Common/ScrollTopBtn/ScrollTopBtn";
 
 const CommunityContentsWrapper = (props) => {
   const navigation = useNavigation();
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <View style={{ flex: 1 }}>
       <CommuBgImage
         resizeMode="cover"
         source={require("../../../assets/background/community-bg.png")}
@@ -41,7 +42,10 @@ const CommunityContentsWrapper = (props) => {
           <></>
         )}
       </CommuBgImage>
-    </SafeAreaView>
+      {props.flatlistRef && (
+        <ScrollTopBtn flatlistRef={props.flatlistRef}></ScrollTopBtn>
+      )}
+    </View>
   );
 };
 
@@ -86,7 +90,7 @@ const StPostingBtn = styled(TouchableOpacity)`
   right: 20px;
   bottom: 20px;
   background-color: #48b7e2;
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
+  width: 45px;
+  height: 45px;
+  border-radius: 22.5px;
 `;

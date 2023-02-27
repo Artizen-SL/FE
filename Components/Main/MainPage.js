@@ -27,5 +27,3 @@ const PageItem = styled.View`
 const MainImage = styled.Image`
   border-radius: 5px;
 `;
-
-const PageNum = styled.Text``;

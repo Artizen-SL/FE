@@ -20,9 +20,12 @@ const MyPost = () => {
     isFetchingNextPage,
     refetch,
     remove,
-  } = useFetchMyPost(1, 8);
+  } = useFetchMyPost();
 
-  const myPostDatas = data?.pages?.flat();
+  const myPostDatas = data?.pages?.flatMap((item) => {
+    return item?.page?.flat();
+  });
+
 
   useEffect(() => {
     remove();

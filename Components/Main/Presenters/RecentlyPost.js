@@ -1,17 +1,32 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image,TouchableOpacity } from "react-native";
 import styled, { css } from "styled-components/native";
+import { useNavigation } from "@react-navigation/native";
 
 const RecentlyPost = ({ datas }) => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.row}>
       {datas?.map((data) => {
         return (
-          <Round
+          <Round 
             style={{ margin: 3, marginTop: 6, alignItems: "center" }}
-            key={data?.id}
+            key={data?.contentId}
+            onPress={() =>
+              navigation.navigate("ContentDetail", {
+                screen: "ContentDetail",
+                id: data?.contentId,
+              })
+            }
           >
-            <RoundImage source={{ uri: data?.posterUrl }} />
-            <Text>{data?.name}</Text>
+             <View  styles={styled.center}>
+            <RoundWrapper>
+              <RoundImage source={{ uri: data?.posterUrl }} />
+            </RoundWrapper>           
+              <TitleTextBl numberOfLines={2} ellipsizeMode="tail">
+                {data?.title}
+              </TitleTextBl>
+            </View>
           </Round>
         );
       })}
@@ -29,6 +44,8 @@ const styles = StyleSheet.create({
   center: {
     alignItems: "center",
     justifyContent: "center",
+    alignContent: "center",
+    justifyItems: "center",
   },
   smallText: {
     fontSize: 12,
@@ -42,13 +59,23 @@ const styles = StyleSheet.create({
   },
 });
 
-const RoundImage = styled.Image`
+const RoundImage = styled(Image)`
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+`;
+const RoundWrapper = styled(View)`
   width: 100px;
   height: 100px;
+  /* border-width: 1px; */
   border-radius: 50px;
 `;
 
-const Round = styled.View`
+const Round = styled(TouchableOpacity )`
   width: 100px;
   height: 150px;
+`;
+
+const TitleTextBl = styled(Text)`
+  font-size: 12px;
 `;

@@ -1,6 +1,7 @@
 import * as Location from "expo-location";
 import { useState } from "react";
 import useGpsAsk from "./useGpsAsk";
+import useFetchLocation from "../querys/Main/useFetchLocation";
 
 const useGpsRes = async () => {
   const granted = await useGpsAsk();
@@ -11,18 +12,19 @@ const useGpsRes = async () => {
     const {
       coords: { latitude, longitude },
     } = await Location?.getCurrentPositionAsync({ accuracy: 5 });
-    const location = await Location?.reverseGeocodeAsync(
+    const location = await Location?.reverseGeocodeAsync(      
       { latitude, longitude },
       { useGoogleMaps: false }
     );
     region = location[0]?.region;
     district = location[0]?.district;
-    return { region, district };
+    console.log("latitude",latitude)
+    return { region, district,latitude,longitude };
   } else {
     disagree = "Loding";
   }
 
-  return region, district, disagree;
+  return region, district, disagree,latitude,longitude;
 };
 
 export default useGpsRes;

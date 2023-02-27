@@ -18,8 +18,12 @@ const MyTicketPost = () => {
 
   //search Btn
   const [submitSearchText, setSubmitSearchText] = useState(undefined);
-  const { data: searchDatas } = useFetchSearch(submitSearchText);
+  const { data } = useFetchSearch(submitSearchText);
   const { mutate: myPageTicketMutate } = usePostMyPageTicket();
+
+  const searchDatas = data?.pages?.flatMap((item) => {
+    return item?.page;
+  });
 
   // 검색 버튼 누를 시
   const onSearchSubmit = () => {

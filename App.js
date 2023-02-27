@@ -15,7 +15,10 @@ import { isLoggedInAtom } from "./Jotai/atoms/authAtoms";
 import MainTab from "./Navigation/MainTab";
 import { Suspense, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import IsLoading from "./Common/IsLoading/IsLoading";
+import IsLoading from "./Common/Loading/IsLoading";
+import ScreenHeader from "./Common/ScreenHeader/ScreenHeader";
+import GeneralLogin from "./Screen/Login/GeneralSignUp";
+import GeneralSignUp from "./Screen/Login/GeneralSignUp";
 
 // const Tab = createBottomTabNavigator();
 const AuthStack = createStackNavigator();
@@ -64,45 +67,37 @@ export default function App() {
         <ThemeProvider theme={Theme}>
           <Suspense fallback={<IsLoading />}>
             <Provider>
-              <AuthStack.Navigator initialRouteName="Login">
-                {/* {isLoggedIn ? (
+              <AuthStack.Navigator
+                initialRouteName="Login"
+                screenOptions={{
+                  headerStyle: {
+                    backgroundColor: "#48B7E2",
+                  },
+                  headerLeft: false,
+                }}
+              >
                 <AuthStack.Screen
                   name="MainTab"
                   component={MainTab}
-                  options={{ headerShown: false }}
+                  options={{
+                    headerTitle: () => <ScreenHeader />,
+                  }}
                 />
-              ) : (
-                <>
-                  <AuthStack.Screen
-                    name="Login"
-                    component={Login}
-                    options={{ headerShown: false }}
-                  />
-                  <AuthStack.Screen
-                    name="KakaoLogin"
-                    component={KakaoLogin}
-                    options={{ headerShown: false }}
-                  />
-                </>
-              )} */}
-
                 <AuthStack.Screen
-                  name="MainTab"
-                  component={MainTab}
+                  name="Login"
+                  component={Login}
                   options={{ headerShown: false }}
                 />
-                <>
-                  <AuthStack.Screen
-                    name="Login"
-                    component={Login}
-                    options={{ headerShown: false }}
-                  />
-                  <AuthStack.Screen
-                    name="KakaoLogin"
-                    component={KakaoLogin}
-                    options={{ headerShown: false }}
-                  />
-                </>
+                {/* <AuthStack.Screen
+                  name="GeneralSignUp"
+                  component={GeneralSignUp}
+                  options={{ headerShown: false }}
+                /> */}
+                <AuthStack.Screen
+                  name="KakaoLogin"
+                  component={KakaoLogin}
+                  options={{ headerShown: false }}
+                />
               </AuthStack.Navigator>
             </Provider>
           </Suspense>

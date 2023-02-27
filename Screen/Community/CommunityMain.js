@@ -1,5 +1,5 @@
 import { useIsFocused, useNavigation } from "@react-navigation/native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import {
   FlatList,
@@ -21,6 +21,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 const CommunityMain = () => {
   const navigation = useNavigation();
   const isFocused = useIsFocused();
+  const flatlistRef = useRef();
 
   const {
     data,
@@ -102,8 +103,9 @@ const CommunityMain = () => {
   };
 
   return (
-    <CommunityContentsWrapper title="Community">
+    <CommunityContentsWrapper title="Community" flatlistRef={flatlistRef}>
       <FlatList
+        ref={flatlistRef}
         // ListHeaderComponent={<></>}
         renderItem={renderItem}
         data={communityMainDatas}
