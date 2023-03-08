@@ -21,12 +21,14 @@ import { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import useFetchNotice from "../../querys/notice/useFetchNotice";
 import IsLoading from "../../Common/Loading/IsLoading";
+import useFetchAdmin from "../../querys/notice/useFetchAdmin";
 
 const Notice = () => {
   const navigation = useNavigation();
   const isFocused = useIsFocused();
   const [noticePassword, setNoticePassword] = useState("");
   const [onPost, setOnPost] = useState(false);
+  const [adminValue, setAdminValue] = useState(null);
 
   const onChangePassword = (e) => {
     setNoticePassword((prev) => (prev = e));
@@ -46,7 +48,13 @@ const Notice = () => {
     }
   };
 
+  const onPressAdminButtonHandler = () => {
+    adminRefetch();
+  };
+
   const { data: datas, isError, isLoading, refetch, remove } = useFetchNotice();
+  const { data: adminData, refetch: adminRefetch } = useFetchAdmin(adminValue);
+  console.log(adminData);
 
   useEffect(() => {
     remove();
@@ -63,6 +71,7 @@ const Notice = () => {
           <RowBox>
             <Logo source={require("../../assets/Icon/notice.png")} />
             <BoldTextBL>공지사항</BoldTextBL>
+
             <TouchableOpacity
               onPress={() => {
                 onPostChange();
@@ -70,6 +79,7 @@ const Notice = () => {
             >
               <HiddenText>글쓰기</HiddenText>
             </TouchableOpacity>
+
             {onPost === true ? (
               <View>
                 <TextInput
@@ -84,6 +94,13 @@ const Notice = () => {
               </View>
             ) : null}
           </RowBox>
+          <TextInput
+            onChangeText={(text) => {
+              setAdminValue(text);
+            }}
+          ></TextInput>
+          <Button title="관리자 인증" onPress={onPressAdminButtonHandler} />
+
           <Layout>
             <NoticeImportantList datas={datas?.top5} />
             <Center>
