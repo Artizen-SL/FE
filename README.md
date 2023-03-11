@@ -89,8 +89,8 @@
 <details>
 <summary>API</summary>
 <div markdown="1">   
-    
 
+![Swagger-UI](https://user-images.githubusercontent.com/96479626/224487823-d47bd59d-6f25-47d6-8c20-b7a45a1e8bb4.png)
 
 </div>
 </details>
