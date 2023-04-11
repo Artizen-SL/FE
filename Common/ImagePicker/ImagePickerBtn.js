@@ -1,12 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
-  Button,
   Image,
   View,
-  Platform,
   ScrollView,
   TouchableOpacity,
-  TouchableHighlight,
   Alert,
   Text,
 } from "react-native";

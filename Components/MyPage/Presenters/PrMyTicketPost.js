@@ -1,16 +1,12 @@
 import {
-  StyleSheet,
   View,
   Text,
-  Button,
   Image,
   TextInput,
   TouchableOpacity,
-  ImageBackground,
-  Dimensions,
   ScrollView,
 } from "react-native";
-import styled, { css } from "styled-components/native";
+import styled from "styled-components/native";
 import ScrollViewLayout from "../../Layout/ScrollViewLayout";
 import ImagePickerBtn from "../../../Common/ImagePicker/ImagePickerBtn";
 import StarRating from "../../../Common/StarRating/StarRating";

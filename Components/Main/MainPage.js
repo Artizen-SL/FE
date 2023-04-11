@@ -1,12 +1,12 @@
 import React from "react";
-import { Dimensions, Image, ImageBackground, View } from "react-native";
+import { Dimensions } from "react-native";
 import styled from "styled-components/native";
 
 export default function MainPage({ item, style }) {
   return (
     <PageItem style={[style]}>
       {/* <PageNum>{item.num}</PageNum> */}
-      <MainImage 
+      <MainImage
         source={item?.mainImageUrl}
         style={{
           resizeMode: "contain",

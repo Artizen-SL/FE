@@ -29,7 +29,9 @@ const MainCarousel = ({ pages, pageWidth, gap }) => {
   }, [currentIndex, snapToOffsets]);
 
   useInterval(() => {
-    setCurrentIndex(prev => (prev === snapToOffsets.length - 1 ? 0 : prev + 1));
+    setCurrentIndex((prev) =>
+      prev === snapToOffsets.length - 1 ? 0 : prev + 1
+    );
   }, 3600);
 
   // props 정보를 reder 하는 함수

@@ -1,19 +1,15 @@
 import { useIsFocused, useNavigation } from "@react-navigation/native";
 import {
-  StyleSheet,
   Text,
   View,
   Image,
   TouchableOpacity,
   ImageBackground,
-  RCTImageView,
   TextInput,
-  Button,
   ScrollView,
 } from "react-native";
-import ScrollViewLayout from "../../Components/Layout/ScrollViewLayout";
 import Layout from "../../Components/Layout/Layout";
-import styled, { css } from "styled-components/native";
+import styled from "styled-components/native";
 import Theme from "../../Theme/Theme";
 import NoticeList from "../../Components/Notice/NoticeList";
 import NoticeImportantList from "../../Components/Notice/NoticeImportantList";

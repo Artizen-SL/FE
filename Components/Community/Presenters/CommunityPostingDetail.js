@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
+import { Image, Text, View } from "react-native";
 import styled from "styled-components";
 import TagView from "../../Elem/TagView";
 
@@ -9,12 +9,10 @@ const CommunityPostingDetail = ({
   return (
     <StPostingDetailContainer>
       <StPostingHeader>
-        {/* <StPostingUserImage source={{ uri: profileImage }} /> */}
         <StPostingUserImage
           source={require("../../../assets/logo/artizenRabbit.png")}
         />
         <View>
-          {/* <StNicknameText>{nickname ?? "익명"}</StNicknameText> */}
           <StNicknameText>{"익명"}</StNicknameText>
           <StDateText>{createdAt.slice(0, 10)}</StDateText>
         </View>

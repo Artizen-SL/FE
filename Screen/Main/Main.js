@@ -39,12 +39,12 @@ const Main = ({ navigation }) => {
 
   const resetGpsAsk = async () => {
     const { region, district, disagree, latitude, longitude } =
-      await useGpsRes();    
+      await useGpsRes();
     setGpsRes({
       ...gpsRes,
       region: region,
       district: district,
-      latitude:latitude,
+      latitude: latitude,
       longitude: longitude,
     });
   };
@@ -64,6 +64,7 @@ const Main = ({ navigation }) => {
     refetch,
     remove,
   } = useFetchLocation(gpsRes);
+
   const { data: datas, isError, isLoading } = useFetchImportantNotice();
   const { data: myPageDatas } = useFetchMyPage();
 

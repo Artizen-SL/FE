@@ -10,10 +10,7 @@ import {
   Dimensions,
   FlatList,
 } from "react-native";
-import styled, { css } from "styled-components/native";
-import Theme from "../../../Theme/Theme";
-import ScrollViewLayout from "../../Layout/ScrollViewLayout";
-import { SafeAreaView } from "react-native-safe-area-context";
+import styled from "styled-components/native";
 import Layout from "../../Layout/Layout";
 import TagView from "../../Elem/TagView";
 import PrMyPageWrapper from "./PrMyPageWrapper";
