@@ -13,6 +13,7 @@ import { useAtom, useAtomValue, useSetAtom } from "jotai";
 const runFirst = `window.ReactNativeWebView.postMessage("this is message from web");`;
 
 const KakaoLogin = () => {
+  // console.log(process.env.T)
   const navigation = useNavigation();
   const isLoggedIn = useAtomValue(isLoggedInAtom);
   const setIsLoggedIn = useSetAtom(isLoggedInAtom);
@@ -32,7 +33,7 @@ const KakaoLogin = () => {
   const sendRequestCode = async (request_code) => {
     try {
       const res = await axios.get(
-        `${REACT_APP_BASE_URL}/members/kakaoLogin?accessToken=${request_code}`
+        `${REACT_APP_BASE_URL}/members/kakaoLogin?code=${request_code}`
       );
       const {
         data,
@@ -58,56 +59,6 @@ const KakaoLogin = () => {
       ]);
     }
   };
-
-  // const requestToken = async (request_code) => {
-  //   let returnValue = "none";
-
-  //   let request_token_url = "https://kauth.kakao.com/oauth/token";
-
-  //   axios({
-  //     method: "post",
-  //     url: request_token_url,
-  //     params: {
-  //       grant_type: "authorization_code",
-  //       client_id: REST_API_KEY,
-  //       code: request_code,
-  //     },
-  //   })
-  //     .then(function (response) {
-  //       returnValue = response.data.access_token;
-  //       sendToken(returnValue);
-  //     })
-  //     .catch(function (error) {});
-  // };
-
-  // const sendToken = async (kakaoAccessToken) => {
-  //   try {
-  //     const res = await axios.get(
-  //       `${REACT_APP_BASE_URL}/members/kakaoLogin?accessToken=${kakaoAccessToken}`
-  //     );
-  //     const {
-  //       data,
-  //       headers: { authorization },
-  //       status,
-  //     } = res;
-  //     const accessToken = authorization;
-  //     const refreshToken = res.headers["refresh-token"];
-
-  //     if (status === 200) {
-  //       await AsyncStorage.setItem("accessToken", accessToken);
-  //       await AsyncStorage.setItem("refreshToken", refreshToken);
-  //       setIsLoggedIn(true);
-  //       navigation.navigate("MainTab");
-  //     }
-  //   } catch (error) {
-  //     Alert.alert("Error", `${error}`, [
-  //       {
-  //         text: "Error",
-  //         style: "cancel",
-  //       },
-  //     ]);
-  //   }
-  // };
 
   return (
     <View style={{ flex: 1 }}>

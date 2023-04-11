@@ -1,6 +1,5 @@
 import React from "react";
-import { Text, TextInput, TouchableOpacity, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Text, TextInput, View } from "react-native";
 import styled from "styled-components/native";
 import Theme from "../../Theme/Theme";
 const Input = ({ text, placeholder, errorMessage, ...props }) => {

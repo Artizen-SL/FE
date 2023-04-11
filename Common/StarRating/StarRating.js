@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { Image, TouchableOpacity, View } from "react-native";
 
 const StarRating = ({ state, setState }) => {
   const [starArr, setStarArr] = useState([true, true, true, true, true]);
 
   const fullStar = require("../../assets/Icon/fullStar.png");
-  //   const fullStar = require("../../assets/Icon/fullStar.png");
   const emptyStar = require("../../assets/Icon/emptyStar.png");
 
   const onStarPressHandler = (idx) => {

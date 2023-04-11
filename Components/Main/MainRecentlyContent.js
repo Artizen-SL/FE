@@ -1,4 +1,3 @@
-import { View } from "react-native";
 import RecentlyPost from "./Presenters/RecentlyPost";
 import useFetchNewArtizen from "../../querys/Main/useFetchNewArtizen";
 
